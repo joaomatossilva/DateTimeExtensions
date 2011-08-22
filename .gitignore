@@ -1,0 +1,6 @@
+*.user
+*.suo
+*.nupkg
+/**/bin/**/*
+/**/obj/**/*
+/packages/**/*
