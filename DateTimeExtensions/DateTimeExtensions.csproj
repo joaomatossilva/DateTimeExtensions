@@ -54,7 +54,9 @@
     <Compile Include="WorkingDayCultureInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DateTimeExtensions.nuspec" />
+    <None Include="DateTimeExtensions.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
