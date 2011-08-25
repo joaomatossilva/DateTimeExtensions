@@ -45,13 +45,13 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void holidays() {
 			var ptWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
-			var enWorkingDayCultureInfo = new WorkingDayCultureInfo("en-US");
+			var enWorkingDayCultureInfo = new WorkingDayCultureInfo("default");
 
 			var thursday = new DateTime(2011, 4, 21); // A thursday
 			var thursday_plus_two_working_days_pt = thursday.AddWorkingDays(2, ptWorkingDayCultureInfo); // friday + 2 working days on PT
-			var thursday_plus_two_working_days_en = thursday.AddWorkingDays(2, enWorkingDayCultureInfo); // friday + 2 working days on PT
+			var thursday_plus_two_working_days_en = thursday.AddWorkingDays(2, enWorkingDayCultureInfo); // friday + 2 working days on Default
 
-			//English doesn't have supported holidays
+			//Default doesn't have supported holidays
 			Assert.IsTrue(thursday_plus_two_working_days_en == thursday.AddDays(4));
 			Assert.IsTrue(thursday_plus_two_working_days_en.DayOfWeek == DayOfWeek.Monday);
 
