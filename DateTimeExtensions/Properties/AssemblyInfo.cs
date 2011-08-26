@@ -7,7 +7,7 @@ using System;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DateTimeExtensions")]
-[assembly: AssemblyDescription("Extensions for System.DateTime to use calculations based on working days")]
+[assembly: AssemblyDescription("Extensions for System.DateTime to use calculations based on working days (non weekends or holidays)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kappy")]
 [assembly: AssemblyProduct("DateTimeExtensions")]

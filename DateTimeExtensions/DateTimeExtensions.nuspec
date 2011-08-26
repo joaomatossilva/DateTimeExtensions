@@ -5,9 +5,12 @@
     <version>$version$</version>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <projectUrl>https://github.com/kappy/DateTimeExtensions</projectUrl>
+    <projectUrl>https://github.com/kappy/DateTimeExtensions/wiki</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>
+      Extensions for System.DateTime to use calculations based on working days (non weekends or holidays). Check out the project webpage for some examples and docs.
+      Since holidays vary a lot from culture to culture, check if you culture is already suported. If not you are invited to contribute it on the project page.
+    </description>
     <tags>Calendar Holiday Workingday DateTime</tags>
   </metadata>
 </package>
