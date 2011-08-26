@@ -9,13 +9,45 @@ namespace DateTimeExtensions {
 	 */
 	public static class GeneralDateTimeExtensions {
 
-		public static DateTime FirstDayOfMonth(this DateTime date) {
+		public static DateTime FirstDayOfTheMonth(this DateTime date) {
 			return new DateTime(date.Year, date.Month, 1);
 		}
-		public static DateTime LastDayOfMonth(this DateTime date) {
+		public static DateTime LastDayOfTheMonth(this DateTime date) {
 			return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
 		}
 
+		public static DateTime LastDayOfWeek(this DateTime date, DayOfWeek dayOfweek){
+			int delta = -7;
+			DateTime targetDate;
+			do{
+				targetDate = date.AddDays(delta);
+				delta++;
+			} while (targetDate.DayOfWeek != dayOfweek);
+			return targetDate;
+		}
+		public static DateTime NextDayOfWeek(this DateTime date, DayOfWeek dayOfweek) {
+			int delta = 7;
+			DateTime targetDate;
+			do {
+				targetDate = date.AddDays(delta);
+				delta--;
+			} while (targetDate.DayOfWeek != dayOfweek);
+			return targetDate;
+		}
+		public static DateTime LastDayOfWeekOfTheMonth(this DateTime date, DayOfWeek dayOfweek) {
+			DateTime lastDayOfTheMonth = date.LastDayOfTheMonth();
+			if (lastDayOfTheMonth.DayOfWeek == dayOfweek) {
+				return lastDayOfTheMonth;
+			}
+			return lastDayOfTheMonth.LastDayOfWeek(dayOfweek);
+		}
+		public static DateTime FirstDayOfWeekOfTheMonth(this DateTime date, DayOfWeek dayOfweek) {
+			DateTime firstDayOfTheMonth = date.FirstDayOfTheMonth();
+			if (firstDayOfTheMonth.DayOfWeek == dayOfweek) {
+				return firstDayOfTheMonth;
+			}
+			return firstDayOfTheMonth.NextDayOfWeek(dayOfweek);
+		}
 
 		public static DateTime SetTime(this DateTime date, int hour) {
 			return date.SetTime(hour, 0, 0, 0);
