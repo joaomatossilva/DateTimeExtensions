@@ -16,7 +16,9 @@ namespace DateTimeExtensions.Strategies {
 		CorpusChristi = 64,
 		Assumption = 128,
 		AllSaints = 256,
-		ImaculateConception = 512
+		ImaculateConception = 512,
+		Pentecost = 1024,
+		Ascension = 2048
 	}
 
 	public class ChristianHolidayStrategy : IHolidayStrategy {
@@ -68,6 +70,12 @@ namespace DateTimeExtensions.Strategies {
 				return true;
 			}
 			if (day.Date == easterDay.AddDays(60) && IsHolidayConsidered(ChristianHoliday.CorpusChristi)) { // Corpus Christi
+				return true;
+			}
+			if (day.Date == easterDay.AddDays(50) && IsHolidayConsidered(ChristianHoliday.Pentecost)) { // Pentecost
+				return true;
+			}
+			if (day.Date == easterDay.AddDays(39) && IsHolidayConsidered(ChristianHoliday.Ascension)) { // Ascension
 				return true;
 			}
 			return false;
