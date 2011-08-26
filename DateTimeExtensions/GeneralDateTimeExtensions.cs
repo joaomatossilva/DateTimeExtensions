@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DateTimeExtensions {
 	/*
-	 * This Extensions were taken from http://dotnetslackers.com/articles/aspnet/5-Helpful-DateTime-Extension-Methods.aspx
+	 * Some of This Extensions were taken from http://dotnetslackers.com/articles/aspnet/5-Helpful-DateTime-Extension-Methods.aspx
 	 */
 	public static class GeneralDateTimeExtensions {
 

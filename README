@@ -11,16 +11,33 @@ unless there is a IWorkingDayCultureInfo implemented for the current thread Cult
 
 Avaiable CultureInfo implementations:
 - pt-PT
-
-Futures CultureInfo implementations:
+- pt-BR
 - en-US
 - en-GB
 - fr-FR
 - de-DE
+- es-ES
 
 your culture is not listed here? You have two options. You can wait until I get the mood to build it, or you can get
 your hands dirty and contribute it.
 
 
+Other Extensions:
+FirstDayOfTheMonth()
+LastDayOfTheMonth()
+LastDayOfWeek(DayOfWeek)
+NextDayOfWeek(DayOfWeek)
+LastDayOfWeekOfTheMonth(DayOfWeek)
+FirstDayOfWeekOfTheMonth(DayOfWeek)
+
 How to Contribute
 Feel free to fork the project, comment, flamme it, on github (https://github.com/kappy/DateTimeExtensions).
+
+
+Version History
+v1.0.1
+- Added more cultures
+- Added other general extension methods
+
+v1.0
+- Initial Version. The only suported Culture is pt-PT
