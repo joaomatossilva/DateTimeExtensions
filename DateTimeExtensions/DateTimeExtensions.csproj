@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeneralDateTimeExtensions.cs" />
+    <Compile Include="Strategies\PT_BRHolidayStrategy.cs" />
+    <Compile Include="Strategies\EN_GBHolidayStrategy.cs" />
+    <Compile Include="Strategies\ES_ESHolidayStrategy.cs" />
     <Compile Include="Strategies\HolidayStrategyLocatorByName.cs" />
     <Compile Include="WorkingDaysCalculator.cs" />
     <Compile Include="DayInYear.cs" />
