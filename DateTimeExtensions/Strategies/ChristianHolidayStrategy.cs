@@ -10,13 +10,13 @@ namespace DateTimeExtensions.Strategies {
 		Christmas = 1,
 		NewYear = 2,
 		Easter = 4,
-		GoodFriday = 8,
-		Carnival = 16,
-		CorpusChristi = 32,
-		Assumption = 64,
-		AllSaints = 128,
-		ImaculateConception = 256,
-		All = 511
+		EasterMonday = 8,
+		GoodFriday = 16,
+		Carnival = 32,
+		CorpusChristi = 64,
+		Assumption = 128,
+		AllSaints = 256,
+		ImaculateConception = 512
 	}
 
 	public class ChristianHolidayStrategy : IHolidayStrategy {
@@ -62,6 +62,9 @@ namespace DateTimeExtensions.Strategies {
 				return true;
 			}
 			if (day.Date == easterDay.AddDays(-2) && IsHolidayConsidered(ChristianHoliday.GoodFriday)) { // Good Friday
+				return true;
+			}
+			if (day.Date == easterDay.AddDays(1) && IsHolidayConsidered(ChristianHoliday.EasterMonday)) { // Easter Monday
 				return true;
 			}
 			if (day.Date == easterDay.AddDays(60) && IsHolidayConsidered(ChristianHoliday.CorpusChristi)) { // Corpus Christi

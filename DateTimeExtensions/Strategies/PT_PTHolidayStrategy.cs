@@ -5,12 +5,21 @@ using System.Text;
 
 namespace DateTimeExtensions.Strategies {
 	public class PT_PTHolidayStrategy : IHolidayStrategy {
-		private const ChristianHoliday christianHolidays = ChristianHoliday.All;
 		private IHolidayStrategy decoratedInstance;
 		IList<DayInYear> fixedNationalHolidays;
 
 
 		public PT_PTHolidayStrategy() {
+			var christianHolidays =
+				ChristianHoliday.NewYear |
+				ChristianHoliday.GoodFriday |
+				ChristianHoliday.Easter |
+				ChristianHoliday.ImaculateConception |
+				ChristianHoliday.Assumption |
+				ChristianHoliday.CorpusChristi |
+				ChristianHoliday.AllSaints |
+				ChristianHoliday.Christmas;
+
 			this.decoratedInstance = new ChristianHolidayStrategy(christianHolidays);
 			this.fixedNationalHolidays = new List<DayInYear>();
 			fixedNationalHolidays.Add(new DayInYear { Day = 25, Month = 4 });	//Freedom Day
