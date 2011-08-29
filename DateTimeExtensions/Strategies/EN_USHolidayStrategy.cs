@@ -118,7 +118,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday ThanksgivingDay {
 			get {
 				if (thanksgivingDay == null) {
-					thanksgivingDay = new NthDayOfWeekInMonthHoliday("Thanksgiving Day", 4, DayOfWeek.Monday, 11, CountDirection.FromFirst);
+					thanksgivingDay = new NthDayOfWeekInMonthHoliday("Thanksgiving Day", 4, DayOfWeek.Thursday, 11, CountDirection.FromFirst);
 				}
 				return thanksgivingDay;
 			}

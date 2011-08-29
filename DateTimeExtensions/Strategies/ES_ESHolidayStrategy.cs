@@ -45,8 +45,8 @@ namespace DateTimeExtensions.Strategies {
 		private static Holiday nationalDay;
 		public static Holiday NationalDay {
 			get {
-				if (nationalDay != null) {
-					nationalDay = new FixedHoliday("National Day", 8, 12);
+				if (nationalDay == null) {
+					nationalDay = new FixedHoliday("National Day", 10, 12);
 				}
 				return nationalDay;
 			}
@@ -55,7 +55,7 @@ namespace DateTimeExtensions.Strategies {
 		private static Holiday constitutionDay;
 		public static Holiday ConstitutionDay {
 			get {
-				if (constitutionDay != null) {
+				if (constitutionDay == null) {
 					constitutionDay = new FixedHoliday("Constitution Day", 12, 6);
 				}
 				return constitutionDay;

@@ -30,7 +30,7 @@ namespace DateTimeExtensions {
 		public static Holiday Epiphany {
 			get {
 				if (epiphany == null) {
-					epiphany = new FixedHoliday("Epiphany", 1, 1);
+					epiphany = new FixedHoliday("Epiphany", 1, 6);
 				}
 				return epiphany;
 			}
