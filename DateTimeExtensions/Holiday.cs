@@ -11,7 +11,7 @@ namespace DateTimeExtensions {
 		}
 
 		public string Name { get; private set; }
-		public abstract DayInYear GetInstance(int year);
+		public abstract DateTime GetInstance(int year);
 		public abstract bool IsInstanceOf(DateTime date);
 	}
 }

@@ -32,6 +32,12 @@ namespace DateTimeExtensions {
 			return this.workingDayOfWeekStrategy.IsWorkingDay(dayOfWeek);
 		}
 
+		public IEnumerable<Holiday> Holidays {
+			get {
+				return this.holidayStrategy.Holidays;
+			} 
+		}
+
 		public string Name { 
 			get{
 				return name;

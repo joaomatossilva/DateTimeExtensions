@@ -124,6 +124,12 @@ namespace DateTimeExtensions.Tests {
 				}
 			}
 
+			public IEnumerable<Holiday> Holidays {
+				get {
+					return null;
+				}
+			}
+
 			public string Name {
 				get { return "Hello World!"; }
 			}

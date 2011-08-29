@@ -12,7 +12,7 @@ namespace DateTimeExtensions {
 		private DayOfWeek dayOfWeek;
 		private CountDirection direction;
 		private int month;
-		private IDictionary<int, DayInYear> dayCache;
+		private IDictionary<int, DateTime> dayCache;
 
 		public NthDayOfWeekInMonthHoliday(string name, int count, DayOfWeek dayOfWeek, int month, CountDirection direction)
 			: base(name) {
@@ -20,10 +20,10 @@ namespace DateTimeExtensions {
 			this.dayOfWeek = dayOfWeek;
 			this.month = month;
 			this.direction = direction;
-			dayCache = new Dictionary<int, DayInYear>();
+			dayCache = new Dictionary<int, DateTime>();
 		}
 
-		public override DayInYear GetInstance(int year) {
+		public override DateTime GetInstance(int year) {
 			if (dayCache.ContainsKey(year))
 				return dayCache[year];
 			var day = CalculateDayInYear(year);
@@ -36,26 +36,24 @@ namespace DateTimeExtensions {
 			return date.Month == day.Month && date.Day == day.Day;
 		}
 
-		private DayInYear CalculateDayInYear(int year) {
+		private DateTime CalculateDayInYear(int year) {
 			if (direction == CountDirection.FromFirst) {
 				DateTime firstDayInMonth = new DateTime(year, month, 1);
 				if (firstDayInMonth.DayOfWeek == dayOfWeek) {
-					return new DayInYear(firstDayInMonth.Month, firstDayInMonth.Year);
+					return firstDayInMonth;
 				}
 				var dayOfWeekInMonth = firstDayInMonth.FirstDayOfWeekOfTheMonth(dayOfWeek);
 				int daysOffset = 7 * (count - 1);
-				var date = dayOfWeekInMonth.AddDays(daysOffset);
-				return new DayInYear(date.Month, date.Day);
+				return dayOfWeekInMonth.AddDays(daysOffset);
 			} else {
 				DateTime lastDayInMonth = new DateTime(year, month, 1);
 				lastDayInMonth = lastDayInMonth.LastDayOfTheMonth();
 				if (lastDayInMonth.DayOfWeek == dayOfWeek) {
-					return new DayInYear(lastDayInMonth.Month, lastDayInMonth.Year);
+					return lastDayInMonth;
 				}
 				var dayOfWeekInMonth = lastDayInMonth.LastDayOfWeekOfTheMonth(dayOfWeek);
 				int daysOffset = -7 * (count - 1);
-				var date = dayOfWeekInMonth.AddDays(daysOffset);
-				return new DayInYear(date.Month, date.Day);
+				return dayOfWeekInMonth.AddDays(daysOffset);
 			}
 		}
 	}

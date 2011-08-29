@@ -56,6 +56,20 @@ namespace DateTimeExtensions {
 				return false;
 			}
 			return workingDayCultureInfo.IsWorkingDay(day);
-		}		
+		}
+
+		public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day) {
+			var workingDayCultureInfo = new WorkingDayCultureInfo();
+			return AllYearHolidays(day, workingDayCultureInfo);
+		}
+
+		public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day, IWorkingDayCultureInfo workingDayCultureInfo) {
+			var holidays = new SortedDictionary<DateTime, Holiday>();
+			foreach (Holiday holiday in workingDayCultureInfo.Holidays) {
+				var date = holiday.GetInstance(day.Year);
+				holidays.Add(date, holiday);
+			}
+			return holidays;
+		}
 	}
 }

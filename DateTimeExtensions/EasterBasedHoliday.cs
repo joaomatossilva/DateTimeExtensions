@@ -6,22 +6,21 @@ using System.Text;
 namespace DateTimeExtensions {
 	public class EasterBasedHoliday : Holiday {
 		private int daysOffset;
-		private IDictionary<int, DayInYear> dayCache;
+		private IDictionary<int, DateTime> dayCache;
 
 		public EasterBasedHoliday(string name, int daysOffset) 
 			: base(name) {
 			this.daysOffset = daysOffset;
-			dayCache = new Dictionary<int, DayInYear>();
+			dayCache = new Dictionary<int, DateTime>();
 		}
 		
-		public override DayInYear GetInstance(int year) {
+		public override DateTime GetInstance(int year) {
 			if (dayCache.ContainsKey(year))
 				return dayCache[year];
 			var easter = EasterCalculator.CalculateEasterDate(year);
 			var date = easter.AddDays(daysOffset);
-			var day = new DayInYear(date.Month, date.Day);
-			dayCache.Add(year, day);
-			return day;
+			dayCache.Add(year, date);
+			return date;
 		}
 
 		public override bool IsInstanceOf(DateTime date) {
