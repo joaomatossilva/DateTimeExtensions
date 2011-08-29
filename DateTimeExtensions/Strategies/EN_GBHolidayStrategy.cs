@@ -9,19 +9,16 @@ namespace DateTimeExtensions.Strategies {
 
 		public EN_GBHolidayStrategy() {
 			this.holidays = new List<Holiday>();
-			/*
-			var christianHolidays = 
-				ChristianHoliday.NewYear |
-				ChristianHoliday.GoodFriday |
-				ChristianHoliday.EasterMonday |
-				ChristianHoliday.Christmas;
-			this.decoratedInstance = new ChristianHolidayStrategy(christianHolidays);
-			this.fixedNationalHolidays = new List<DayInYear>();
-			this.mobileNationalHolidaysPerYear = new Dictionary<int, IList<DayInYear>>();
-
-			fixedNationalHolidays.Add(new DayInYear { Day = 17, Month = 3 });	//St. Patric's Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 26, Month = 12 });	//Boxing Day
-			 * */
+			holidays.Add(ChristianHolidays.NewYear);
+			holidays.Add(ChristianHolidays.GoodFriday);
+			holidays.Add(ChristianHolidays.EasterMonday);
+			holidays.Add(ChristianHolidays.Christmas);
+			
+			holidays.Add(GlobalHolidays.StPatricsDay);
+			holidays.Add(BoxingDay);
+			holidays.Add(MayDayBank);
+			holidays.Add(SpringBank);
+			holidays.Add(LateSummerBank);
 		}
 
 		public bool IsHoliDay(DateTime day) {
@@ -37,24 +34,48 @@ namespace DateTimeExtensions.Strategies {
 				return holidays;
 			}
 		}
-		/*
-		private void CalculateMobileHolidays(int year) {
-			var mobileHolidaysInYear = new List<DayInYear>();
-			//1st Monday in May	- May Day Bank Holiday
-			var aDayInMay = new DateTime(year, 5, 1);
-			var mayDayBank = aDayInMay.FirstDayOfWeekOfTheMonth(DayOfWeek.Monday);
-			mobileHolidaysInYear.Add(new DayInYear { Day = mayDayBank.Day, Month = mayDayBank.Month });
-			//Last Monday in May - Spring Bank Holiday
-			var springBank = aDayInMay.LastDayOfWeekOfTheMonth(DayOfWeek.Monday);
-			mobileHolidaysInYear.Add(new DayInYear { Day = springBank.Day, Month = springBank.Month });
 
-			//Last Monday in August	- Late Summer Bank Holiday
-			var aDayInAugust = new DateTime(year, 8, 1);
-			var laateSummer = aDayInAugust.LastDayOfWeekOfTheMonth(DayOfWeek.Monday);
-			mobileHolidaysInYear.Add(new DayInYear { Day = laateSummer.Day, Month = laateSummer.Month });
-
-			mobileNationalHolidaysPerYear.Add(year, mobileHolidaysInYear);
+		private static Holiday boxingDay;
+		public static Holiday BoxingDay {
+			get {
+				if (boxingDay == null) {
+					boxingDay = new FixedHoliday("Boxing Day", 12, 26);
+				}
+				return boxingDay;
+			}
 		}
-		*/
+
+		//1st Monday in May	- May Day Bank Holiday
+		private static Holiday mayDayBank;
+		public static Holiday MayDayBank {
+			get {
+				if (mayDayBank == null) {
+					mayDayBank = new NthDayOfWeekInMonthHoliday("May Day Bank", 1, DayOfWeek.Monday, 5, CountDirection.FromFirst);
+				}
+				return mayDayBank;
+			}
+		}
+
+		//Last Monday in May - Spring Bank Holiday
+		private static Holiday springBank;
+		public static Holiday SpringBank {
+			get {
+				if (springBank == null) {
+					springBank = new NthDayOfWeekInMonthHoliday("Spring Bank", 1, DayOfWeek.Monday, 5, CountDirection.FromLast);
+				}
+				return springBank;
+			}
+		}
+
+		//Last Monday in August	- Late Summer Bank Holiday
+		private static Holiday lateSummerBank;
+		public static Holiday LateSummerBank {
+			get {
+				if (lateSummerBank == null) {
+					lateSummerBank = new NthDayOfWeekInMonthHoliday("Late Summer Bank", 1, DayOfWeek.Monday, 8, CountDirection.FromLast);
+				}
+				return lateSummerBank;
+			}
+		}
 	}
 }

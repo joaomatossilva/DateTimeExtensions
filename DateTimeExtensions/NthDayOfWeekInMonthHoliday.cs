@@ -18,6 +18,7 @@ namespace DateTimeExtensions {
 			: base(name) {
 			this.count = count;
 			this.dayOfWeek = dayOfWeek;
+			this.month = month;
 			this.direction = direction;
 			dayCache = new Dictionary<int, DayInYear>();
 		}

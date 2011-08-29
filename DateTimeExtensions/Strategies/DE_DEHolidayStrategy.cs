@@ -10,21 +10,16 @@ namespace DateTimeExtensions.Strategies {
 
 		public DE_DEHolidayStrategy() {
 			this.holidays = new List<Holiday>();
-			/*
-			var christianHolidays =
-				ChristianHoliday.NewYear |
-				ChristianHoliday.GoodFriday |
-				ChristianHoliday.EasterMonday |
-				ChristianHoliday.Ascension |
-				ChristianHoliday.Pentecost |
-				ChristianHoliday.Christmas;
+			holidays.Add(ChristianHolidays.NewYear);
+			holidays.Add(ChristianHolidays.GoodFriday);
+			holidays.Add(ChristianHolidays.EasterMonday);
+			holidays.Add(ChristianHolidays.Ascension);
+			holidays.Add(ChristianHolidays.Pentecost);
+			holidays.Add(ChristianHolidays.Christmas);
 
-			this.decoratedInstance = new ChristianHolidayStrategy(christianHolidays);
-			this.fixedNationalHolidays = new List<DayInYear>();
-			fixedNationalHolidays.Add(new DayInYear { Day = 1, Month = 5 });	//Labor Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 3, Month = 10 });	//German Unity Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 26, Month = 12 });	//St Stephen's Day
-			 * */
+			holidays.Add(GlobalHolidays.InternationalWorkersDay);
+			holidays.Add(GermanUnityDay);
+			holidays.Add(StStephensDay);
 		}
 
 		public bool IsHoliDay(DateTime day) {
@@ -38,6 +33,26 @@ namespace DateTimeExtensions.Strategies {
 		public IEnumerable<Holiday> Holidays {
 			get {
 				return holidays;
+			}
+		}
+
+		private static Holiday germanUnityDay;
+		public static Holiday GermanUnityDay {
+			get {
+				if (germanUnityDay == null) {
+					germanUnityDay = new FixedHoliday("German Unity Day", 10, 3);
+				}
+				return germanUnityDay;
+			}
+		}
+
+		private static Holiday stStephensDay;
+		public static Holiday StStephensDay {
+			get {
+				if (stStephensDay == null) {
+					stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
+				}
+				return stStephensDay;
 			}
 		}
 	}
