@@ -39,10 +39,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChristianHolidays.cs" />
+    <Compile Include="EasterBasedHoliday.cs" />
+    <Compile Include="FixedHoliday.cs" />
     <Compile Include="GeneralDateTimeExtensions.cs" />
+    <Compile Include="GlobalHolidays.cs" />
+    <Compile Include="Holiday.cs" />
     <Compile Include="Strategies\DE_DEHolidayStrategy.cs" />
     <Compile Include="Strategies\FR_FRHolidayStrategy.cs" />
     <Compile Include="Strategies\EN_USHolidayStrategy.cs" />
+    <Compile Include="NthDayOfWeekInMonthHoliday.cs" />
     <Compile Include="Strategies\PT_BRHolidayStrategy.cs" />
     <Compile Include="Strategies\EN_GBHolidayStrategy.cs" />
     <Compile Include="Strategies\ES_ESHolidayStrategy.cs" />
@@ -51,7 +57,6 @@
     <Compile Include="DayInYear.cs" />
     <Compile Include="IWorkingDayCultureInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Strategies\ChristianHolidayStrategy.cs" />
     <Compile Include="Strategies\DefaultWorkingDayOfWeekStrategy.cs" />
     <Compile Include="Strategies\IHolidayStrategy.cs" />
     <Compile Include="Strategies\IWorkingDayOfWeekStrategy.cs" />

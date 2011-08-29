@@ -5,42 +5,61 @@ using System.Text;
 
 namespace DateTimeExtensions.Strategies {
 	public class ES_ESHolidayStrategy : IHolidayStrategy {
-		private IHolidayStrategy decoratedInstance;
-		IList<DayInYear> fixedNationalHolidays;
+		IList<Holiday> holidays;
 
 
 		public ES_ESHolidayStrategy() {
-			var christianHolidays = 
-				ChristianHoliday.NewYear |
-				ChristianHoliday.GoodFriday |
-				ChristianHoliday.ImaculateConception |
-				ChristianHoliday.Assumption |
-				ChristianHoliday.AllSaints |
-				ChristianHoliday.Christmas;
-			this.decoratedInstance = new ChristianHolidayStrategy(christianHolidays);
-			this.fixedNationalHolidays = new List<DayInYear>();
+			this.holidays = new List<Holiday>();
+			holidays.Add(ChristianHolidays.NewYear);
+			holidays.Add(ChristianHolidays.Epiphany);
+			holidays.Add(ChristianHolidays.GoodFriday);
+			holidays.Add(ChristianHolidays.ImaculateConception);
+			holidays.Add(ChristianHolidays.Assumption);
+			holidays.Add(ChristianHolidays.AllSaints);
+			holidays.Add(ChristianHolidays.Christmas);
 
-			fixedNationalHolidays.Add(new DayInYear { Day = 6, Month = 1 });	//Epiphany
-			fixedNationalHolidays.Add(new DayInYear { Day = 1, Month = 5 });	//Labor Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 12, Month = 8 });	//National Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 6, Month = 12 });	//Constitution Day
+			holidays.Add(GlobalHolidays.InternationalWorkersDay);
+			holidays.Add(NationalDay);
+			holidays.Add(ConstitutionDay);
 		}
 
 		public bool IsHoliDay(DateTime day) {
-			DateTime testDate = day;
-			// If day is a monday, check if previous sunday is an holiday
-			if (day.DayOfWeek == DayOfWeek.Monday)
-				testDate = day.AddDays(-1);
-
-			if (decoratedInstance.IsHoliDay(testDate)) {
-				return true;
-			}
-			var isHoliday = fixedNationalHolidays.Where(h => h.Day == testDate.Day && h.Month == testDate.Month).SingleOrDefault();
+			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
 			if (isHoliday != null) {
 				return true;
 			}
+
+			// If day is a monday, check if previous sunday is an holiday
+			if (day.DayOfWeek == DayOfWeek.Monday)
+				return IsHoliDay(day.AddDays(-1));
+
 			return false;
 		}
 
+		public IEnumerable<Holiday> Holidays {
+			get {
+				return holidays;
+			}
+		}
+
+		private static Holiday nationalDay;
+		public static Holiday NationalDay {
+			get {
+				if (nationalDay != null) {
+					nationalDay = new FixedHoliday("National Day", 8, 12);
+				}
+				return nationalDay;
+			}
+		}
+
+		private static Holiday constitutionDay;
+		public static Holiday ConstitutionDay {
+			get {
+				if (constitutionDay != null) {
+					constitutionDay = new FixedHoliday("Constitution Day", 12, 6);
+				}
+				return constitutionDay;
+			}
+		}
 	}
 }

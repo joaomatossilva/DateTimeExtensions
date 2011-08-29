@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Threading;
 using DateTimeExtensions;
 using DateTimeExtensions.Strategies;
+using System.Collections.Generic;
 
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
@@ -80,6 +81,10 @@ namespace DateTimeExtensions.Tests {
 				if (day.Date == DateTime.Today)
 					return true;
 				return false;
+			}
+
+			public IEnumerable<Holiday> Holidays {
+				get { return null;  }
 			}
 		}
 

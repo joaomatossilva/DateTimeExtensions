@@ -5,7 +5,13 @@ using System.Text;
 
 namespace DateTimeExtensions {
 	public class DayInYear {
-		public int Day { get; set; }
-		public int Month { get; set; }
+
+		public DayInYear(int month, int day) {
+			this.Month = month;
+			this.Day = day;
+		}
+
+		public int Day { get; private set; }
+		public int Month { get; private set; }
 	}
 }

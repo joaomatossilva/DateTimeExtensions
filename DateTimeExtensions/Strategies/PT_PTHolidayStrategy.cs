@@ -5,40 +5,79 @@ using System.Text;
 
 namespace DateTimeExtensions.Strategies {
 	public class PT_PTHolidayStrategy : IHolidayStrategy {
-		private IHolidayStrategy decoratedInstance;
-		IList<DayInYear> fixedNationalHolidays;
+		IList<Holiday> holidays;
 
 
 		public PT_PTHolidayStrategy() {
-			var christianHolidays =
-				ChristianHoliday.NewYear |
-				ChristianHoliday.GoodFriday |
-				ChristianHoliday.Easter |
-				ChristianHoliday.ImaculateConception |
-				ChristianHoliday.Assumption |
-				ChristianHoliday.CorpusChristi |
-				ChristianHoliday.AllSaints |
-				ChristianHoliday.Christmas;
+			this.holidays = new List<Holiday>();
+			holidays.Add(ChristianHolidays.NewYear);
+			holidays.Add(ChristianHolidays.GoodFriday);
+			holidays.Add(ChristianHolidays.Easter);
+			holidays.Add(ChristianHolidays.ImaculateConception);
+			holidays.Add(ChristianHolidays.Assumption);
+			holidays.Add(ChristianHolidays.CorpusChristi);
+			holidays.Add(ChristianHolidays.AllSaints);
+			holidays.Add(ChristianHolidays.Christmas);
 
-			this.decoratedInstance = new ChristianHolidayStrategy(christianHolidays);
-			this.fixedNationalHolidays = new List<DayInYear>();
-			fixedNationalHolidays.Add(new DayInYear { Day = 25, Month = 4 });	//Freedom Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 1, Month = 5 });	//Labor Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 10, Month = 6 });	//Portugal Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 5, Month = 10 });	//Republic Day
-			fixedNationalHolidays.Add(new DayInYear { Day = 1, Month = 12 });	//Restoration of Independance
+			holidays.Add(FreedomDay);
+			holidays.Add(GlobalHolidays.InternationalWorkersDay);
+			holidays.Add(PortugalDay);
+			holidays.Add(RepublicDay);
+			holidays.Add(RestorationOfIndependance);
 		}
 
 		public bool IsHoliDay(DateTime day) {
-			if (decoratedInstance.IsHoliDay(day)) {
-				return true;
-			}
-			var isHoliday = fixedNationalHolidays.Where(h => h.Day == day.Day && h.Month == day.Month).SingleOrDefault();
+			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
 			if (isHoliday != null) {
 				return true;
 			}
 			return false;
 		}
 
+		public IEnumerable<Holiday> Holidays {
+			get {
+				return holidays;
+			}
+		}
+
+		private static Holiday freedomDay;
+		public static Holiday FreedomDay {
+			get{
+				if (freedomDay == null) {
+					freedomDay = new FixedHoliday("Freedom Day", 4, 25);
+				}
+				return freedomDay;
+			}
+		}
+
+		private static Holiday portugalDay;
+		public static Holiday PortugalDay {
+			get {
+				if (portugalDay == null) {
+					portugalDay = new FixedHoliday("Portugal Day", 6, 10);
+				}
+				return portugalDay;
+			}
+		}
+
+		private static Holiday republicDay;
+		public static Holiday RepublicDay {
+			get {
+				if (republicDay == null) {
+					republicDay = new FixedHoliday("Republic Day", 10, 5);
+				}
+				return republicDay;
+			}
+		}
+
+		private static Holiday restorationOfIndependance;
+		public static Holiday RestorationOfIndependance {
+			get {
+				if (restorationOfIndependance == null) {
+					restorationOfIndependance = new FixedHoliday("Restoration of Independance", 12, 1);
+				}
+				return restorationOfIndependance;
+			}
+		}
 	}
 }

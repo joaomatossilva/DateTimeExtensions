@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DateTimeExtensions.Strategies {
 	public interface IHolidayStrategy {
+		IEnumerable<Holiday> Holidays { get; }
 		bool IsHoliDay(DateTime day);
 	}
 }

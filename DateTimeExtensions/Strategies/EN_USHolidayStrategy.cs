@@ -5,12 +5,11 @@ using System.Text;
 
 namespace DateTimeExtensions.Strategies {
 	public class EN_USHolidayStrategy : IHolidayStrategy {
-		private IHolidayStrategy decoratedInstance;
-		IList<DayInYear> fixedNationalHolidays;
-		private IDictionary<int, IList<DayInYear>> mobileNationalHolidaysPerYear;
-
+		IList<Holiday> holidays;
 
 		public EN_USHolidayStrategy() {
+			this.holidays = new List<Holiday>();
+			/*
 			var christianHolidays = 
 				ChristianHoliday.NewYear |
 				ChristianHoliday.Christmas;
@@ -20,38 +19,33 @@ namespace DateTimeExtensions.Strategies {
 
 			fixedNationalHolidays.Add(new DayInYear { Day = 4, Month = 7 });	//Independence Day
 			fixedNationalHolidays.Add(new DayInYear { Day = 11, Month = 11 });	//Veterans Day
+			 * */
 		}
 
 		public bool IsHoliDay(DateTime day) {
-			DateTime testDate = day;
-			// If day is a monday, check if previous sunday is an holiday
-			if (day.DayOfWeek == DayOfWeek.Monday)
-				testDate = day.AddDays(-1);
-
-			// If day is a friday, check if nex saturday is an holiday
-			if (day.DayOfWeek == DayOfWeek.Friday)
-				testDate = day.AddDays(1);
-
-			if (decoratedInstance.IsHoliDay(testDate)) {
-				return true;
-			}
-			var isHoliday = fixedNationalHolidays.Where(h => h.Day == testDate.Day && h.Month == testDate.Month).SingleOrDefault();
+			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
 			if (isHoliday != null) {
 				return true;
 			}
+			
+			// If day is a monday, check if previous sunday is an holiday
+			if (day.DayOfWeek == DayOfWeek.Monday)
+				return IsHoliDay(day.AddDays(-1));
 
-			if (!mobileNationalHolidaysPerYear.ContainsKey(testDate.Year)) {
-				CalculateMobileHolidays(testDate.Year);
-			}
-			var mobileHolidaysInYear = mobileNationalHolidaysPerYear[day.Year];
-			var isMobileHoliday = mobileHolidaysInYear.Where(h => h.Day == testDate.Day && h.Month == testDate.Month).SingleOrDefault();
-			if (isMobileHoliday != null) {
-				return true;
-			}
+			// If day is a friday, check if nex saturday is an holiday
+			if (day.DayOfWeek == DayOfWeek.Friday)
+				return IsHoliDay(day.AddDays(1));
 
 			return false;
 		}
 
+		public IEnumerable<Holiday> Holidays {
+			get {
+				return holidays;
+			}
+		}
+
+		/*
 		private void CalculateMobileHolidays(int year) {
 			var mobileHolidaysInYear = new List<DayInYear>();
 
@@ -90,6 +84,6 @@ namespace DateTimeExtensions.Strategies {
 
 			mobileNationalHolidaysPerYear.Add(year, mobileHolidaysInYear);
 		}
-
+		*/
 	}
 }

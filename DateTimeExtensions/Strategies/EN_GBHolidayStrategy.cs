@@ -5,12 +5,11 @@ using System.Text;
 
 namespace DateTimeExtensions.Strategies {
 	public class EN_GBHolidayStrategy : IHolidayStrategy {
-		private IHolidayStrategy decoratedInstance;
-		IList<DayInYear> fixedNationalHolidays;
-		private IDictionary<int, IList<DayInYear>> mobileNationalHolidaysPerYear;
-
+		IList<Holiday> holidays;
 
 		public EN_GBHolidayStrategy() {
+			this.holidays = new List<Holiday>();
+			/*
 			var christianHolidays = 
 				ChristianHoliday.NewYear |
 				ChristianHoliday.GoodFriday |
@@ -22,29 +21,23 @@ namespace DateTimeExtensions.Strategies {
 
 			fixedNationalHolidays.Add(new DayInYear { Day = 17, Month = 3 });	//St. Patric's Day
 			fixedNationalHolidays.Add(new DayInYear { Day = 26, Month = 12 });	//Boxing Day
+			 * */
 		}
 
 		public bool IsHoliDay(DateTime day) {
-			if (decoratedInstance.IsHoliDay(day)) {
+			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
+			if (isHoliday != null) {
 				return true;
 			}
-			var isFixedHoliday = fixedNationalHolidays.Where(h => h.Day == day.Day && h.Month == day.Month).SingleOrDefault();
-			if (isFixedHoliday != null) {
-				return true;
-			}
-
-			if(!mobileNationalHolidaysPerYear.ContainsKey(day.Year)){
-				CalculateMobileHolidays(day.Year);
-			}
-			var mobileHolidaysInYear = mobileNationalHolidaysPerYear[day.Year];
-			var isMobileHoliday = mobileHolidaysInYear.Where(h => h.Day == day.Day && h.Month == day.Month).SingleOrDefault();
-			if (isMobileHoliday != null) {
-				return true;
-			}
-
 			return false;
 		}
 
+		public IEnumerable<Holiday> Holidays {
+			get {
+				return holidays;
+			}
+		}
+		/*
 		private void CalculateMobileHolidays(int year) {
 			var mobileHolidaysInYear = new List<DayInYear>();
 			//1st Monday in May	- May Day Bank Holiday
@@ -62,6 +55,6 @@ namespace DateTimeExtensions.Strategies {
 
 			mobileNationalHolidaysPerYear.Add(year, mobileHolidaysInYear);
 		}
-
+		*/
 	}
 }
