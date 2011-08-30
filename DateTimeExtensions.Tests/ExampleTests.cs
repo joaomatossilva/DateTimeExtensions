@@ -139,10 +139,44 @@ namespace DateTimeExtensions.Tests {
 		public void provide_custom_culture() {
 			var customWorkingDayCultureInfo = new CustomWorkingDayCultureInfo();
 			var today = DateTime.Today;
-			var next_friday = new DateTime(2011, 05, 20);
+			var next_friday = today.NextDayOfWeek(DayOfWeek.Friday);
 
 			Assert.IsTrue(today.IsWorkingDay(customWorkingDayCultureInfo) == false);
 			Assert.IsTrue(next_friday.IsWorkingDay(customWorkingDayCultureInfo) == false);
+		}
+
+		[Test]
+		public void get_this_year_holidays_in_portugal() {
+			var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
+			var today = DateTime.Today;
+			var holidays = today.AllYearHolidays();
+
+			Assert.IsTrue(holidays.Count == 13);
+
+			foreach (DateTime holidayDate in holidays.Keys) {
+				var holiday = holidays[holidayDate];
+				Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false, "holiday {0} shouln't be working day in Portugal", holiday.Name);
+			}
+		}
+
+		[Test]
+		public void get_next_and_last_tuesday() {
+			var a_saturday = new DateTime(2011, 8, 20);
+
+			var nextTuesday = a_saturday.NextDayOfWeek(DayOfWeek.Tuesday);
+			var lastTuesday = a_saturday.LastDayOfWeek(DayOfWeek.Tuesday);
+			Assert.IsTrue((nextTuesday.DayOfWeek == DayOfWeek.Tuesday) && (nextTuesday == new DateTime(2011, 8, 23)));
+			Assert.IsTrue((lastTuesday.DayOfWeek == DayOfWeek.Tuesday) && (lastTuesday == new DateTime(2011, 8, 16)));
+		}
+
+		[Test]
+		public void get_first_and_last_tuesday_of_august() {
+			var a_saturday = new DateTime(2011, 8, 13);
+
+			var firstTuesday = a_saturday.FirstDayOfWeekOfTheMonth(DayOfWeek.Tuesday);
+			var lastTuesday = a_saturday.LastDayOfWeekOfTheMonth(DayOfWeek.Tuesday);
+			Assert.IsTrue((firstTuesday.DayOfWeek == DayOfWeek.Tuesday) && (firstTuesday == new DateTime(2011, 8, 2)));
+			Assert.IsTrue((lastTuesday.DayOfWeek == DayOfWeek.Tuesday) && (lastTuesday == new DateTime(2011, 8, 30)));
 		}
 	}
 }
