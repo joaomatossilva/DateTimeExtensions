@@ -86,6 +86,10 @@ namespace DateTimeExtensions.Tests {
 			public IEnumerable<Holiday> Holidays {
 				get { return null;  }
 			}
+
+			public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
+				return null;
+			}
 		}
 
 		public class CustomeWorkingDayOfWeekStrategy : IWorkingDayOfWeekStrategy {
@@ -130,6 +134,10 @@ namespace DateTimeExtensions.Tests {
 				}
 			}
 
+			public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
+				return null;
+			}
+
 			public string Name {
 				get { return "Hello World!"; }
 			}
@@ -146,12 +154,26 @@ namespace DateTimeExtensions.Tests {
 		}
 
 		[Test]
-		public void get_this_year_holidays_in_portugal() {
+		public void get_year_since_2012_holidays_in_portugal() {
 			var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
-			var today = DateTime.Today;
+			var today = new DateTime(2012, 2, 1);
 			var holidays = today.AllYearHolidays();
 
-			Assert.IsTrue(holidays.Count == 13);
+			Assert.IsTrue(holidays.Count == 9, "expecting 9 holidays but got {0}", holidays.Count);
+
+			foreach (DateTime holidayDate in holidays.Keys) {
+				var holiday = holidays[holidayDate];
+				Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false, "holiday {0} shouln't be working day in Portugal", holiday.Name);
+			}
+		}
+
+		[Test]
+		public void get_year_prior_2012_holidays_in_portugal() {
+			var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
+			var today = new DateTime(2010,2,1);
+			var holidays = today.AllYearHolidays();
+
+			Assert.IsTrue(holidays.Count == 13, "expecting 13 holidays but got {0}", holidays.Count);
 
 			foreach (DateTime holidayDate in holidays.Keys) {
 				var holiday = holidays[holidayDate];

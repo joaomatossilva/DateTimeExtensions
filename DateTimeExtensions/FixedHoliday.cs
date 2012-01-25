@@ -17,7 +17,7 @@ namespace DateTimeExtensions {
 			this.day = new DayInYear (month, day);
 		}
 
-		public override DateTime GetInstance(int year) {
+		public override DateTime? GetInstance(int year) {
 			return new DateTime(year, day.Month, day.Day);
 		}
 

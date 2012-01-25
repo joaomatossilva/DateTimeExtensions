@@ -35,6 +35,18 @@ Feel free to fork the project, comment, flamme it, on github (https://github.com
 
 
 Version History
+v1.2
+- Changed pt-PT culture to reflect the holidays abolishment since 2012
+- Added the year depedent holiday (holidays that where created since, removed since, or only verified on certain years)
+- breaking changes:
+	- Holiday.GetInstance(int year) now returns DateTime? instead of DateTime
+	- IHolidayStrategy.GetHolidaysOfYear(int year) was created to replace the property Holidays to be year independant
+	- IHolidayStrategy.Holidays now return only the holidays of the current year
+
+v1.1
+- Added more cultures
+- api refactoring
+
 v1.0.1
 - Added more cultures
 - Added other general extension methods

@@ -65,9 +65,11 @@ namespace DateTimeExtensions {
 
 		public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day, IWorkingDayCultureInfo workingDayCultureInfo) {
 			var holidays = new SortedDictionary<DateTime, Holiday>();
-			foreach (Holiday holiday in workingDayCultureInfo.Holidays) {
+			foreach (Holiday holiday in workingDayCultureInfo.GetHolidaysOfYear(day.Year)) {
 				var date = holiday.GetInstance(day.Year);
-				holidays.Add(date, holiday);
+				if (date.HasValue) {
+					holidays.Add(date.Value, holiday);
+				}
 			}
 			return holidays;
 		}

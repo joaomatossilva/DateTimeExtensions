@@ -63,6 +63,7 @@
     <Compile Include="Strategies\DefaultHolidayStrategy.cs" />
     <Compile Include="Strategies\PT_PTHolidayStrategy.cs" />
     <Compile Include="WorkingDayCultureInfo.cs" />
+    <Compile Include="YearDependantHoliday.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DateTimeExtensions.nuspec">

@@ -8,6 +8,7 @@ namespace DateTimeExtensions {
 		bool IsWorkingDay(DateTime date);
 		bool IsWorkingDay(DayOfWeek dayOfWeek);
 		IEnumerable<Holiday> Holidays { get; }
+		IEnumerable<Holiday> GetHolidaysOfYear(int year);
 		string Name { get; }
 	}
 }

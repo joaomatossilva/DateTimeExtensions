@@ -14,7 +14,7 @@ namespace DateTimeExtensions {
 			dayCache = new Dictionary<int, DateTime>();
 		}
 		
-		public override DateTime GetInstance(int year) {
+		public override DateTime? GetInstance(int year) {
 			if (dayCache.ContainsKey(year))
 				return dayCache[year];
 			var easter = EasterCalculator.CalculateEasterDate(year);
@@ -25,7 +25,7 @@ namespace DateTimeExtensions {
 
 		public override bool IsInstanceOf(DateTime date) {
 			var day = GetInstance(date.Year);
-			return date.Month == day.Month && date.Day == day.Day;
+			return day.HasValue && date.Month == day.Value.Month && date.Day == day.Value.Day;
 		}		
 
 		public static class EasterCalculator{

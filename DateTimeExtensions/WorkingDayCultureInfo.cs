@@ -38,6 +38,10 @@ namespace DateTimeExtensions {
 			} 
 		}
 
+		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
+			return this.holidayStrategy.GetHolidaysOfYear(year);
+		}
+
 		public string Name { 
 			get{
 				return name;

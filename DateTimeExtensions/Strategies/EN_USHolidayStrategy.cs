@@ -41,8 +41,13 @@ namespace DateTimeExtensions.Strategies {
 
 		public IEnumerable<Holiday> Holidays {
 			get {
-				return holidays;
+				var currentYear = DateTime.Now.Year;
+				return this.GetHolidaysOfYear(currentYear);
 			}
+		}
+
+		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
+			return holidays.Where(h => h.GetInstance(year).HasValue);
 		}
 
 		private static Holiday independenceDay;
