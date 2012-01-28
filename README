@@ -35,6 +35,9 @@ Feel free to fork the project, comment, flamme it, on github (https://github.com
 
 
 Version History
+v1.2.1
+- Reverted the holidays abolishment on pt-PT culture since 2012 introduced on v1.2 cause it's still being discussed on the parlament
+
 v1.2
 - Changed pt-PT culture to reflect the holidays abolishment since 2012
 - Added the year depedent holiday (holidays that where created since, removed since, or only verified on certain years)

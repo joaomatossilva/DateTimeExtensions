@@ -152,7 +152,7 @@ namespace DateTimeExtensions.Tests {
 			Assert.IsTrue(today.IsWorkingDay(customWorkingDayCultureInfo) == false);
 			Assert.IsTrue(next_friday.IsWorkingDay(customWorkingDayCultureInfo) == false);
 		}
-
+		/*
 		[Test]
 		public void get_year_since_2012_holidays_in_portugal() {
 			var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
@@ -166,7 +166,7 @@ namespace DateTimeExtensions.Tests {
 				Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false, "holiday {0} shouln't be working day in Portugal", holiday.Name);
 			}
 		}
-
+		*/
 		[Test]
 		public void get_year_prior_2012_holidays_in_portugal() {
 			var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");

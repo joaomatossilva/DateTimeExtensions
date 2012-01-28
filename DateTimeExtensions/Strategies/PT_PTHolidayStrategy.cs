@@ -14,16 +14,24 @@ namespace DateTimeExtensions.Strategies {
 			holidays.Add(ChristianHolidays.GoodFriday);
 			holidays.Add(ChristianHolidays.Easter);
 			holidays.Add(ChristianHolidays.ImaculateConception);
+			/* v1.2 Change Reversion. Theses holidays abolishment aren't still final
 			holidays.Add(new YearDependantHoliday(year => year < 2012, ChristianHolidays.Assumption));
 			holidays.Add(new YearDependantHoliday(year => year < 2012, ChristianHolidays.CorpusChristi));
+			 */
+			holidays.Add(ChristianHolidays.Assumption);
+			holidays.Add(ChristianHolidays.CorpusChristi);
 			holidays.Add(ChristianHolidays.AllSaints);
 			holidays.Add(ChristianHolidays.Christmas);
 
 			holidays.Add(FreedomDay);
 			holidays.Add(GlobalHolidays.InternationalWorkersDay);
 			holidays.Add(PortugalDay);
+			/* v1.2 Change Reversion. Theses holidays abolishment aren't still final
 			holidays.Add(new YearDependantHoliday(year => year < 2012, RepublicDay));
 			holidays.Add(new YearDependantHoliday(year => year < 2012, RestorationOfIndependance));
+			 */
+			holidays.Add(RepublicDay);
+			holidays.Add(RestorationOfIndependance);
 		}
 
 		public bool IsHoliDay(DateTime day) {
