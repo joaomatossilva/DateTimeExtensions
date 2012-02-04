@@ -26,7 +26,7 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_locate_default_strategies() {
 			string name = "foo";
-			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo(name);
+			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo(name);
 			Assert.IsTrue(name == workingdayCultureInfo.Name);
 			Assert.IsInstanceOf<DefaultHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
 			Assert.IsInstanceOf<DefaultWorkingDayOfWeekStrategy>(workingdayCultureInfo.LocateWorkingDayOfWeekStrategy(name));
@@ -38,7 +38,7 @@ namespace DateTimeExtensions.Tests {
 			dynamicMockDayOfWeek.ExpectAndReturn("IsWorkingDay", true, new object[] { DayOfWeek.Friday });
 			dynamicMockDayOfWeek.ExpectAndReturn("IsWorkingDay", true, new object[] { DayOfWeek.Friday });
 
-			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo() {
+			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo() {
 				LocateHolidayStrategy = (n) => {
 					return (IHolidayStrategy)dynamicMockHoliday.MockInstance;
 				},
@@ -55,7 +55,7 @@ namespace DateTimeExtensions.Tests {
 		public void can_provide_custom_locator_dayOfWeek_strategy() {
 			dynamicMockDayOfWeek.ExpectAndReturn("IsWorkingDay", false, new object[] { DayOfWeek.Thursday });
 
-			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo() {
+			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo() {
 				LocateWorkingDayOfWeekStrategy = (n) => {
 					return (IWorkingDayOfWeekStrategy)dynamicMockDayOfWeek.MockInstance;
 				}

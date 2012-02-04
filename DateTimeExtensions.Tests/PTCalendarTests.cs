@@ -9,7 +9,7 @@ using DateTimeExtensions;
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
 	public class PTCalendarTests {
-		private WorkingDayCultureInfo pt_ci = new WorkingDayCultureInfo("pt-PT");
+		private DateTimeCultureInfo pt_ci = new DateTimeCultureInfo("pt-PT");
 
 		[Test]
 		public void default_working_days() {

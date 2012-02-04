@@ -9,7 +9,7 @@ using DateTimeExtensions;
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
 	public class GenericCalendarTests {
-		private WorkingDayCultureInfo foo_ci = new WorkingDayCultureInfo("foo");
+		private DateTimeCultureInfo foo_ci = new DateTimeCultureInfo("foo");
 
 		[Test]
 		public void default_working_days() {

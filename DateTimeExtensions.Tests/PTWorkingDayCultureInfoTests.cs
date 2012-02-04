@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_locate_by_name() {
 			string name = "pt-PT";
-			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo(name);
+			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo(name);
 			Assert.IsTrue(name == workingdayCultureInfo.Name);
 			Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
 		}
@@ -24,7 +24,7 @@ namespace DateTimeExtensions.Tests {
 		public void can_locate_by_culture_info() {
 			string name = "pt-PT";
 			System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(name);
-			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo();
+			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo();
 			Assert.IsTrue(name == workingdayCultureInfo.Name);
 			Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
 		}

@@ -43,11 +43,11 @@ namespace DateTimeExtensions {
 		/// with <paramref name="workingDays"/> added or subctracted to <paramref name="day"/>
 		/// </returns>
 		public static DateTime AddWorkingDays(this DateTime day, int workingDays) {
-			return AddWorkingDays(day, workingDays, new WorkingDayCultureInfo());
+			return AddWorkingDays(day, workingDays, new DateTimeCultureInfo());
 		}
 
 		public static bool IsWorkingDay(this DateTime day) {
-			var workingDayCultureInfo = new WorkingDayCultureInfo();
+			var workingDayCultureInfo = new DateTimeCultureInfo();
 			return IsWorkingDay(day, workingDayCultureInfo);
 		}
 
@@ -59,7 +59,7 @@ namespace DateTimeExtensions {
 		}
 
 		public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day) {
-			var workingDayCultureInfo = new WorkingDayCultureInfo();
+			var workingDayCultureInfo = new DateTimeCultureInfo();
 			return AllYearHolidays(day, workingDayCultureInfo);
 		}
 

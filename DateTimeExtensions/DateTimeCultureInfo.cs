@@ -8,15 +8,16 @@ using DateTimeExtensions.Strategies;
 
 namespace DateTimeExtensions {
 
-	public class WorkingDayCultureInfo : IWorkingDayCultureInfo {
+	public class DateTimeCultureInfo : IWorkingDayCultureInfo, INaturalTextCultureInfo {
 		private string name;
 		private IWorkingDayOfWeekStrategy workingDayOfWeekStrategy;
 		private IHolidayStrategy holidayStrategy;
+		private INaturalTimeStrategy naturalTimeStrategy;
 
-		public WorkingDayCultureInfo() : this(CultureInfo.CurrentCulture.Name) { 
+		public DateTimeCultureInfo() : this(CultureInfo.CurrentCulture.Name) { 
 		}
 
-		public WorkingDayCultureInfo(string name) {
+		public DateTimeCultureInfo(string name) {
 			this.name = name;
 			this.LocateWorkingDayOfWeekStrategy = HolidayStrategyLocatorByName.LocateDayOfWeekStrategyForName;
 			this.LocateHolidayStrategy = HolidayStrategyLocatorByName.LocateHolidayStrategyForName;
@@ -46,6 +47,27 @@ namespace DateTimeExtensions {
 			get{
 				return name;
 			} 
+		}
+
+		public string ToNaturalText(TimeSpan span, bool round) {
+			return naturalTimeStrategy.ToNaturalText(span, round);
+		}
+
+		public string ToExactNaturalText(TimeSpan span) {
+			return naturalTimeStrategy.ToExactNaturalText(span);
+		}
+
+		private Func<string, INaturalTimeStrategy> locateNaturalTimeStrategy;
+		public Func<string, INaturalTimeStrategy> LocateNaturalTimeStrategy {
+			get { return locateNaturalTimeStrategy; }
+			set {
+				if (value != null) {
+					locateNaturalTimeStrategy = value;
+					naturalTimeStrategy = locateNaturalTimeStrategy(name);
+				} else {
+					throw new ArgumentNullException("value");
+				}
+			}
 		}
 
 		private Func<string, IWorkingDayOfWeekStrategy> locateWorkingDayOfWeekStrategy;

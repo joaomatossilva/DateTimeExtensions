@@ -45,10 +45,12 @@
     <Compile Include="GeneralDateTimeExtensions.cs" />
     <Compile Include="GlobalHolidays.cs" />
     <Compile Include="Holiday.cs" />
+    <Compile Include="INaturalTextCultureInfo.cs" />
     <Compile Include="Strategies\DE_DEHolidayStrategy.cs" />
     <Compile Include="Strategies\FR_FRHolidayStrategy.cs" />
     <Compile Include="Strategies\EN_USHolidayStrategy.cs" />
     <Compile Include="NthDayOfWeekInMonthHoliday.cs" />
+    <Compile Include="Strategies\INaturalTimeStrategy.cs" />
     <Compile Include="Strategies\PT_BRHolidayStrategy.cs" />
     <Compile Include="Strategies\EN_GBHolidayStrategy.cs" />
     <Compile Include="Strategies\ES_ESHolidayStrategy.cs" />
@@ -62,7 +64,7 @@
     <Compile Include="Strategies\IWorkingDayOfWeekStrategy.cs" />
     <Compile Include="Strategies\DefaultHolidayStrategy.cs" />
     <Compile Include="Strategies\PT_PTHolidayStrategy.cs" />
-    <Compile Include="WorkingDayCultureInfo.cs" />
+    <Compile Include="DateTimeCultureInfo.cs" />
     <Compile Include="YearDependantHoliday.cs" />
   </ItemGroup>
   <ItemGroup>
