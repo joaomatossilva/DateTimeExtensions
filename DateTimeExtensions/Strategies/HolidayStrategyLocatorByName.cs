@@ -6,6 +6,7 @@ using System.Text;
 namespace DateTimeExtensions.Strategies {
 	public class HolidayStrategyLocatorByName {
 		private const string HOLIDAY_STRATEGY_NAME = "HolidayStrategy";
+		private const string NATURAL_TIME_STRATEGY_NAME = "NaturalTimeStrategy";
 		private const string WORKINGDAYOFWEEK_STRATEGY_NAME = "WorkingDayOfWeekStrategy";
 		private const string NAMESPACE = "DateTimeExtensions.Strategies";
 
@@ -27,6 +28,16 @@ namespace DateTimeExtensions.Strategies {
 				workingDayOfWeekStrategy = new DefaultWorkingDayOfWeekStrategy();
 			}
 			return workingDayOfWeekStrategy;
+		}
+
+		public static INaturalTimeStrategy LocateNaturalTimeStrategyForName(string name) {
+			string strategyPrefix = name.ToUpperInvariant().Replace("-", "_");
+			string strategyName = NAMESPACE + "." + strategyPrefix + NATURAL_TIME_STRATEGY_NAME;
+			var naturalTimeStrategy = CreateObjectInstance<INaturalTimeStrategy>(strategyName);
+			if (naturalTimeStrategy == null) {
+				naturalTimeStrategy = new DefaultNaturalTimeStrategy();
+			}
+			return naturalTimeStrategy;
 		}
 
 		private static T CreateObjectInstance<T>(string typeName) {
