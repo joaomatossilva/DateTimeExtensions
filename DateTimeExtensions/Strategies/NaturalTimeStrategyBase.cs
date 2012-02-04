@@ -14,7 +14,7 @@ namespace DateTimeExtensions.Strategies {
 		protected abstract string SecondText { get; }
 		protected virtual string SentenceJoinerFormat {
 			get {
-				return "{0], {1]";
+				return "{0}, {1}";
 			}
 		}
 
@@ -35,31 +35,31 @@ namespace DateTimeExtensions.Strategies {
 				}
 			}
 			if (dateDiff.Months > 0) {
-				text = this.AddSentence(text, this.GetYearsText(dateDiff.Years));
+				text = this.AddSentence(text, this.GetMonthsText(dateDiff.Months));
 				if (stopOnFirsValue) {
 					return text;
 				}
 			}
 			if (dateDiff.Days > 0) {
-				text = this.AddSentence(text, this.GetYearsText(dateDiff.Years));
+				text = this.AddSentence(text, this.GetDaysText(dateDiff.Days));
 				if (stopOnFirsValue) {
 					return text;
 				}
 			}
 			if (dateDiff.Hours > 0) {
-				text = this.AddSentence(text, this.GetYearsText(dateDiff.Years));
+				text = this.AddSentence(text, this.GetHoursText(dateDiff.Hours));
 				if (stopOnFirsValue) {
 					return text;
 				}
 			}
 			if (dateDiff.Minutes > 0) {
-				text = this.AddSentence(text, this.GetYearsText(dateDiff.Years));
+				text = this.AddSentence(text, this.GetMinutesText(dateDiff.Minutes));
 				if (stopOnFirsValue) {
 					return text;
 				}
 			}
 			if (dateDiff.Seconds > 0) {
-				text = this.AddSentence(text, this.GetYearsText(dateDiff.Years));
+				text = this.AddSentence(text, this.GetSecondsText(dateDiff.Seconds));
 			}
 			return text;
 		}
@@ -68,7 +68,7 @@ namespace DateTimeExtensions.Strategies {
 			if (string.IsNullOrEmpty(text)) {
 				return sentence;
 			}
-			return string.Format(SentenceJoinerFormat, sentence, text);
+			return string.Format(SentenceJoinerFormat, text, sentence);
 		}
 
 		protected virtual string GetYearsText(int value) {

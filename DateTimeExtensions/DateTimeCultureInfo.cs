@@ -19,6 +19,7 @@ namespace DateTimeExtensions {
 
 		public DateTimeCultureInfo(string name) {
 			this.name = name;
+			this.LocateNaturalTimeStrategy = HolidayStrategyLocatorByName.LocateNaturalTimeStrategyForName;
 			this.LocateWorkingDayOfWeekStrategy = HolidayStrategyLocatorByName.LocateDayOfWeekStrategyForName;
 			this.LocateHolidayStrategy = HolidayStrategyLocatorByName.LocateHolidayStrategyForName;
 		}
