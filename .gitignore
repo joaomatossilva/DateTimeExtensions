@@ -1,6 +1,7 @@
 *.user
 *.suo
 *.nupkg
+_ReSharper.*
 /**/bin/**/*
 /**/obj/**/*
 /packages/**/*
