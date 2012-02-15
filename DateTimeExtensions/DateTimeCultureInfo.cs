@@ -50,12 +50,12 @@ namespace DateTimeExtensions {
 			} 
 		}
 
-		public string ToNaturalText(TimeSpan span, bool round) {
-			return naturalTimeStrategy.ToNaturalText(new DateDiff(span), round);
+		public string ToNaturalText(DateDiff span, bool round) {
+			return naturalTimeStrategy.ToNaturalText(span, round);
 		}
 
-		public string ToExactNaturalText(TimeSpan span) {
-			return naturalTimeStrategy.ToExactNaturalText(new DateDiff(span));
+		public string ToExactNaturalText(DateDiff span) {
+			return naturalTimeStrategy.ToExactNaturalText(span);
 		}
 
 		private Func<string, INaturalTimeStrategy> locateNaturalTimeStrategy;

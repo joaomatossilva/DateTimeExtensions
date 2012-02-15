@@ -2,7 +2,7 @@
 
 namespace DateTimeExtensions {
 	public interface INaturalTextCultureInfo {
-		string ToNaturalText(TimeSpan span, bool round);
-		string ToExactNaturalText(TimeSpan span);
+		string ToNaturalText(DateDiff span, bool round);
+		string ToExactNaturalText(DateDiff span);
 	}
 }

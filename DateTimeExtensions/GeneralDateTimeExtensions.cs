@@ -61,5 +61,9 @@ namespace DateTimeExtensions {
 		public static DateTime SetTime(this DateTime date, int hour, int minute, int second, int millisecond) {
 			return new DateTime(date.Year, date.Month, date.Day, hour, minute, second, millisecond);
 		}
+
+		public static DateDiff GetDiff(this DateTime fromDate, DateTime toDate) {
+			return toDate >= fromDate ? new DateDiff(toDate.Subtract(fromDate)) : new DateDiff(fromDate.Subtract(toDate));
+		}
 	}
 }
