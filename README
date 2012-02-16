@@ -1,4 +1,21 @@
-DateTime Extensions
+
+====  DateTime Extensions ====
+---------------------------------------
+
+This project is intended to be a merge of several common DateTime operations on the form of extensions to System.DateTime type.
+
+
+Major Features
+---------------------------------------
+
+Currently implemented are the following major features:
+- Working days add or subtract using locale holidays
+- Dates Difference in Natural Time (localized)
+- General "goto" dates
+
+
+Working Days Calculations
+---------------------------------------
 
 This extensions for System.DateTime adds methods to make calculations based on working days.
 A working day is defined in IWorkingDayCultureInfo in two ways:
@@ -18,23 +35,55 @@ Avaiable CultureInfo implementations:
 - de-DE
 - es-ES
 
-your culture is not listed here? You have two options. You can wait until I get the mood to build it, or you can get
-your hands dirty and contribute it.
+your culture is not listed here? contribute it!!! fork me, implement it and send me the pull request.
+
+
+Dates Diff in Natural Time
+---------------------------------------
+
+This extensions can compare two dates in natural language based on the current locale on current thread CultureInfo.
+There are 3 possible API points for them:
+- ToNaturalText(toTime, bool round = true)
+- ToExactNaturalText(toTime)
+
+The first will return the most valuable time component with value > 0. The round flag will try to round the most significant time
+component based on the next least significant. Also, the round flag will round minutes and seconds to quarters after the first one.
+
+Avaiable CultureInfo implementations:
+- pt-PT
+- pt-BR
+- en-US
+- en-GB
+- fr-FR
+- de-DE
+- es-ES
 
 
 Other Extensions:
+---------------------------------------
+
 FirstDayOfTheMonth()
 LastDayOfTheMonth()
 LastDayOfWeek(DayOfWeek)
 NextDayOfWeek(DayOfWeek)
 LastDayOfWeekOfTheMonth(DayOfWeek)
 FirstDayOfWeekOfTheMonth(DayOfWeek)
+GetDiff(DateTime toDate)
+
+
 
 How to Contribute
-Feel free to fork the project, comment, flamme it, on github (https://github.com/kappy/DateTimeExtensions).
+---------------------------------------
+
+Feel free to fork the project, work on your fork and send me the pull requests.
 
 
 Version History
+---------------------------------------
+
+v1.3
+- Added Natural Time conversions features
+
 v1.2.1
 - Reverted the holidays abolishment on pt-PT culture since 2012 introduced on v1.2 cause it's still being discussed on the parlament
 
