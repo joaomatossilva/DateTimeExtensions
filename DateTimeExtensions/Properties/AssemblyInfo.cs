@@ -7,7 +7,7 @@ using System;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DateTimeExtensions")]
-[assembly: AssemblyDescription("Extensions for System.DateTime to use calculations based on working days (non weekends or holidays)")]
+[assembly: AssemblyDescription("Merge of extensions for System.DateTime like localized working days, holidays calculations and natural time date comparer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Kappy")]
 [assembly: AssemblyProduct("DateTimeExtensions")]
@@ -33,7 +33,7 @@ using System;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.1.0")]
-[assembly: AssemblyFileVersion("1.2.1.0")]
+[assembly: AssemblyVersion("1.3.0.0")]
+[assembly: AssemblyFileVersion("1.3.0.0")]
 
 [assembly: CLSCompliant(true)]
