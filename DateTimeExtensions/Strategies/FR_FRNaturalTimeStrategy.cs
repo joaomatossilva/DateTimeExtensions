@@ -7,7 +7,7 @@ namespace DateTimeExtensions.Strategies {
 	public class FR_FRNaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {
-				return "anée";
+				return "année";
 			}
 		}
 
@@ -42,7 +42,7 @@ namespace DateTimeExtensions.Strategies {
 		}
 
 		protected override string Pluralize(string text) {
-			if (text.Equals("anée", StringComparison.InvariantCultureIgnoreCase)) {
+			if (text.Equals("année", StringComparison.InvariantCultureIgnoreCase)) {
 				return "ans";
 			}
 			if (text.Equals("mois", StringComparison.InvariantCultureIgnoreCase)) {

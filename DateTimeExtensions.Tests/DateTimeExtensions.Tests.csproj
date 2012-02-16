@@ -48,9 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenericNaturalTimeTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="GenericCalendarTests.cs" />
-    <Compile Include="GenericNaturalTimeTests.cs" />
+    <Compile Include="FRNaturalTimeTests.cs" />
     <Compile Include="PTCalendarTests.cs" />
     <Compile Include="PTWorkingDayCultureInfoTests.cs" />
     <Compile Include="GenericWorkingDayCultureInfoTests.cs" />
