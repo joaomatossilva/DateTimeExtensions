@@ -4,16 +4,16 @@
     <id>$id$</id>
     <version>$version$</version>
     <title>DateTime Extensions</title>
-    <summary>Extensions for System.DateTime to use calculations based on working days (non weekends or holidays). List and Calculate mobile Holidays.</summary>
+    <summary>Merge of extensions for System.DateTime like localized working days with holidays calculations and natural time date difference.</summary>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <projectUrl>https://github.com/kappy/DateTimeExtensions/wiki</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
-      Extensions for System.DateTime to use calculations based on working days (non weekends or holidays). List and Calculate mobile Holidays.
-      Check out the project webpage for some examples and docs.
-      Since holidays vary a lot from culture to culture, check if you culture is already suported. If not you are invited to contribute it on the project page.
+      This project is a merge of several common DateTime operations on the form of extensions to System.DateTime type,
+      including natural date difference text (precise and human rounded) and working days calculations.
+      Includes support for several culture locales.
     </description>
-    <tags>Calendar Holiday Workingday DateTime</tags>
+    <tags>Natural Date Time Relative Calendar Holiday Workingday DateTime</tags>
   </metadata>
 </package>
