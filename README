@@ -2,7 +2,9 @@
 ====  DateTime Extensions ====
 ---------------------------------------
 
-This project is intended to be a merge of several common DateTime operations on the form of extensions to System.DateTime type.
+This project is a merge of several common DateTime operations on the form of extensions to System.DateTime type,
+including natural date difference text (precise and human rounded) and working days calculations.
+Includes support for several culture locales.
 
 
 Major Features
@@ -42,9 +44,9 @@ Dates Diff in Natural Time
 ---------------------------------------
 
 This extensions can compare two dates in natural language based on the current locale on current thread CultureInfo.
-There are 3 possible API points for them:
-- ToNaturalText(toTime, bool round = true)
-- ToExactNaturalText(toTime)
+There are 2 API points for them:
+- fromDate.ToNaturalText(toTime, bool round = true)
+- fromDate.ToExactNaturalText(toTime)
 
 The first will return the most valuable time component with value > 0. The round flag will try to round the most significant time
 component based on the next least significant. Also, the round flag will round minutes and seconds to quarters after the first one.
@@ -62,13 +64,13 @@ Avaiable CultureInfo implementations:
 Other Extensions:
 ---------------------------------------
 
-FirstDayOfTheMonth()
-LastDayOfTheMonth()
-LastDayOfWeek(DayOfWeek)
-NextDayOfWeek(DayOfWeek)
-LastDayOfWeekOfTheMonth(DayOfWeek)
-FirstDayOfWeekOfTheMonth(DayOfWeek)
-GetDiff(DateTime toDate)
+fromDate.FirstDayOfTheMonth()
+fromDate.LastDayOfTheMonth()
+fromDate.LastDayOfWeek(DayOfWeek)
+fromDate.NextDayOfWeek(DayOfWeek)
+fromDate.LastDayOfWeekOfTheMonth(DayOfWeek)
+fromDate.FirstDayOfWeekOfTheMonth(DayOfWeek)
+fromDate.GetDiff(DateTime toDate)
 
 
 
@@ -81,8 +83,10 @@ Feel free to fork the project, work on your fork and send me the pull requests.
 Version History
 ---------------------------------------
 
-v1.3
+v2.0
 - Added Natural Time conversions features
+- breaking chances:
+	- WorkingDayCulture info was renamed to DateTimeCultureInfo since it purpose has now multiple contexts.
 
 v1.2.1
 - Reverted the holidays abolishment on pt-PT culture since 2012 introduced on v1.2 cause it's still being discussed on the parlament
