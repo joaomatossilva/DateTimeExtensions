@@ -39,9 +39,6 @@ namespace DateTimeExtensions {
 		private DateTime CalculateDayInYear(int year) {
 			if (direction == CountDirection.FromFirst) {
 				DateTime firstDayInMonth = new DateTime(year, month, 1);
-				if (firstDayInMonth.DayOfWeek == dayOfWeek) {
-					return firstDayInMonth;
-				}
 				var dayOfWeekInMonth = firstDayInMonth.FirstDayOfWeekOfTheMonth(dayOfWeek);
 				int daysOffset = 7 * (count - 1);
 				return dayOfWeekInMonth.AddDays(daysOffset);
