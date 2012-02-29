@@ -45,9 +45,6 @@ namespace DateTimeExtensions {
 			} else {
 				DateTime lastDayInMonth = new DateTime(year, month, 1);
 				lastDayInMonth = lastDayInMonth.LastDayOfTheMonth();
-				if (lastDayInMonth.DayOfWeek == dayOfWeek) {
-					return lastDayInMonth;
-				}
 				var dayOfWeekInMonth = lastDayInMonth.LastDayOfWeekOfTheMonth(dayOfWeek);
 				int daysOffset = -7 * (count - 1);
 				return dayOfWeekInMonth.AddDays(daysOffset);
