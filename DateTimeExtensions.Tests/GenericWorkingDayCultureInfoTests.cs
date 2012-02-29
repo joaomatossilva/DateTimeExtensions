@@ -5,21 +5,20 @@ using System.Text;
 
 using DateTimeExtensions;
 using NUnit.Framework;
-using System.Globalization;
 using DateTimeExtensions.Strategies;
-using NUnit.Mocks;
+using NSubstitute;
 
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
 	public class GenericWorkingDayCultureInfoTests {
 
-		DynamicMock dynamicMockHoliday;
-		DynamicMock dynamicMockDayOfWeek;
+		//DynamicMock dynamicMockHoliday;
+		//DynamicMock dynamicMockDayOfWeek;
 
 		[SetUp]
 		public void Init() {
-			dynamicMockHoliday = new NUnit.Mocks.DynamicMock(typeof(IHolidayStrategy));
-			dynamicMockDayOfWeek = new NUnit.Mocks.DynamicMock(typeof(IWorkingDayOfWeekStrategy));
+			//dynamicMockHoliday = new NUnit.Mocks.DynamicMock(typeof(IHolidayStrategy));
+			//dynamicMockDayOfWeek = new NUnit.Mocks.DynamicMock(typeof(IWorkingDayOfWeekStrategy));
 
 		}
 
@@ -34,35 +33,40 @@ namespace DateTimeExtensions.Tests {
 
 		[Test]
 		public void can_provide_custom_locator_holiday_dayOfWeek_strategy() {
-			dynamicMockHoliday.ExpectAndReturn("IsHoliDay", true, new object[] { new DateTime(1991, 3, 1) });
-			dynamicMockDayOfWeek.ExpectAndReturn("IsWorkingDay", true, new object[] { DayOfWeek.Friday });
-			dynamicMockDayOfWeek.ExpectAndReturn("IsWorkingDay", true, new object[] { DayOfWeek.Friday });
+			var mockHolidayStrategy = Substitute.For<IHolidayStrategy>();
+			mockHolidayStrategy.IsHoliDay(Arg.Any<DateTime>()).Returns(true);
+			var mockDayOfWeekStartegy = Substitute.For<IWorkingDayOfWeekStrategy>();
+			mockDayOfWeekStartegy.IsWorkingDay(Arg.Any<DayOfWeek>()).Returns(true);
 
 			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo() {
 				LocateHolidayStrategy = (n) => {
-					return (IHolidayStrategy)dynamicMockHoliday.MockInstance;
+					return mockHolidayStrategy;
 				},
 				LocateWorkingDayOfWeekStrategy = (n) => {
-					return (IWorkingDayOfWeekStrategy)dynamicMockDayOfWeek.MockInstance;
+					return mockDayOfWeekStartegy;
 				}
 			};
 
 			DateTime marchFirst = new DateTime(1991, 3, 1);
 			Assert.IsFalse(marchFirst.IsWorkingDay(workingdayCultureInfo));
+			mockHolidayStrategy.Received().IsHoliDay(marchFirst);
+			mockDayOfWeekStartegy.Received().IsWorkingDay(marchFirst.DayOfWeek);
 		}
 
 		[Test]
 		public void can_provide_custom_locator_dayOfWeek_strategy() {
-			dynamicMockDayOfWeek.ExpectAndReturn("IsWorkingDay", false, new object[] { DayOfWeek.Thursday });
+			var mockDayOfWeekStartegy = Substitute.For<IWorkingDayOfWeekStrategy>();
+			mockDayOfWeekStartegy.IsWorkingDay(Arg.Any<DayOfWeek>()).Returns(false);			
 
 			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo() {
 				LocateWorkingDayOfWeekStrategy = (n) => {
-					return (IWorkingDayOfWeekStrategy)dynamicMockDayOfWeek.MockInstance;
+					return mockDayOfWeekStartegy;
 				}
 			};
 
 			DateTime aThursday = new DateTime(2011, 5, 12);
 			Assert.IsFalse(aThursday.IsWorkingDay(workingdayCultureInfo));
+			mockDayOfWeekStartegy.Received().IsWorkingDay(aThursday.DayOfWeek);
 		}
 
 	}
