@@ -82,6 +82,8 @@ Feel free to fork the project, work on your fork and send me the pull requests.
 
 Version History
 ---------------------------------------
+v2.0.1
+- bugfixes: NthDayOfWeekInMonth Calculations were corrected
 
 v2.0
 - Added Natural Time conversions features
