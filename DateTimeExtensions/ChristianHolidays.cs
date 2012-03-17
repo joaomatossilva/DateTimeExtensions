@@ -147,5 +147,15 @@ namespace DateTimeExtensions {
 				return ascension;
 			}
 		}
+
+		private static Holiday stStephensDay;
+		public static Holiday StStephansDay {
+			get {
+				if (stStephensDay == null) {
+					stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
+				}
+				return stStephensDay;
+			}
+		}
 	}
 }

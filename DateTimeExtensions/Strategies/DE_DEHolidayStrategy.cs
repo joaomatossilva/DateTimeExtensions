@@ -19,7 +19,7 @@ namespace DateTimeExtensions.Strategies {
 
 			holidays.Add(GlobalHolidays.InternationalWorkersDay);
 			holidays.Add(GermanUnityDay);
-			holidays.Add(StStephensDay);
+			holidays.Add(ChristianHolidays.StStephansDay);
 		}
 
 		public bool IsHoliDay(DateTime day) {
@@ -48,16 +48,6 @@ namespace DateTimeExtensions.Strategies {
 					germanUnityDay = new FixedHoliday("German Unity Day", 10, 3);
 				}
 				return germanUnityDay;
-			}
-		}
-
-		private static Holiday stStephensDay;
-		public static Holiday StStephensDay {
-			get {
-				if (stStephensDay == null) {
-					stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
-				}
-				return stStephensDay;
 			}
 		}
 	}

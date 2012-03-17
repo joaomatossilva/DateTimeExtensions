@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Strategies {
 			holidays.Add(ChristianHolidays.Christmas);
 			
 			holidays.Add(GlobalHolidays.StPatricsDay);
-			holidays.Add(BoxingDay);
+			holidays.Add(GlobalHolidays.BoxingDay);
 			holidays.Add(MayDayBank);
 			holidays.Add(SpringBank);
 			holidays.Add(LateSummerBank);

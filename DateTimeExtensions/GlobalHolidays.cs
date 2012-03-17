@@ -35,5 +35,25 @@ namespace DateTimeExtensions {
 				return veteransDay;
 			}
 		}
+
+		private static Holiday boxingDay;
+		public static Holiday BoxingDay {
+			get {
+				if (boxingDay == null) {
+					boxingDay = new FixedHoliday("Boxing Day", 12, 26);
+				}
+				return boxingDay;
+			}
+		}
+
+		private static Holiday mayDay;
+		public static Holiday MayDay {
+			get {
+				if (mayDay == null) {
+					mayDay = new FixedHoliday("May Day", 5, 1);
+				}
+				return mayDay;
+			}
+		}
 	}
 }
