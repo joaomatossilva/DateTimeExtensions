@@ -143,7 +143,8 @@ namespace DateTimeExtensions {
 		public static Holiday Pentecost {
 			get {
 				if (pentecost == null) {
-					pentecost = new NthDayOfWeekAfterHolidayHoliday("Pentecost", 8, DayOfWeek.Sunday, Easter);
+					//count offset is 7 because we aren't counting with the easter day inclusive
+					pentecost = new NthDayOfWeekAfterHolidayHoliday("Pentecost", 7, DayOfWeek.Sunday, Easter);
 				}
 				return pentecost;
 			}

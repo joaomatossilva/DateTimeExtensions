@@ -45,10 +45,19 @@ namespace DateTimeExtensions {
 			if (!startDate.HasValue) {
 				return null;
 			}
-			if (startDate.Value.DayOfWeek != dayOfWeek) {
+			/* this block should be uncomment if we should count the start day inclusive
+			 * example: 1st Sunday after easter. should count the next sunday, or the easter sunday? for now it makes more sence the next sunday
+			if(startDate.Value.DayOfWeek == dayOfWeek && (count == -1 || count == 1))
+			{
+				return startDate;
+			}
+			 */
+			if (count > 0) {
 				startDate = startDate.Value.NextDayOfWeek(dayOfWeek);
-			}			
-			return startDate.Value.AddDays((count - 1) * 7);
+			} else {
+				startDate = startDate.Value.LastDayOfWeek(dayOfWeek);
+			}
+			return startDate.Value.AddDays((count > 0 ? count - 1 : count + 1) * 7);
 		}
 	}
 }
