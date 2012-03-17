@@ -96,6 +96,16 @@ namespace DateTimeExtensions {
 			}
 		}
 
+		private static Holiday maundyThursday;
+		public static Holiday MaundyThursday {
+			get {
+				if (maundyThursday == null) {
+					maundyThursday = new EasterBasedHoliday("Maundy Thursday", -3);
+				}
+				return maundyThursday;
+			}
+		}
+
 		private static Holiday goodFriday;
 		public static Holiday GoodFriday {
 			get {
