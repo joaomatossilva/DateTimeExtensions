@@ -136,13 +136,14 @@ namespace DateTimeExtensions {
 			}
 		}
 
-		//50 days after Easter (inclusive of Easter Day). source: http://en.wikipedia.org/wiki/Pentecost
+		//source: http://en.wikipedia.org/wiki/Pentecost
+		//50 days after Easter (inclusive of Easter Day). In other words, it falls on the eighth Sunday, counting Easter Day 
 		//Also know as Whit Sunday, Whitsun, Whit
 		private static Holiday pentecost;
 		public static Holiday Pentecost {
 			get {
 				if (pentecost == null) {
-					pentecost = new EasterBasedHoliday("Pentecost", 49);
+					pentecost = new NthDayOfWeekAfterHolidayHoliday("Pentecost", 8, DayOfWeek.Sunday, Easter);
 				}
 				return pentecost;
 			}
