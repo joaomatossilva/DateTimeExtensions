@@ -51,6 +51,7 @@
     <Compile Include="Holiday.cs" />
     <Compile Include="INaturalTextCultureInfo.cs" />
     <Compile Include="NaturalTimeExtensions.cs" />
+    <Compile Include="Strategies\FI_FIHolidayStrategy.cs" />
     <Compile Include="Strategies\PT_BRNaturalTimeStrategy.cs" />
     <Compile Include="Strategies\DE_DENaturalTimeStrategy.cs" />
     <Compile Include="Strategies\FR_FRNaturalTimeStrategy.cs" />
