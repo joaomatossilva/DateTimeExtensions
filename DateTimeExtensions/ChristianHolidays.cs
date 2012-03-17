@@ -138,6 +138,17 @@ namespace DateTimeExtensions {
 			}
 		}
 
+		//Also known as Whit monday
+		private static Holiday pentecostMonday;
+		public static Holiday PentecostMonday {
+			get {
+				if (pentecostMonday == null) {
+					pentecostMonday = new EasterBasedHoliday("Pentecost Monday", 50);
+				}
+				return pentecostMonday;
+			}
+		}
+
 		private static Holiday ascension;
 		public static Holiday Ascension {
 			get {
@@ -145,6 +156,16 @@ namespace DateTimeExtensions {
 					ascension = new EasterBasedHoliday("Ascension", 39);
 				}
 				return ascension;
+			}
+		}
+
+		private static Holiday christmasEve;
+		public static Holiday ChristmasEve {
+			get {
+				if (christmasEve == null) {
+					christmasEve = new FixedHoliday("Christmas Eve", 12, 24);
+				}
+				return christmasEve;
 			}
 		}
 
