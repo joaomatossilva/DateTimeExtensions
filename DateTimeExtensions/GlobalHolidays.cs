@@ -55,5 +55,27 @@ namespace DateTimeExtensions {
 				return mayDay;
 			}
 		}
+
+		//Midsummer Eve - Friday between 19 June and 25 June
+		private static Holiday midsummerEve;
+		public static Holiday MidsummerEve {
+			get {
+				if (midsummerEve == null) {
+					midsummerEve = new NthDayOfWeekAfterHolidayHoliday("Midsummer Eve", 1, DayOfWeek.Friday, 6, 19);
+				}
+				return midsummerEve;
+			}
+		}
+
+		//MidSummer Day - Saturday between 20 June and 26 June
+		private static Holiday midsummerDay;
+		public static Holiday MidsummerDay {
+			get {
+				if (midsummerDay == null) {
+					midsummerDay = new NthDayOfWeekAfterHolidayHoliday("Midsummer Day", 1, DayOfWeek.Saturday, 6, 20);
+				}
+				return midsummerDay;
+			}
+		}
 	}
 }

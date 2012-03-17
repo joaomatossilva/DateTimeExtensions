@@ -17,8 +17,8 @@ namespace DateTimeExtensions.Strategies {
 			holidays.Add(GlobalHolidays.MayDay);
 			holidays.Add(ChristianHolidays.Ascension);
 			holidays.Add(ChristianHolidays.Pentecost);
-			holidays.Add(MidsummerEve);
-			holidays.Add(MidsummerDay);
+			holidays.Add(GlobalHolidays.MidsummerEve);
+			holidays.Add(GlobalHolidays.MidsummerDay);
 			holidays.Add(AllSaintsDay);
 			holidays.Add(IndependanceDay);
 			holidays.Add(ChristianHolidays.ChristmasEve);
@@ -52,32 +52,9 @@ namespace DateTimeExtensions.Strategies {
 			}
 		}
 
-		//Midsummer Eve - Friday between 19 June and 25 June
-		private static Holiday midsummerEve;
-		public static Holiday MidsummerEve {
-			get {
-				if (midsummerEve == null) {
-					midsummerEve = new NthDayOfWeekAfterHolidayHoliday("Midsummer Eve", 1, DayOfWeek.Friday, 6, 19);
-				}
-				return midsummerEve;
-			}
-		}
-
-		//MidSummer Day - Saturday between 20 June and 26 June
-		private static Holiday midsummerDay;
-		public static Holiday MidsummerDay {
-			get {
-				if (midsummerDay == null) {
-					midsummerDay = new NthDayOfWeekAfterHolidayHoliday("Midsummer Day", 1, DayOfWeek.Saturday, 6, 20);
-				}
-				return midsummerDay;
-			}
-		}
-
 		//All Saints' Day - Saturday between 31 October and 6 November
 		// - Same as ChristianHolidays.AllSaints but has diferent ocurrence
 		private static Holiday allSaintsDay;
-
 		public static Holiday AllSaintsDay {
 			get {
 				if (allSaintsDay == null) {
