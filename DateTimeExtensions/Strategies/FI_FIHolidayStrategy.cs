@@ -57,7 +57,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday MidsummerEve {
 			get {
 				if (midsummerEve == null) {
-					midsummerEve = new FirstDayOfWeekAfterDayHoliday("Midsummer Eve", DayOfWeek.Friday, 6, 19);
+					midsummerEve = new NthDayOfWeekAfterHolidayHoliday("Midsummer Eve", 1, DayOfWeek.Friday, 6, 19);
 				}
 				return midsummerEve;
 			}
@@ -68,7 +68,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday MidsummerDay {
 			get {
 				if (midsummerDay == null) {
-					midsummerDay = new FirstDayOfWeekAfterDayHoliday("Midsummer Day", DayOfWeek.Saturday, 6, 20);
+					midsummerDay = new NthDayOfWeekAfterHolidayHoliday("Midsummer Day", 1, DayOfWeek.Saturday, 6, 20);
 				}
 				return midsummerDay;
 			}
@@ -81,7 +81,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday AllSaintsDay {
 			get {
 				if (allSaintsDay == null) {
-					allSaintsDay = new FirstDayOfWeekAfterDayHoliday("All Saint's Day", DayOfWeek.Saturday, 11, 31);
+					allSaintsDay = new NthDayOfWeekAfterHolidayHoliday("All Saint's Day", 1, DayOfWeek.Saturday, 11, 31);
 				}
 				return allSaintsDay;
 			}
