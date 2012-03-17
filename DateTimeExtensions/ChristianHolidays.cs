@@ -126,11 +126,13 @@ namespace DateTimeExtensions {
 			}
 		}
 
+		//50 days after Easter (inclusive of Easter Day). source: http://en.wikipedia.org/wiki/Pentecost
+		//Also know as Whit Sunday, Whitsun, Whit
 		private static Holiday pentecost;
 		public static Holiday Pentecost {
 			get {
 				if (pentecost == null) {
-					pentecost = new EasterBasedHoliday("Pentecost", 50);
+					pentecost = new EasterBasedHoliday("Pentecost", 49);
 				}
 				return pentecost;
 			}
