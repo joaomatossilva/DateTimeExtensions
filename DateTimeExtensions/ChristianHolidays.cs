@@ -96,6 +96,18 @@ namespace DateTimeExtensions {
 			}
 		}
 
+		//source: http://en.wikipedia.org/wiki/Palm_Sunday
+		//Palm Sunday is a Christian moveable feast that falls on the Sunday before Easter
+		private static Holiday palmSunday;
+		public static Holiday PalmSunday {
+			get {
+				if (palmSunday == null) {
+					palmSunday = new NthDayOfWeekAfterHolidayHoliday("Palm Sunday", -1, DayOfWeek.Sunday, Easter);
+				}
+				return palmSunday;
+			}
+		}
+
 		private static Holiday maundyThursday;
 		public static Holiday MaundyThursday {
 			get {

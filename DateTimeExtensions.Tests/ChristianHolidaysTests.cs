@@ -53,5 +53,23 @@ namespace DateTimeExtensions.Tests {
 				Assert.AreEqual(easter.Value.AddDays(39), ascencion.Value);
 			}			
 		}
+
+		[Test]
+		public void palmSunday_is_7_days_before_easter() {
+			for (int year = 2012; year < 2020; year++) {
+				var easterHoliday = ChristianHolidays.Easter;
+				var easter = easterHoliday.GetInstance(year);
+
+				var palmSundayHoliday = ChristianHolidays.PalmSunday;
+				var palmSunday = palmSundayHoliday.GetInstance(year);
+				Assert.IsTrue(palmSunday.HasValue);
+				Assert.AreEqual(DayOfWeek.Sunday, palmSunday.Value.DayOfWeek);
+
+				//source: http://en.wikipedia.org/wiki/Palm_Sunday
+				//Palm Sunday is a Christian moveable feast that falls on the Sunday before Easter
+				Assert.AreEqual(easter.Value.AddDays(-7), palmSunday.Value);
+			}
+		}
+
 	}
 }
