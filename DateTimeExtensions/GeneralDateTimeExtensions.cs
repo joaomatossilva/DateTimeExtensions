@@ -9,14 +9,32 @@ namespace DateTimeExtensions {
 	 */
 	public static class GeneralDateTimeExtensions {
 
+		/// <summary>
+		/// Retrives the first day of the month of the <paramref name="date"/>.
+		/// </summary>
+		/// <param name="date">A date from the month we want to get the first day.</param>
+		/// <returns>A DateTime representing the first day of the month.</returns>
 		public static DateTime FirstDayOfTheMonth(this DateTime date) {
 			return new DateTime(date.Year, date.Month, 1);
 		}
+
+		/// <summary>
+		/// Retrives the last day of the month of the <paramref name="date"/>.
+		/// </summary>
+		/// <param name="date">A date from the month we want to get the last day.</param>
+		/// <returns>A DateTime representing the last day of the month.</returns>
 		public static DateTime LastDayOfTheMonth(this DateTime date) {
 			return new DateTime(date.Year, date.Month, DateTime.DaysInMonth(date.Year, date.Month));
 		}
 
-		public static DateTime LastDayOfWeek(this DateTime date, DayOfWeek dayOfweek){
+		/// <summary>
+		/// Retrives the last day of the week that occourred since <paramref name="date"/>.
+		/// </summary>
+		/// <remarks>If <paramref name="name"/>.DayOfWeek is already <paramref name="dayOfweek"/>, it will return the last one (seven days before)</remarks>
+		/// <param name="date">A date.</param>
+		/// <param name="dayOfweek">The kind of DayOfWeek we want to get.</param>
+		/// <returns>A DateTime representing the last day of the week that occourred.</returns>
+		public static DateTime LastDayOfWeek(this DateTime date, DayOfWeek dayOfweek) {
 			int delta = -7;
 			DateTime targetDate;
 			do{
@@ -25,6 +43,14 @@ namespace DateTimeExtensions {
 			} while (targetDate.DayOfWeek != dayOfweek);
 			return targetDate;
 		}
+
+		/// <summary>
+		/// Retrives the next day of the week that will occour after <paramref name="date"/>.
+		/// </summary>
+		/// <remarks>If <paramref name="name"/>.DayOfWeek is already <paramref name="dayOfweek"/>, it will return the next one (seven days after)</remarks>
+		/// <param name="date">A date.</param>
+		/// <param name="dayOfweek">The kind of DayOfWeek we want to get.</param>
+		/// <returns>A DateTime representing the next day of the week that will occour after.</returns>
 		public static DateTime NextDayOfWeek(this DateTime date, DayOfWeek dayOfweek) {
 			int delta = 7;
 			DateTime targetDate;
