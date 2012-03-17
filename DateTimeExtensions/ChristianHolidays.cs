@@ -149,6 +149,9 @@ namespace DateTimeExtensions {
 			}
 		}
 
+		//source: http://en.wikipedia.org/wiki/Ascension_Day
+		// Ascension Day is traditionally celebrated on a Thursday, the fortieth day of Easter
+		// again, easter day is included
 		private static Holiday ascension;
 		public static Holiday Ascension {
 			get {
