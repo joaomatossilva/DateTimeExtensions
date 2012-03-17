@@ -21,6 +21,12 @@ namespace DateTimeExtensions {
 
 		public NthDayOfWeekAfterHolidayHoliday(string name, int count, DayOfWeek dayOfWeek, Holiday baseHoliday)
 			: base(name) {
+			if (count == 0) {
+				throw new ArgumentException("count must not be 0", "count");
+			}
+			if (baseHoliday == null) {
+				throw new ArgumentException("baseHoliday cannot be null", "baseHoliday");
+			}
 			this.count = count;
 			this.dayOfWeek = dayOfWeek;
 			this.baseHoliday = baseHoliday;
