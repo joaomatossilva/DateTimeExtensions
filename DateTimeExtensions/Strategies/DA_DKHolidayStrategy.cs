@@ -55,7 +55,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday GeneralPrayerDay {
 			get {
 				if (generalPrayerDay == null) {
-					generalPrayerDay = new NthDayOfWeekAfterHolidayHoliday("General Prayer Day", 4, DayOfWeek.Friday, ChristianHolidays.Easter);
+					generalPrayerDay = new NthDayOfWeekAfterDayHoliday("General Prayer Day", 4, DayOfWeek.Friday, ChristianHolidays.Easter);
 				}
 				return generalPrayerDay;
 			}

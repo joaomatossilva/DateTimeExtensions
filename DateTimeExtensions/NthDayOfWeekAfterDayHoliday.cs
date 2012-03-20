@@ -5,21 +5,21 @@ using System.Text;
 
 namespace DateTimeExtensions {
 
-	public class NthDayOfWeekAfterHolidayHoliday : Holiday {
+	public class NthDayOfWeekAfterDayHoliday : Holiday {
 		private readonly DayOfWeek dayOfWeek;
 		private readonly int count;
 		private readonly Holiday baseHoliday;
 		private readonly IDictionary<int, DateTime?> dayCache;
 
-		public NthDayOfWeekAfterHolidayHoliday(string name, int count, DayOfWeek dayOfWeek, int month, int day)
+		public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, int month, int day)
 			: this(name, count, dayOfWeek, new FixedHoliday(name, month, day)) {
 		}
 
-		public NthDayOfWeekAfterHolidayHoliday(string name, int count, DayOfWeek dayOfWeek, DayInYear dayInYear) 
+		public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, DayInYear dayInYear) 
 			: this(name, count, dayOfWeek, new FixedHoliday(name, dayInYear)) {			
 		}
 
-		public NthDayOfWeekAfterHolidayHoliday(string name, int count, DayOfWeek dayOfWeek, Holiday baseHoliday)
+		public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, Holiday baseHoliday)
 			: base(name) {
 			if (count == 0) {
 				throw new ArgumentException("count must not be 0", "count");

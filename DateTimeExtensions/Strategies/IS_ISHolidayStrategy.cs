@@ -83,8 +83,8 @@ namespace DateTimeExtensions.Strategies {
 			get {
 				if (firstDayOfSummer == null) {
 					//could not find any strong reference of the designated day of 18 April is inclusive or not
-					// if it is, then we should change it to 17 April, since NthDayOfWeekAfterHolidayHoliday don't count with the current day
-					firstDayOfSummer = new NthDayOfWeekAfterHolidayHoliday("First Day of Summer", 1, DayOfWeek.Thursday, 4, 18);
+					// if it is, then we should change it to 17 April, since NthDayOfWeekAfterDayHoliday don't count with the current day
+					firstDayOfSummer = new NthDayOfWeekAfterDayHoliday("First Day of Summer", 1, DayOfWeek.Thursday, 4, 18);
 				}
 				return firstDayOfSummer;
 			}

@@ -58,7 +58,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday AllSaintsDay {
 			get {
 				if (allSaintsDay == null) {
-					allSaintsDay = new NthDayOfWeekAfterHolidayHoliday("All Saint's Day", 1, DayOfWeek.Saturday, 11, 31);
+					allSaintsDay = new NthDayOfWeekAfterDayHoliday("All Saint's Day", 1, DayOfWeek.Saturday, 11, 31);
 				}
 				return allSaintsDay;
 			}

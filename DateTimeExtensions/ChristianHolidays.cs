@@ -102,7 +102,7 @@ namespace DateTimeExtensions {
 		public static Holiday PalmSunday {
 			get {
 				if (palmSunday == null) {
-					palmSunday = new NthDayOfWeekAfterHolidayHoliday("Palm Sunday", -1, DayOfWeek.Sunday, Easter);
+					palmSunday = new NthDayOfWeekAfterDayHoliday("Palm Sunday", -1, DayOfWeek.Sunday, Easter);
 				}
 				return palmSunday;
 			}
@@ -156,7 +156,7 @@ namespace DateTimeExtensions {
 			get {
 				if (pentecost == null) {
 					//count offset is 7 because we aren't counting with the easter day inclusive
-					pentecost = new NthDayOfWeekAfterHolidayHoliday("Pentecost", 7, DayOfWeek.Sunday, Easter);
+					pentecost = new NthDayOfWeekAfterDayHoliday("Pentecost", 7, DayOfWeek.Sunday, Easter);
 				}
 				return pentecost;
 			}
