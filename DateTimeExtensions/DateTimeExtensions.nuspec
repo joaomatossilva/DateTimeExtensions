@@ -10,9 +10,10 @@
     <projectUrl>https://github.com/kappy/DateTimeExtensions/wiki</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>
-      This project is a merge of several common DateTime operations on the form of extensions to System.DateTime type,
-      including natural date difference text (precise and human rounded) and working days calculations.
-      Includes support for several culture locales.
+      This project is a merge of several common DateTime operations on the form of
+      extensions to System.DateTime, including natural date difference text (precise and human rounded),
+      holidays and working days calculations on several culture locales.
+      Feedback will be much appreciated.
     </description>
     <tags>Natural Date Time Relative Calendar Holiday Workingday DateTime</tags>
   </metadata>

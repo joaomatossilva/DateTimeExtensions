@@ -6,7 +6,7 @@ This project is a merge of several common DateTime operations on the form of
 extensions to System.DateTime, including natural date difference text (precise and human rounded),
 holidays and working days calculations on several culture locales.
 
-Feedback will be much apriciated.
+Feedback will be much appreciated.
 
 Major Features
 ---------------------------------------
