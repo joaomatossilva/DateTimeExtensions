@@ -2,16 +2,17 @@
 ====  DateTime Extensions ====
 ---------------------------------------
 
-This project is a merge of several common DateTime operations on the form of extensions to System.DateTime type,
-including natural date difference text (precise and human rounded) and working days calculations.
-Includes support for several culture locales.
+This project is a merge of several common DateTime operations on the form of 
+extensions to System.DateTime, including natural date difference text (precise and human rounded),
+holidays and working days calculations on several culture locales.
 
+Feedback will be much apriciated.
 
 Major Features
 ---------------------------------------
 
 Currently implemented are the following major features:
-- Working days add or subtract using locale holidays
+- Add or subtract Working days using locale holidays
 - Dates Difference in Natural Time (localized)
 - General "goto" dates
 
@@ -24,32 +25,36 @@ A working day is defined in IWorkingDayCultureInfo in two ways:
 - IsWorkingDay(DayOfWeek dayOfWeek)
 - IsWorkingDay(DateTime date)
 
-The first defines witch day of the week is a working day (by default, working days are all week days except weekends).
-The last does the same as the first, but it's also able to check for any holiday. By default, no holidays are defined,
-unless there is a IWorkingDayCultureInfo implemented for the current thread CultureInfo.
+The first defines witch day of the week is a working day (by default, working days are all 
+week days except weekends). The last does the same as the first, but it's also able to check 
+for any holiday. By default, no holidays are defined, unless there is a IWorkingDayCultureInfo 
+implemented for the current thread CultureInfo.
 
 Avaiable CultureInfo implementations:
-- pt-PT
-- pt-BR
-- en-US
-- en-GB
-- fr-FR
-- de-DE
+- pt-PT		- da-DK
+- pt-BR		- fi-FI
+- en-US		- is-IS
+- en-GB		- nb-NO
+- fr-FR		- nl-NL
+- de-DE		- sv-SE
 - es-ES
 
-your culture is not listed here? contribute it!!! fork me, implement it and send me the pull request.
+your culture is not listed here? you can contribute it!!! 
+Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
 
 
 Dates Diff in Natural Time
 ---------------------------------------
 
-This extensions can compare two dates in natural language based on the current locale on current thread CultureInfo.
+This extensions can compare two dates in natural language based on the current locale on 
+current thread CultureInfo.
 There are 2 API points for them:
 - fromDate.ToNaturalText(toTime, bool round = true)
 - fromDate.ToExactNaturalText(toTime)
 
-The first will return the most valuable time component with value > 0. The round flag will try to round the most significant time
-component based on the next least significant. Also, the round flag will round minutes and seconds to quarters after the first one.
+The first will return the most valuable time component with value > 0. The round flag will 
+try to round the most significant time component based on the next least significant. 
+Also, the round flag will round minutes and seconds to quarters after the first one.
 
 Avaiable CultureInfo implementations:
 - pt-PT
@@ -78,10 +83,15 @@ How to Contribute
 ---------------------------------------
 
 Feel free to fork the project, work on your fork and send me the pull requests.
+You can also create issues with the features or changes that you think important.
 
 
 Version History
 ---------------------------------------
+v2.0.2
+- Added nordic holidays cultures
+- bugfixes: Pentecost holiday was not calculated correctly
+
 v2.0.1
 - bugfixes: NthDayOfWeekInMonth Calculations were corrected
 
