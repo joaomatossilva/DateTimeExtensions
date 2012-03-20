@@ -90,6 +90,7 @@ Version History
 ---------------------------------------
 v2.0.2
 - Added nordic holidays cultures
+- Added new type of Holiday: NthDayOfWeekAfterDayHoliday
 - bugfixes: Pentecost holiday was not calculated correctly
 
 v2.0.1
