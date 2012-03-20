@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChristianHolidays.cs" />
-    <Compile Include="NthDayOfWeekAfterHolidayHoliday.cs" />
+    <Compile Include="NthDayOfWeekAfterDayHoliday.cs" />
     <Compile Include="DateDiff.cs" />
     <Compile Include="EasterBasedHoliday.cs" />
     <Compile Include="FixedHoliday.cs" />
