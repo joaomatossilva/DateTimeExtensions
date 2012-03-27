@@ -90,6 +90,12 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.0.3
+- bugfixes:
+	fi-FI Holidays enumeration is throwing a Argument Out Of Range Exception
+	da-DK holiday Strategy is missnamed
+	is-IS SeamensDay is returning Commerce Day
+
 v2.0.2
 - Added nordic holidays cultures
 - Added new type of Holiday: NthDayOfWeekAfterDayHoliday
