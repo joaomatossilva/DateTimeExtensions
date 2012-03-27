@@ -73,7 +73,7 @@ namespace DateTimeExtensions.Strategies {
 				if (seamensDay == null) {
 					seamensDay = new NthDayOfWeekInMonthHoliday("The Seamen's Day", 1, DayOfWeek.Sunday, 6, CountDirection.FromFirst);
 				}
-				return commerceDay;
+				return seamensDay;
 			}
 		}
 
