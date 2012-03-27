@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class DA_DLHolidayStrategy : IHolidayStrategy {
+	public class DA_DKHolidayStrategy : IHolidayStrategy {
 		private readonly IList<Holiday> holidays;
 
-		public DA_DLHolidayStrategy() {
+		public DA_DKHolidayStrategy() {
 			this.holidays = new List<Holiday>();
 			holidays.Add(ChristianHolidays.NewYear);
 			holidays.Add(ChristianHolidays.MaundyThursday);
