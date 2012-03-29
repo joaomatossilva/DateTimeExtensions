@@ -89,7 +89,7 @@ namespace DateTimeExtensions {
 		}
 
 		public static DateDiff GetDiff(this DateTime fromDate, DateTime toDate) {
-			return toDate >= fromDate ? new DateDiff(toDate.Subtract(fromDate)) : new DateDiff(fromDate.Subtract(toDate));
+			return toDate >= fromDate ? new DateDiff(fromDate, toDate) : new DateDiff(toDate, fromDate);
 		}
 	}
 }
