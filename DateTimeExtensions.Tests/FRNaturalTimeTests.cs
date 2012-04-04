@@ -89,8 +89,8 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_pluralize_months() {
 			var fromTime = DateTime.Now;
-			var toTime_plural = fromTime.AddDays(60);
-			var toTime_single = fromTime.AddDays(30);
+			var toTime_plural = fromTime.AddMonths(2);
+			var toTime_single = fromTime.AddMonths(1);
 
 			var naturalText_plural = fromTime.ToNaturalText(toTime_plural, true, foo_ci);
 			var naturalText_single = fromTime.ToNaturalText(toTime_single, true, foo_ci);

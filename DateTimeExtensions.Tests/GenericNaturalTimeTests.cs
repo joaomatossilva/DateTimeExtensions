@@ -58,6 +58,50 @@ namespace DateTimeExtensions.Tests {
 		}
 
 		[Test]
+		public void can_tranlate_to_exact_natural_text_full_on_february_with_leap() {
+			var fromTime = new DateTime(2012,2,27, 23, 59, 59);
+			var toTime = fromTime.AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
+
+			var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
+
+			Assert.IsNotNullOrEmpty(naturalText);
+			Assert.AreEqual("3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
+		}
+
+		[Test]
+		public void can_tranlate_to_exact_natural_text_full_on_february_without_leap() {
+			var fromTime = new DateTime(2010, 2, 27, 23, 59, 59);
+			var toTime = fromTime.AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
+
+			var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
+
+			Assert.IsNotNullOrEmpty(naturalText);
+			Assert.AreEqual("3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
+		}
+
+		[Test]
+		public void can_tranlate_to_exact_natural_text_full_on_march() {
+			var fromTime = new DateTime(2010, 3, 29, 23, 59, 59);
+			var toTime = fromTime.AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
+
+			var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
+
+			Assert.IsNotNullOrEmpty(naturalText);
+			Assert.AreEqual("3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
+		}
+
+		[Test]
+		public void can_tranlate_to_exact_natural_text_full_on_april() {
+			var fromTime = new DateTime(2010, 4, 29, 23, 59, 59);
+			var toTime = fromTime.AddYears(2).AddMonths(2).AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
+
+			var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
+
+			Assert.IsNotNullOrEmpty(naturalText);
+			Assert.AreEqual("2 years, 2 months, 3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
+		}
+
+		[Test]
 		public void are_orderless() {
 			var fromTime = DateTime.Now;
 			var toTime = fromTime.AddYears(2).AddMonths(2).AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
@@ -89,8 +133,8 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_pluralize_months() {
 			var fromTime = DateTime.Now;
-			var toTime_plural = fromTime.AddDays(60);
-			var toTime_single = fromTime.AddDays(30);
+			var toTime_plural = fromTime.AddMonths(2);
+			var toTime_single = fromTime.AddMonths(1);
 
 			var naturalText_plural = fromTime.ToNaturalText(toTime_plural, true, foo_ci);
 			var naturalText_single = fromTime.ToNaturalText(toTime_single, true, foo_ci);

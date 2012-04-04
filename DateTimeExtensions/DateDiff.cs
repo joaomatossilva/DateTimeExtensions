@@ -8,42 +8,51 @@ namespace DateTimeExtensions {
 
 		private const int DAYS_IN_MONTH = 30;
 		private const int DAYS_IN_YEAR = 365;
+		private const int MONTHS_IN_YEAR = 12;
 
-		public DateDiff(TimeSpan span) : this() {
-			int totalDays = span.Days;
-			Years = totalDays / DAYS_IN_YEAR;
-			if (Years > 0) {
-				totalDays -= Years * DAYS_IN_YEAR;
+		public DateDiff(DateTime startDate, DateTime endDate) :this() {
+			if (endDate < startDate) {
+				throw new ArgumentException("endDate cannot be lesser then startDate");
 			}
-			Months = totalDays / DAYS_IN_MONTH;
-			if (Months > 0) {
-				totalDays -= Months * DAYS_IN_MONTH;
-			}
-			Days = totalDays;
-			Hours = span.Hours;
-			Minutes = span.Minutes;
+
+			var span = endDate.Subtract(startDate);
 			Seconds = span.Seconds;
+			Minutes = span.Minutes;
+			Hours = span.Hours;
+
+			if (endDate.Hour < startDate.Hour) {
+				Days--;
+			}
+			if(endDate.Day >= startDate.Day) {
+				Days += endDate.Day - startDate.Day;
+			} else {
+				Months--;
+				var daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
+				Days += daysInMonth - startDate.Day + endDate.Day;
+			}
+
+			if(endDate.Month >= startDate.Month) {
+				Months += endDate.Month - startDate.Month ;
+			} else {
+				Months += MONTHS_IN_YEAR - startDate.Month + endDate.Month;
+				Years--;
+			}
+
+			if (endDate.Year >= startDate.Year) {
+				Years += endDate.Year - startDate.Year;
+			}
 		}
+		
+		public int Years { get; private set; }
 
-		public DateDiff(int seconds, int minutes = 0, int hours = 0, int days = 0, int months = 0, int years = 0) : this() {
-			Years = years;
-			Months = months;
-			Days = days;
-			Hours = hours;
-			Minutes = minutes;
-			Seconds = seconds;
-		}
+		public int Months { get; private set; }
 
-		public int Years { get; set; }
+		public int Days { get; private set; }
 
-		public int Months { get; set; }
+		public int Hours { get; private set; }
 
-		public int Days { get; set; }
+		public int Minutes { get; private set; }
 
-		public int Hours { get; set; }
-
-		public int Minutes { get; set; }
-
-		public int Seconds { get; set; }
+		public int Seconds { get; private set; }
 	}
 }
