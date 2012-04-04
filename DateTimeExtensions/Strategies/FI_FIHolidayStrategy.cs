@@ -4,42 +4,24 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class FI_FIHolidayStrategy : IHolidayStrategy {
-		private readonly IList<Holiday> holidays;
+	public class FI_FIHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public FI_FIHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.Epiphany);
-			holidays.Add(ChristianHolidays.GoodFriday);
-			holidays.Add(ChristianHolidays.Easter);
-			holidays.Add(ChristianHolidays.EasterMonday);
-			holidays.Add(GlobalHolidays.MayDay);
-			holidays.Add(ChristianHolidays.Ascension);
-			holidays.Add(ChristianHolidays.Pentecost);
-			holidays.Add(GlobalHolidays.MidsummerEve);
-			holidays.Add(GlobalHolidays.MidsummerDay);
-			holidays.Add(AllSaintsDay);
-			holidays.Add(IndependanceDay);
-			holidays.Add(ChristianHolidays.ChristmasEve);
-			holidays.Add(ChristianHolidays.Christmas);
-			holidays.Add(ChristianHolidays.StStephansDay);
-		}
-
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = this.holidays.SingleOrDefault(h => h.IsInstanceOf(day));
-			return isHoliday != null;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.Epiphany);
+			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+			this.InnerHolidays.Add(ChristianHolidays.Easter);
+			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+			this.InnerHolidays.Add(GlobalHolidays.MayDay);
+			this.InnerHolidays.Add(ChristianHolidays.Ascension);
+			this.InnerHolidays.Add(ChristianHolidays.Pentecost);
+			this.InnerHolidays.Add(GlobalHolidays.MidsummerEve);
+			this.InnerHolidays.Add(GlobalHolidays.MidsummerDay);
+			this.InnerHolidays.Add(AllSaintsDay);
+			this.InnerHolidays.Add(IndependanceDay);
+			this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
 		}
 
 		private static Holiday independanceDay;
