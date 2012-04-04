@@ -90,6 +90,9 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.0.4
+- Natural Text is now more human based on reporting months and days
+
 v2.0.3
 - bugfixes:
 	fi-FI Holidays enumeration is throwing a Argument Out Of Range Exception
