@@ -21,8 +21,7 @@ namespace DateTimeExtensions.Strategies {
 
 		public virtual IEnumerable<Holiday> Holidays {
 			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
+				return InnerHolidays.AsEnumerable();
 			}
 		}
 
