@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests {
 		private IDictionary<int, DateTime> easterDates;
 
 		[TestFixtureSetUp]
-		void SetUpYears() {
+		public void SetUpYears() {
 			years = new int[] {1800, 1899, 1900, 1999, 2000, 2025, 2035, 2067, 2099};
 			easterDates = new Dictionary<int, DateTime> {
 				{ 1800, new DateTime(1800, 4, 13) },
