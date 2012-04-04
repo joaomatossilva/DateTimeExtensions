@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChristianHolidays.cs" />
+    <Compile Include="Export\ExportHolidayFormatLocator.cs" />
     <Compile Include="Export\ExportType.cs" />
     <Compile Include="Export\IExportHolidaysFormat.cs" />
     <Compile Include="Export\OfficeHolidaysExportHolidaysFormat.cs" />
