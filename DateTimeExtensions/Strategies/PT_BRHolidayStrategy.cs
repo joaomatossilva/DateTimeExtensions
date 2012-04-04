@@ -4,43 +4,21 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class PT_BRHolidayStrategy : IHolidayStrategy {
-		IList<Holiday> holidays;
+	public class PT_BRHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
-
-		public PT_BRHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.Carnival);
-			holidays.Add(ChristianHolidays.GoodFriday);
-			holidays.Add(ChristianHolidays.Easter);
-			holidays.Add(ChristianHolidays.CorpusChristi);
-			holidays.Add(ChristianHolidays.Christmas);
-			holidays.Add(GlobalHolidays.InternationalWorkersDay);
-			holidays.Add(ChristianHolidays.DayOfTheDead);
-			holidays.Add(TiradentesDay);
-			holidays.Add(IndependanceDay);
-			holidays.Add(OurLadyOfAparecida);
-			holidays.Add(RepublicDay);
-		}
-
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
-			if (isHoliday != null) {
-				return true;
-			}
-			return false;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
+		public PT_BRHolidayStrategy() {			
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.Carnival);
+			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+			this.InnerHolidays.Add(ChristianHolidays.Easter);
+			this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+			this.InnerHolidays.Add(ChristianHolidays.DayOfTheDead);
+			this.InnerHolidays.Add(TiradentesDay);
+			this.InnerHolidays.Add(IndependanceDay);
+			this.InnerHolidays.Add(OurLadyOfAparecida);
+			this.InnerHolidays.Add(RepublicDay);
 		}
 
 		private static Holiday tiradentesDay;

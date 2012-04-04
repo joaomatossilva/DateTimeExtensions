@@ -4,26 +4,24 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class EN_USHolidayStrategy : IHolidayStrategy {
-		IList<Holiday> holidays;
+	public class EN_USHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public EN_USHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
-			holidays.Add(IndependenceDay);
-			holidays.Add(GlobalHolidays.VeteransDay);
-			holidays.Add(MartinLutherKing);
-			holidays.Add(WashingtonsBirthday);
-			holidays.Add(MemorialDay);
-			holidays.Add(LaborDay);
-			holidays.Add(ColumbusDay);
-			holidays.Add(ThanksgivingDay);
+			this.InnerHolidays.Add(IndependenceDay);
+			this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
+			this.InnerHolidays.Add(MartinLutherKing);
+			this.InnerHolidays.Add(WashingtonsBirthday);
+			this.InnerHolidays.Add(MemorialDay);
+			this.InnerHolidays.Add(LaborDay);
+			this.InnerHolidays.Add(ColumbusDay);
+			this.InnerHolidays.Add(ThanksgivingDay);
 		}
 
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
+		public override bool IsHoliDay(DateTime day) {
+			var isHoliday = this.InnerHolidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
 			if (isHoliday != null) {
 				return true;
 			}
@@ -37,17 +35,6 @@ namespace DateTimeExtensions.Strategies {
 				return IsHoliDay(day.AddDays(1));
 
 			return false;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
 		}
 
 		private static Holiday independenceDay;
