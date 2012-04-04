@@ -90,6 +90,10 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.0.5
+- Minor internal change in adding a HolidayStrategy Superclass
+- DateTimeCultureInfo has now access to all holidays not regarding to the year
+
 v2.0.4
 - Natural Text is now more human based on reporting months and days
 
