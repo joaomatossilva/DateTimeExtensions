@@ -21,5 +21,19 @@ namespace DateTimeExtensions.Tests {
 				}
 			}
 		}
+
+		[Test]
+		public void can_save_to_file() {
+			var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
+			string tempfile = Path.GetTempFileName();
+			using (var memoryStream = File.Create(tempfile)) {
+				using (var textwriter = new StreamWriter(memoryStream)) {
+					exporter.Export(new DateTimeCultureInfo("pt-PT"), 2012, textwriter);
+					textwriter.Flush();
+					Assert.IsTrue(memoryStream.Length > 0);
+				}
+			}
+			File.Delete(tempfile);
+		}
 	}
 }
