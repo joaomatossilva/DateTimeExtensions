@@ -4,45 +4,27 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class IS_ISHolidayStrategy : IHolidayStrategy {
-		private readonly IList<Holiday> holidays;
+	public class IS_ISHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public IS_ISHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.PalmSunday);
-			holidays.Add(ChristianHolidays.MaundyThursday);
-			holidays.Add(ChristianHolidays.GoodFriday);
-			holidays.Add(ChristianHolidays.Easter);
-			holidays.Add(ChristianHolidays.EasterMonday);
-			holidays.Add(FirstDayOfSummer);
-			holidays.Add(GlobalHolidays.MayDay);
-			holidays.Add(ChristianHolidays.Ascension);
-			holidays.Add(ChristianHolidays.Pentecost);
-			holidays.Add(ChristianHolidays.PentecostMonday);
-			holidays.Add(SeamensDay);
-			holidays.Add(RepublicsDay);
-			holidays.Add(CommerceDay);
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.PalmSunday);
+			this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
+			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+			this.InnerHolidays.Add(ChristianHolidays.Easter);
+			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+			this.InnerHolidays.Add(FirstDayOfSummer);
+			this.InnerHolidays.Add(GlobalHolidays.MayDay);
+			this.InnerHolidays.Add(ChristianHolidays.Ascension);
+			this.InnerHolidays.Add(ChristianHolidays.Pentecost);
+			this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
+			this.InnerHolidays.Add(SeamensDay);
+			this.InnerHolidays.Add(RepublicsDay);
+			this.InnerHolidays.Add(CommerceDay);
 			//Christmas Eve is usually half holiday observance
-			holidays.Add(ChristianHolidays.Christmas);
-			holidays.Add(SecondDayOfChristmas);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(SecondDayOfChristmas);
 			//New Year's Eve is usually half holiday observance
-		}
-
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = this.holidays.SingleOrDefault(h => h.IsInstanceOf(day));
-			return isHoliday != null;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
 		}
 		
 		private static Holiday republicsDay;

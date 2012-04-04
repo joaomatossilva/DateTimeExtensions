@@ -4,42 +4,20 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class FR_FRHolidayStrategy : IHolidayStrategy {
-		IList<Holiday> holidays;
-
+	public class FR_FRHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public FR_FRHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.EasterMonday);
-			holidays.Add(ChristianHolidays.Ascension);
-			holidays.Add(ChristianHolidays.AllSaints);
-			holidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+			this.InnerHolidays.Add(ChristianHolidays.Ascension);
+			this.InnerHolidays.Add(ChristianHolidays.AllSaints);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
-			holidays.Add(GlobalHolidays.InternationalWorkersDay);
-			holidays.Add(GlobalHolidays.VeteransDay);
-			holidays.Add(VictoryInEuropeDay);
-			holidays.Add(BastilleDay);
-			holidays.Add(StEtienne);
-		}
-
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
-			if (isHoliday != null) {
-				return true;
-			}
-			return false;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
+			this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+			this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
+			this.InnerHolidays.Add(VictoryInEuropeDay);
+			this.InnerHolidays.Add(BastilleDay);
+			this.InnerHolidays.Add(StEtienne);
 		}
 
 		private static Holiday victoryInEuropeDay;
