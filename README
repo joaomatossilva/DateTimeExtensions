@@ -15,6 +15,7 @@ Major Features
 
 Currently implemented are the following major features:
 - Add or subtract Working days using locale holidays
+- Export Holidays to calendar format
 - Dates Difference in Natural Time (localized)
 - General "goto" dates
 
@@ -43,6 +44,19 @@ Avaiable CultureInfo implementations:
 
 your culture is not listed here? you can contribute it!!! 
 Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
+
+
+Export Holidays to calendar format
+---------------------------------------
+
+This feature allows you to export the holidays from a DateTimeCultureInfo (see above)
+and export it to Microsoft Office Outlook.
+The IExportHolidaysFormat interface exposes one simple method for it:
+- void Export(DateTimeCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
+
+Example:
+var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
+exporter.Export(new DateTimeCultureInfo("pt-PT"), 2012, textwriter);
 
 
 Dates Diff in Natural Time
@@ -90,6 +104,9 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.1
+- Added Export Holidays feature
+
 v2.0.5
 - Minor internal change in adding a HolidayStrategy Superclass
 - DateTimeCultureInfo has now access to all holidays not regarding to the year
