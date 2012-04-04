@@ -4,40 +4,19 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class EN_GBHolidayStrategy : IHolidayStrategy {
-		IList<Holiday> holidays;
+	public class EN_GBHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public EN_GBHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.GoodFriday);
-			holidays.Add(ChristianHolidays.EasterMonday);
-			holidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
 			
-			holidays.Add(GlobalHolidays.StPatricsDay);
-			holidays.Add(GlobalHolidays.BoxingDay);
-			holidays.Add(MayDayBank);
-			holidays.Add(SpringBank);
-			holidays.Add(LateSummerBank);
-		}
-
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = holidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
-			if (isHoliday != null) {
-				return true;
-			}
-			return false;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
+			this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
+			this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+			this.InnerHolidays.Add(MayDayBank);
+			this.InnerHolidays.Add(SpringBank);
+			this.InnerHolidays.Add(LateSummerBank);
 		}
 
 		private static Holiday boxingDay;

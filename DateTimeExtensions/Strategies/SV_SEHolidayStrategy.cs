@@ -4,40 +4,22 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.Strategies {
-	public class SV_SEHolidayStrategy : IHolidayStrategy {
-		private readonly IList<Holiday> holidays;
+	public class SV_SEHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public SV_SEHolidayStrategy() {
-			this.holidays = new List<Holiday>();
-			holidays.Add(ChristianHolidays.NewYear);
-			holidays.Add(ChristianHolidays.Epiphany);
-			holidays.Add(ChristianHolidays.GoodFriday);
-			holidays.Add(ChristianHolidays.Easter);
-			holidays.Add(ChristianHolidays.EasterMonday);
-			holidays.Add(GlobalHolidays.InternationalWorkersDay);
-			holidays.Add(ChristianHolidays.Ascension);
-			holidays.Add(ChristianHolidays.Pentecost);
-			holidays.Add(NationalDay);
-			holidays.Add(GlobalHolidays.MidsummerDay);
-			holidays.Add(ChristianHolidays.AllSaints);
-			holidays.Add(ChristianHolidays.Christmas);
-			holidays.Add(GlobalHolidays.BoxingDay);
-		}
-
-		public bool IsHoliDay(DateTime day) {
-			var isHoliday = this.holidays.SingleOrDefault(h => h.IsInstanceOf(day));
-			return isHoliday != null;
-		}
-
-		public IEnumerable<Holiday> Holidays {
-			get {
-				var currentYear = DateTime.Now.Year;
-				return this.GetHolidaysOfYear(currentYear);
-			}
-		}
-
-		public IEnumerable<Holiday> GetHolidaysOfYear(int year) {
-			return holidays.Where(h => h.GetInstance(year).HasValue);
+			this.InnerHolidays.Add(ChristianHolidays.NewYear);
+			this.InnerHolidays.Add(ChristianHolidays.Epiphany);
+			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+			this.InnerHolidays.Add(ChristianHolidays.Easter);
+			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+			this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+			this.InnerHolidays.Add(ChristianHolidays.Ascension);
+			this.InnerHolidays.Add(ChristianHolidays.Pentecost);
+			this.InnerHolidays.Add(NationalDay);
+			this.InnerHolidays.Add(GlobalHolidays.MidsummerDay);
+			this.InnerHolidays.Add(ChristianHolidays.AllSaints);
+			this.InnerHolidays.Add(ChristianHolidays.Christmas);
+			this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
 		}
 		
 		private static Holiday nationalDay;
