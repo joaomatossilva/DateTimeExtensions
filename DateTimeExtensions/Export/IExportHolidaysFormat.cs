@@ -8,8 +8,6 @@ using DateTimeExtensions.Strategies;
 
 namespace DateTimeExtensions.Export {
 	public interface IExportHolidaysFormat {
-		void Export(IHolidayStrategy holidayStrategy, int year, TextWriter writer);
-		void Export(string name, IHolidayStrategy holidayStrategy, int year, TextWriter writer);
 		void Export(DateTimeCultureInfo dateTimeCultureInfo, int year, TextWriter writer);
 	}
 }
