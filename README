@@ -104,6 +104,9 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.1.1
+- Bugfix: header and date format corrected
+
 v2.1
 - Added Export Holidays feature
 
