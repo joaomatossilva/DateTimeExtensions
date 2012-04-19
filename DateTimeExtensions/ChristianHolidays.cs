@@ -138,6 +138,16 @@ namespace DateTimeExtensions {
 			}
 		}
 
+		private static Holiday easterSaturday;
+		public static Holiday EasterSaturday {
+			get {
+				if (easterSaturday == null) {
+					easterSaturday = new EasterBasedHoliday("Easter Saturday", -1);
+				}
+				return easterSaturday;
+			}
+		}
+
 		private static Holiday corpusChristi;
 		public static Holiday CorpusChristi {
 			get {

@@ -77,5 +77,16 @@ namespace DateTimeExtensions {
 				return midsummerDay;
 			}
 		}
+
+		//New Year's Eve - 31 December
+		private static Holiday newYearsEve;
+		public static Holiday NewYearsEve {
+			get {
+				if (newYearsEve == null) {
+					newYearsEve = new FixedHoliday("New Year's Eve", 12, 31);
+				}
+				return newYearsEve;
+			}
+		}
 	}
 }
