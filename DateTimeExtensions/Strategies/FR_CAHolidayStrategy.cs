@@ -67,7 +67,8 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday VictoriaDay {
 			get {
 				if (victoriaDay == null) {
-					victoriaDay = new NthDayOfWeekAfterDayHoliday("Victoria Day", 1, DayOfWeek.Monday, 5, 24);
+					// 25 = day after 24. NthDayOfWeekAfterDayHoliday doesn't count the start day
+					victoriaDay = new NthDayOfWeekAfterDayHoliday("Victoria Day", -1, DayOfWeek.Monday, 5, 25);
 				}
 				return victoriaDay;
 			}
