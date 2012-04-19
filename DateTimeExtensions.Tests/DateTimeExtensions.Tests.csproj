@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ARSAWorkingDays.cs" />
     <Compile Include="ChristianHolidaysTests.cs" />
     <Compile Include="FrCaHolidaysTests.cs" />
     <Compile Include="GenericNaturalTimeTests.cs" />
