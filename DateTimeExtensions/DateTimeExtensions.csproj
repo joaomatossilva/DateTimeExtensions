@@ -46,6 +46,7 @@
     <Compile Include="Export\ExportType.cs" />
     <Compile Include="Export\IExportHolidaysFormat.cs" />
     <Compile Include="Export\OfficeHolidaysExportHolidaysFormat.cs" />
+    <Compile Include="JewishHolidays.cs" />
     <Compile Include="NthDayOfWeekAfterDayHoliday.cs" />
     <Compile Include="DateDiff.cs" />
     <Compile Include="EasterBasedHoliday.cs" />

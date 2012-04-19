@@ -54,6 +54,7 @@
     <Compile Include="GenericCalendarTests.cs" />
     <Compile Include="FRNaturalTimeTests.cs" />
     <Compile Include="HolidaysTest.cs" />
+    <Compile Include="JewishHolidaysTests.cs" />
     <Compile Include="OfficeHolidayExportHolidaysFormatTests.cs" />
     <Compile Include="PTCalendarTests.cs" />
     <Compile Include="PTWorkingDayCultureInfoTests.cs" />
