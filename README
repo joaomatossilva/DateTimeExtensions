@@ -104,6 +104,10 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.2
+- Added support for defining holidays on a different calendar
+	- Added Jewish holidays definitions as a proof of concept
+
 v2.1.1
 - Bugfix: header and date format corrected
 
