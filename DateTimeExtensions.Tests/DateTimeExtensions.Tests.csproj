@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChristianHolidaysTests.cs" />
+    <Compile Include="FrCaHolidaysTests.cs" />
     <Compile Include="GenericNaturalTimeTests.cs" />
     <Compile Include="ExampleTests.cs" />
     <Compile Include="GenericCalendarTests.cs" />
