@@ -15,7 +15,7 @@ namespace DateTimeExtensions {
 
 		public FixedHoliday(string name, int month, int day, Calendar calendar)
 			: base(name) {
-			this.day = new DayInYear (month, day);
+			this.day = new DayInYear(month, day, calendar);
 		}
 
 		public FixedHoliday(string name, int month, int day)
