@@ -51,8 +51,8 @@ namespace DateTimeExtensions.Strategies {
 						//don't count it's own day
 						continue;	
 					}
-					var nextDay = day.AddDays(1);
-					if (IsMoveableHoliday(nextDay)) {
+					var possibleMoveableHoliday = day.AddDays(i);
+					if (IsMoveableHoliday(possibleMoveableHoliday)) {
 						return true;
 					}
 				}
