@@ -40,7 +40,10 @@ Avaiable CultureInfo implementations:
 - en-GB		- nb-NO
 - fr-FR		- nl-NL
 - de-DE		- sv-SE
-- es-ES
+- es-ES		- es-AR
+- es-MX		- en-AU
+- en-ZA		- fr-CA (en-CA)
+- ar-SA		- it-IT
 
 your culture is not listed here? you can contribute it!!! 
 Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
@@ -104,6 +107,9 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.2.1
+- Added a few more cultures: en-AU, fr-CA (en-CA), ar-SA, en-ZA, es-AR, es-MX, it-IT
+
 v2.2
 - Added support for defining holidays on a different calendar
 	- Added Jewish holidays definitions as a proof of concept

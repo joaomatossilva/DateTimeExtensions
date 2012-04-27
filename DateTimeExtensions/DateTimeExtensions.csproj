@@ -56,6 +56,15 @@
     <Compile Include="Holiday.cs" />
     <Compile Include="INaturalTextCultureInfo.cs" />
     <Compile Include="NaturalTimeExtensions.cs" />
+    <Compile Include="Strategies\AR_SAWorkingDayOfWeekStrategy.cs" />
+    <Compile Include="Strategies\AR_SAHolidayStrategy.cs" />
+    <Compile Include="Strategies\IT_ITHolidayStrategy.cs" />
+    <Compile Include="Strategies\ES_MXHolidayStrategy.cs" />
+    <Compile Include="Strategies\ES-ARHolidayStrategy.cs" />
+    <Compile Include="Strategies\EN_ZAHolidayStrategy.cs" />
+    <Compile Include="Strategies\EN_CAHolidayStrategy.cs" />
+    <Compile Include="Strategies\EN_USHolidayStrategy.cs" />
+    <Compile Include="Strategies\EN_AUHolidayStrategy.cs" />
     <Compile Include="Strategies\HolidayStrategyBase.cs" />
     <Compile Include="Strategies\IS_ISHolidayStrategy.cs" />
     <Compile Include="Strategies\NB_NOHolidayStrategy.cs" />
@@ -72,7 +81,7 @@
     <Compile Include="Strategies\DefaultNaturalTimeStrategy.cs" />
     <Compile Include="Strategies\DE_DEHolidayStrategy.cs" />
     <Compile Include="Strategies\FR_FRHolidayStrategy.cs" />
-    <Compile Include="Strategies\EN_USHolidayStrategy.cs" />
+    <Compile Include="Strategies\FR_CAHolidayStrategy.cs" />
     <Compile Include="NthDayOfWeekInMonthHoliday.cs" />
     <Compile Include="Strategies\INaturalTimeStrategy.cs" />
     <Compile Include="Strategies\NaturalTimeStrategyBase.cs" />

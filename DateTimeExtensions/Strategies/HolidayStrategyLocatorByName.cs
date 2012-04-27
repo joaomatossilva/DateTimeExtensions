@@ -22,7 +22,7 @@ namespace DateTimeExtensions.Strategies {
 
 		public static IWorkingDayOfWeekStrategy LocateDayOfWeekStrategyForName(string name) {
 			string strategyPrefix = name.ToUpperInvariant().Replace("-", "_");
-			string strategyName = strategyPrefix + WORKINGDAYOFWEEK_STRATEGY_NAME;
+			string strategyName = NAMESPACE + "." + strategyPrefix + WORKINGDAYOFWEEK_STRATEGY_NAME;
 			IWorkingDayOfWeekStrategy workingDayOfWeekStrategy = CreateObjectInstance<IWorkingDayOfWeekStrategy>(strategyName);
 			if (workingDayOfWeekStrategy == null) {
 				workingDayOfWeekStrategy = new DefaultWorkingDayOfWeekStrategy();
