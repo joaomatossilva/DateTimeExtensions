@@ -101,14 +101,16 @@ namespace DateTimeExtensions.Tests {
 		public void can_use_christian_holidays_in_calulations() {
 			DateTime corpus = new DateTime(2010, 12, 8);
 
-			Assert.IsFalse(corpus.IsWorkingDay( pt_ci));
+			Assert.IsFalse(corpus.IsWorkingDay(pt_ci));
+			Assert.IsTrue(corpus.IsHoliday(pt_ci));
 		}
 
 		[Test]
 		public void can_use_national_holidays_in_calulations() {
 			DateTime nationalDay = new DateTime(2011, 6, 10);
 
-			Assert.IsFalse(nationalDay.IsWorkingDay( pt_ci));
+			Assert.IsFalse(nationalDay.IsWorkingDay(pt_ci));
+			Assert.IsTrue(nationalDay.IsHoliday(pt_ci));
 		}
 
 	}

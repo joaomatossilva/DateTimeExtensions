@@ -37,38 +37,62 @@ namespace DateTimeExtensions.Strategies {
 			this.InnerHolidays.Add(DayOfNationalSovereignity);
 		}
 
-		public override bool IsHoliDay(DateTime day) {
-			if (IsNormalHoliday(day)) {
-				return true;
+		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+			var observancesMap = new Dictionary<DateTime, Holiday>();
+			this.BuildMoveableObservanceMap(year, DayOfRespectForCulturalDiversity, observancesMap);
+			this.BuildMoveableObservanceMap(year, DayOfNationalSovereignity, observancesMap);
+			foreach (var turisticHoliday in TuristicHolidays) {
+				this.BuildTuristicObservanceMap(year, turisticHoliday, observancesMap);
 			}
-			if (day.DayOfWeek == DayOfWeek.Monday) {
-				if (base.IsHoliDay(day)) {
-					return true;
-				}
-				//check if any moveable holiday is due on next couple days or last 4 days
-				for (int i = -4; i <= 2; i++) {
-					if (i == 0) {
-						//don't count it's own day
-						continue;	
-					}
-					var possibleMoveableHoliday = day.AddDays(i);
-					if (IsMoveableHoliday(possibleMoveableHoliday)) {
-						return true;
-					}
-				}
+			this.BuildNormalObservanceMap(year, ChristianHolidays.MaundyThursday, observancesMap);
+			this.BuildNormalObservanceMap(year, ChristianHolidays.GoodFriday, observancesMap);
+			this.BuildNormalObservanceMap(year, AnniversaryOfDeathGeneralJoseSanMartin, observancesMap);
+			return observancesMap;
+		}
 
-				//check if next Tuesday is a turistic Holiday
-				if (IsTuristicHoliday(day.NextDayOfWeek(DayOfWeek.Tuesday))) {
-					return true;
-				}
+		private void BuildNormalObservanceMap(int year, Holiday holiday, Dictionary<DateTime, Holiday> map) {
+			var holidayInstance = holiday.GetInstance(year);
+			if (!holidayInstance.HasValue) {
+				return;
 			}
-			if (day.DayOfWeek == DayOfWeek.Friday) {
-				//check if last Thursday is a turistic Holiday
-				if (IsTuristicHoliday(day.LastDayOfWeek(DayOfWeek.Thursday))) {
-					return true;
-				}
+			map.Add(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+		}
+
+		private void BuildTuristicObservanceMap(int year, Holiday holiday, Dictionary<DateTime, Holiday> map) {
+			var holidayInstance = holiday.GetInstance(year);
+			if (!holidayInstance.HasValue) {
+				return;
 			}
-			return false;
+			map.Add(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+			//if holiday falls on tuesday, the holiday is also observed on the last monday
+			if (holidayInstance.Value.DayOfWeek == DayOfWeek.Tuesday) {
+				map.Add(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
+			}
+			//if holiday falls on thursday, the holiday is also observed on the next friday
+			if (holidayInstance.Value.DayOfWeek == DayOfWeek.Thursday) {
+				map.Add(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Friday), holiday);
+			}
+		}
+
+		private void BuildMoveableObservanceMap(int year, Holiday holiday, Dictionary<DateTime, Holiday> map ) {
+			var holidayInstance = holiday.GetInstance(year);
+			if (!holidayInstance.HasValue) {
+				return;
+			}
+			switch (holidayInstance.Value.DayOfWeek) {
+				case DayOfWeek.Monday:
+					map.Add(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+					break;
+				//if holiday falls on tuesday or wednesday, the holiday is observed on the last monday
+				case DayOfWeek.Tuesday:
+				case DayOfWeek.Wednesday:
+					map.Add(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
+					break;
+				//if holiday falls on thu, fri, sat, sun, the holiday is observed on the next monday
+				default:
+					map.Add(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Monday), holiday);
+					break;
+			}
 		}
 
 		private bool IsNormalHoliday(DateTime day) {

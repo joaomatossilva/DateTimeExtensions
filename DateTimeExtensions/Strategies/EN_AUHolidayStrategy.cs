@@ -20,22 +20,25 @@ namespace DateTimeExtensions.Strategies {
 			this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
 		}
 
-		public override bool IsHoliDay(DateTime day) {
-			var holiday = this.InnerHolidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
-			if (holiday != null) {
-				return true;
-			}
-
-			// If day is a monday, check if previous sunday or saturday is an holiday
-			if (day.DayOfWeek == DayOfWeek.Monday) {
-				if (IsHoliDay(day.AddDays(-1))) {
-					return true;
+		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+			IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+			foreach (var innerHoliday in InnerHolidays) {
+				var date = innerHoliday.GetInstance(year);
+				if (date.HasValue) {
+					holidayMap.Add(date.Value, innerHoliday);
+					//if the holiday is a saturday, the holiday is observed on next monday
+					if (date.Value.DayOfWeek == DayOfWeek.Saturday) {
+						holidayMap.Add(date.Value.AddDays(2), innerHoliday);
+					}
+					//if the holiday is a sunday, the holiday is observed on next monday
+					if (date.Value.DayOfWeek == DayOfWeek.Sunday) {
+						holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+					}
 				}
-				return IsHoliDay(day.AddDays(-2));
 			}
-
-			return false;
+			return holidayMap;
 		}
+
 
 		//Last Monday in May - Spring Bank Holiday
 		private static Holiday australiaDay;

@@ -47,13 +47,37 @@ namespace DateTimeExtensions {
 		}
 
 		/// <summary>
-		/// Checks if a specific day is a working day, using the default <seealso cref="IWorkingDayCultureInfo"/>.
+		/// Checks if a specific day is an holiday day, using the default <seealso cref="IWorkingDayCultureInfo"/>, desregarding
+		/// the day of the week.
 		/// </summary>
 		/// <param name="day">The day from calendar to check</param>
 		/// <returns></returns>
 		public static bool IsWorkingDay(this DateTime day) {
 			var workingDayCultureInfo = new DateTimeCultureInfo();
 			return IsWorkingDay(day, workingDayCultureInfo);
+		}
+
+		/// <summary>
+		/// Checks if a specific day is an holiday desregarding the day of the week.
+		/// </summary>
+		/// <param name="day">The day from calendar to check</param>
+		/// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the check if the day is a working day</param>
+		/// <returns></returns>
+		public static bool IsHoliday(this DateTime day, IWorkingDayCultureInfo workingDayCultureInfo) {
+			if (!workingDayCultureInfo.IsWorkingDay(day.DayOfWeek)) {
+				return false;
+			}
+			return workingDayCultureInfo.IsHoliday(day);
+		}
+
+		/// <summary>
+		/// Checks if a specific day is a working day, using the default <seealso cref="IWorkingDayCultureInfo"/>.
+		/// </summary>
+		/// <param name="day">The day from calendar to check</param>
+		/// <returns></returns>
+		public static bool IsHoliday(this DateTime day) {
+			var workingDayCultureInfo = new DateTimeCultureInfo();
+			return IsHoliday(day, workingDayCultureInfo);
 		}
 
 		/// <summary>
