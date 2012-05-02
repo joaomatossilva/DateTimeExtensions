@@ -107,6 +107,10 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.2.2
+- Added new extension IsHoliday. This extension should be similar to IsWorkingDay but in reverse and disregarding the day of the week.
+- Internal Refactoring: Holidays strategies were refactored to allow holidays with multiple observances.
+
 v2.2.1
 - Added a few more cultures: en-AU, fr-CA (en-CA), ar-SA, en-ZA, es-AR, es-MX, it-IT
 
