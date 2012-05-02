@@ -107,6 +107,9 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.2.4
+- bugfix:
+	- Holidays on weekends weren't considered as holidays
 v2.2.3
 - fixed bugs:
 	- fixed Laborday on Canada (en-CA and fr-CA)
