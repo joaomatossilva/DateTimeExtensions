@@ -64,9 +64,6 @@ namespace DateTimeExtensions {
 		/// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the check if the day is a working day</param>
 		/// <returns></returns>
 		public static bool IsHoliday(this DateTime day, IWorkingDayCultureInfo workingDayCultureInfo) {
-			if (!workingDayCultureInfo.IsWorkingDay(day.DayOfWeek)) {
-				return false;
-			}
 			return workingDayCultureInfo.IsHoliday(day);
 		}
 
