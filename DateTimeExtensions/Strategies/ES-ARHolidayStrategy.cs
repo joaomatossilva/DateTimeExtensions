@@ -188,25 +188,23 @@ namespace DateTimeExtensions.Strategies {
 			}
 		}
 
-		//TODO: second Monday of October???
-		//12 October - Day of Respect for Cultural Diversity
+		//second Monday of October - Day of Respect for Cultural Diversity
 		private static Holiday dayOfRespectForCulturalDiversity;
 		public static Holiday DayOfRespectForCulturalDiversity {
 			get {
 				if (dayOfRespectForCulturalDiversity == null) {
-					dayOfRespectForCulturalDiversity = new FixedHoliday("Day of Respect for Cultural Diversity", 12, 16);
+					dayOfRespectForCulturalDiversity = new NthDayOfWeekInMonthHoliday("Day of Respect for Cultural Diversity", 2, DayOfWeek.Monday, 10, CountDirection.FromFirst);
 				}
 				return dayOfRespectForCulturalDiversity;
 			}
 		}
 
-		//TODO: fourth monday of November???
-		//26 December - Day of National Sovereignty
+		//fourth monday of November - Day of National Sovereignty
 		private static Holiday dayOfNationalSovereignity;
 		public static Holiday DayOfNationalSovereignity {
 			get {
 				if (dayOfNationalSovereignity == null) {
-					dayOfNationalSovereignity = new FixedHoliday("Day of National Sovereignty", 11, 20);
+					dayOfNationalSovereignity = new NthDayOfWeekInMonthHoliday("Day of National Sovereignty", 4, DayOfWeek.Monday, 11, CountDirection.FromFirst);
 				}
 				return dayOfNationalSovereignity;
 			}
