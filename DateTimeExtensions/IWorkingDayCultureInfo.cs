@@ -5,6 +5,7 @@ using System.Text;
 
 namespace DateTimeExtensions {
 	public interface IWorkingDayCultureInfo {
+		bool IsHoliday(DateTime date);
 		bool IsWorkingDay(DateTime date);
 		bool IsWorkingDay(DayOfWeek dayOfWeek);
 		IEnumerable<Holiday> Holidays { get; }

@@ -21,16 +21,19 @@ namespace DateTimeExtensions.Strategies {
 			this.InnerHolidays.Add(DayOfGoodwill);
 		}
 
-		public override bool IsHoliDay(DateTime day) {
-			if (base.IsHoliDay(day)) {
-				return true;
+		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+			IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+			foreach (var innerHoliday in InnerHolidays) {
+				var date = innerHoliday.GetInstance(year);
+				if (date.HasValue) {
+					holidayMap.Add(date.Value, innerHoliday);
+					//if the holiday is a sunday, the holiday is observed on next monday
+					if (date.Value.DayOfWeek == DayOfWeek.Sunday) {
+						holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+					}
+				}
 			}
-			
-			// If day is a monday, check if previous sunday is an holiday
-			if (day.DayOfWeek == DayOfWeek.Monday) {
-				return IsHoliDay(day.AddDays(-1));
-			}
-			return false;
+			return holidayMap;
 		}
 
 		//21 March - Human Rigth's Day		

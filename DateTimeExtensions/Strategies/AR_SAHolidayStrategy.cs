@@ -15,25 +15,20 @@ namespace DateTimeExtensions.Strategies {
 			this.InnerHolidays.Add(SaudiNationalDay);
 		}
 
-		public override bool IsHoliDay(DateTime day) {
-			var holiday = this.InnerHolidays.Where(h => h.IsInstanceOf(day)).SingleOrDefault();
-			if (holiday != null) {
-				return true;
+		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+			var observancesMap = new Dictionary<DateTime, Holiday>();
+			var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
+			for (int i = 0; i <= 7; i++) {
+				observancesMap.Add(endOfRamadanObservance.Value.AddDays(i), EndOfRamadan);
 			}
 
-			//TODO: Requires confirmation
-			var endOfRamadanObservance = EndOfRamadan.GetInstance(day.Year);
-			if (endOfRamadanObservance.HasValue && day > endOfRamadanObservance.Value && day <= endOfRamadanObservance.Value.AddDays(7)) {
-				return true;
+			var endOfHajjObservance = EndOfHajj.GetInstance(year);
+			for (int i = 0; i <= 6; i++) {
+				observancesMap.Add(endOfHajjObservance.Value.AddDays(i), EndOfHajj);
 			}
 
-			//TODO: Requires confirmation
-			var endOfHajjendOfRamadanObservance = EndOfHajj.GetInstance(day.Year);
-			if (endOfHajjendOfRamadanObservance.HasValue && day > endOfHajjendOfRamadanObservance.Value && day <= endOfHajjendOfRamadanObservance.Value.AddDays(6)) {
-				return true;
-			}
-
-			return false;
+			observancesMap.Add(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
+			return observancesMap;
 		}
 
 		//1 Shawwal

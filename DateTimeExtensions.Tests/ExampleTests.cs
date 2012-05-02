@@ -111,10 +111,12 @@ namespace DateTimeExtensions.Tests {
 
 		public class CustomWorkingDayCultureInfo : IWorkingDayCultureInfo {
 
+			public bool IsHoliday(DateTime date) {
+				return date.Date == DateTime.Today;
+			}
+
 			public bool IsWorkingDay(DateTime date) {
-				if (date.Date == DateTime.Today)
-					return false;
-				return true;
+				return !this.IsHoliday(date);
 			}
 
 			public bool IsWorkingDay(DayOfWeek dayOfWeek) {
@@ -150,6 +152,7 @@ namespace DateTimeExtensions.Tests {
 			var next_friday = today.NextDayOfWeek(DayOfWeek.Friday);
 
 			Assert.IsTrue(today.IsWorkingDay(customWorkingDayCultureInfo) == false);
+			Assert.IsTrue(today.IsHoliday(customWorkingDayCultureInfo));
 			Assert.IsTrue(next_friday.IsWorkingDay(customWorkingDayCultureInfo) == false);
 		}
 		/*
