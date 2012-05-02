@@ -26,13 +26,16 @@ namespace DateTimeExtensions.Strategies {
 				var date = innerHoliday.GetInstance(year);
 				if (date.HasValue) {
 					holidayMap.Add(date.Value, innerHoliday);
-					//if the holiday is a saturday, the holiday is observed on next monday
-					if (date.Value.DayOfWeek == DayOfWeek.Saturday) {
-						holidayMap.Add(date.Value.AddDays(2), innerHoliday);
-					}
-					//if the holiday is a sunday, the holiday is observed on next monday
-					if (date.Value.DayOfWeek == DayOfWeek.Sunday) {
-						holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+					//don't move the holiday if it is easter based since it's already observated
+					if (innerHoliday.GetType() != typeof(EasterBasedHoliday)) {
+						//if the holiday is a saturday, the holiday is observed on next monday
+						if (date.Value.DayOfWeek == DayOfWeek.Saturday) {
+							holidayMap.Add(date.Value.AddDays(2), innerHoliday);
+						}
+						//if the holiday is a sunday, the holiday is observed on next monday
+						if (date.Value.DayOfWeek == DayOfWeek.Sunday) {
+							holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+						}
 					}
 				}
 			}

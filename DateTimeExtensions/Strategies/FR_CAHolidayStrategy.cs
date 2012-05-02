@@ -58,7 +58,7 @@ namespace DateTimeExtensions.Strategies {
 		public static Holiday LabourDay {
 			get {
 				if (labourDay == null) {
-					labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 8, CountDirection.FromFirst);
+					labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 9, CountDirection.FromFirst);
 				}
 				return labourDay;
 			}
