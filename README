@@ -107,6 +107,12 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.2.3
+- fixed bugs:
+	- fixed Laborday on Canada (en-CA and fr-CA)
+	- fixed some mobile holidays on Argentina (es-AR)
+	- fix a bug on Autralian (en-AU) holidays strategy when moving easter holidays to next monday that was already an holiday
+
 v2.2.2
 - Added new extension IsHoliday. This extension should be similar to IsWorkingDay but in reverse and disregarding the day of the week.
 - Internal Refactoring: Holidays strategies were refactored to allow holidays with multiple observances.
