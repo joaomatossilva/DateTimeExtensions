@@ -24,10 +24,14 @@ namespace DateTimeExtensions {
 			this.LocateHolidayStrategy = HolidayStrategyLocatorByName.LocateHolidayStrategyForName;
 		}
 
+		public bool IsHoliday(DateTime date) {
+			return holidayStrategy.IsHoliDay(date);
+		}
+
 		public bool IsWorkingDay(DateTime date){
 			if (!this.workingDayOfWeekStrategy.IsWorkingDay(date.DayOfWeek))
 				return false;
-			return !holidayStrategy.IsHoliDay(date);
+			return !IsHoliday(date);
 		}
 
 		public bool IsWorkingDay(DayOfWeek dayOfWeek){

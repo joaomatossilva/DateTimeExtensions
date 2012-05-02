@@ -12,16 +12,6 @@ namespace DateTimeExtensions.Tests {
 	[TestFixture]
 	public class GenericWorkingDayCultureInfoTests {
 
-		//DynamicMock dynamicMockHoliday;
-		//DynamicMock dynamicMockDayOfWeek;
-
-		[SetUp]
-		public void Init() {
-			//dynamicMockHoliday = new NUnit.Mocks.DynamicMock(typeof(IHolidayStrategy));
-			//dynamicMockDayOfWeek = new NUnit.Mocks.DynamicMock(typeof(IWorkingDayOfWeekStrategy));
-
-		}
-
 		[Test]
 		public void can_locate_default_strategies() {
 			string name = "foo";
@@ -48,6 +38,7 @@ namespace DateTimeExtensions.Tests {
 			};
 
 			DateTime marchFirst = new DateTime(1991, 3, 1);
+			Assert.IsTrue(marchFirst.IsHoliday(workingdayCultureInfo));
 			Assert.IsFalse(marchFirst.IsWorkingDay(workingdayCultureInfo));
 			mockHolidayStrategy.Received().IsHoliDay(marchFirst);
 			mockDayOfWeekStartegy.Received().IsWorkingDay(marchFirst.DayOfWeek);
@@ -66,6 +57,7 @@ namespace DateTimeExtensions.Tests {
 
 			DateTime aThursday = new DateTime(2011, 5, 12);
 			Assert.IsFalse(aThursday.IsWorkingDay(workingdayCultureInfo));
+			Assert.IsFalse(aThursday.IsHoliday(workingdayCultureInfo));
 			mockDayOfWeekStartegy.Received().IsWorkingDay(aThursday.DayOfWeek);
 		}
 
