@@ -26,32 +26,136 @@
         </ul>
       </header>
       <section>
-        <h3>Welcome to GitHub Pages.</h3>
+        <h3>Support</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p>You can point out bugs, feature requests, submit pull requests on the project <a href="https://github.com/kappy/DateTimeExtensions">web site on GitHub</a> </p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+		<h3>Contents</h3>
+
+<p>This library is build in a single assembly DateTimeExtensions.dll</p>
+
+		<h3>License</h3>
+		
+<p>This project is licensed under the Apache License, Version 2.0.
+<br/>
+You can read the license details <a href="http://www.apache.org/licenses/LICENSE-2.0">here</a></p>
+
+		<h3>Getting Started</h3>
+
+		<p>DateTimeExtensions is avaiable on <a href="http://nuget.org/packages/DateTimeExtensions">nuget</a>
+		<br/>
+        To install DateTime Extensions, run the following command in the <a href="http://docs.nuget.org/docs/start-here/using-the-package-manager-console">
+            Package Manager Console</a>
+		</p>
+		<pre style="background-color: #202020;border: 4px solid silver;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px;box-shadow: 2px 2px 3px #6e6e6e;color: #E2E2E2;display: block;font: 1.2em 'andale mono', 'lucidaconsole', monospace;line-height: 1.5em;overflow: auto;padding: 15px;">PM&gt; Install-Package DateTimeExtensions</pre>
+
+		<h3>Major Feautures</h3>
+		<h4>Working Days Calculations</h4>
+		
+		<p>In many businesses there's the concept of a working day. Either being used to calculate the estimated finishing date of a workflow or to return a phone call, some business process may use the working day concept to add or subtract days from a date excluding weekends and holidays.</p>
+		<p>Usage Example</p>
+<pre><code>
+using DateTimeExtensions;
+
+[Test]
+public void use_holidays_in_calulations() {
+	DateTimeCultureInfo pt_ci = new DateTimeCultureInfo("pt-PT");
+	DateTime startDate = new DateTime(2011, 4, 21);
+
+	//21-04-2011 - start
+	//22-04-2011 - holiday
+	//23-04-2011 - saturday
+	//24-04-2011 - sunday
+	//25-04-2011 - holiday
+	//26-04-2011 - end
+
+	DateTime endDate = startDate.AddWorkingDays( 1, pt_ci);
+	Assert.IsTrue(endDate == startDate.AddDays(5));
+}
 </code></pre>
+		
+		<h4>Export Holidays to calendar format</h4>
+		
+		<p>Do you wish to export your locale year holidays to Outlook? Or even provide your own custom calendar suited to your business?</p>
+<pre><code>[Test]
+public void can_save_to_file() {
+	var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
+	string tempfile = Path.GetTempFileName();
+	using (var fileStream = File.Create(tempfile)) {
+		using (var textwriter = new StreamWriter(fileStream)) {
+			exporter.Export(new DateTimeCultureInfo("pt-PT"), 2012, textwriter);
+			textwriter.Flush();
+			Assert.IsTrue(fileStream.Length > 0);
+		}
+	}
+	File.Delete(tempfile);
+}
+</code></pre>
+		
+		<h4>Date Difference To Natural Text</h4>
+		
+<p>
+	This extensions can compare two dates in natural language based on the current locale on current thread CultureInfo.
+	<br/>
+	This comes in two flavors: Exact time or human rounded.
+</p>
+<pre><code>
+[Test]
+public void can_tranlate_to_natural_text_rounded() {
+	var fromTime = DateTime.Now;
+	var toTime = fromTime.AddHours(2).AddMinutes(45);
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+	var naturalText = fromTime.ToNaturalText(toTime, true, foo_ci);
 
-<h3>Designer Templates</h3>
+	Assert.IsNotNullOrEmpty(naturalText);
+	Assert.AreEqual("3 hours", naturalText);
+}
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-<h3>Rather Drive Stick?</h3>
+[Test]
+public void can_tranlate_to_exact_natural_text() {
+	var fromTime = DateTime.Now;
+	var toTime = DateTime.Now.AddHours(2).AddMinutes(30);
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+	var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-<h3>Authors and Contributors</h3>
+	Assert.IsNotNullOrEmpty(naturalText);
+	Assert.AreEqual("2 hours, 30 minutes", naturalText);
+}
+</code></pre>
+		
+		
+		<h4>General goto dates</h4>
+		
+<p>
+	Some general utility extensions are also provided:
+</p>
+<pre><code>
+[Test]
+public void get_next_and_last_tuesday() {
+	var a_saturday = new DateTime(2011, 8, 20);
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+	var nextTuesday = a_saturday.NextDayOfWeek(DayOfWeek.Tuesday);
+	var lastTuesday = a_saturday.LastDayOfWeek(DayOfWeek.Tuesday);
+	Assert.IsTrue((nextTuesday.DayOfWeek == DayOfWeek.Tuesday) && (nextTuesday == new DateTime(2011, 8, 23)));
+	Assert.IsTrue((lastTuesday.DayOfWeek == DayOfWeek.Tuesday) && (lastTuesday == new DateTime(2011, 8, 16)));
+}
 
-<h3>Support or Contact</h3>
+[Test]
+public void get_first_and_last_tuesday_of_august() {
+	var a_saturday = new DateTime(2011, 8, 13);
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact support@github.com and we’ll help you sort it out.</p>
+	var firstTuesday = a_saturday.FirstDayOfWeekOfTheMonth(DayOfWeek.Tuesday);
+	var lastTuesday = a_saturday.LastDayOfWeekOfTheMonth(DayOfWeek.Tuesday);
+	Assert.IsTrue((firstTuesday.DayOfWeek == DayOfWeek.Tuesday) && (firstTuesday == new DateTime(2011, 8, 2)));
+	Assert.IsTrue((lastTuesday.DayOfWeek == DayOfWeek.Tuesday) && (lastTuesday == new DateTime(2011, 8, 30)));
+}
+</code></pre>
+		
+
+
+
+
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/kappy">kappy</a></p>
