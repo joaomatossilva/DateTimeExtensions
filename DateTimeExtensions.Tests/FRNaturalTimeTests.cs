@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 
 using NUnit.Framework;
-using DateTimeExtensions;
+using DateTimeExtensions.NaturalText;
 
 namespace DateTimeExtensions.Tests {
 
 	[TestFixture]
 	public class FRNaturalTimeTests {
-		private DateTimeCultureInfo foo_ci = new DateTimeCultureInfo("fr-FR");
+		private NaturalTextCultureInfo foo_ci = new NaturalTextCultureInfo("fr-FR");
 
 		[Test]
 		public void can_tranlate_to_natural_text() {

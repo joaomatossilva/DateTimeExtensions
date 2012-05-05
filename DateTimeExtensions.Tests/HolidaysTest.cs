@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DateTimeExtensions;
+using DateTimeExtensions.WorkingDays;
 using NUnit.Framework;
 
 namespace DateTimeExtensions.Tests

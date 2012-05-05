@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System.Globalization;
 using System.Threading;
 using DateTimeExtensions;
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions.WorkingDays;
 using System.Collections.Generic;
 
 namespace DateTimeExtensions.Tests {
