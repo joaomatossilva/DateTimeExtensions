@@ -3,42 +3,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.Strategies {
-	public class EN_GBNaturalTimeStrategy  : NaturalTimeStrategyBase{
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	public class PT_PTNaturalTimeStrategy : NaturalTimeStrategyBase {
 		protected override string YearText {
 			get {
-				return "year";
+				return "ano";
 			}
 		}
 
 		protected override string MonthText {
 			get {
-				return "month";
+				return "mes";
 			}
 		}
 
 		protected override string DayText {
 			get {
-				return "day";
+				return "dia";
 			}
 		}
 
 		protected override string HourText {
 			get {
-				return "hour";
+				return "hora";
 			}
 		}
 
 		protected override string MinuteText {
 			get {
-				return "minute";
+				return "minuto";
 			}
 		}
 
 		protected override string SecondText {
 			get {
-				return "second";
+				return "segundo";
 			}
+		}
+
+		protected override string Pluralize(string text) {
+			if (text.EndsWith("s")) {
+				return text + "es";
+			}
+			return base.Pluralize(text);
 		}
 	}
 }

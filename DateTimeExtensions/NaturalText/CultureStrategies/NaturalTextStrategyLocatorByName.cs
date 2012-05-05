@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.Strategies {
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
 	public class NaturalTextStrategyLocatorByName {
 		private const string NATURAL_TIME_STRATEGY_NAME = "NaturalTimeStrategy";
-		private const string NAMESPACE = "DateTimeExtensions.Strategies";
+		private const string NAMESPACE = "DateTimeExtensions.NaturalText.CultureStrategies";
 
 		public static INaturalTimeStrategy LocateNaturalTimeStrategyForName(string name) {
 			string strategyPrefix = name.ToUpperInvariant().Replace("-", "_");

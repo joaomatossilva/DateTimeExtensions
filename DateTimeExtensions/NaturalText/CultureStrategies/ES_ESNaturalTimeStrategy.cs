@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.Strategies {
-	public class PT_BRNaturalTimeStrategy  : NaturalTimeStrategyBase{
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	public class ES_ESNaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {
 				return "ano";
@@ -47,5 +47,6 @@ namespace DateTimeExtensions.Strategies {
 			}
 			return base.Pluralize(text);
 		}
+
 	}
 }

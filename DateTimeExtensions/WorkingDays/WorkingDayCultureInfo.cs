@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions.WorkingDays.CultureStrategies;
 
 namespace DateTimeExtensions.WorkingDays {
 

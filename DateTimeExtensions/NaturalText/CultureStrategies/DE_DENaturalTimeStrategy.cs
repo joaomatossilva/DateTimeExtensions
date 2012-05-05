@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.Strategies {
-	public class DefaultNaturalTimeStrategy  : NaturalTimeStrategyBase{
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	public class DE_DENaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {
-				return "year";
+				return "jahr";
 			}
 		}
 
 		protected override string MonthText {
 			get {
-				return "month";
+				return "monat";
 			}
 		}
 
 		protected override string DayText {
 			get {
-				return "day";
+				return "tag";
 			}
 		}
 
 		protected override string HourText {
 			get {
-				return "hour";
+				return "stunde";
 			}
 		}
 
@@ -37,8 +37,16 @@ namespace DateTimeExtensions.Strategies {
 
 		protected override string SecondText {
 			get {
-				return "second";
+				return "sekunde";
 			}
 		}
+
+		protected override string Pluralize(string text) {
+			if (text.EndsWith("e")) {
+				return text + "n";
+			}
+			return text + "en";
+		}
+
 	}
 }

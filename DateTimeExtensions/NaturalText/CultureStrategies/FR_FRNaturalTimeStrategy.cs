@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.Strategies {
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
 	public class FR_FRNaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {

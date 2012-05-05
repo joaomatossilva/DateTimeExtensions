@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.Strategies {
-	public class EN_USNaturalTimeStrategy  : NaturalTimeStrategyBase{
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	public class DefaultNaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {
 				return "year";

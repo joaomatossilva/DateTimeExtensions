@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions.NaturalText.CultureStrategies;
 
-namespace DateTimeExtensions {
+namespace DateTimeExtensions.NaturalText {
 
 	public class NaturalTextCultureInfo : INaturalTextCultureInfo {
 		private string name;
@@ -17,7 +17,7 @@ namespace DateTimeExtensions {
 
 		public NaturalTextCultureInfo(string name) {
 			this.name = name;
-			this.LocateNaturalTimeStrategy = HolidayStrategyLocatorByName.LocateNaturalTimeStrategyForName;
+			this.LocateNaturalTimeStrategy = NaturalTextStrategyLocatorByName.LocateNaturalTimeStrategyForName;
 		}
 
 		public string Name { 

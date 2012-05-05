@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions {
+namespace DateTimeExtensions.NaturalText {
 	public struct DateDiff {
 
 		private const int DAYS_IN_MONTH = 30;

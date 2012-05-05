@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions {
-	public static class GlobalHolidays.WorkingDays {
+namespace DateTimeExtensions.WorkingDays {
+	public static class GlobalHolidays {
 
 		private static Holiday internationalWorkersDay;
 		public static Holiday InternationalWorkersDay {

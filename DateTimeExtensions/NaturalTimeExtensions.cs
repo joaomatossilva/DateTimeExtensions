@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using DateTimeExtensions.NaturalText;
+
 namespace DateTimeExtensions {
 	public static class NaturalTimeExtensions {
 
@@ -11,7 +13,7 @@ namespace DateTimeExtensions {
 		}
 
 		public static string ToNaturalText(this DateTime fromDate, DateTime toDate) {
-			return ToNaturalText(fromDate, toDate, true, new DateTimeCultureInfo());
+			return ToNaturalText(fromDate, toDate, true, new NaturalTextCultureInfo());
 		}
 
 		public static string ToNaturalText(this DateTime fromDate, DateTime toDate, bool round, INaturalTextCultureInfo cultureInfo) {
@@ -20,7 +22,7 @@ namespace DateTimeExtensions {
 		}
 
 		public static string ToNaturalText(this DateTime fromDate, DateTime toDate, bool round) {
-			return ToNaturalText(fromDate, toDate, round, new DateTimeCultureInfo());
+			return ToNaturalText(fromDate, toDate, round, new NaturalTextCultureInfo());
 		}
 
 		public static string ToExactNaturalText(this DateTime fromDate, DateTime toDate, INaturalTextCultureInfo cultureInfo) {
@@ -29,7 +31,11 @@ namespace DateTimeExtensions {
 		}
 
 		public static string ToExactNaturalText(this DateTime fromDate, DateTime toDate) {
-			return ToExactNaturalText(fromDate, toDate, new DateTimeCultureInfo());
+			return ToExactNaturalText(fromDate, toDate, new NaturalTextCultureInfo());
+		}
+
+		public static DateDiff GetDiff(this DateTime fromDate, DateTime toDate) {
+			return toDate >= fromDate ? new DateDiff(fromDate, toDate) : new DateDiff(toDate, fromDate);
 		}
 	}
 }
