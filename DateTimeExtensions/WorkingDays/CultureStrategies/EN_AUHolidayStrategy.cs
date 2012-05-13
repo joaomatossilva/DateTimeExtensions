@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using DateTimeExtensions.Common;
+
 namespace DateTimeExtensions.WorkingDays.CultureStrategies {
+	[Locale("en-AU")]
 	public class EN_AUHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public EN_AUHolidayStrategy() {

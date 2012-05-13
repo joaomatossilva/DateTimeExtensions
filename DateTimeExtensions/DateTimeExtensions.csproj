@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\LocaleAttribute.cs" />
+    <Compile Include="Common\LocaleImplementationLocator.cs" />
     <Compile Include="NaturalText\CultureStrategies\NaturalTextStrategyLocatorByName.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />

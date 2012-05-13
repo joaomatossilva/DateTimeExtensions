@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using DateTimeExtensions.Common;
+
 namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 	
-	//Canada official languages are french and english.
-	// for the time beeing, the en-CA will inherit from fr-CA.
-	// in the furure this could be changed...
+	[Locale("fr-CA")]
+	[Locale("en-CA")]
 	public class FR_CAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		public FR_CAHolidayStrategy() {

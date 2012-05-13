@@ -4,7 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+using DateTimeExtensions.Common;
+
 namespace DateTimeExtensions.WorkingDays.CultureStrategies {
+	[Locale("ar-SA")]
 	public class AR_SAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
 
 		private static readonly Calendar HirijiCalendar = new HijriCalendar();
