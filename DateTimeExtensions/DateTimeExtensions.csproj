@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -66,7 +66,6 @@
     <Compile Include="WorkingDays\CultureStrategies\ES_MXHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\ES-ARHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_ZAHolidayStrategy.cs" />
-    <Compile Include="WorkingDays\CultureStrategies\EN_CAHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_USHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_AUHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\HolidayStrategyBase.cs" />
@@ -76,12 +75,10 @@
     <Compile Include="WorkingDays\CultureStrategies\DA_DKHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\FI_FIHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\NL_NLHolidayStrategy.cs" />
-    <Compile Include="NaturalText\CultureStrategies\PT_BRNaturalTimeStrategy.cs" />
     <Compile Include="NaturalText\CultureStrategies\DE_DENaturalTimeStrategy.cs" />
     <Compile Include="NaturalText\CultureStrategies\FR_FRNaturalTimeStrategy.cs" />
     <Compile Include="NaturalText\CultureStrategies\ES_ESNaturalTimeStrategy.cs" />
     <Compile Include="NaturalText\CultureStrategies\EN_GBNaturalTimeStrategy.cs" />
-    <Compile Include="NaturalText\CultureStrategies\EN_USNaturalTimeStrategy.cs" />
     <Compile Include="NaturalText\CultureStrategies\DefaultNaturalTimeStrategy.cs" />
     <Compile Include="NaturalText\CultureStrategies\NLNaturalTimeStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\DE_DEHolidayStrategy.cs" />
