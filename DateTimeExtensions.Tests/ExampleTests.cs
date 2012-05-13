@@ -1,4 +1,7 @@
 ﻿using System;
+
+using DateTimeExtensions.Common;
+
 using NUnit.Framework;
 using System.Globalization;
 using System.Threading;
@@ -76,7 +79,7 @@ namespace DateTimeExtensions.Tests {
 		}
 
 		/* Extensibility */
-
+		[Locale("CustomTest")]
 		public class CustomHolidayStrategy : IHolidayStrategy {
 			public bool IsHoliDay(DateTime day) {
 				if (day.Date == DateTime.Today)
@@ -93,6 +96,7 @@ namespace DateTimeExtensions.Tests {
 			}
 		}
 
+		[Locale("CustomTest")]
 		public class CustomeWorkingDayOfWeekStrategy : IWorkingDayOfWeekStrategy {
 			public bool IsWorkingDay(DayOfWeek dayOfWeek) {
 				return true;
@@ -101,10 +105,7 @@ namespace DateTimeExtensions.Tests {
 
 		[Test]
 		public void provide_custom_strategies() {
-			var customWorkingDayCultureInfo = new WorkingDayCultureInfo() {
-				LocateHolidayStrategy = (name) => new CustomHolidayStrategy() ,
-				LocateWorkingDayOfWeekStrategy = (name) => new CustomeWorkingDayOfWeekStrategy()
-			};
+			var customWorkingDayCultureInfo = new WorkingDayCultureInfo("CustomTest");
 
 			Assert.IsTrue(DateTime.Today.IsWorkingDay(customWorkingDayCultureInfo) == false);
 			Assert.IsTrue(DateTime.Today.AddDays(1).IsWorkingDay(customWorkingDayCultureInfo) == true);
