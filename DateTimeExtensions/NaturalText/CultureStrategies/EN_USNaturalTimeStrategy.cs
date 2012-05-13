@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	/* DEPRECATED */
 	public class EN_USNaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {

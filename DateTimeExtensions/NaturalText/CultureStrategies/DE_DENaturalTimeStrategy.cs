@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using DateTimeExtensions.Common;
+
 namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	[Locale("de-DE")]
 	public class DE_DENaturalTimeStrategy  : NaturalTimeStrategyBase{
 		protected override string YearText {
 			get {
