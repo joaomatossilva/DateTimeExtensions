@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Common\LocaleAttribute.cs" />
     <Compile Include="Common\LocaleImplementationLocator.cs" />
-    <Compile Include="NaturalText\CultureStrategies\NaturalTextStrategyLocatorByName.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
     <Compile Include="Export\ExportHolidayFormatLocator.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="WorkingDays\CultureStrategies\PT_BRHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_GBHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\ES_ESHolidayStrategy.cs" />
-    <Compile Include="WorkingDays\CultureStrategies\HolidayStrategyLocatorByName.cs" />
     <Compile Include="NaturalText\CultureStrategies\PT_PTNaturalTimeStrategy.cs" />
     <Compile Include="WorkingDaysExtensions.cs" />
     <Compile Include="WorkingDays\DayInYear.cs" />

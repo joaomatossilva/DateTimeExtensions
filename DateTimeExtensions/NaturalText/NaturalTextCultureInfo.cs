@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 
+using DateTimeExtensions.Common;
 using DateTimeExtensions.NaturalText.CultureStrategies;
 
 namespace DateTimeExtensions.NaturalText {
@@ -17,7 +18,7 @@ namespace DateTimeExtensions.NaturalText {
 
 		public NaturalTextCultureInfo(string name) {
 			this.name = name;
-			this.LocateNaturalTimeStrategy = NaturalTextStrategyLocatorByName.LocateNaturalTimeStrategyForName;
+			this.LocateNaturalTimeStrategy = DefaultLocateNaturalTimeStrategy;
 		}
 
 		public string Name { 
@@ -46,5 +47,8 @@ namespace DateTimeExtensions.NaturalText {
 				}
 			}
 		}
+
+		public static readonly Func<string, INaturalTimeStrategy> DefaultLocateNaturalTimeStrategy =
+			name => LocaleImplementationLocator.FindImplementationOf<INaturalTimeStrategy>(name) ?? new DefaultNaturalTimeStrategy();
 	}
 }

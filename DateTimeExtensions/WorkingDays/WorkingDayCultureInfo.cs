@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 
+using DateTimeExtensions.Common;
 using DateTimeExtensions.WorkingDays.CultureStrategies;
 
 namespace DateTimeExtensions.WorkingDays {
@@ -18,8 +19,8 @@ namespace DateTimeExtensions.WorkingDays {
 
 		public WorkingDayCultureInfo(string name) {
 			this.name = name;
-			this.LocateWorkingDayOfWeekStrategy = HolidayStrategyLocatorByName.LocateDayOfWeekStrategyForName;
-			this.LocateHolidayStrategy = HolidayStrategyLocatorByName.LocateHolidayStrategyForName;
+			this.LocateWorkingDayOfWeekStrategy = DefaultLocateWorkingDayOfWeekStrategy;
+			this.LocateHolidayStrategy = DefaultLocateHolidayStrategy;
 		}
 
 		public bool IsHoliday(DateTime date) {
@@ -77,5 +78,11 @@ namespace DateTimeExtensions.WorkingDays {
 				}
 			}
 		}
+
+		public static readonly Func<string, IHolidayStrategy> DefaultLocateHolidayStrategy =
+			name => LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name) ?? new DefaultHolidayStrategy();
+
+		public static readonly Func<string, IWorkingDayOfWeekStrategy> DefaultLocateWorkingDayOfWeekStrategy =
+			name => LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name) ?? new DefaultWorkingDayOfWeekStrategy();
 	}
 }
