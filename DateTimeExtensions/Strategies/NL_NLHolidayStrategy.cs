@@ -12,6 +12,7 @@ namespace DateTimeExtensions.Strategies {
 			this.InnerHolidays.Add(ChristianHolidays.Easter);
 			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
 			this.InnerHolidays.Add(LiberationDay);
+			this.InnerHolidays.Add(ChristianHolidays.Ascension);
 			this.InnerHolidays.Add(ChristianHolidays.Pentecost);
 			this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
 			this.InnerHolidays.Add(ChristianHolidays.Christmas);
