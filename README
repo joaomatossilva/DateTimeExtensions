@@ -107,6 +107,11 @@ You can also create issues with the features or changes that you think important
 
 Version History
 ---------------------------------------
+v2.2.5
+- Added nl-NL and nl-BE Natural Text Cultures (Thanks @frankgeerlings)
+- bugfux:
+	- Multiple Holidays on the same day caused an error building the holiday map (Thanks @frankgeerlings)
+
 v2.2.4
 - bugfix:
 	- Holidays on weekends weren't considered as holidays
