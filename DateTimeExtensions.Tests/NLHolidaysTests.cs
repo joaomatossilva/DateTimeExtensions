@@ -2,13 +2,14 @@ namespace DateTimeExtensions.Tests
 {
 	using System;
 	using System.Linq;
+	using DateTimeExtensions.WorkingDays;
 
 	using NUnit.Framework;
 
 	[TestFixture]
 	public class NLHolidaysTests
 	{
-		private readonly DateTimeCultureInfo dateTimeCulture = new DateTimeCultureInfo("nl-NL");
+		private readonly WorkingDayCultureInfo dateTimeCulture = new WorkingDayCultureInfo("nl-NL");
 
 		[Test]
 		public void The_Netherlands_has_10_main_holidays()

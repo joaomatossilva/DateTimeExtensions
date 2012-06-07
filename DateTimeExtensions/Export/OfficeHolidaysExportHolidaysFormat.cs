@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions.WorkingDays;
 
 namespace DateTimeExtensions.Export {
 	public class OfficeHolidaysExportHolidaysFormat: IExportHolidaysFormat {
@@ -12,7 +12,7 @@ namespace DateTimeExtensions.Export {
 		private const string HolidayLineFormat = "{0}, {1:yyyy'/'MM'/'dd}";
 		private const string HeaderLineFomat = "[{0}] {1}";
 
-		public void Export(DateTimeCultureInfo dateTimeCultureInfo, int year, TextWriter writer) {
+		public void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer) {
 			var holidays = dateTimeCultureInfo.GetHolidaysOfYear(year);
 			writer.WriteLine(HeaderLineFomat, dateTimeCultureInfo.Name, holidays.Count());
 			foreach (var holiday in holidays) {

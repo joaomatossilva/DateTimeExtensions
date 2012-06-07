@@ -6,7 +6,8 @@ using System.Text;
 using DateTimeExtensions;
 using NUnit.Framework;
 using System.Globalization;
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions.WorkingDays;
+using DateTimeExtensions.WorkingDays.CultureStrategies;
 
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
@@ -15,7 +16,7 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_locate_by_name() {
 			string name = "pt-PT";
-			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo(name);
+			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo(name);
 			Assert.IsTrue(name == workingdayCultureInfo.Name);
 			Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
 		}
@@ -24,7 +25,7 @@ namespace DateTimeExtensions.Tests {
 		public void can_locate_by_culture_info() {
 			string name = "pt-PT";
 			System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(name);
-			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo();
+			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo();
 			Assert.IsTrue(name == workingdayCultureInfo.Name);
 			Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
 		}
