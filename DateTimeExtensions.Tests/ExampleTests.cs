@@ -1,9 +1,13 @@
 ﻿using System;
+
+using DateTimeExtensions.Common;
+
 using NUnit.Framework;
 using System.Globalization;
 using System.Threading;
 using DateTimeExtensions;
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions;
+using DateTimeExtensions.WorkingDays;
 using System.Collections.Generic;
 
 namespace DateTimeExtensions.Tests {
@@ -23,7 +27,7 @@ namespace DateTimeExtensions.Tests {
 
 		[Test]
 		public void recomended_calculation() {
-			var workingDayCultureInfo = new DateTimeCultureInfo("pt-PT");
+			var workingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
 			var friday = new DateTime(2011, 5, 13); // A friday
 			var friday_plus_two_working_days = friday.AddWorkingDays(2, workingDayCultureInfo); // friday + 2 working days
 
@@ -45,8 +49,8 @@ namespace DateTimeExtensions.Tests {
 
 		[Test]
 		public void holidays() {
-			var ptWorkingDayCultureInfo = new DateTimeCultureInfo("pt-PT");
-			var enWorkingDayCultureInfo = new DateTimeCultureInfo("default");
+			var ptWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
+			var enWorkingDayCultureInfo = new WorkingDayCultureInfo("default");
 
 			var thursday = new DateTime(2011, 4, 21); // A thursday
 			var thursday_plus_two_working_days_pt = thursday.AddWorkingDays(2, ptWorkingDayCultureInfo); // friday + 2 working days on PT
@@ -63,7 +67,7 @@ namespace DateTimeExtensions.Tests {
 
 		[Test]
 		public void check_working_day() {
-			var ptWorkingDayCultureInfo = new DateTimeCultureInfo("pt-PT");
+			var ptWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
 			var carnationRevolution = new DateTime(2011, 4, 25);
 			var nextDay = carnationRevolution.AddDays(1); 
 
@@ -75,7 +79,7 @@ namespace DateTimeExtensions.Tests {
 		}
 
 		/* Extensibility */
-
+		[Locale("CustomTest")]
 		public class CustomHolidayStrategy : IHolidayStrategy {
 			public bool IsHoliDay(DateTime day) {
 				if (day.Date == DateTime.Today)
@@ -92,6 +96,7 @@ namespace DateTimeExtensions.Tests {
 			}
 		}
 
+		[Locale("CustomTest")]
 		public class CustomeWorkingDayOfWeekStrategy : IWorkingDayOfWeekStrategy {
 			public bool IsWorkingDay(DayOfWeek dayOfWeek) {
 				return true;
@@ -100,10 +105,7 @@ namespace DateTimeExtensions.Tests {
 
 		[Test]
 		public void provide_custom_strategies() {
-			var customWorkingDayCultureInfo = new DateTimeCultureInfo() {
-				LocateHolidayStrategy = (name) => new CustomHolidayStrategy() ,
-				LocateWorkingDayOfWeekStrategy = (name) => new CustomeWorkingDayOfWeekStrategy()
-			};
+			var customWorkingDayCultureInfo = new WorkingDayCultureInfo("CustomTest");
 
 			Assert.IsTrue(DateTime.Today.IsWorkingDay(customWorkingDayCultureInfo) == false);
 			Assert.IsTrue(DateTime.Today.AddDays(1).IsWorkingDay(customWorkingDayCultureInfo) == true);
@@ -172,7 +174,7 @@ namespace DateTimeExtensions.Tests {
 		*/
 		[Test]
 		public void get_year_prior_2012_holidays_in_portugal() {
-			var portugalWorkingDayCultureInfo = new DateTimeCultureInfo("pt-PT");
+			var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
 			var today = new DateTime(2010,2,1);
 			var holidays = today.AllYearHolidays();
 

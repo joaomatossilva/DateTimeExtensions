@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 
 using NUnit.Framework;
-using DateTimeExtensions;
+using DateTimeExtensions.WorkingDays;
 
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
 	public class PTCalendarTests {
-		private DateTimeCultureInfo pt_ci = new DateTimeCultureInfo("pt-PT");
+		private WorkingDayCultureInfo pt_ci = new WorkingDayCultureInfo("pt-PT");
 
 		[Test]
 		public void default_working_days() {

@@ -5,7 +5,8 @@ using System.Text;
 
 using DateTimeExtensions;
 using NUnit.Framework;
-using DateTimeExtensions.Strategies;
+using DateTimeExtensions.WorkingDays;
+using DateTimeExtensions.WorkingDays.CultureStrategies;
 using NSubstitute;
 
 namespace DateTimeExtensions.Tests {
@@ -15,7 +16,7 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_locate_default_strategies() {
 			string name = "foo";
-			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo(name);
+			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo(name);
 			Assert.IsTrue(name == workingdayCultureInfo.Name);
 			Assert.IsInstanceOf<DefaultHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
 			Assert.IsInstanceOf<DefaultWorkingDayOfWeekStrategy>(workingdayCultureInfo.LocateWorkingDayOfWeekStrategy(name));
@@ -28,7 +29,7 @@ namespace DateTimeExtensions.Tests {
 			var mockDayOfWeekStartegy = Substitute.For<IWorkingDayOfWeekStrategy>();
 			mockDayOfWeekStartegy.IsWorkingDay(Arg.Any<DayOfWeek>()).Returns(true);
 
-			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo() {
+			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo() {
 				LocateHolidayStrategy = (n) => {
 					return mockHolidayStrategy;
 				},
@@ -47,9 +48,9 @@ namespace DateTimeExtensions.Tests {
 		[Test]
 		public void can_provide_custom_locator_dayOfWeek_strategy() {
 			var mockDayOfWeekStartegy = Substitute.For<IWorkingDayOfWeekStrategy>();
-			mockDayOfWeekStartegy.IsWorkingDay(Arg.Any<DayOfWeek>()).Returns(false);			
+			mockDayOfWeekStartegy.IsWorkingDay(Arg.Any<DayOfWeek>()).Returns(false);
 
-			DateTimeCultureInfo workingdayCultureInfo = new DateTimeCultureInfo() {
+			WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo() {
 				LocateWorkingDayOfWeekStrategy = (n) => {
 					return mockDayOfWeekStartegy;
 				}
@@ -69,7 +70,7 @@ namespace DateTimeExtensions.Tests {
 			 * one is OK. HolidayStrategyBase.BuildObservancesMap should survive this.
 			 */
 
-			var inTheNetherlands = new DateTimeCultureInfo("nl-NL");
+			var inTheNetherlands = new WorkingDayCultureInfo("nl-NL");
 			var fifthOfMay = new DateTime(2005, 5, 5);
 
 			Assert.That(fifthOfMay.IsHoliday(inTheNetherlands));

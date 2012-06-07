@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using NUnit.Framework;
-using DateTimeExtensions;
+using DateTimeExtensions.WorkingDays;
 
 namespace DateTimeExtensions.Tests {
 
