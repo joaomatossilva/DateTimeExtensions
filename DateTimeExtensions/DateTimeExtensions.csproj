@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Common\LocaleAttribute.cs" />
     <Compile Include="Common\LocaleImplementationLocator.cs" />
+    <Compile Include="TimeExtensions.cs" />
+    <Compile Include="TimeOfDay\Time.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
     <Compile Include="Export\ExportHolidayFormatLocator.cs" />
