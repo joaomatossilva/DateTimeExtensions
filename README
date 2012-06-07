@@ -17,6 +17,7 @@ Currently implemented are the following major features:
 - Add or subtract Working days using locale holidays
 - Export Holidays to calendar format
 - Dates Difference in Natural Time (localized)
+- Time of day
 - General "goto" dates
 
 
@@ -59,7 +60,7 @@ The IExportHolidaysFormat interface exposes one simple method for it:
 
 Example:
 var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
-exporter.Export(new DateTimeCultureInfo("pt-PT"), 2012, textwriter);
+exporter.Export(new WorkingDayCultureInfo("pt-PT"), 2012, textwriter);
 
 
 Dates Diff in Natural Time
@@ -83,6 +84,19 @@ Avaiable CultureInfo implementations:
 - fr-FR
 - de-DE
 - es-ES
+- nl-NL
+- nl-BE
+
+
+Time of Day
+--------------------------------------
+
+This extensions allows to easily parse time expressions and check if a DateTime instance is after,
+before or inside a period.
+
+- bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
+- bool IsBefore(this DateTime dateTime, Time time)
+- bool IsAfter(this DateTime dateTime, Time time)
 
 
 Other Extensions:
@@ -104,9 +118,17 @@ How to Contribute
 Feel free to fork the project, work on your fork and send me the pull requests.
 You can also create issues with the features or changes that you think important.
 
+Also, this repository is built with autocrlf = true.
+
 
 Version History
 ---------------------------------------
+v3.0
+- Culture specific stretegies are now decorated with a specific attribute to allow a better and dynamic discovery.
+- The Locator classes and method are now obsolete.
+- Splitted the DateTimeCultureInfo into specific contexs. This will improve the single resposability of the classes.
+- Added Time feature
+
 v2.2.5
 - Added nl-NL and nl-BE Natural Text Cultures (Thanks @frankgeerlings)
 - bugfux:
