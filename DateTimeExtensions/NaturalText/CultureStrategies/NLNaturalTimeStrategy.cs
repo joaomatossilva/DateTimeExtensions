@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace DateTimeExtensions.Strategies {
-	public class NL_NLNaturalTimeStrategy : NLNaturalTimeStrategyBase { }
-	public class NL_BENaturalTimeStrategy : NLNaturalTimeStrategyBase { }
+using DateTimeExtensions.Common;
 
-	public abstract class NLNaturalTimeStrategyBase : NaturalTimeStrategyBase
+namespace DateTimeExtensions.NaturalText.CultureStrategies {
+	[Locale("nl-NL")]
+	[Locale("nl-BE")]
+	public class NLNaturalTimeStrategyBase : NaturalTimeStrategyBase
 	{
 		private const string PluralDayText = "dagen";
 

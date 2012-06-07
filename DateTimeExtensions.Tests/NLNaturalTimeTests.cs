@@ -1,24 +1,24 @@
 ﻿using System;
-
+using DateTimeExtensions.NaturalText;
 using NUnit.Framework;
 
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
 	public class NL_NLNaturalTimeTests : NLNaturalTimeTests
 	{
-		public NL_NLNaturalTimeTests() : base(new DateTimeCultureInfo("nl-NL")) {}
+		public NL_NLNaturalTimeTests() : base(new NaturalTextCultureInfo("nl-NL")) {}
 	}
 
 	[TestFixture]
 	public class NL_BENaturalTimeTests : NLNaturalTimeTests
 	{
-		public NL_BENaturalTimeTests() : base(new DateTimeCultureInfo("nl-BE")) { }
+		public NL_BENaturalTimeTests() : base(new NaturalTextCultureInfo("nl-BE")) { }
 	}
 
 	public class NLNaturalTimeTests {
-		private readonly DateTimeCultureInfo culture;
+		private readonly NaturalTextCultureInfo culture;
 
-		public NLNaturalTimeTests(DateTimeCultureInfo culture)
+		public NLNaturalTimeTests(NaturalTextCultureInfo culture)
 		{
 			this.culture = culture;
 		}

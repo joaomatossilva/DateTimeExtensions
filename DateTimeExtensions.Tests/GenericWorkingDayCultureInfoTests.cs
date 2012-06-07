@@ -70,7 +70,7 @@ namespace DateTimeExtensions.Tests {
 			 * one is OK. HolidayStrategyBase.BuildObservancesMap should survive this.
 			 */
 
-			var inTheNetherlands = new DateTimeCultureInfo("nl-NL");
+			var inTheNetherlands = new WorkingDayCultureInfo("nl-NL");
 			var fifthOfMay = new DateTime(2005, 5, 5);
 
 			Assert.That(fifthOfMay.IsHoliday(inTheNetherlands));
