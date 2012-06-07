@@ -25,7 +25,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 			}
 		}
 
-		public virtual IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+		protected virtual IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
 			return this.InnerHolidays.Select(h => new { Date = h.GetInstance(year), Holiday = h })
 				.Where(h => h.Date.HasValue)
 				.GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().Holiday })

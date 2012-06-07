@@ -23,7 +23,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 			this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
 		}
 
-		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+		protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
 			IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
 			foreach (var innerHoliday in InnerHolidays) {
 				var date = innerHoliday.GetInstance(year);

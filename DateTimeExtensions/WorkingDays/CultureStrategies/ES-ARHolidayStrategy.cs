@@ -40,7 +40,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 			this.InnerHolidays.Add(DayOfNationalSovereignity);
 		}
 
-		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+		protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
 			var observancesMap = new Dictionary<DateTime, Holiday>();
 			this.BuildMoveableObservanceMap(year, DayOfRespectForCulturalDiversity, observancesMap);
 			this.BuildMoveableObservanceMap(year, DayOfNationalSovereignity, observancesMap);

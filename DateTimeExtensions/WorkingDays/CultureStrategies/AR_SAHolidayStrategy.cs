@@ -18,7 +18,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 			this.InnerHolidays.Add(SaudiNationalDay);
 		}
 
-		public override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
+		protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
 			var observancesMap = new Dictionary<DateTime, Holiday>();
 			var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
 			for (int i = 0; i <= 7; i++) {
