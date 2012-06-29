@@ -123,6 +123,9 @@ Also, this repository is built with autocrlf = true.
 
 Version History
 ---------------------------------------
+v3.0.1
+- Safe Locales impletentation discovery
+
 v3.0
 - Culture specific stretegies are now decorated with a specific attribute to allow a better and dynamic discovery.
 - The Locator classes and method are now obsolete.
