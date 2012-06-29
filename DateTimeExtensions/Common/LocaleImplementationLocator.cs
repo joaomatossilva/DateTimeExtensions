@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 
 namespace DateTimeExtensions.Common {
 	public static class LocaleImplementationLocator {
@@ -7,7 +8,7 @@ namespace DateTimeExtensions.Common {
 		public static T FindImplementationOf<T>(string locale) {
 			var type = typeof(T);
 			var types = AppDomain.CurrentDomain.GetAssemblies().ToList()
-				.SelectMany(s => s.GetTypes()).Where(p => type.IsAssignableFrom(p) && 
+				.SelectMany(GetTypesFromAssemblySafe).Where(p => type.IsAssignableFrom(p) && 
 					p.GetCustomAttributes(typeof(LocaleAttribute), false).Any(a => ((LocaleAttribute)a).Locale.Equals(locale)));
 			
 			var implementationType = types.FirstOrDefault();
@@ -21,6 +22,14 @@ namespace DateTimeExtensions.Common {
 				return default(T);
 			}
 			return instance;
+		}
+
+		private static Type[] GetTypesFromAssemblySafe(Assembly assembly) {
+			try {
+				return assembly.GetTypes();
+			} catch {
+				return new Type[] {};
+			}
 		}
 	}
 }
