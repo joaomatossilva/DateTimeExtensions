@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,6 +45,7 @@
     <Compile Include="Common\LocaleImplementationLocator.cs" />
     <Compile Include="TimeExtensions.cs" />
     <Compile Include="TimeOfDay\Time.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\RussianHolidayStrategy.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
     <Compile Include="Export\ExportHolidayFormatLocator.cs" />
