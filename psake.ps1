@@ -22,7 +22,7 @@ param(
     [Parameter(Position=7, Mandatory=0)]
     [switch]$help = $false,
     [Parameter(Position=8, Mandatory=0)]
-    [string]$scriptPath = $(Split-Path -parent $MyInvocation.MyCommand.path)
+    [string]$scriptPath = $(Split-Path -parent $myinvocation.mycommand)
 )
 
 # '[p]sake' is the same as 'psake' but $Error is not polluted
