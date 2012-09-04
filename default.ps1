@@ -15,6 +15,11 @@ properties {
   $compileMessage = 'Executed Compile!'
   $cleanMessage = 'Executed Clean!'
 }
+Include .\teamcity.psm1
+TaskSetup {
+    TeamCity-ReportBuildProgress "Running task $($psake.context.Peek().currentTaskName)"
+}
+
 $framework = '4.0'
 
 task default -depends Test
