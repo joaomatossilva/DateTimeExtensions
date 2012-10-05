@@ -39,31 +39,51 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 				{
 					holidayMap.Add(date.Value, innerHoliday);
 
-					//don't move the holiday if it is easter based since it's already observated
-					if (innerHoliday.GetType() != typeof(EasterBasedHoliday))
+					// New Year, Day After New Year, Christmas and Boxing Days are 'Mondayised'
+					// ie if these dates fall on a weekday then they are observed on the actual day.
+					// If they fall on a weekend then they are observed on the following Monday/Tuesday
+
+					if (IsMondayised(innerHoliday, date.Value.DayOfWeek))
 					{
-
-						// New Year, Day After New Year, Christmas and Boxing Days are 'Mondayised'
-						// ie if these dates fall on a weekday then they are observed on the actual day.  
-						// If they fall on a weekend then they are observed on the following Monday/Tuesday
-
-						// todo: fix some holidays
-
-						if (innerHoliday.Name == "Day after New Year's Day")
+						var observation = new NthDayOfWeekAfterDayHoliday(innerHoliday.Name + " Observed", 1, DayOfWeek.Monday, innerHoliday);
+						var observedIntance = observation.GetInstance(year);
+						if (observedIntance != null)
 						{
-							if (date.Value.DayOfWeek == DayOfWeek.Saturday || date.Value.DayOfWeek == DayOfWeek.Sunday)
-							{
-								holidayMap.Add(date.Value.AddDays(2), innerHoliday);
-							}
-
+							holidayMap.Add(observedIntance.Value, observation);
 						}
-
+					}
+					if (IsTuesdayised(innerHoliday, date.Value.DayOfWeek))
+					{
+						var observation = new NthDayOfWeekAfterDayHoliday(innerHoliday.Name + " Observed", 1, DayOfWeek.Tuesday, innerHoliday);
+						var observedIntance = observation.GetInstance(year);
+						if (observedIntance != null)
+						{
+							holidayMap.Add(observedIntance.Value, observation);
+						}
 					}
 				}
 			}
 			return holidayMap;
 		}
 
+
+		private static bool IsMondayised(Holiday holiday, DayOfWeek occurenceDay)
+		{
+			return
+				(holiday.Equals(ChristianHolidays.NewYear) && occurenceDay == DayOfWeek.Saturday) ||
+				(holiday.Equals(DayAfterNewYear) && occurenceDay == DayOfWeek.Saturday) ||
+				(holiday.Equals(ChristianHolidays.Christmas) && occurenceDay == DayOfWeek.Saturday) ||
+				(holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Saturday);
+		}
+
+		private static bool IsTuesdayised(Holiday holiday, DayOfWeek occurenceDay)
+		{
+			return
+				(holiday.Equals(ChristianHolidays.NewYear) && occurenceDay == DayOfWeek.Sunday) ||
+				(holiday.Equals(DayAfterNewYear) && occurenceDay == DayOfWeek.Sunday) ||
+				(holiday.Equals(ChristianHolidays.Christmas) && occurenceDay == DayOfWeek.Sunday) ||
+				(holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Sunday);
+		}
 
 
 		// 2nd Janurary - Day after New Year's Day
