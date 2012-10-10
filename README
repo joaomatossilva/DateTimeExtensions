@@ -46,6 +46,7 @@ Avaiable CultureInfo implementations:
 - es-MX		- en-AU
 - en-ZA		- fr-CA (en-CA)
 - ar-SA		- it-IT
+- en-NZ
 
 your culture is not listed here? you can contribute it!!! 
 Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
@@ -124,6 +125,10 @@ Also, this repository is built with autocrlf = true.
 
 Version History
 ---------------------------------------
+v3.1
+- Added en-NZ working days culture (Thanks @snoopydo)
+- Re-removed the 4 holidays that are abolished by the PT governament
+
 v3.0.1
 - Safe Locales impletentation discovery
 
