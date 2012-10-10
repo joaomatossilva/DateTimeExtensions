@@ -4,23 +4,23 @@ using NUnit.Framework;
 
 namespace DateTimeExtensions.Tests {
 	[TestFixture]
-	public class NL_NLNaturalTimeTests : NLNaturalTimeTests
-	{
-		public NL_NLNaturalTimeTests() : base(new NaturalTextCultureInfo("nl-NL")) {}
-	}
-
-	[TestFixture]
 	public class NL_BENaturalTimeTests : NLNaturalTimeTests
 	{
 		public NL_BENaturalTimeTests() : base(new NaturalTextCultureInfo("nl-BE")) { }
 	}
 
+    [TestFixture]
 	public class NLNaturalTimeTests {
 		private readonly NaturalTextCultureInfo culture;
 
-		public NLNaturalTimeTests(NaturalTextCultureInfo culture)
+        public NLNaturalTimeTests()
+        {
+            this.culture = new NaturalTextCultureInfo("nl-NL");
+        }
+
+        public NLNaturalTimeTests(NaturalTextCultureInfo culture)
 		{
-			this.culture = culture;
+            this.culture = culture;
 		}
 
 		[Test]
