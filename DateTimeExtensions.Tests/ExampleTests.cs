@@ -162,7 +162,7 @@ namespace DateTimeExtensions.Tests {
 		public void get_year_since_2013_holidays_in_portugal() {
             var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
 			var today = new DateTime(2013, 2, 1);
-			var holidays = today.AllYearHolidays();
+            var holidays = today.AllYearHolidays(portugalWorkingDayCultureInfo);
 
 			Assert.IsTrue(holidays.Count == 9, "expecting 9 holidays but got {0}", holidays.Count);
 
