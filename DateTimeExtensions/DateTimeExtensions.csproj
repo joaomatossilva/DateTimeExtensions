@@ -46,6 +46,8 @@
     <Compile Include="TimeExtensions.cs" />
     <Compile Include="TimeOfDay\Time.cs" />
     <Compile Include="WorkingDays\CultureStrategies\RussianHolidayStrategy.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\EN_AUHolidayStrategy.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\EN_NZHolidayStrategy.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
     <Compile Include="Export\ExportHolidayFormatLocator.cs" />
@@ -69,7 +71,6 @@
     <Compile Include="WorkingDays\CultureStrategies\ES-ARHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_ZAHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_USHolidayStrategy.cs" />
-    <Compile Include="WorkingDays\CultureStrategies\EN_AUHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\HolidayStrategyBase.cs" />
     <Compile Include="WorkingDays\CultureStrategies\IS_ISHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\NB_NOHolidayStrategy.cs" />
