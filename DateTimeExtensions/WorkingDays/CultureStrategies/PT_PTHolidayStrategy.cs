@@ -31,10 +31,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
 			this.InnerHolidays.Add(ChristianHolidays.Easter);
 			this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-			/* v1.2 Change Reversion. Theses InnerHolidays abolishment aren't still final
-			InnerHolidays.Add(new YearDependantHoliday(year => year < 2012, ChristianHolidays.Assumption));
-			InnerHolidays.Add(new YearDependantHoliday(year => year < 2012, ChristianHolidays.CorpusChristi));
-			 */
+			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.Assumption));
+			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.CorpusChristi));
 			this.InnerHolidays.Add(ChristianHolidays.Assumption);
 			this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
 			this.InnerHolidays.Add(ChristianHolidays.AllSaints);
@@ -43,10 +41,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 			this.InnerHolidays.Add(FreedomDay);
 			this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
 			this.InnerHolidays.Add(PortugalDay);
-			/* v1.2 Change Reversion. Theses InnerHolidays abolishment aren't still final
-			InnerHolidays.Add(new YearDependantHoliday(year => year < 2012, RepublicDay));
-			InnerHolidays.Add(new YearDependantHoliday(year => year < 2012, RestorationOfIndependance));
-			 */
+			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RepublicDay));
+			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RestorationOfIndependance));
 			this.InnerHolidays.Add(RepublicDay);
 			this.InnerHolidays.Add(RestorationOfIndependance);
 		}
