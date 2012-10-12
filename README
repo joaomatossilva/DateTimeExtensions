@@ -1,9 +1,8 @@
-
 ====  DateTime Extensions ====
 http://kappy.github.com/DateTimeExtensions/
 ---------------------------------------
 
-This project is a merge of several common DateTime operations on the form of 
+This project is a merge of several common DateTime operations in the form of 
 extensions to System.DateTime, including natural date difference text (precise and human rounded),
 holidays and working days calculations on several culture locales.
 
@@ -14,7 +13,7 @@ You can check out a sample (WIP) project online on http://datetimeextensions.app
 Major Features
 ---------------------------------------
 
-Currently implemented are the following major features:
+The following major features are currently implemented:
 - Add or subtract Working days using locale holidays
 - Export Holidays to calendar format
 - Dates Difference in Natural Time (localized)
@@ -25,12 +24,12 @@ Currently implemented are the following major features:
 Working Days Calculations
 ---------------------------------------
 
-This extensions for System.DateTime adds methods to make calculations based on working days.
+These extensions for System.DateTime adds methods to make calculations based on working days.
 A working day is defined in IWorkingDayCultureInfo in two ways:
 - IsWorkingDay(DayOfWeek dayOfWeek)
 - IsWorkingDay(DateTime date)
 
-The first defines witch day of the week is a working day (by default, working days are all 
+The first defines which day of the week is a working day (by default, working days are all 
 week days except weekends). The last does the same as the first, but it's also able to check 
 for any holiday. By default, no holidays are defined, unless there is a IWorkingDayCultureInfo 
 implemented for the current thread CultureInfo.
@@ -48,7 +47,8 @@ Avaiable CultureInfo implementations:
 - ar-SA		- it-IT
 - en-NZ
 
-your culture is not listed here? you can contribute it!!! 
+If your culture is not listed here you can contribute it!!!
+
 Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
 
 
@@ -68,7 +68,7 @@ exporter.Export(new WorkingDayCultureInfo("pt-PT"), 2012, textwriter);
 Dates Diff in Natural Time
 ---------------------------------------
 
-This extensions can compare two dates in natural language based on the current locale on 
+These extensions can compare two dates in natural language based on the current locale on 
 current thread CultureInfo.
 There are 2 API points for them:
 - fromDate.ToNaturalText(toTime, bool round = true)
@@ -93,7 +93,7 @@ Avaiable CultureInfo implementations:
 Time of Day
 --------------------------------------
 
-This extensions allows to easily parse time expressions and check if a DateTime instance is after,
+These extensions allow easy parsing of time expressions and add the ability to check if a DateTime instance is after,
 before or inside a period.
 
 - bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
@@ -126,27 +126,27 @@ Also, this repository is built with autocrlf = true.
 Version History
 ---------------------------------------
 v3.1.1
-- fixed a bug that was causing the abolished holidays still holidays
+- Fixed a bug that was causing the abolished holidays to still be listed as holidays
 
 v3.1
 - Added en-NZ working days culture (Thanks @snoopydo)
-- Re-removed the 4 holidays that are abolished by the PT governament
+- Re-removed the 4 holidays that are abolished by the PT government
 
 v3.0.1
-- Safe Locales impletentation discovery
+- Safe Locales implementation discovery
 
 v3.0
-- Culture specific stretegies are now decorated with a specific attribute to allow a better and dynamic discovery.
+- Culture specific strategies are now decorated with a specific attribute to allow a better and dynamic discovery.
 - The Locator classes and method are now obsolete.
-- Splitted the DateTimeCultureInfo into specific contexs. This will improve the single resposability of the classes.
+- DateTimeCultureInfo have been split into specific contexts. This will improve the single responsibility of the classes.
 - Added Time feature
 - BreakingChanges:
-	- DateTimeCultureInfo is splitted in WorkingDayCultureInfo and NaturealTextCultureInfo
-	- A lot of clases were moved and proper namespaced
+	- DateTimeCultureInfo is split in WorkingDayCultureInfo and NaturealTextCultureInfo
+	- A lot of classes were moved and namespaced properly
 
 v2.2.5
 - Added nl-NL and nl-BE Natural Text Cultures (Thanks @frankgeerlings)
-- bugfux:
+- bugfix:
 	- Multiple Holidays on the same day caused an error building the holiday map (Thanks @frankgeerlings)
 
 v2.2.4
@@ -156,7 +156,7 @@ v2.2.3
 - fixed bugs:
 	- fixed Laborday on Canada (en-CA and fr-CA)
 	- fixed some mobile holidays on Argentina (es-AR)
-	- fix a bug on Autralian (en-AU) holidays strategy when moving easter holidays to next monday that was already an holiday
+	- fix a bug on Australian (en-AU) holidays strategy when moving Easter holidays to the next Monday that was already an holiday
 
 v2.2.2
 - Added new extension IsHoliday. This extension should be similar to IsWorkingDay but in reverse and disregarding the day of the week.
@@ -189,7 +189,7 @@ v2.0.3
 	is-IS SeamensDay is returning Commerce Day
 
 v2.0.2
-- Added nordic holidays cultures
+- Added Nordic holidays cultures
 - Added new type of Holiday: NthDayOfWeekAfterDayHoliday
 - bugfixes: Pentecost holiday was not calculated correctly
 
@@ -199,17 +199,17 @@ v2.0.1
 v2.0
 - Added Natural Time conversions features
 - breaking chances:
-	- WorkingDayCulture info was renamed to DateTimeCultureInfo since it purpose has now multiple contexts.
+	- WorkingDayCulture info was renamed to DateTimeCultureInfo since its purpose has now multiple contexts.
 
 v1.2.1
-- Reverted the holidays abolishment on pt-PT culture since 2012 introduced on v1.2 cause it's still being discussed on the parlament
+- Reverted the holidays abolishment on pt-PT culture since 2012 introduced on v1.2 cause it's still being discussed in Parliament
 
 v1.2
 - Changed pt-PT culture to reflect the holidays abolishment since 2012
-- Added the year depedent holiday (holidays that where created since, removed since, or only verified on certain years)
+- Added the year dependent holiday (holidays that were created since, removed since, or only verified on certain years)
 - breaking changes:
 	- Holiday.GetInstance(int year) now returns DateTime? instead of DateTime
-	- IHolidayStrategy.GetHolidaysOfYear(int year) was created to replace the property Holidays to be year independant
+	- IHolidayStrategy.GetHolidaysOfYear(int year) was created to replace the property Holidays to be year independent
 	- IHolidayStrategy.Holidays now return only the holidays of the current year
 
 v1.1
@@ -221,4 +221,4 @@ v1.0.1
 - Added other general extension methods
 
 v1.0
-- Initial Version. The only suported Culture is pt-PT
+- Initial Version. The only supported Culture is pt-PT
