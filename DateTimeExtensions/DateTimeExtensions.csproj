@@ -49,6 +49,7 @@
     <Compile Include="WorkingDays\CultureStrategies\RussianHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_AUHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_NZHolidayStrategy.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\ScotlandHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\SloveniaHolidaysStrategy.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
