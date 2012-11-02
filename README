@@ -45,7 +45,8 @@ Avaiable CultureInfo implementations:
 - es-MX		- en-AU
 - en-ZA		- fr-CA (en-CA)
 - ar-SA		- it-IT
-- en-NZ
+- en-NZ     - en-GD (gd-GD, not really sure about this locale)
+- en-IE     - sl-SL
 
 If your culture is not listed here you can contribute it!!!
 
