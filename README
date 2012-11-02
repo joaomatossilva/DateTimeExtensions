@@ -125,6 +125,9 @@ Also, this repository is built with autocrlf = true.
 
 Version History
 ---------------------------------------
+v3.1.2
+- Fixed the Portuguese abolished holidays
+
 v3.1.1
 - Fixed a bug that was causing the abolished holidays to still be listed as holidays
 
