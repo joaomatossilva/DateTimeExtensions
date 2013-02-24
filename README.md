@@ -38,6 +38,8 @@ implemented for the current thread `CultureInfo`.
 
 Avaiable CultureInfo implementations:
 
+| Culture | Culture |
+| ------- | ------- |
 | pt-PT	| da-DK |
 | pt-BR	| fi-FI |
 | en-US	| is-IS |
