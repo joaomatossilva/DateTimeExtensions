@@ -86,6 +86,8 @@ Also, the round flag will round minutes and seconds to quarters after the first 
 
 Avaiable CultureInfo implementations:
 
+| Culture |
+| ------- |
 | pt-PT |
 | pt-BR |
 | en-US |
