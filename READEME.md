@@ -37,18 +37,19 @@ for any holiday. By default, no holidays are defined, unless there is a `IWorkin
 implemented for the current thread `CultureInfo`.
 
 Avaiable CultureInfo implementations:
-- pt-PT  	- da-DK
-- pt-BR		- fi-FI
-- en-US		- is-IS
-- en-GB		- nb-NO
-- fr-FR		- nl-NL
-- de-DE		- sv-SE
-- es-ES		- es-AR
-- es-MX		- en-AU
-- en-ZA		- fr-CA (en-CA)
-- ar-SA		- it-IT
-- en-NZ     - en-GD (gd-GD, not really sure about this locale)
-- en-IE     - sl-SL
+
+| pt-PT	| da-DK |
+| pt-BR	| fi-FI |
+| en-US	| is-IS |
+| en-GB	| nb-NO |
+| fr-FR	| nl-NL |
+| de-DE	| sv-SE |
+| es-ES	| es-AR |
+| es-MX	| en-AU |
+| en-ZA	| fr-CA (en-CA)|
+| ar-SA	| it-IT |
+| en-NZ | en-GD (gd-GD, not really sure about this locale) 
+| en-IE | sl-SL |
 
 If your culture is not listed here you can contribute it!!!
 
@@ -84,15 +85,16 @@ try to round the most significant time component based on the next least signifi
 Also, the round flag will round minutes and seconds to quarters after the first one.
 
 Avaiable CultureInfo implementations:
-- pt-PT
-- pt-BR
-- en-US
-- en-GB
-- fr-FR
-- de-DE
-- es-ES
-- nl-NL
-- nl-BE
+
+| pt-PT |
+| pt-BR |
+| en-US |
+| en-GB |
+| fr-FR |
+| de-DE |
+| es-ES |
+| nl-NL |
+| nl-BE |
 
 
 ### Time of Day
