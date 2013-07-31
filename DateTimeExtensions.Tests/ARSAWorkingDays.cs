@@ -22,10 +22,10 @@ namespace DateTimeExtensions.Tests  {
 		}
 
 		[Test]
-		public void are_working_days_on_thursday_and_friday() {
+		public void are_working_days_on_friday_and_saturday() {
 			var dateTimeCulture = new WorkingDayCultureInfo("ar-SA");
-			Assert.IsFalse(dateTimeCulture.IsWorkingDay(DayOfWeek.Thursday));
 			Assert.IsFalse(dateTimeCulture.IsWorkingDay(DayOfWeek.Friday));
+			Assert.IsFalse(dateTimeCulture.IsWorkingDay(DayOfWeek.Saturday));
 		}
 
 		[Test]

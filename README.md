@@ -134,6 +134,9 @@ Also, this repository is built with autocrlf = true.
 
 ## Version History
 
+v3.2.1
+- fixed ar-SA non working days of the week (now friday and saturday, thanks @falsair)
+
 v3.1.2
 - Fixed the Portuguese abolished holidays
 
