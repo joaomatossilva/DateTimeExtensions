@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="All Saints" xml:space="preserve">
+    <value>Todos os Santos</value>
+  </data>
+  <data name="Assumption" xml:space="preserve">
+    <value>Nossa Srª Assunção</value>
+  </data>
+  <data name="Carnival" xml:space="preserve">
+    <value>Carnaval</value>
+  </data>
+  <data name="Christmas" xml:space="preserve">
+    <value>Natal</value>
+  </data>
+  <data name="CorpusChristi" xml:space="preserve">
+    <value>Corpo de Cristo</value>
+  </data>
+  <data name="Easter" xml:space="preserve">
+    <value>Pascoa</value>
+  </data>
+  <data name="GoodFriday" xml:space="preserve">
+    <value>Sexta-feira Santa</value>
+  </data>
+  <data name="ImaculateConception" xml:space="preserve">
+    <value>Concepção Imaculada</value>
+  </data>
+  <data name="InternationalWorkerDay" xml:space="preserve">
+    <value>Dia do Trabalhador</value>
+  </data>
+  <data name="MayDay" xml:space="preserve">
+    <value>Primeiro de Maio</value>
+  </data>
+  <data name="NewYear" xml:space="preserve">
+    <value>Ano Novo</value>
+  </data>
 </root>

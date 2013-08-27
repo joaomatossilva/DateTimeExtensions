@@ -27,7 +27,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday InternationalWorkersDay {
 			get {
 				if (internationalWorkersDay == null) {
-					internationalWorkersDay = new FixedHoliday("International Workers' day", 5, 1);
+                    internationalWorkersDay = new FixedHoliday("InternationalWorkerDay", 5, 1);
 				}
 				return internationalWorkersDay;
 			}
@@ -67,7 +67,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday MayDay {
 			get {
 				if (mayDay == null) {
-					mayDay = new FixedHoliday("May Day", 5, 1);
+					mayDay = new FixedHoliday("MayDay", 5, 1);
 				}
 				return mayDay;
 			}
