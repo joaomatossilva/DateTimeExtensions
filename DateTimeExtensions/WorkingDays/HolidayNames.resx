@@ -129,11 +129,26 @@
   <data name="Christmas" xml:space="preserve">
     <value>Christmas</value>
   </data>
+  <data name="ChristmasEve" xml:space="preserve">
+    <value>Christmas Eve</value>
+  </data>
   <data name="CorpusChristi" xml:space="preserve">
     <value>Corpus Christi</value>
   </data>
+  <data name="DayOfTheDead" xml:space="preserve">
+    <value>Day of the Dead</value>
+  </data>
   <data name="Easter" xml:space="preserve">
     <value>Easter</value>
+  </data>
+  <data name="EasterMonday" xml:space="preserve">
+    <value>Easter Monday</value>
+  </data>
+  <data name="EasterSaturday" xml:space="preserve">
+    <value>Easter Saturday</value>
+  </data>
+  <data name="Epiphany" xml:space="preserve">
+    <value>Epiphany</value>
   </data>
   <data name="GoodFriday" xml:space="preserve">
     <value>Good Friday</value>
@@ -144,10 +159,37 @@
   <data name="InternationalWorkerDay" xml:space="preserve">
     <value>International Workers' day</value>
   </data>
+  <data name="MaundyThursday" xml:space="preserve">
+    <value>Maundy Thursday</value>
+  </data>
   <data name="MayDay" xml:space="preserve">
     <value>May Day</value>
   </data>
   <data name="NewYear" xml:space="preserve">
     <value>New Year</value>
+  </data>
+  <data name="PalmSunday" xml:space="preserve">
+    <value>Palm Sunday</value>
+  </data>
+  <data name="Pentecost" xml:space="preserve">
+    <value>Pentecost</value>
+  </data>
+  <data name="PentecostMonday" xml:space="preserve">
+    <value>Pentecost Monday</value>
+  </data>
+  <data name="Portugal_FreedomDay" xml:space="preserve">
+    <value>Freedom Day</value>
+  </data>
+  <data name="Portugal_PortugalDay" xml:space="preserve">
+    <value>Portugal Day</value>
+  </data>
+  <data name="Portugal_RepublicDay" xml:space="preserve">
+    <value>Republic Day</value>
+  </data>
+  <data name="Portugal_RestorationIndependance" xml:space="preserve">
+    <value>Restoration of Independance</value>
+  </data>
+  <data name="StStephenDay" xml:space="preserve">
+    <value>St Stephen's Day</value>
   </data>
 </root>

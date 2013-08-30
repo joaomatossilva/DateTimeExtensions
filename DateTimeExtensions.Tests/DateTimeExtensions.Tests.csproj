@@ -62,7 +62,7 @@
     <Compile Include="JewishHolidaysTests.cs" />
     <Compile Include="OfficeHolidayExportHolidaysFormatTests.cs" />
     <Compile Include="PTCalendarTests.cs" />
-    <Compile Include="PtPortugueseHolidaysNamesTest.cs" />
+    <Compile Include="TranslationHolidaysNamesTest.cs" />
     <Compile Include="PTWorkingDayCultureInfoTests.cs" />
     <Compile Include="GenericWorkingDayCultureInfoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
