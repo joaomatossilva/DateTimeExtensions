@@ -14,7 +14,7 @@ namespace DateTimeExtensions.Tests
     {
         [TestFixtureSetUp]
         public void SetUp() {
-            //default curture
+            //default culture
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         }
 
@@ -35,7 +35,7 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
-        public void AssertPortugueseWorkerDayIsTranslated() {
+        public void AssertPortugueseHolidaysAreTranslated() {
 
             //test holidays still on default culture (en-US)
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Freedom Day");
