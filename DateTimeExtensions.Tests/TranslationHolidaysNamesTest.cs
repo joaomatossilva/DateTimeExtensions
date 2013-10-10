@@ -13,13 +13,15 @@ namespace DateTimeExtensions.Tests
     public class PtPortugueseHolidaysNamesTest
     {
         [TestFixtureSetUp]
-        public void SetUp() {
-            //default culture
+        public void SetUp()
+        {
+            //setup a default culture
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         }
 
         [Test]
-        public void AssertDefaultGlobalHolidaysAreTranslated() {
+        public void AssertDefaultGlobalHolidaysAreTranslated()
+        {
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Christmas");
             Assert.AreEqual(ChristianHolidays.NewYear.Name, "New Year");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnival");
@@ -31,12 +33,12 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception");
             Assert.AreEqual(ChristianHolidays.MaundyThursday.Name, "Maundy Thursday");
             Assert.AreEqual(ChristianHolidays.ChristmasEve.Name, "Christmas Eve");
-            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "International Workers' day");            
+            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "International Workers' day");
         }
 
         [Test]
-        public void AssertPortugueseHolidaysAreTranslated() {
-
+        public void AssertPortugueseHolidaysAreTranslated() 
+        {
             //test holidays still on default culture (en-US)
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Freedom Day");
             Assert.AreEqual(PT_PTHolidayStrategy.PortugalDay.Name, "Portugal Day");
