@@ -135,6 +135,9 @@
   <data name="CorpusChristi" xml:space="preserve">
     <value>Corpo de Cristo</value>
   </data>
+  <data name="DayOfTheDead" xml:space="preserve">
+    <value>Dia de Finados</value>
+  </data>
   <data name="Easter" xml:space="preserve">
     <value>Pascoa</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="ImaculateConception" xml:space="preserve">
     <value>Imaculada Conceição</value>
+  </data>
+  <data name="IndependanceDay" xml:space="preserve">
+    <value>Dia da Independência</value>
   </data>
   <data name="InternationalWorkerDay" xml:space="preserve">
     <value>Dia do Trabalhador</value>
@@ -156,6 +162,9 @@
   <data name="NewYear" xml:space="preserve">
     <value>Ano Novo</value>
   </data>
+  <data name="OurLadyOfAparecida" xml:space="preserve">
+    <value>Nossa Srª da Aparecida</value>
+  </data>
   <data name="Portugal_FreedomDay" xml:space="preserve">
     <value>Dia da Liberdade</value>
   </data>
@@ -167,5 +176,11 @@
   </data>
   <data name="Portugal_RestorationIndependance" xml:space="preserve">
     <value>Restauração da Independência</value>
+  </data>
+  <data name="RepublicDay" xml:space="preserve">
+    <value>Dia da Republica</value>
+  </data>
+  <data name="TiradentesDay" xml:space="preserve">
+    <value>Dia do Tiradentes</value>
   </data>
 </root>

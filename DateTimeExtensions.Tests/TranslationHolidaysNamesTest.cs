@@ -13,10 +13,11 @@ namespace DateTimeExtensions.Tests
     public class PtPortugueseHolidaysNamesTest
     {
         [TestFixtureSetUp]
-        public void SetUp()
+        public void Setup()
         {
             //setup a default culture
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+
         }
 
         [Test]
@@ -32,7 +33,8 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ChristianHolidays.Assumption.Name, "Assumption");
             Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception");
             Assert.AreEqual(ChristianHolidays.MaundyThursday.Name, "Maundy Thursday");
-            Assert.AreEqual(ChristianHolidays.ChristmasEve.Name, "Christmas Eve");
+            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception"); 
+            Assert.AreEqual(ChristianHolidays.DayOfTheDead.Name, "Day of the Dead");
             Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "International Workers' day");
         }
 
@@ -62,6 +64,35 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_PTHolidayStrategy.PortugalDay.Name, "Dia de Portugal");
             Assert.AreEqual(PT_PTHolidayStrategy.RepublicDay.Name, "Dia da Republica");
             Assert.AreEqual(PT_PTHolidayStrategy.RestorationOfIndependance.Name, "Restauração da Independência");
+        }
+
+        [Test]
+        public void AssertBrazilianHolidaysAreTranslated()
+        {
+            //test holidays still on default culture (en-US)
+            Assert.AreEqual(PT_BRHolidayStrategy.IndependanceDay.Name, "Independance Day");
+            Assert.AreEqual(PT_BRHolidayStrategy.OurLadyOfAparecida.Name, "Our Lady of Aparecida");
+            Assert.AreEqual(PT_BRHolidayStrategy.RepublicDay.Name, "Republic Day");
+            Assert.AreEqual(PT_BRHolidayStrategy.TiradentesDay.Name, "Tiradentes Day");
+
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+            Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natal");
+            Assert.AreEqual(ChristianHolidays.NewYear.Name, "Ano Novo");
+            Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");
+            Assert.AreEqual(ChristianHolidays.AllSaints.Name, "Todos os Santos");
+            Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Corpo de Cristo");
+            Assert.AreEqual(ChristianHolidays.Easter.Name, "Pascoa");
+            Assert.AreEqual(ChristianHolidays.GoodFriday.Name, "Sexta-feira Santa");
+            Assert.AreEqual(ChristianHolidays.Assumption.Name, "Nossa Srª Assunção");
+            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculada Conceição");
+            Assert.AreEqual(ChristianHolidays.MaundyThursday.Name, "Quinta-feira de Cinzas");
+            Assert.AreEqual(ChristianHolidays.ChristmasEve.Name, "Vespera de Natal");
+            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "Dia do Trabalhador");
+            Assert.AreEqual(PT_BRHolidayStrategy.IndependanceDay.Name, "Dia da Independência");
+            Assert.AreEqual(PT_BRHolidayStrategy.OurLadyOfAparecida.Name, "Nossa Srª da Aparecida");
+            Assert.AreEqual(PT_BRHolidayStrategy.RepublicDay.Name, "Dia da Republica");
+            Assert.AreEqual(PT_BRHolidayStrategy.TiradentesDay.Name, "Dia do Tiradentes");
+            Assert.AreEqual(ChristianHolidays.DayOfTheDead.Name, "Dia de Finados");
         }
     }
 }

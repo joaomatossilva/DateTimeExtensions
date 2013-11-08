@@ -115,7 +115,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="WorkingDays\HolidayNames.pt-PT.resx" />
+    <EmbeddedResource Include="WorkingDays\HolidayNames.pt.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
