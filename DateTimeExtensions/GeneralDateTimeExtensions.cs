@@ -104,5 +104,37 @@ namespace DateTimeExtensions {
 		public static DateTime SetTime(this DateTime date, int hour, int minute, int second, int millisecond) {
 			return new DateTime(date.Year, date.Month, date.Day, hour, minute, second, millisecond);
 		}
+
+    /// <summary>
+    /// Floor the given DateTime object by the given time interval. i.e. 10:09 floored by 10 minutes would be 10:00
+    /// </summary>
+    /// <param name="dt">The given DateTime object</param>
+    /// <param name="interval">The time interval to floor by</param>
+    /// <returns>The new floored DateTime object</returns>
+    public static DateTime Floor(this DateTime dt, TimeSpan interval) {
+      return dt.AddTicks(-(dt.Ticks % interval.Ticks));
+    }
+
+    /// <summary>
+    /// Ceiling the given DateTime object by the given time interval. i.e. 10:01 ceilinged by 10 minutes would be 10:10
+    /// </summary>
+    /// <param name="dt">The given DateTime object</param>
+    /// <param name="interval">The time interval to ceiling by</param>
+    /// <returns>The new ceilinged DateTime object</returns>
+    public static DateTime Ceiling(this DateTime dt, TimeSpan interval) {
+      return dt.AddTicks(interval.Ticks - (dt.Ticks % interval.Ticks));
+    }
+
+    /// <summary>
+    /// Round the given DateTime object by the given time interval. i.e. 10:09 rounded by 10 minutes would be 10:10
+    /// </summary>
+    /// <param name="dt">The given DateTime object</param>
+    /// <param name="interval">The time interval to round by</param>
+    /// <returns>The new rounded DateTime object</returns>
+    public static DateTime Round(this DateTime dt, TimeSpan interval) {
+      var halfIntervalTicks = ((interval.Ticks + 1) >> 1);
+      return dt.AddTicks(halfIntervalTicks - ((dt.Ticks + halfIntervalTicks) % interval.Ticks));
+    }
+
 	}
 }
