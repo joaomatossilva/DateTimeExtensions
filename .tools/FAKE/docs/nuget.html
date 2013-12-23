@@ -57,13 +57,11 @@ This will use the following default parameters to retrieve all NuGet packages wh
 
 <p>If you don't want to store FAKE.exe and it components in your repository you can use a batch file which downloads it before the build:</p>
 
-<pre><code>[lang=batchfile]
-@echo off
+<pre lang="batchfile">@echo off
 cls
-"tools\nuget\nuget.exe" "install" "FAKE" "-OutputDirectory" "tools" "-ExcludeVersion"
-"tools\FAKE\tools\Fake.exe" build.fsx
-pause
-</code></pre>
+&quot;tools\nuget\nuget.exe&quot; &quot;install&quot; &quot;FAKE&quot; &quot;-OutputDirectory&quot; &quot;tools&quot; &quot;-ExcludeVersion&quot;
+&quot;tools\FAKE\tools\Fake.exe&quot; build.fsx
+pause</pre>
 
                     
         </div>
@@ -78,12 +76,14 @@ pause
               <li><a href="https://github.com/fsharp/FAKE/blob/develop/License.txt">License (MS-PL)</a></li>
               <li><a href="changelog.html">Changelog</a></li>
               <li><a href="contributing.html">Contributing to FAKE</a></li>
+              <li><a href="http://stackoverflow.com/questions/tagged/f%23-fake">Ask a question</a></li>
             <li class="nav-header">Articles</li>
               <li><a href="gettingstarted.html">Getting started</a></li>
               <li class="divider"></li>
               <li><a href="nuget.html">NuGet package restore</a></li>
               <li><a href="fxcop.html">Using FxCop in a build</a></li>
-              <li><a href="assemblyinfo.html">Modifying AssemblyInfo</a></li>
+              <li><a href="assemblyinfo.html">Generating AssemblyInfo</a></li>
+              <li><a href="create-nuget-package.html">Create NuGet packages</a></li>
               <li><a href="specifictargets.html">Running specific targets</a></li>
               <li><a href="commandline.html">Running FAKE from command line</a></li>
               <li><a href="customtasks.html">Creating custom tasks</a></li>
