@@ -42,7 +42,8 @@ Target "NUnitTest" (fun _ ->
                  {p with 
                    ToolPath = nunitPath; 
                    DisableShadowCopy = false; 
-                   OutputFile = testDir + @"TestResults.xml"})
+                   WorkingDir = testDir;
+                   OutputFile = @"TestResults.xml"})
 )
 
 Target "FxCop" (fun _ ->
