@@ -52,15 +52,17 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
+        [SetUICulture("pt-BR")]
         public void AssertBrazilianHolidaysAreTranslated()
         {
             //test holidays still on default culture (en-US)
+            /*
             Assert.AreEqual(PT_BRHolidayStrategy.IndependanceDay.Name, "Independance Day");
             Assert.AreEqual(PT_BRHolidayStrategy.OurLadyOfAparecida.Name, "Our Lady of Aparecida");
             Assert.AreEqual(PT_BRHolidayStrategy.RepublicDay.Name, "Republic Day");
             Assert.AreEqual(PT_BRHolidayStrategy.TiradentesDay.Name, "Tiradentes Day");
-
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
+            */
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
             Assert.AreEqual("pt-BR", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
             
             Assert.AreEqual(PT_BRHolidayStrategy.IndependanceDay.Name, "Dia da Independência");
