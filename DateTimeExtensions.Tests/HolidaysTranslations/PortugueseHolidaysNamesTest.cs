@@ -30,12 +30,12 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_PTHolidayStrategy.RestorationOfIndependance.Name, "Restoration of Independance");
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-PT");
-
             Assert.AreEqual("pt-PT", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
             
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Dia da Liberdade");
             Assert.AreEqual(PT_PTHolidayStrategy.PortugalDay.Name, "Dia de Portugal");
             Assert.AreEqual(PT_PTHolidayStrategy.RepublicDay.Name, "Dia da Republica");
+
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natal");
             Assert.AreEqual(ChristianHolidays.NewYear.Name, "Ano Novo");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");

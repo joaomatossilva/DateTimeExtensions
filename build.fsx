@@ -41,7 +41,7 @@ Target "NUnitTest" (fun _ ->
       |> NUnit (fun p -> 
                  {p with 
                    ToolPath = nunitPath; 
-                   DisableShadowCopy = true; 
+                   DisableShadowCopy = false; 
                    OutputFile = testDir + @"TestResults.xml"})
 )
 
