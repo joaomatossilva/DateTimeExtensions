@@ -28,6 +28,11 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Name, "Constitution Day");
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
+            Assert.AreEqual("es-ES", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+
+            Assert.AreEqual(ES_ESHolidayStrategy.NationalDay.Name, "Fiesta Nacional de España");
+            Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Name, "Día de la Constitución");
+
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natividad");
             Assert.AreEqual(ChristianHolidays.NewYear.Name, "Año Nuevo");
             Assert.AreEqual(ChristianHolidays.Epiphany.Name, "Epifanía del Señor");
@@ -42,8 +47,6 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ChristianHolidays.Pentecost.Name, "Pentecostés");
             Assert.AreEqual(ChristianHolidays.PentecostMonday.Name, "Lunes de Pentecostés");
             Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "Fiesta del Trabajo");
-            Assert.AreEqual(ES_ESHolidayStrategy.NationalDay.Name, "Fiesta Nacional de España");
-            Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Name, "Día de la Constitución");
         }
     }
 }
