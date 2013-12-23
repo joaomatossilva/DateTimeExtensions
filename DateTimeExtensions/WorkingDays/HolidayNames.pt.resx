@@ -141,6 +141,12 @@
   <data name="Easter" xml:space="preserve">
     <value>Pascoa</value>
   </data>
+  <data name="Espanha_ConstitutionDay" xml:space="preserve">
+    <value>Dia da Constituição</value>
+  </data>
+  <data name="Espanha_NationalDay" xml:space="preserve">
+    <value>Dia da Hispanidade</value>
+  </data>
   <data name="GoodFriday" xml:space="preserve">
     <value>Sexta-feira Santa</value>
   </data>

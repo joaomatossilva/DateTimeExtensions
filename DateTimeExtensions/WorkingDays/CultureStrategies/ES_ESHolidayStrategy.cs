@@ -59,7 +59,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday NationalDay {
 			get {
 				if (nationalDay == null) {
-					nationalDay = new FixedHoliday("National Day", 10, 12);
+					nationalDay = new FixedHoliday("Espanha_NationalDay", 10, 12);
 				}
 				return nationalDay;
 			}
@@ -69,7 +69,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday ConstitutionDay {
 			get {
 				if (constitutionDay == null) {
-					constitutionDay = new FixedHoliday("Constitution Day", 12, 6);
+					constitutionDay = new FixedHoliday("Espanha_ConstitutionDay", 12, 6);
 				}
 				return constitutionDay;
 			}
