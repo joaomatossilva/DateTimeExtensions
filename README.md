@@ -131,8 +131,17 @@ You can also create issues with the features or changes that you think important
 
 Also, this repository is built with autocrlf = true.
 
+### Holidays Names
+
+When adding holidays resources names, plase prefix the culture specific holidays with the
+country name to avoid name colisison.
+Example: Portugal_FreedomDay
+
 
 ## Version History
+
+v3.4
+- Added possibility to localize holidays names.
 
 v3.3
 - Added Round, Ceiling, Floor features (thanks @jbasinger)

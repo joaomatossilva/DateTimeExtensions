@@ -45,7 +45,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday TiradentesDay {
 			get {
 				if (tiradentesDay == null) {
-					tiradentesDay = new FixedHoliday("Tiradentes Day", 4, 21);
+					tiradentesDay = new FixedHoliday("TiradentesDay", 4, 21);
 				}
 				return tiradentesDay;
 			}
@@ -55,7 +55,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday IndependanceDay {
 			get {
 				if (independanceDay == null) {
-					independanceDay = new FixedHoliday("Independance Day", 9, 7);
+					independanceDay = new FixedHoliday("IndependanceDay", 9, 7);
 				}
 				return independanceDay;
 			}
@@ -65,7 +65,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday OurLadyOfAparecida {
 			get {
 				if (ourLadyOfAparecida == null) {
-					ourLadyOfAparecida = new FixedHoliday("Our Lady of Aparecida", 10, 12);
+					ourLadyOfAparecida = new FixedHoliday("OurLadyOfAparecida", 10, 12);
 				}
 				return ourLadyOfAparecida;
 			}
@@ -75,7 +75,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday RepublicDay {
 			get {
 				if (republicDay == null) {
-					republicDay = new FixedHoliday("Republic Day", 11, 15);
+					republicDay = new FixedHoliday("RepublicDay", 11, 15);
 				}
 				return republicDay;
 			}

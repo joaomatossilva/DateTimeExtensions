@@ -47,7 +47,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday FreedomDay {
 			get{
 				if (freedomDay == null) {
-					freedomDay = new FixedHoliday("Freedom Day", 4, 25);
+                    freedomDay = new FixedHoliday("Portugal_FreedomDay", 4, 25);
 				}
 				return freedomDay;
 			}
@@ -57,7 +57,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday PortugalDay {
 			get {
 				if (portugalDay == null) {
-					portugalDay = new FixedHoliday("Portugal Day", 6, 10);
+                    portugalDay = new FixedHoliday("Portugal_PortugalDay", 6, 10);
 				}
 				return portugalDay;
 			}
@@ -67,7 +67,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday RepublicDay {
 			get {
 				if (republicDay == null) {
-					republicDay = new FixedHoliday("Republic Day", 10, 5);
+                    republicDay = new FixedHoliday("Portugal_RepublicDay", 10, 5);
 				}
 				return republicDay;
 			}
@@ -77,7 +77,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 		public static Holiday RestorationOfIndependance {
 			get {
 				if (restorationOfIndependance == null) {
-					restorationOfIndependance = new FixedHoliday("Restoration of Independance", 12, 1);
+                    restorationOfIndependance = new FixedHoliday("Portugal_RestorationIndependance", 12, 1);
 				}
 				return restorationOfIndependance;
 			}

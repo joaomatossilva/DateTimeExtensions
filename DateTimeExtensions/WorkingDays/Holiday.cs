@@ -16,19 +16,47 @@
 // 
 #endregion
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Resources;
 
-namespace DateTimeExtensions.WorkingDays {
-	public abstract class Holiday {
+namespace DateTimeExtensions.WorkingDays
+{
+    /// <summary>
+    /// Base representation of an holiday instance
+    /// </summary>
+    public abstract class Holiday
+    {
+        /// <summary>
+        /// Base Constructor for a new holiday instance
+        /// </summary>
+        /// <param name="name">name or resource key of the holiday</param>
+        protected Holiday(string name)
+        {
+            this.Name = name;
+        }
 
-		public Holiday(string name) {
-			this.Name = name;
-		}
+        private string name;
+        public string Name
+        {
+            get
+            {
+                return ResourceManager.GetString(name) ?? name;
+            }
+            private set { this.name = value; }
+        }
 
-		public string Name { get; private set; }
-		public abstract DateTime? GetInstance(int year);
-		public abstract bool IsInstanceOf(DateTime date);
-	}
+        public abstract DateTime? GetInstance(int year);
+        public abstract bool IsInstanceOf(DateTime date);
+
+
+        private static ResourceManager resourceManager = new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof(Holiday).Assembly);
+        public static ResourceManager ResourceManager {
+            get { return resourceManager; }
+            set {
+                if (value == null) {
+                    throw new ArgumentNullException("value");
+                }
+                resourceManager = value;
+            }
+        }
+    }
 }

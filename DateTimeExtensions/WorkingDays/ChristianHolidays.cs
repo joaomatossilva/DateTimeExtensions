@@ -37,7 +37,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday NewYear {
 			get {
 				if (newYear == null) {
-					newYear = new FixedHoliday("New Year", 1, 1);
+					newYear = new FixedHoliday("NewYear", 1, 1);
 				}
 				return newYear;
 			}
@@ -67,7 +67,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday AllSaints {
 			get {
 				if (allSaints == null) {
-					allSaints = new FixedHoliday("All Saints", 11, 1);
+					allSaints = new FixedHoliday("AllSaints", 11, 1);
 				}
 				return allSaints;
 			}
@@ -77,7 +77,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday DayOfTheDead {
 			get {
 				if (dayOfTheDead == null) {
-					dayOfTheDead = new FixedHoliday("Day of the Dead", 11, 2);
+                    dayOfTheDead = new FixedHoliday("DayOfTheDead", 11, 2);
 				}
 				return dayOfTheDead;
 			}
@@ -87,7 +87,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday ImaculateConception {
 			get {
 				if (imaculateConception == null) {
-					imaculateConception = new FixedHoliday("Imaculate Conception", 12, 8);
+					imaculateConception = new FixedHoliday("ImaculateConception", 12, 8);
 				}
 				return imaculateConception;
 			}
@@ -119,7 +119,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday PalmSunday {
 			get {
 				if (palmSunday == null) {
-					palmSunday = new NthDayOfWeekAfterDayHoliday("Palm Sunday", -1, DayOfWeek.Sunday, Easter);
+					palmSunday = new NthDayOfWeekAfterDayHoliday("PalmSunday", -1, DayOfWeek.Sunday, Easter);
 				}
 				return palmSunday;
 			}
@@ -129,7 +129,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday MaundyThursday {
 			get {
 				if (maundyThursday == null) {
-					maundyThursday = new EasterBasedHoliday("Maundy Thursday", -3);
+					maundyThursday = new EasterBasedHoliday("MaundyThursday", -3);
 				}
 				return maundyThursday;
 			}
@@ -139,7 +139,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday GoodFriday {
 			get {
 				if (goodFriday == null) {
-					goodFriday = new EasterBasedHoliday("Good Friday", -2);
+					goodFriday = new EasterBasedHoliday("GoodFriday", -2);
 				}
 				return goodFriday;
 			}
@@ -149,7 +149,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday EasterMonday {
 			get {
 				if (easterMonday == null) {
-					easterMonday = new EasterBasedHoliday("Easter Monday", 1);
+					easterMonday = new EasterBasedHoliday("EasterMonday", 1);
 				}
 				return easterMonday;
 			}
@@ -159,7 +159,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday EasterSaturday {
 			get {
 				if (easterSaturday == null) {
-					easterSaturday = new EasterBasedHoliday("Easter Saturday", -1);
+					easterSaturday = new EasterBasedHoliday("EasterSaturday", -1);
 				}
 				return easterSaturday;
 			}
@@ -169,7 +169,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday CorpusChristi {
 			get {
 				if (corpusChristi == null) {
-					corpusChristi = new EasterBasedHoliday("Corpus Christi", 60);
+					corpusChristi = new EasterBasedHoliday("CorpusChristi", 60);
 				}
 				return corpusChristi;
 			}
@@ -194,7 +194,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday PentecostMonday {
 			get {
 				if (pentecostMonday == null) {
-					pentecostMonday = new EasterBasedHoliday("Pentecost Monday", 50);
+					pentecostMonday = new EasterBasedHoliday("PentecostMonday", 50);
 				}
 				return pentecostMonday;
 			}
@@ -217,7 +217,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday ChristmasEve {
 			get {
 				if (christmasEve == null) {
-					christmasEve = new FixedHoliday("Christmas Eve", 12, 24);
+					christmasEve = new FixedHoliday("ChristmasEve", 12, 24);
 				}
 				return christmasEve;
 			}
@@ -227,7 +227,7 @@ namespace DateTimeExtensions.WorkingDays {
 		public static Holiday StStephansDay {
 			get {
 				if (stStephensDay == null) {
-					stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
+                    stStephensDay = new FixedHoliday("StStephenDay", 12, 26);
 				}
 				return stStephensDay;
 			}
