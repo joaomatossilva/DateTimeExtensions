@@ -30,6 +30,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_PTHolidayStrategy.RestorationOfIndependance.Name, "Restoration of Independance");
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-PT");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-PT");
             Assert.AreEqual("pt-PT", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
             
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Dia da Liberdade");
