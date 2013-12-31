@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
+    <id>@project@</id>
+    <version>@build.number@</version>
     <title>DateTime Extensions</title>
     <summary>Merge of extensions for System.DateTime like localized working days with holidays calculations and natural time date difference.</summary>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>@authors@</authors>
+    <owners>@authors@</owners>
     <projectUrl>https://github.com/kappy/DateTimeExtensions/wiki</projectUrl>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -18,4 +18,8 @@
     </description>
     <tags>Natural Date Time Relative Calendar Holiday Workingday DateTime</tags>
   </metadata>
+  <files>
+    <file src="*.dll" target="lib/net35" />
+    <file src="**/*.resources.dll" target="lib/net35" />
+  </files>
 </package>
