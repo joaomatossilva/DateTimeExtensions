@@ -106,6 +106,10 @@ Target "Default" (fun _ ->
     trace "Built!"
 )
 
+Target "PullRequests" (fun _ ->
+    trace "PullRequests Dummy Target!"
+)
+
 // Dependencies
 "Clean"
   ==> "WriteAssemblyInfo"
@@ -113,7 +117,7 @@ Target "Default" (fun _ ->
   ==> "CompileTest"
   //==> "FxCop"
   ==> "NUnitTest"  
-  //==> "Zip"
+  ==> "PullRequests"
   ==> "CreatePackage"
   ==> "Default"
  
