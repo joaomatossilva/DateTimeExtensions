@@ -107,6 +107,7 @@
     <Compile Include="WorkingDays\CultureStrategies\DefaultHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\PT_PTHolidayStrategy.cs" />
     <Compile Include="NaturalText\NaturalTextCultureInfo.cs" />
+    <Compile Include="WorkingDays\VariableHoliday.cs" />
     <Compile Include="WorkingDays\YearDependantHoliday.cs" />
   </ItemGroup>
   <ItemGroup>
