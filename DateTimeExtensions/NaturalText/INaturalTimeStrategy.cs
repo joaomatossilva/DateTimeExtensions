@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,12 +15,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 
-namespace DateTimeExtensions.NaturalText {
-	public interface INaturalTimeStrategy {
-		string ToNaturalText(DateDiff dateDiff, bool round);
-		string ToExactNaturalText(DateDiff dateDiff);
-	}
+namespace DateTimeExtensions.NaturalText
+{
+    public interface INaturalTimeStrategy
+    {
+        string ToNaturalText(DateDiff dateDiff, bool round);
+        string ToExactNaturalText(DateDiff dateDiff);
+    }
 }

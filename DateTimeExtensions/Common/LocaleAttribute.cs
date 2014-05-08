@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,17 +15,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 
-namespace DateTimeExtensions.Common {
-	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-	public sealed class LocaleAttribute : Attribute{
+namespace DateTimeExtensions.Common
+{
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
+    public sealed class LocaleAttribute : Attribute
+    {
+        public string Locale { get; private set; }
 
-		public string Locale { get; private set; }
-
-		public LocaleAttribute(string locale) {
-			Locale = locale;
-		}
-	}
+        public LocaleAttribute(string locale)
+        {
+            Locale = locale;
+        }
+    }
 }

@@ -55,7 +55,6 @@ namespace DateTimeExtensions.Tests
         }
 
 
-
         [Test]
         public void seconds_ceiling_test()
         {
@@ -78,7 +77,6 @@ namespace DateTimeExtensions.Tests
         }
 
 
-
         [Test]
         public void seconds_floor_test()
         {
@@ -99,6 +97,5 @@ namespace DateTimeExtensions.Tests
             var roundDate = TestDate.Floor(new TimeSpan(3, 0, 0)); //floor 2 in periods of 3
             Assert.AreEqual(DateTime.Today.SetTime(0, 0, 0), roundDate);
         }
-
     }
 }

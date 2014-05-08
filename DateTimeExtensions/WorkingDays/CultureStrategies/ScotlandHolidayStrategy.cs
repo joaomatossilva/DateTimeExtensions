@@ -6,7 +6,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     [Locale("gd-GD")]
     public class ScotlandHolidayStrategy : HolidayStrategyBase
     {
-        public ScotlandHolidayStrategy() {
+        public ScotlandHolidayStrategy()
+        {
             this.InnerHolidays.Add(ChristianHolidays.NewYear);
             this.InnerHolidays.Add(NewYearHoliday);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
@@ -20,22 +21,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         // 2nd January - New Year Holiday
         private static Holiday newYearHoliday;
+
         public static Holiday NewYearHoliday
         {
-            get
-            {
-                return newYearHoliday ?? (newYearHoliday = new FixedHoliday("New Year Holiday", 1, 2));
-            }
+            get { return newYearHoliday ?? (newYearHoliday = new FixedHoliday("New Year Holiday", 1, 2)); }
         }
 
         // 30 November - St. Andrew's Day
         private static Holiday stAndrewsDay;
+
         public static Holiday StAndrewsDay
         {
-            get
-            {
-                return stAndrewsDay ?? (stAndrewsDay = new FixedHoliday("St. Andrew's Day", 11, 30));
-            }
+            get { return stAndrewsDay ?? (stAndrewsDay = new FixedHoliday("St. Andrew's Day", 11, 30)); }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,54 +15,71 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.WorkingDays.CultureStrategies {
-	public class RussianHolidayStrategy : HolidayStrategyBase {
-
-		public RussianHolidayStrategy() {
-			this.InnerHolidays.Add(ChristianHolidays.NewYear);
-			this.InnerHolidays.Add(OrtodoxChristmas);
+namespace DateTimeExtensions.WorkingDays.CultureStrategies
+{
+    public class RussianHolidayStrategy : HolidayStrategyBase
+    {
+        public RussianHolidayStrategy()
+        {
+            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(OrtodoxChristmas);
             this.InnerHolidays.Add(DefenderOfTheFatherland);
-		}
+        }
 
-		protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year) {
-			IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        {
+            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
             // New year -> 1/1 until 6/1
             holidayMap.Add(ChristianHolidays.NewYear.GetInstance(year).Value, ChristianHolidays.NewYear);
-            for (int day = 2; day <= 6; day++) {
+            for (int day = 2; day <= 6; day++)
+            {
                 holidayMap.Add(new DateTime(year, 1, day), ChristianHolidays.NewYear);
             }
             // Christmas 7/1 until 10/1
             holidayMap.Add(OrtodoxChristmas.GetInstance(year).Value, OrtodoxChristmas);
-            for (int day = 8; day <= 10; day++) {
+            for (int day = 8; day <= 10; day++)
+            {
                 holidayMap.Add(new DateTime(year, 1, day), OrtodoxChristmas);
             }
 
             holidayMap.Add(DefenderOfTheFatherland.GetInstance(year).Value, DefenderOfTheFatherland);
             return holidayMap;
-		}
+        }
 
-		private Holiday ortodoxChristmas;
-		public Holiday OrtodoxChristmas {
-			get {
-				if (ortodoxChristmas != null)
-					ortodoxChristmas = new FixedHoliday("Ortodox Christmas", 1, 7);
-				return ortodoxChristmas;
-			}
-		}
+        private Holiday ortodoxChristmas;
+
+        public Holiday OrtodoxChristmas
+        {
+            get
+            {
+                if (ortodoxChristmas != null)
+                {
+                    ortodoxChristmas = new FixedHoliday("Ortodox Christmas", 1, 7);
+                }
+                return ortodoxChristmas;
+            }
+        }
 
         private Holiday defenderOfTheFatherland;
-        public Holiday DefenderOfTheFatherland {
-            get {
+
+        public Holiday DefenderOfTheFatherland
+        {
+            get
+            {
                 if (defenderOfTheFatherland != null)
+                {
                     defenderOfTheFatherland = new FixedHoliday("Defender Of The Fatherland", 2, 23);
+                }
                 return defenderOfTheFatherland;
             }
         }
-	}
+    }
 }

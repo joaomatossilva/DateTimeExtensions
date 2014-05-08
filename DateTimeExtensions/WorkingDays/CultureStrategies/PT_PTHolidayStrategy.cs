@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,73 +15,92 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using DateTimeExtensions.Common;
 
-namespace DateTimeExtensions.WorkingDays.CultureStrategies {
-	[Locale("pt-PT")]
-	public class PT_PTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
+namespace DateTimeExtensions.WorkingDays.CultureStrategies
+{
+    [Locale("pt-PT")]
+    public class PT_PTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    {
+        public PT_PTHolidayStrategy()
+        {
+            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+            this.InnerHolidays.Add(ChristianHolidays.Easter);
+            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
+            this.InnerHolidays.Add(ChristianHolidays.Assumption);
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.CorpusChristi));
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.AllSaints));
+            this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
-		public PT_PTHolidayStrategy() {
-			this.InnerHolidays.Add(ChristianHolidays.NewYear);
-			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-			this.InnerHolidays.Add(ChristianHolidays.Easter);
-			this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-			this.InnerHolidays.Add(ChristianHolidays.Assumption);
-			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.CorpusChristi));
-			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.AllSaints));
-			this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerHolidays.Add(FreedomDay);
+            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerHolidays.Add(PortugalDay);
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RepublicDay));
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RestorationOfIndependance));
+        }
 
-			this.InnerHolidays.Add(FreedomDay);
-			this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-			this.InnerHolidays.Add(PortugalDay);
-			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RepublicDay));
-			this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RestorationOfIndependance));
-		}
+        private static Holiday freedomDay;
 
-		private static Holiday freedomDay;
-		public static Holiday FreedomDay {
-			get{
-				if (freedomDay == null) {
+        public static Holiday FreedomDay
+        {
+            get
+            {
+                if (freedomDay == null)
+                {
                     freedomDay = new FixedHoliday("Portugal_FreedomDay", 4, 25);
-				}
-				return freedomDay;
-			}
-		}
+                }
+                return freedomDay;
+            }
+        }
 
-		private static Holiday portugalDay;
-		public static Holiday PortugalDay {
-			get {
-				if (portugalDay == null) {
+        private static Holiday portugalDay;
+
+        public static Holiday PortugalDay
+        {
+            get
+            {
+                if (portugalDay == null)
+                {
                     portugalDay = new FixedHoliday("Portugal_PortugalDay", 6, 10);
-				}
-				return portugalDay;
-			}
-		}
+                }
+                return portugalDay;
+            }
+        }
 
-		private static Holiday republicDay;
-		public static Holiday RepublicDay {
-			get {
-				if (republicDay == null) {
+        private static Holiday republicDay;
+
+        public static Holiday RepublicDay
+        {
+            get
+            {
+                if (republicDay == null)
+                {
                     republicDay = new FixedHoliday("Portugal_RepublicDay", 10, 5);
-				}
-				return republicDay;
-			}
-		}
+                }
+                return republicDay;
+            }
+        }
 
-		private static Holiday restorationOfIndependance;
-		public static Holiday RestorationOfIndependance {
-			get {
-				if (restorationOfIndependance == null) {
+        private static Holiday restorationOfIndependance;
+
+        public static Holiday RestorationOfIndependance
+        {
+            get
+            {
+                if (restorationOfIndependance == null)
+                {
                     restorationOfIndependance = new FixedHoliday("Portugal_RestorationIndependance", 12, 1);
-				}
-				return restorationOfIndependance;
-			}
-		}
-	}
+                }
+                return restorationOfIndependance;
+            }
+        }
+    }
 }

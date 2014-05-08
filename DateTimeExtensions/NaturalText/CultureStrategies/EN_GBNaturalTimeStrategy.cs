@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,52 +15,49 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using DateTimeExtensions.Common;
 
-namespace DateTimeExtensions.NaturalText.CultureStrategies {
-	[Locale("en-GB")]
-	[Locale("en-US")]
-	public class EN_GBNaturalTimeStrategy  : NaturalTimeStrategyBase{
-		protected override string YearText {
-			get {
-				return "year";
-			}
-		}
+namespace DateTimeExtensions.NaturalText.CultureStrategies
+{
+    [Locale("en-GB")]
+    [Locale("en-US")]
+    public class EN_GBNaturalTimeStrategy : NaturalTimeStrategyBase
+    {
+        protected override string YearText
+        {
+            get { return "year"; }
+        }
 
-		protected override string MonthText {
-			get {
-				return "month";
-			}
-		}
+        protected override string MonthText
+        {
+            get { return "month"; }
+        }
 
-		protected override string DayText {
-			get {
-				return "day";
-			}
-		}
+        protected override string DayText
+        {
+            get { return "day"; }
+        }
 
-		protected override string HourText {
-			get {
-				return "hour";
-			}
-		}
+        protected override string HourText
+        {
+            get { return "hour"; }
+        }
 
-		protected override string MinuteText {
-			get {
-				return "minute";
-			}
-		}
+        protected override string MinuteText
+        {
+            get { return "minute"; }
+        }
 
-		protected override string SecondText {
-			get {
-				return "second";
-			}
-		}
-	}
+        protected override string SecondText
+        {
+            get { return "second"; }
+        }
+    }
 }
