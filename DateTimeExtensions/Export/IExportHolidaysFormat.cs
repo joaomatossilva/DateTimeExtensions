@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,17 +15,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using DateTimeExtensions.WorkingDays;
 
-namespace DateTimeExtensions.Export {
-	public interface IExportHolidaysFormat {
-		void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer);
-	}
+namespace DateTimeExtensions.Export
+{
+    public interface IExportHolidaysFormat
+    {
+        void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer);
+    }
 }

@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,28 +15,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 
-namespace DateTimeExtensions.WorkingDays {
-	public class VariableHoliday : Holiday {
-
+namespace DateTimeExtensions.WorkingDays
+{
+    public class VariableHoliday : Holiday
+    {
         private readonly Func<int, DateTime?> yearToHoliday;
 
         public VariableHoliday(string name, Func<int, DateTime?> yearToHoliday)
             : base(name)
         {
-			this.yearToHoliday = yearToHoliday;
-		}
+            this.yearToHoliday = yearToHoliday;
+        }
 
-		public override DateTime? GetInstance(int year) 
+        public override DateTime? GetInstance(int year)
         {
             return this.yearToHoliday(year);
-		}
+        }
 
-		public override bool IsInstanceOf(DateTime date) {
-		    var holidayDate = this.yearToHoliday(date.Year);
-		    return holidayDate != null && holidayDate.Value.Date == date.Date;
-		}
-	}
+        public override bool IsInstanceOf(DateTime date)
+        {
+            var holidayDate = this.yearToHoliday(date.Year);
+            return holidayDate != null && holidayDate.Value.Date == date.Date;
+        }
+    }
 }

@@ -9,7 +9,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     [Locale("en-IE")]
     public class IrelandHolidayStrategy : HolidayStrategyBase
     {
-        public IrelandHolidayStrategy() {
+        public IrelandHolidayStrategy()
+        {
             this.InnerHolidays.Add(ChristianHolidays.NewYear);
             this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
@@ -23,36 +24,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         // 1st Monday in June - June Holiday
         private static Holiday juneHoliday;
+
         public static Holiday JuneHoliday
         {
-            get {
+            get
+            {
                 return juneHoliday ??
                        (juneHoliday =
-                        new NthDayOfWeekInMonthHoliday("June Holiday", 1, DayOfWeek.Monday, 6, CountDirection.FromFirst));
+                           new NthDayOfWeekInMonthHoliday("June Holiday", 1, DayOfWeek.Monday, 6,
+                               CountDirection.FromFirst));
             }
         }
 
         // 1st Monday in August - August Holiday
         private static Holiday augustHoliday;
-        public static Holiday AugustHoliday {
-            get {
+
+        public static Holiday AugustHoliday
+        {
+            get
+            {
                 return augustHoliday ??
                        (augustHoliday =
-                        new NthDayOfWeekInMonthHoliday("August Holiday", 1, DayOfWeek.Monday, 8,
-                                                       CountDirection.FromFirst));
+                           new NthDayOfWeekInMonthHoliday("August Holiday", 1, DayOfWeek.Monday, 8,
+                               CountDirection.FromFirst));
             }
         }
 
         // lasy Monday in October - October Holiday
         private static Holiday octoberHoliday;
+
         public static Holiday OctoberHoliday
         {
             get
             {
                 return octoberHoliday ??
                        (octoberHoliday =
-                        new NthDayOfWeekInMonthHoliday("October Holiday", 1, DayOfWeek.Monday, 10,
-                                                       CountDirection.FromLast));
+                           new NthDayOfWeekInMonthHoliday("October Holiday", 1, DayOfWeek.Monday, 10,
+                               CountDirection.FromLast));
             }
         }
     }

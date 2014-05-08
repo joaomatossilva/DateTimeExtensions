@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,7 +15,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +28,9 @@ namespace DateTimeExtensions
     /*
      * Some of This Extensions were taken from http://dotnetslackers.com/articles/aspnet/5-Helpful-DateTime-Extension-Methods.aspx
      */
+
     public static class GeneralDateTimeExtensions
     {
-
         /// <summary>
         /// Retrives the first day of the month of the <paramref name="date"/>.
         /// </summary>
@@ -85,6 +88,7 @@ namespace DateTimeExtensions
             } while (targetDate.DayOfWeek != dayOfweek);
             return targetDate;
         }
+
         public static DateTime LastDayOfWeekOfTheMonth(this DateTime date, DayOfWeek dayOfweek)
         {
             DateTime lastDayOfTheMonth = date.LastDayOfTheMonth();
@@ -94,6 +98,7 @@ namespace DateTimeExtensions
             }
             return lastDayOfTheMonth.LastDayOfWeek(dayOfweek);
         }
+
         public static DateTime FirstDayOfWeekOfTheMonth(this DateTime date, DayOfWeek dayOfweek)
         {
             DateTime firstDayOfTheMonth = date.FirstDayOfTheMonth();
@@ -108,14 +113,17 @@ namespace DateTimeExtensions
         {
             return date.SetTime(hour, 0, 0, 0);
         }
+
         public static DateTime SetTime(this DateTime date, int hour, int minute)
         {
             return date.SetTime(hour, minute, 0, 0);
         }
+
         public static DateTime SetTime(this DateTime date, int hour, int minute, int second)
         {
             return date.SetTime(hour, minute, second, 0);
         }
+
         public static DateTime SetTime(this DateTime date, int hour, int minute, int second, int millisecond)
         {
             return new DateTime(date.Year, date.Month, date.Day, hour, minute, second, millisecond);
@@ -129,7 +137,7 @@ namespace DateTimeExtensions
         /// <returns>The new floored DateTime object</returns>
         public static DateTime Floor(this DateTime dt, TimeSpan interval)
         {
-            return dt.AddTicks(-(dt.Ticks % interval.Ticks));
+            return dt.AddTicks(-(dt.Ticks%interval.Ticks));
         }
 
         /// <summary>
@@ -140,7 +148,7 @@ namespace DateTimeExtensions
         /// <returns>The new ceilinged DateTime object</returns>
         public static DateTime Ceiling(this DateTime dt, TimeSpan interval)
         {
-            return dt.AddTicks(interval.Ticks - (dt.Ticks % interval.Ticks));
+            return dt.AddTicks(interval.Ticks - (dt.Ticks%interval.Ticks));
         }
 
         /// <summary>
@@ -152,8 +160,7 @@ namespace DateTimeExtensions
         public static DateTime Round(this DateTime dt, TimeSpan interval)
         {
             var halfIntervalTicks = ((interval.Ticks + 1) >> 1);
-            return dt.AddTicks(halfIntervalTicks - ((dt.Ticks + halfIntervalTicks) % interval.Ticks));
+            return dt.AddTicks(halfIntervalTicks - ((dt.Ticks + halfIntervalTicks)%interval.Ticks));
         }
-
     }
 }

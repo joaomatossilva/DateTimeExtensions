@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,7 +15,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Resources;
 
@@ -35,12 +38,10 @@ namespace DateTimeExtensions.WorkingDays
         }
 
         private string name;
+
         public string Name
         {
-            get
-            {
-                return ResourceManager.GetString(name) ?? name;
-            }
+            get { return ResourceManager.GetString(name) ?? name; }
             private set { this.name = value; }
         }
 
@@ -48,11 +49,16 @@ namespace DateTimeExtensions.WorkingDays
         public abstract bool IsInstanceOf(DateTime date);
 
 
-        private static ResourceManager resourceManager = new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof(Holiday).Assembly);
-        public static ResourceManager ResourceManager {
+        private static ResourceManager resourceManager =
+            new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof (Holiday).Assembly);
+
+        public static ResourceManager ResourceManager
+        {
             get { return resourceManager; }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     throw new ArgumentNullException("value");
                 }
                 resourceManager = value;
