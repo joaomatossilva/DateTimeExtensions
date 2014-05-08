@@ -19,7 +19,7 @@ namespace DateTimeExtensions.Tests
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         }
 
-        //[Test]
+        [Test]
         public void AssertPortugueseHolidaysAreTranslated()
         {
             //test holidays still on default culture (en-US)
@@ -50,7 +50,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_PTHolidayStrategy.RestorationOfIndependance.Name, "Restauração da Independência");
         }
 
-        //[Test]
+        [Test]
         [SetUICulture("pt-BR")]
         public void AssertBrazilianHolidaysAreTranslated()
         {

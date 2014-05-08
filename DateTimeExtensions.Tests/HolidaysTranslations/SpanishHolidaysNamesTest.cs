@@ -19,7 +19,7 @@ namespace DateTimeExtensions.Tests
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
         }
 
-        //[Test]
+        [Test]
         public void AssertSpanishHolidaysAreTranslated()
         {
             //test holidays still on default culture (en-US)
