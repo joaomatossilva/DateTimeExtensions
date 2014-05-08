@@ -52,7 +52,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (kingsday == null)
                 {
-                    kingsday = new VariableHoliday("Kingsday", year =>
+                    kingsday = new FixedHoliday("Kingsday", year =>
                     {
                         if (year >= 2014)
                         {

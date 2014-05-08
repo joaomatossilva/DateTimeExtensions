@@ -19,27 +19,28 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public class FixedHoliday : Holiday
     {
-        private readonly DayInYear day;
+        private readonly Func<int, DateTime?> holidayResolver;
 
-        public FixedHoliday(string name, DayInYear day)
+        public FixedHoliday(string name, Func<int, DateTime?> holidayResolver)
             : base(name)
         {
-            this.day = day;
+            this.holidayResolver = holidayResolver;
+        }
+
+        public FixedHoliday(string name, DayInYear day)
+            : this(name, year => day.GetDayOnYear(year))
+        {
         }
 
         public FixedHoliday(string name, int month, int day, Calendar calendar)
-            : base(name)
+            : this(name, year => new DayInYear(month, day, calendar).GetDayOnYear(year))
         {
-            this.day = new DayInYear(month, day, calendar);
         }
 
         public FixedHoliday(string name, int month, int day)
@@ -49,12 +50,13 @@ namespace DateTimeExtensions.WorkingDays
 
         public override DateTime? GetInstance(int year)
         {
-            return day.GetDayOnYear(year);
+            return holidayResolver(year);
         }
 
         public override bool IsInstanceOf(DateTime date)
         {
-            return day.IsTheSameDay(date);
+            var holidayDate = this.holidayResolver(date.Year);
+            return holidayDate != null && holidayDate.Value.Date == date.Date;
         }
     }
 }
