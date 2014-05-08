@@ -140,6 +140,11 @@ Example: Portugal_FreedomDay
 
 ## Version History
 
+v3.5
+- Reformated solution to BSD/Allman bracer style
+- Reformated solution to use spaces instead of tabs
+- Added kingsday on nl-NL locale (thanks @rickbeerendonk)
+
 v3.4
 - Added possibility to localize holidays names.
 
