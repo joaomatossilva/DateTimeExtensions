@@ -106,9 +106,10 @@ Target "Default" (fun _ ->
     trace "Built!"
 )
 
-Target "PullRequests" (fun _ ->
-    trace "PullRequests Dummy Target!"
+Target "Release" (fun _ ->
+    trace "Release Target! You've nailed it"
 )
+
 
 // Dependencies
 "Clean"
@@ -117,9 +118,9 @@ Target "PullRequests" (fun _ ->
   ==> "CompileTest"
   //==> "FxCop"
   ==> "NUnitTest"  
-  ==> "PullRequests"
-  ==> "CreatePackage"
   ==> "Default"
+  ==> "CreatePackage"
+  ==> "Release"
  
 // start build
 RunTargetOrDefault "Default"
