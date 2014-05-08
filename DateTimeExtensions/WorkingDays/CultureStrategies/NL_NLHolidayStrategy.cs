@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,40 +15,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
-#endregion
-using System;
 
+#endregion
+
+using System;
 using DateTimeExtensions.Common;
 
-namespace DateTimeExtensions.WorkingDays.CultureStrategies {
-	[Locale("nl-NL")]
-	public class NL_NLHolidayStrategy : HolidayStrategyBase, IHolidayStrategy {
-
-		public NL_NLHolidayStrategy() {			
-			this.InnerHolidays.Add(ChristianHolidays.NewYear);
-			this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-			this.InnerHolidays.Add(ChristianHolidays.Easter);
-			this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+namespace DateTimeExtensions.WorkingDays.CultureStrategies
+{
+    [Locale("nl-NL")]
+    public class NL_NLHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    {
+        public NL_NLHolidayStrategy()
+        {
+            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+            this.InnerHolidays.Add(ChristianHolidays.Easter);
+            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(Kingsday);
             this.InnerHolidays.Add(LiberationDay);
             this.InnerHolidays.Add(ChristianHolidays.Ascension);
-			this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-			this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-			this.InnerHolidays.Add(ChristianHolidays.Christmas);
-			this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-		}
+            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
+            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+        }
 
         // 1885-1948: 31 August
         // 1949-2013: 30 April
         // 2014-    : 27 April
         private static Holiday kingsday;
+
         public static Holiday Kingsday
         {
             get
             {
                 if (kingsday == null)
                 {
-                    kingsday = new VariableHoliday("Kingsday", year => {
+                    kingsday = new VariableHoliday("Kingsday", year =>
+                    {
                         if (year >= 2014)
                         {
                             return new DateTime(year, 4, 27);
@@ -72,13 +78,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies {
 
         //after 2000, Liberation Day only ocours 5 in 5 years
         private static Holiday liberationDay;
+
         public static Holiday LiberationDay
         {
             get
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new YearDependantHoliday(year => (year <= 2000 || year % 5 == 0), new FixedHoliday("Liberation Day", 5, 5));
+                    liberationDay = new YearDependantHoliday(year => (year <= 2000 || year%5 == 0),
+                        new FixedHoliday("Liberation Day", 5, 5));
                 }
                 return liberationDay;
             }

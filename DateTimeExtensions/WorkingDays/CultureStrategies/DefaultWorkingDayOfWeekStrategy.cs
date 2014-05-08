@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,21 +15,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.WorkingDays.CultureStrategies {
-	public class DefaultWorkingDayOfWeekStrategy : IWorkingDayOfWeekStrategy{
-
-		public bool IsWorkingDay(DayOfWeek dayOfWeek) {
-			if (dayOfWeek == DayOfWeek.Saturday || dayOfWeek == DayOfWeek.Sunday) {
-				return false;
-			}
-			return true;
-		}
-
-	}
+namespace DateTimeExtensions.WorkingDays.CultureStrategies
+{
+    public class DefaultWorkingDayOfWeekStrategy : IWorkingDayOfWeekStrategy
+    {
+        public bool IsWorkingDay(DayOfWeek dayOfWeek)
+        {
+            if (dayOfWeek == DayOfWeek.Saturday || dayOfWeek == DayOfWeek.Sunday)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 }

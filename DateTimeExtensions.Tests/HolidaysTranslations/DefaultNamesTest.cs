@@ -17,7 +17,6 @@ namespace DateTimeExtensions.Tests
         {
             //setup a default culture
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-
         }
 
         [Test]
@@ -33,7 +32,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ChristianHolidays.Assumption.Name, "Assumption");
             Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception");
             Assert.AreEqual(ChristianHolidays.MaundyThursday.Name, "Maundy Thursday");
-            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception"); 
+            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception");
             Assert.AreEqual(ChristianHolidays.DayOfTheDead.Name, "Day of the Dead");
             Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "International Workers' day");
         }

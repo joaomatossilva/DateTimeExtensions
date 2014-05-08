@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,30 +15,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-
 using DateTimeExtensions.WorkingDays;
 
-namespace DateTimeExtensions.Export {
-	public class OfficeHolidaysExportHolidaysFormat: IExportHolidaysFormat {
+namespace DateTimeExtensions.Export
+{
+    public class OfficeHolidaysExportHolidaysFormat : IExportHolidaysFormat
+    {
+        private const string HolidayLineFormat = "{0}, {1:yyyy'/'MM'/'dd}";
+        private const string HeaderLineFomat = "[{0}] {1}";
 
-		private const string HolidayLineFormat = "{0}, {1:yyyy'/'MM'/'dd}";
-		private const string HeaderLineFomat = "[{0}] {1}";
-
-		public void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer) {
-			var holidays = dateTimeCultureInfo.GetHolidaysOfYear(year);
-			writer.WriteLine(HeaderLineFomat, dateTimeCultureInfo.Name, holidays.Count());
-			foreach (var holiday in holidays) {
-				var instance = holiday.GetInstance(year);
-				if (instance.HasValue) {
-					writer.WriteLine(HolidayLineFormat, holiday.Name, instance);
-				}
-			}
-		}
-	}
+        public void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
+        {
+            var holidays = dateTimeCultureInfo.GetHolidaysOfYear(year);
+            writer.WriteLine(HeaderLineFomat, dateTimeCultureInfo.Name, holidays.Count());
+            foreach (var holiday in holidays)
+            {
+                var instance = holiday.GetInstance(year);
+                if (instance.HasValue)
+                {
+                    writer.WriteLine(HolidayLineFormat, holiday.Name, instance);
+                }
+            }
+        }
+    }
 }

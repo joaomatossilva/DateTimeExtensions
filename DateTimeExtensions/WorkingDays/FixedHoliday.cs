@@ -1,4 +1,5 @@
 ﻿#region License
+
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
 // 
@@ -14,37 +15,46 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
+
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace DateTimeExtensions.WorkingDays {
-	public class FixedHoliday : Holiday {
-		private readonly DayInYear day;
+namespace DateTimeExtensions.WorkingDays
+{
+    public class FixedHoliday : Holiday
+    {
+        private readonly DayInYear day;
 
-		public FixedHoliday(string name, DayInYear day)
-			: base(name) {
-			this.day = day;
-		}
+        public FixedHoliday(string name, DayInYear day)
+            : base(name)
+        {
+            this.day = day;
+        }
 
-		public FixedHoliday(string name, int month, int day, Calendar calendar)
-			: base(name) {
-			this.day = new DayInYear(month, day, calendar);
-		}
+        public FixedHoliday(string name, int month, int day, Calendar calendar)
+            : base(name)
+        {
+            this.day = new DayInYear(month, day, calendar);
+        }
 
-		public FixedHoliday(string name, int month, int day)
-			: this(name, month, day, new GregorianCalendar()) {
-		}
+        public FixedHoliday(string name, int month, int day)
+            : this(name, month, day, new GregorianCalendar())
+        {
+        }
 
-		public override DateTime? GetInstance(int year) {
-			return day.GetDayOnYear(year);
-		}
+        public override DateTime? GetInstance(int year)
+        {
+            return day.GetDayOnYear(year);
+        }
 
-		public override bool IsInstanceOf(DateTime date) {
-			return day.IsTheSameDay(date);
-		}
-	}
+        public override bool IsInstanceOf(DateTime date)
+        {
+            return day.IsTheSameDay(date);
+        }
+    }
 }

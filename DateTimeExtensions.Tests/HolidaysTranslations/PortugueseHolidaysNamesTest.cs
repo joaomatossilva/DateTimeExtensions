@@ -17,11 +17,10 @@ namespace DateTimeExtensions.Tests
         {
             //setup a default culture
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-
         }
 
         //[Test]
-        public void AssertPortugueseHolidaysAreTranslated() 
+        public void AssertPortugueseHolidaysAreTranslated()
         {
             //test holidays still on default culture (en-US)
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Freedom Day");
@@ -31,7 +30,7 @@ namespace DateTimeExtensions.Tests
 
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-PT");
             Assert.AreEqual("pt-PT", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
-            
+
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Dia da Liberdade");
             Assert.AreEqual(PT_PTHolidayStrategy.PortugalDay.Name, "Dia de Portugal");
             Assert.AreEqual(PT_PTHolidayStrategy.RepublicDay.Name, "Dia da Republica");
@@ -64,12 +63,12 @@ namespace DateTimeExtensions.Tests
             */
             //System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
             Assert.AreEqual("pt-BR", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
-            
+
             Assert.AreEqual(PT_BRHolidayStrategy.IndependanceDay.Name, "Dia da Independência");
             Assert.AreEqual(PT_BRHolidayStrategy.OurLadyOfAparecida.Name, "Nossa Srª da Aparecida");
             Assert.AreEqual(PT_BRHolidayStrategy.RepublicDay.Name, "Dia da Republica");
             Assert.AreEqual(PT_BRHolidayStrategy.TiradentesDay.Name, "Dia do Tiradentes");
-            
+
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natal");
             Assert.AreEqual(ChristianHolidays.NewYear.Name, "Ano Novo");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");
