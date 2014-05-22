@@ -36,7 +36,6 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
-            this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
             this.InnerHolidays.Add(MayDayBank);
             this.InnerHolidays.Add(SpringBank);
