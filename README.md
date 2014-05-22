@@ -140,6 +140,10 @@ Example: Portugal_FreedomDay
 
 ## Version History
 
+v3.6
+- Removed St.Patricks day on en-GB (thanks @ConspiringWithTheDamned)
+- Added en-IE Ireland locale
+
 v3.5
 - Reformated solution to BSD/Allman bracer style
 - Reformated solution to use spaces instead of tabs
