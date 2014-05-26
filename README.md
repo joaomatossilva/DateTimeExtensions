@@ -3,6 +3,7 @@ DateTime Extensions  [![endorse](http://api.coderwall.com/kappy/endorsecount.png
 [http://www.kspace.pt/DateTimeExtensions/](http://www.kspace.pt/DateTimeExtensions/)
 
 [![NuGet Status](http://nugetstatus.com/DateTimeExtensions.png)](http://nugetstatus.com/packages/DateTimeExtensions)
+[![Teamcity build status](http://teamcity.codebetter.com/app/rest/builds/buildType:\(id:bt1240\)/statusIcon)](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1240)
 
 
 This project is a merge of several common DateTime operations in the form of 
