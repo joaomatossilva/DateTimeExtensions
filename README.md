@@ -13,8 +13,8 @@ holidays and working days calculations on several culture locales.
 Feedback will be much appreciated.
 You can check out a sample (WIP) project online on [http://datetimeextensions.apphb.com/](http://datetimeextensions.apphb.com/)
 
-
 ## Major Features
+
 
 The following major features are currently implemented:
 
