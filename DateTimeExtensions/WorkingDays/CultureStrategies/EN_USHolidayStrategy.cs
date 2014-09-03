@@ -53,15 +53,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 if (date.HasValue)
                 {
                     //if the holiday is a saturday, the holiday is observed on previous friday
-                    if (date.Value.DayOfWeek == DayOfWeek.Saturday)
+                    switch (date.Value.DayOfWeek)
                     {
-                        holidayMap.Add(date.Value.AddDays(-1), innerHoliday);
-                    }
-                    holidayMap.Add(date.Value, innerHoliday);
-                    //if the holiday is a sunday, the holiday is observed on next monday
-                    if (date.Value.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                        case DayOfWeek.Saturday:
+                            holidayMap.Add(date.Value.AddDays(-1), innerHoliday);
+                            break;
+                        case DayOfWeek.Sunday:
+                            holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                            break;
+                        default:
+                            holidayMap.Add(date.Value, innerHoliday);
+                            break;
                     }
                 }
             }

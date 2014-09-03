@@ -217,6 +217,24 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
+        public void get_us_holidays_in_2015_passes()
+        {
+            var usWorkingDayCultureInfo = new WorkingDayCultureInfo("en-US");
+            var today = new DateTime(2015, 1, 1);
+            var holidays = today.AllYearHolidays(usWorkingDayCultureInfo);
+
+            Assert.IsTrue(holidays.Count == 10, "expecting 10 holidays but got {0}", holidays.Count);
+
+            foreach (DateTime holidayDate in holidays.Keys)
+            {
+                var holiday = holidays[holidayDate];
+                Assert.IsTrue(holidayDate.IsWorkingDay(usWorkingDayCultureInfo) == false,
+                    "holiday {0} shouln't be working day in US", holiday.Name);
+            }
+            
+        }
+
+        [Test]
         public void get_next_and_last_tuesday()
         {
             var a_saturday = new DateTime(2011, 8, 20);
