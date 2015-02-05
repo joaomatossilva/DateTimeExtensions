@@ -25,7 +25,7 @@ namespace DateTimeExtensions.Tests
         public void holiday_days_span()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("ko-KR");
-            var holiday = KO_KRHolidayStrategy.Seol;
+            var holiday = KO_KRHolidayStrategy.Seolnal;
             var startDay = holiday.GetInstance(2015);
 
             //Seol 2015
@@ -54,9 +54,9 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
-        public void can_identify_Seol()
+        public void can_identify_Seolnal()
         {
-            var holiday = KO_KRHolidayStrategy.Seol;
+            var holiday = KO_KRHolidayStrategy.Seolnal;
             var dateOnGregorian = new DateTime(2015, 2, 19);
             TestHoliday(holiday, dateOnGregorian);
         }

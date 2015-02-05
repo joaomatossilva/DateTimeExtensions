@@ -36,6 +36,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             this.InnerHolidays.Add(ChristianHolidays.NewYear);
             this.InnerHolidays.Add(Samiljeol);
+            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
             this.InnerHolidays.Add(SeokgaTansinil);
             this.InnerHolidays.Add(Hyeonchungil);
             this.InnerHolidays.Add(Gwangbokjeol);
@@ -44,7 +45,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
             // Add these later for substitute holiday rule application when overlapped with other holidays.
-            this.InnerHolidays.Add(Seol);
+            this.InnerHolidays.Add(Seolnal);
             this.InnerHolidays.Add(Chuseok);
             this.InnerHolidays.Add(Eorininal);
         }
@@ -57,7 +58,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)
                 {
-                    if (innerHoliday == Seol || innerHoliday == Chuseok) {
+                    if (innerHoliday == Seolnal || innerHoliday == Chuseok) {
                         DateTime[] holidays = new DateTime[] { 
                             date.Value.AddDays(-1),
                             date.Value, 
@@ -113,17 +114,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        private static Holiday seol;
+        private static Holiday seolnal;
 
-        public static Holiday Seol
+        public static Holiday Seolnal
         {
             get
             {
-                if (seol == null)
+                if (seolnal == null)
                 {
-                    seol = new FixedHoliday("설", 1, 1, KoreanLunisolarCalendar);
+                    seolnal = new FixedHoliday("Seolnal", 1, 1, KoreanLunisolarCalendar);
                 }
-                return seol;
+                return seolnal;
             }
         }
 
@@ -135,7 +136,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (samiljeol == null)
                 {
-                    samiljeol = new FixedHoliday("삼일절", 3, 1);
+                    samiljeol = new FixedHoliday("Samiljeol", 3, 1);
                 }
                 return samiljeol;
             }
@@ -149,7 +150,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (eorininal == null)
                 {
-                    eorininal = new FixedHoliday("어린이날", 5, 5);
+                    eorininal = new FixedHoliday("Eorininal", 5, 5);
                 }
                 return eorininal;
             }
@@ -163,7 +164,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (seokgatansinil == null)
                 {
-                    seokgatansinil = new FixedHoliday("석가탄신일", 4, 8, KoreanLunisolarCalendar);
+                    seokgatansinil = new FixedHoliday("SeokgaTansinil", 4, 8, KoreanLunisolarCalendar);
                 }
                 return seokgatansinil;
             }
@@ -177,7 +178,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (hyeonchungil == null)
                 {
-                    hyeonchungil = new FixedHoliday("현충일", 6, 6);
+                    hyeonchungil = new FixedHoliday("Hyeonchungil", 6, 6);
                 }
                 return hyeonchungil;
             }
@@ -191,7 +192,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (gwangbokjeol == null)
                 {
-                    gwangbokjeol = new FixedHoliday("광복절", 8, 15);
+                    gwangbokjeol = new FixedHoliday("Gwangbokjeol", 8, 15);
                 }
                 return gwangbokjeol;
             }
@@ -205,7 +206,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (chuseok == null)
                 {
-                    chuseok = new FixedHoliday("추석", 8, 15, KoreanLunisolarCalendar);
+                    chuseok = new FixedHoliday("Chuseok", 8, 15, KoreanLunisolarCalendar);
                 }
                 return chuseok;
             }
@@ -219,7 +220,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (gaecheonjeol == null)
                 {
-                    gaecheonjeol = new FixedHoliday("개천절", 10, 3);
+                    gaecheonjeol = new FixedHoliday("Gaecheonjeol", 10, 3);
                 }
                 return gaecheonjeol;
             }
@@ -233,7 +234,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (hangulnal == null)
                 {
-                    hangulnal = new FixedHoliday("한글날", 10, 9);
+                    hangulnal = new FixedHoliday("Hangulnal", 10, 9);
                 }
                 return hangulnal;
             }
