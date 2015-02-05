@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="ARSAWorkingDays.cs" />
     <Compile Include="ChristianHolidaysTests.cs" />
+    <Compile Include="KRHolidaysTests.cs" />
+    <Compile Include="KRNaturalTimeTests.cs" />
     <Compile Include="en-NZCalendarTest.cs" />
     <Compile Include="HolidaysTranslations\DefaultNamesTest.cs" />
     <Compile Include="HolidaysTranslations\SpanishHolidaysNamesTest.cs" />
