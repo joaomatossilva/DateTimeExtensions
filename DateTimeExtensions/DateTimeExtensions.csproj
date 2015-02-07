@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="Common\LocaleAttribute.cs" />
     <Compile Include="Common\LocaleImplementationLocator.cs" />
+    <Compile Include="NaturalText\CultureStrategies\KO_KRNaturalTimeStrategy.cs" />
     <Compile Include="TimeExtensions.cs" />
     <Compile Include="TimeOfDay\Time.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\KO_KRHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_IEHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\IrelandHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\RussianHolidayStrategy.cs" />
@@ -116,6 +118,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WorkingDays\HolidayNames.ko.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.es.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.pt.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.resx" />
