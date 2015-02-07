@@ -1,8 +1,9 @@
-DateTime Extensions  [![endorse](http://api.coderwall.com/kappy/endorsecount.png)](http://coderwall.com/kappy)
+DateTime Extensions
 ===================
 [http://www.kspace.pt/DateTimeExtensions/](http://www.kspace.pt/DateTimeExtensions/)
 
-[![NuGet Status](http://nugetstatus.com/DateTimeExtensions.png)](http://nugetstatus.com/packages/DateTimeExtensions)
+[![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/) 
+[![NuGet Downloads](http://img.shields.io/nuget/dt/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/)
 [![Teamcity build status](http://teamcity.codebetter.com/app/rest/builds/buildType:\(id:bt1240\)/statusIcon)](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1240)
 
 
@@ -53,6 +54,7 @@ Avaiable CultureInfo implementations:
 | ar-SA	| it-IT |
 | en-NZ | en-GD (gd-GD, not really sure about this locale) 
 | en-IE | sl-SL |
+| kr-KR |  |
 
 If your culture is not listed here you can contribute it!!!
 
@@ -100,7 +102,7 @@ Avaiable CultureInfo implementations:
 | es-ES |
 | nl-NL |
 | nl-BE |
-
+| kr-KR |
 
 ### Time of Day
 
@@ -140,6 +142,9 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+
+v3.7
+- Added kr-KR Holodays and Natural text locales (thanks @jaeseonc)
 
 v3.6
 - Removed St.Patricks day on en-GB (thanks @ConspiringWithTheDamned)
