@@ -12,7 +12,7 @@ extensions to System.DateTime, including natural date difference text (precise a
 holidays and working days calculations on several culture locales.
 
 Feedback will be much appreciated.
-You can check out a sample (WIP) project online on [http://datetimeextensions.apphb.com/](http://datetimeextensions.apphb.com/)
+You can check out a sample (WIP) project online on [http://datetimeextensions.azurewebsites.net/](http://datetimeextensions.azurewebsites.net/)
 
 ## Major Features
 
