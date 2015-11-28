@@ -69,6 +69,10 @@ Target "NUnitTest" (fun _ ->
                    OutputFile = @"TestResults.xml"})
 )
 
+Target "FxCopReport" (fun _ ->
+    sendTeamCityFXCopImport (buildDir + "\DateTimeExtensions.dll.CodeAnalysisLog.xml")
+)
+
 Target "FxCop" (fun _ ->
     !! (buildDir + @"\**\*.dll") 
       ++ (buildDir + @"\**\*.exe") 
@@ -115,6 +119,7 @@ Target "Release" (fun _ ->
 "Clean"
   ==> "WriteAssemblyInfo"
   ==> "CompileApp" 
+  ==> "FxCopReport"
   ==> "CompileTest"
   //==> "FxCop"
   ==> "NUnitTest"  
