@@ -31,7 +31,7 @@ let buildNumber =
   | TeamCity -> buildVersion
   | _ -> "0"
 
-let version = "3.7.0." + buildNumber
+let version = "3.7.1." + buildNumber
 
 // Targets
 Target "Clean" (fun _ -> 
@@ -67,6 +67,10 @@ Target "NUnitTest" (fun _ ->
                    DisableShadowCopy = false; 
                    WorkingDir = testDir;
                    OutputFile = @"TestResults.xml"})
+)
+
+Target "FxCopReport" (fun _ ->
+    sendTeamCityFXCopImport (buildDir + "\DateTimeExtensions.dll.CodeAnalysisLog.xml")
 )
 
 Target "FxCop" (fun _ ->
@@ -115,6 +119,7 @@ Target "Release" (fun _ ->
 "Clean"
   ==> "WriteAssemblyInfo"
   ==> "CompileApp" 
+  ==> "FxCopReport"
   ==> "CompileTest"
   //==> "FxCop"
   ==> "NUnitTest"  

@@ -12,7 +12,7 @@ extensions to System.DateTime, including natural date difference text (precise a
 holidays and working days calculations on several culture locales.
 
 Feedback will be much appreciated.
-You can check out a sample (WIP) project online on [http://datetimeextensions.apphb.com/](http://datetimeextensions.apphb.com/)
+You can check out a sample (WIP) project online on [http://datetimeextensions.azurewebsites.net/](http://datetimeextensions.azurewebsites.net/)
 
 ## Major Features
 
@@ -142,6 +142,9 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v3.7.1
+- Fixed #42 - Getting key already added error when using en-CA culture?
+- Fixed #41 - Fixed bugs with Australian public holiday calculation (thanks @TonyZhu2015)
 
 v3.7
 - Added kr-KR Holodays and Natural text locales (thanks @jaeseonc)

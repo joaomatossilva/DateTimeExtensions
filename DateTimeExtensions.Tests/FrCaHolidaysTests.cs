@@ -36,5 +36,13 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(DayOfWeek.Monday, mondayAfterCanadaDay.DayOfWeek);
             Assert.IsFalse(mondayAfterCanadaDay.IsWorkingDay(dateTimeCulture));
         }
+
+        [Test]
+        public void CanWorkOn2016()
+        {
+            var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
+            var holidays = dateTimeCulture.GetHolidaysOfYear(2016);
+            Assert.IsTrue(holidays.Any());
+        }
     }
 }

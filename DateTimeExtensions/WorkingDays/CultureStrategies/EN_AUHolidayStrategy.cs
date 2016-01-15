@@ -20,8 +20,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
@@ -31,17 +29,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_AUHolidayStrategy()
         {
+            // Australian public holidays vary on a state-by-state basis. These rules are based
+            // holidays that are observed in at least half of Australian states and territories
+            // according to https://en.wikipedia.org/wiki/Public_holidays_in_Australia
+
             this.InnerHolidays.Add(ChristianHolidays.NewYear);
             this.InnerHolidays.Add(AustraliaDay);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
             this.InnerHolidays.Add(ChristianHolidays.EasterSaturday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(AnzacDay);
             this.InnerHolidays.Add(QueensBirthday);
+            this.InnerHolidays.Add(LabourDay);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
@@ -52,26 +53,40 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
-                    //don't move the holiday if it is easter based since it's already observated
-                    if (innerHoliday.GetType() != typeof (EasterBasedHoliday))
+                    holidayMap[date.Value] = innerHoliday;
+                }
+            }
+
+            var existingHolidayMap = new Dictionary<DateTime, Holiday>(holidayMap);
+            foreach (var existingHoliday in existingHolidayMap)
+            {
+                var date = existingHoliday.Key;
+                var innerHoliday = existingHoliday.Value;
+
+                // don't move the holiday if it is easter based since it's already observated
+                if (innerHoliday.GetType() != typeof(EasterBasedHoliday) && innerHoliday != AnzacDay)
+                {
+                    if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        //if the holiday is a saturday, the holiday is observed on next monday
-                        if (date.Value.DayOfWeek == DayOfWeek.Saturday)
-                        {
-                            holidayMap.Add(date.Value.AddDays(2), innerHoliday);
-                        }
-                        //if the holiday is a sunday, the holiday is observed on next monday
-                        if (date.Value.DayOfWeek == DayOfWeek.Sunday)
-                        {
-                            holidayMap.Add(date.Value.AddDays(1), innerHoliday);
-                        }
+                        AddHolidayOnNextAvailableDay(holidayMap, date, innerHoliday);
                     }
                 }
             }
+
             return holidayMap;
         }
 
+        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, Holiday> holidayMap, DateTime date, Holiday holiday)
+        {
+            if (!holidayMap.ContainsKey(date) && date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
+            {
+                holidayMap.Add(date, holiday);
+            }
+            else
+            {
+                AddHolidayOnNextAvailableDay(holidayMap, date.AddDays(1), holiday);
+            }
+        }
 
         //Last Monday in May - Spring Bank Holiday
         private static Holiday australiaDay;
@@ -131,6 +146,22 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                         CountDirection.FromFirst);
                 }
                 return queensBirthday;
+            }
+        }
+
+        //1nd Monday in October - Labour Day
+        private static Holiday labourDay;
+
+        public static Holiday LabourDay
+        {
+            get
+            {
+                if (labourDay == null)
+                {
+                    labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 10,
+                        CountDirection.FromFirst);
+                }
+                return labourDay;
             }
         }
     }
