@@ -144,6 +144,7 @@ Example: Portugal_FreedomDay
 ## Version History
 v3.7.1
 - Fixed #42 - Getting key already added error when using en-CA culture?
+- Fixed #41 - Fixed bugs with Australian public holiday calculation (thanks @TonyZhu2015)
 
 v3.7
 - Added kr-KR Holodays and Natural text locales (thanks @jaeseonc)
