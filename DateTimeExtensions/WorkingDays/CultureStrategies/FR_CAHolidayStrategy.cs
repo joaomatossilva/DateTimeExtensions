@@ -55,7 +55,6 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 if (date.HasValue)
                 {
                     holidayMap.Add(date.Value, innerHoliday);
-                    /* - Couln't find proof of this rule, maybe holidays are already mobile?
                     //if the holiday is a saturday, the holiday is observed on previous friday
                     if (date.Value.DayOfWeek == DayOfWeek.Saturday)
                     {
@@ -66,7 +65,6 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     {
                         holidayMap.Add(date.Value.AddDays(1), innerHoliday);
                     }
-                    */
                 }
             }
             return holidayMap;

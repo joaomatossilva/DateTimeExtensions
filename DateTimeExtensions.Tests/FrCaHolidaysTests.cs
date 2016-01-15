@@ -24,7 +24,7 @@ namespace DateTimeExtensions.Tests
         {
             var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
             var holidays = dateTimeCulture.Holidays;
-            Assert.AreEqual(10, holidays.Count());
+            Assert.AreEqual(8, holidays.Count());
         }
 
         [Test]
