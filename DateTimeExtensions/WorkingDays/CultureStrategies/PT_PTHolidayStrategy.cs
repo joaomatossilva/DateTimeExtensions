@@ -36,15 +36,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Easter);
             this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
             this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.CorpusChristi));
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, ChristianHolidays.AllSaints));
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, ChristianHolidays.CorpusChristi));
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, ChristianHolidays.AllSaints));
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
             this.InnerHolidays.Add(FreedomDay);
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
             this.InnerHolidays.Add(PortugalDay);
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RepublicDay));
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013, RestorationOfIndependance));
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RepublicDay));
+            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RestorationOfIndependance));
         }
 
         private static Holiday freedomDay;
