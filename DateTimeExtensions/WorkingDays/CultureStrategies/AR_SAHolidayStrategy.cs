@@ -42,19 +42,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
             var observancesMap = new Dictionary<DateTime, Holiday>();
+            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
+
             var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
             for (int i = 0; i <= 7; i++)
             {
-                observancesMap.Add(endOfRamadanObservance.Value.AddDays(i), EndOfRamadan);
+                observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), EndOfRamadan);
             }
 
             var endOfHajjObservance = EndOfHajj.GetInstance(year);
             for (int i = 0; i <= 6; i++)
             {
-                observancesMap.Add(endOfHajjObservance.Value.AddDays(i), EndOfHajj);
+                observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), EndOfHajj);
             }
 
-            observancesMap.Add(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
             return observancesMap;
         }
 

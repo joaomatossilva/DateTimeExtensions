@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DictionaryExtensions.cs" />
     <Compile Include="Common\LocaleAttribute.cs" />
     <Compile Include="Common\LocaleImplementationLocator.cs" />
     <Compile Include="NaturalText\CultureStrategies\KO_KRNaturalTimeStrategy.cs" />

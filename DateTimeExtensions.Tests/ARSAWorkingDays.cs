@@ -52,5 +52,18 @@ namespace DateTimeExtensions.Tests
                 day = day.AddDays(1);
             } while (day <= new DateTime(2012, 10, 31));
         }
+
+        [Test]
+        public void can_generate_holidays()
+        {
+            var dateTimeCulture = new WorkingDayCultureInfo("ar-SA");
+            var year = 2000;
+            do
+            {
+                var holidays = dateTimeCulture.GetHolidaysOfYear(year);
+                Assert.Greater(holidays.Count(), 0);
+                year++;
+            } while (year < 2020);
+        }
     }
 }

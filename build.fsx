@@ -31,7 +31,7 @@ let buildNumber =
   | TeamCity -> buildVersion
   | _ -> "0"
 
-let version = "3.7.1." + buildNumber
+let version = "3.7.2." + buildNumber
 
 // Targets
 Target "Clean" (fun _ -> 
