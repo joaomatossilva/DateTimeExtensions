@@ -57,7 +57,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     //if the holiday is a sunday, the holiday is observed on next monday
                     if (date.Value.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                        holidayMap.AddIfInexistent(date.Value.AddDays(1), innerHoliday);
                     }
                 }
             }

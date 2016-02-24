@@ -85,7 +85,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 return;
             }
-            map.Add(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+            map.AddIfInexistent(holidayInstance.Value, DayOfRespectForCulturalDiversity);
         }
 
         private void BuildTuristicObservanceMap(int year, Holiday holiday, Dictionary<DateTime, Holiday> map)
@@ -95,16 +95,16 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 return;
             }
-            map.Add(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+            map.AddIfInexistent(holidayInstance.Value, DayOfRespectForCulturalDiversity);
             //if holiday falls on tuesday, the holiday is also observed on the last monday
             if (holidayInstance.Value.DayOfWeek == DayOfWeek.Tuesday)
             {
-                map.Add(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
+                map.AddIfInexistent(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
             }
             //if holiday falls on thursday, the holiday is also observed on the next friday
             if (holidayInstance.Value.DayOfWeek == DayOfWeek.Thursday)
             {
-                map.Add(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Friday), holiday);
+                map.AddIfInexistent(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Friday), holiday);
             }
         }
 
@@ -118,16 +118,16 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             switch (holidayInstance.Value.DayOfWeek)
             {
                 case DayOfWeek.Monday:
-                    map.Add(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+                    map.AddIfInexistent(holidayInstance.Value, DayOfRespectForCulturalDiversity);
                     break;
                     //if holiday falls on tuesday or wednesday, the holiday is observed on the last monday
                 case DayOfWeek.Tuesday:
                 case DayOfWeek.Wednesday:
-                    map.Add(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
+                    map.AddIfInexistent(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
                     break;
                     //if holiday falls on thu, fri, sat, sun, the holiday is observed on the next monday
                 default:
-                    map.Add(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Monday), holiday);
+                    map.AddIfInexistent(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Monday), holiday);
                     break;
             }
         }

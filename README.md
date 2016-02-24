@@ -145,6 +145,7 @@ Example: Portugal_FreedomDay
 v3.7.2
 - Fixed ar-SA not able to generate holidays on some years
 - Restoring pt-PT holidays from 2016 and on
+- Fixed en-ZA and es-AR not generating holidays in 2016 
 
 v3.7.1
 - Fixed #42 - Getting key already added error when using en-CA culture?
