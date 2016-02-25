@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="ARSAWorkingDays.cs" />
     <Compile Include="ChristianHolidaysTests.cs" />
+    <Compile Include="HolidaysTranslations\ViHolidaysNamesTest.cs" />
+    <Compile Include="ViHolidaysTests.cs" />
     <Compile Include="HolidaysTranslations\KRHolidaysNamesTest.cs" />
     <Compile Include="KRHolidaysTests.cs" />
     <Compile Include="KRNaturalTimeTests.cs" />
@@ -82,6 +84,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
