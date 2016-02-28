@@ -54,7 +54,7 @@ Avaiable CultureInfo implementations:
 | ar-SA	| it-IT |
 | en-NZ | en-GD (gd-GD, not really sure about this locale) 
 | en-IE | sl-SL |
-| kr-KR |  |
+| kr-KR | zh-CN |
 
 If your culture is not listed here you can contribute it!!!
 
@@ -142,6 +142,10 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v3.8
+- Added Chinese Holidays
+- breaking change: NewYear is now a GlobalHoliday and not a Christian Holiday
+
 v3.7.2
 - Fixed ar-SA not able to generate holidays on some years
 - Restoring pt-PT holidays from 2016 and on
@@ -152,7 +156,7 @@ v3.7.1
 - Fixed #41 - Fixed bugs with Australian public holiday calculation (thanks @TonyZhu2015)
 
 v3.7
-- Added kr-KR Holodays and Natural text locales (thanks @jaeseonc)
+- Added kr-KR Holidays and Natural text locales (thanks @jaeseonc)
 
 v3.6
 - Removed St.Patricks day on en-GB (thanks @ConspiringWithTheDamned)

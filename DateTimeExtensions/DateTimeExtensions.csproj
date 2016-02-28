@@ -51,6 +51,7 @@
     <Compile Include="NaturalText\CultureStrategies\KO_KRNaturalTimeStrategy.cs" />
     <Compile Include="TimeExtensions.cs" />
     <Compile Include="TimeOfDay\Time.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\ChineseHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\KO_KRHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_IEHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\IrelandHolidayStrategy.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="WorkingDays\CultureStrategies\EN_NZHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\ScotlandHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\SloveniaHolidaysStrategy.cs" />
+    <Compile Include="WorkingDays\MappedHoliday.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
     <Compile Include="Export\ExportHolidayFormatLocator.cs" />
