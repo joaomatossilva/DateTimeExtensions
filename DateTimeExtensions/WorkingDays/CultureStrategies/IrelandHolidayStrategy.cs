@@ -11,7 +11,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IrelandHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(new NthDayOfWeekAfterDayHoliday("May Day", 1, DayOfWeek.Monday, GlobalHolidays.MayDay));

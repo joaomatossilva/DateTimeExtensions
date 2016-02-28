@@ -141,5 +141,19 @@ namespace DateTimeExtensions.WorkingDays
                 return newYearsEve;
             }
         }
+
+        private static Holiday newYear;
+
+        public static Holiday NewYear
+        {
+            get
+            {
+                if (newYear == null)
+                {
+                    newYear = new FixedHoliday("NewYear", 1, 1);
+                }
+                return newYear;
+            }
+        }
     }
 }

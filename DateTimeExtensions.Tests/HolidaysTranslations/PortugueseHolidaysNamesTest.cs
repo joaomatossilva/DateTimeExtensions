@@ -36,7 +36,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_PTHolidayStrategy.RepublicDay.Name, "Dia da Republica");
 
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natal");
-            Assert.AreEqual(ChristianHolidays.NewYear.Name, "Ano Novo");
+            Assert.AreEqual(GlobalHolidays.NewYear.Name, "Ano Novo");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");
             Assert.AreEqual(ChristianHolidays.AllSaints.Name, "Todos os Santos");
             Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Corpo de Cristo");
@@ -70,7 +70,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_BRHolidayStrategy.TiradentesDay.Name, "Dia do Tiradentes");
 
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natal");
-            Assert.AreEqual(ChristianHolidays.NewYear.Name, "Ano Novo");
+            Assert.AreEqual(GlobalHolidays.NewYear.Name, "Ano Novo");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");
             Assert.AreEqual(ChristianHolidays.AllSaints.Name, "Todos os Santos");
             Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Corpo de Cristo");

@@ -33,7 +33,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Name, "Día de la Constitución");
 
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natividad");
-            Assert.AreEqual(ChristianHolidays.NewYear.Name, "Año Nuevo");
+            Assert.AreEqual(GlobalHolidays.NewYear.Name, "Año Nuevo");
             Assert.AreEqual(ChristianHolidays.Epiphany.Name, "Epifanía del Señor");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");
             Assert.AreEqual(ChristianHolidays.AllSaints.Name, "Todos los Santos");

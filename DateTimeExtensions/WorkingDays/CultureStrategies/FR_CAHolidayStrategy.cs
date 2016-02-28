@@ -32,7 +32,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FR_CAHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             //Victoria Day is not really national

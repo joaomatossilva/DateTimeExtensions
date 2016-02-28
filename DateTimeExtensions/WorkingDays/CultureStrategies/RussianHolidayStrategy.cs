@@ -29,7 +29,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public RussianHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(OrtodoxChristmas);
             this.InnerHolidays.Add(DefenderOfTheFatherland);
         }
@@ -38,10 +38,10 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
             // New year -> 1/1 until 6/1
-            holidayMap.Add(ChristianHolidays.NewYear.GetInstance(year).Value, ChristianHolidays.NewYear);
+            holidayMap.Add(GlobalHolidays.NewYear.GetInstance(year).Value, GlobalHolidays.NewYear);
             for (int day = 2; day <= 6; day++)
             {
-                holidayMap.Add(new DateTime(year, 1, day), ChristianHolidays.NewYear);
+                holidayMap.Add(new DateTime(year, 1, day), GlobalHolidays.NewYear);
             }
             // Christmas 7/1 until 10/1
             holidayMap.Add(OrtodoxChristmas.GetInstance(year).Value, OrtodoxChristmas);

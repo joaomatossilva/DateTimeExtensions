@@ -34,7 +34,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public KO_KRHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(Samiljeol);
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
             this.InnerHolidays.Add(SeokgaTansinil);

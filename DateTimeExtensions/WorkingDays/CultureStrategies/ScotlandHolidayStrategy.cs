@@ -8,7 +8,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ScotlandHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(NewYearHoliday);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
             this.InnerHolidays.Add(EN_GBHolidayStrategy.MayDayBank);

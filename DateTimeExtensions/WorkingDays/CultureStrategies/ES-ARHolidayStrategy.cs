@@ -32,7 +32,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         private static readonly IEnumerable<Holiday> TuristicHolidays =
             new Holiday[]
             {
-                ChristianHolidays.NewYear, 
+                GlobalHolidays.NewYear, 
                 //The day before the carnival is an holiday also but since Carnival is allways a tuesday,
                 //it can be included on the Turistic holiday bridge policy
                 ChristianHolidays.Carnival,

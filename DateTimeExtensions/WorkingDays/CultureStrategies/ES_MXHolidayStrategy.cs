@@ -31,7 +31,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ES_MXHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ConstitutionDay);
             this.InnerHolidays.Add(BenitoJuarezBirthDay);
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);

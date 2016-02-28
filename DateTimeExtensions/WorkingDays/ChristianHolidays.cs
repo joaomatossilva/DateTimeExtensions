@@ -41,20 +41,6 @@ namespace DateTimeExtensions.WorkingDays
             }
         }
 
-        private static Holiday newYear;
-
-        public static Holiday NewYear
-        {
-            get
-            {
-                if (newYear == null)
-                {
-                    newYear = new FixedHoliday("NewYear", 1, 1);
-                }
-                return newYear;
-            }
-        }
-
         private static Holiday epiphany;
 
         public static Holiday Epiphany

@@ -15,7 +15,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public EN_NZHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(DayAfterNewYear);
             this.InnerHolidays.Add(WaitangiDay);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
@@ -71,7 +71,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         private static bool IsMondayised(Holiday holiday, DayOfWeek occurenceDay)
         {
             return
-                (holiday.Equals(ChristianHolidays.NewYear) && occurenceDay == DayOfWeek.Saturday) ||
+                (holiday.Equals(GlobalHolidays.NewYear) && occurenceDay == DayOfWeek.Saturday) ||
                 (holiday.Equals(DayAfterNewYear) && occurenceDay == DayOfWeek.Saturday) ||
                 (holiday.Equals(ChristianHolidays.Christmas) && occurenceDay == DayOfWeek.Saturday) ||
                 (holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Saturday);
@@ -80,7 +80,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         private static bool IsTuesdayised(Holiday holiday, DayOfWeek occurenceDay)
         {
             return
-                (holiday.Equals(ChristianHolidays.NewYear) && occurenceDay == DayOfWeek.Sunday) ||
+                (holiday.Equals(GlobalHolidays.NewYear) && occurenceDay == DayOfWeek.Sunday) ||
                 (holiday.Equals(DayAfterNewYear) && occurenceDay == DayOfWeek.Sunday) ||
                 (holiday.Equals(ChristianHolidays.Christmas) && occurenceDay == DayOfWeek.Sunday) ||
                 (holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Sunday);

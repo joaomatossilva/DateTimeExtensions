@@ -31,7 +31,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IS_ISHolidayStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.PalmSunday);
             this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);

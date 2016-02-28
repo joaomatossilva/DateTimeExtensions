@@ -39,7 +39,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(KO_KRHolidayStrategy.Hangulnal.Name, "한글날");
 
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "성탄절");
-            Assert.AreEqual(ChristianHolidays.NewYear.Name, "신정");
+            Assert.AreEqual(GlobalHolidays.NewYear.Name, "신정");
             Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "근로자의 날");
         }
     }

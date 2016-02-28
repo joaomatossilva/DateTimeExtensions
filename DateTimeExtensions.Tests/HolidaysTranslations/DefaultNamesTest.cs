@@ -23,7 +23,7 @@ namespace DateTimeExtensions.Tests
         public void AssertDefaultGlobalHolidaysAreTranslated()
         {
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Christmas");
-            Assert.AreEqual(ChristianHolidays.NewYear.Name, "New Year");
+            Assert.AreEqual(GlobalHolidays.NewYear.Name, "New Year");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnival");
             Assert.AreEqual(ChristianHolidays.AllSaints.Name, "All Saints");
             Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Corpus Christi");

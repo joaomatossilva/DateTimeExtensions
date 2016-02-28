@@ -9,7 +9,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public SloveniaHolidaysStrategy()
         {
-            this.InnerHolidays.Add(ChristianHolidays.NewYear);
+            this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(PreserenDay);
             this.InnerHolidays.Add(ChristianHolidays.Easter);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
