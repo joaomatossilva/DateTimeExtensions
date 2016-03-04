@@ -61,6 +61,7 @@
     <Compile Include="WorkingDays\CultureStrategies\ScotlandHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\SloveniaHolidaysStrategy.cs" />
     <Compile Include="WorkingDays\MappedHoliday.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\vi_VNHolidayStrategy.cs" />
     <Compile Include="WorkingDays\WorkingDayCultureInfo.cs" />
     <Compile Include="WorkingDays\ChristianHolidays.cs" />
     <Compile Include="Export\ExportHolidayFormatLocator.cs" />
@@ -129,6 +130,7 @@
     <EmbeddedResource Include="WorkingDays\HolidayNames.es.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.pt.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.resx" />
+    <EmbeddedResource Include="WorkingDays\HolidayNames.vi.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
