@@ -76,7 +76,6 @@ Target "FxCopReport" (fun _ ->
 Target "FxCop" (fun _ ->
     !! (buildDir + @"\**\*.dll") 
       ++ (buildDir + @"\**\*.exe") 
-        |> Scan  
         |> FxCop (fun p -> 
             {p with                     
                 ReportFileName = testDir + "FXCopResults.xml";
@@ -86,7 +85,6 @@ Target "FxCop" (fun _ ->
 Target "Zip" (fun _ ->
     !! (buildDir + "\**\*.*") 
         -- "*.zip" 
-        |> Scan
         |> Zip buildDir (deployDir + "Calculator." + version + ".zip")
 )
 
