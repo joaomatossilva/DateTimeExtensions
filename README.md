@@ -142,6 +142,9 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v3.9
+- Added Vietnam Holidays (thanks @cuongtranba)
+
 v3.8
 - Added Chinese Holidays
 - breaking change: NewYear is now a GlobalHoliday and not a Christian Holiday
