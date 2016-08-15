@@ -54,7 +54,7 @@ namespace DateTimeExtensions
         /// <summary>
         /// Retrives the last day of the week that occourred since <paramref name="date"/>.
         /// </summary>
-        /// <remarks>If <paramref name="name"/>.DayOfWeek is already <paramref name="dayOfweek"/>, it will return the last one (seven days before)</remarks>
+        /// <remarks>If <paramref name="date"/>.DayOfWeek is already <paramref name="dayOfweek"/>, it will return the last one (seven days before)</remarks>
         /// <param name="date">A date.</param>
         /// <param name="dayOfweek">The kind of DayOfWeek we want to get.</param>
         /// <returns>A DateTime representing the last day of the week that occourred.</returns>
@@ -73,7 +73,7 @@ namespace DateTimeExtensions
         /// <summary>
         /// Retrives the next day of the week that will occour after <paramref name="date"/>.
         /// </summary>
-        /// <remarks>If <paramref name="name"/>.DayOfWeek is already <paramref name="dayOfweek"/>, it will return the next one (seven days after)</remarks>
+        /// <remarks>If <paramref name="date"/>.DayOfWeek is already <paramref name="dayOfweek"/>, it will return the next one (seven days after)</remarks>
         /// <param name="date">A date.</param>
         /// <param name="dayOfweek">The kind of DayOfWeek we want to get.</param>
         /// <returns>A DateTime representing the next day of the week that will occour after.</returns>
