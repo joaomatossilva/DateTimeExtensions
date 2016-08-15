@@ -84,12 +84,12 @@ namespace DateTimeExtensions.WorkingDays
                 return null;
             }
             /* this block should be uncomment if we should count the start day inclusive
-			 * example: 1st Sunday after easter. should count the next sunday, or the easter sunday? for now it makes more sence the next sunday
-			if(startDate.Value.DayOfWeek == dayOfWeek && (count == -1 || count == 1))
-			{
-				return startDate;
-			}
-			 */
+             * example: 1st Sunday after easter. should count the next sunday, or the easter sunday? for now it makes more sence the next sunday
+            if(startDate.Value.DayOfWeek == dayOfWeek && (count == -1 || count == 1))
+            {
+                return startDate;
+            }
+             */
             if (count > 0)
             {
                 startDate = startDate.Value.NextDayOfWeek(dayOfWeek);
