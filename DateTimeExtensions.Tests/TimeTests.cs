@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using DateTimeExtensions;
 using DateTimeExtensions.TimeOfDay;
 using NUnit.Framework;
@@ -11,11 +13,48 @@ namespace DateTimeExtensions.Tests
     [TestFixture]
     public class TimeTests
     {
+        private CultureInfo cultureInfo;
+
+        [TestFixtureSetUp]
+        public void Setup()
+        {
+            // save the default culture
+            cultureInfo = CultureInfo.CurrentCulture;
+
+            //change the default culture to en-GB
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+        }
+
+        [TestFixtureTearDown]
+        public void TearDown()
+        {
+            //restore the default culture
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+        }
+
+        [Test]
+        public void can_format_24hour_time()
+        {
+            var compareTime = new Time(13, 59, 58, "HH:mm:ss");
+            var time = compareTime.ToString();
+            string timeValue = "13:59:58";
+            Assert.AreEqual(time, timeValue);
+        }
+
+        [Test]
+        public void can_format_12hour_time()
+        {
+            var compareTime = new Time(13, 59, 58, "h:mm:ss tt");
+            var time = compareTime.ToString();
+            string timeValue = "1:59:58 " + Thread.CurrentThread.CurrentCulture.DateTimeFormat.PMDesignator;
+            Assert.AreEqual(time, timeValue);
+        }
+
         [Test]
         public void can_parse_time()
         {
-            var compareTime = new Time(3, 59, 59);
-            string timeValue = "3:59:59";
+            var compareTime = new Time(3, 59, 58);
+            string timeValue = "3:59:58";
             var time = timeValue.ToTimeOfDay();
             Assert.AreEqual(time, compareTime);
         }
@@ -23,8 +62,8 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_parse_time_leading_zero()
         {
-            var compareTime = new Time(3, 59, 59);
-            string timeValue = "03:59:59";
+            var compareTime = new Time(3, 59, 58);
+            string timeValue = "03:59:58";
             var time = timeValue.ToTimeOfDay();
             Assert.AreEqual(time, compareTime);
         }
@@ -70,7 +109,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_compare_inverted_between()
         {
-            //interval is from 00:00 -> 10:15 and 14:00 -> 23:59:59
+            //interval is from 00:00 -> 10:15 and 14:00 -> 23:59:58
             var startTime = new Time(14);
             var endTime = new Time(10, 15);
 
