@@ -19,10 +19,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace DateTimeExtensions.TimeOfDay
 {
@@ -30,7 +28,12 @@ namespace DateTimeExtensions.TimeOfDay
     {
         private const string ParseString = @"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$";
 
-        private const string FormatString = @"{0}:{1:00}:{2:00}";
+        private string formatString;
+
+        public string FormatString
+        {
+            get { return this.formatString; }
+        }
 
         private int hour;
 
@@ -53,8 +56,13 @@ namespace DateTimeExtensions.TimeOfDay
             get { return this.second; }
         }
 
-        public Time(int hour = 0, int minute = 0, int second = 0)
+        public Time(int hour = 0, int minute = 0, int second = 0, string formatString = "")
         {
+            if (formatString == string.Empty)
+                this.formatString = Thread.CurrentThread.CurrentCulture.DateTimeFormat.LongTimePattern;
+            else
+                this.formatString = formatString;
+
             this.hour = hour;
             this.minute = minute;
             this.second = second;
@@ -67,7 +75,7 @@ namespace DateTimeExtensions.TimeOfDay
         {
             if (value < 0 || value > 23)
             {
-                throw new ArgumentException("valid hours must be between 0 and 23", "value");
+                throw new ArgumentException("Valid hours must be between 0 and 23", "value");
             }
         }
 
@@ -75,7 +83,7 @@ namespace DateTimeExtensions.TimeOfDay
         {
             if (value < 0 || value > 59)
             {
-                throw new ArgumentException("valid minutes must be between 0 and 59", "value");
+                throw new ArgumentException("Valid minutes must be between 0 and 59", "value");
             }
         }
 
@@ -83,13 +91,15 @@ namespace DateTimeExtensions.TimeOfDay
         {
             if (value < 0 || value > 59)
             {
-                throw new ArgumentException("valid seconds must be between 0 and 59", "value");
+                throw new ArgumentException("Valid seconds must be between 0 and 59", "value");
             }
         }
 
         public override string ToString()
         {
-            return string.Format(FormatString, this.Hour, this.Minute, this.Second);
+            var today = DateTime.Today;
+            var dateTime = new DateTime(today.Year, today.Month, today.Day, hour, minute, second);
+            return dateTime.ToString(FormatString);
         }
 
         public int CompareTo(Time other)
@@ -125,7 +135,7 @@ namespace DateTimeExtensions.TimeOfDay
             var match = timeValue.Match(valueString);
             if (!match.Success || match.Groups.Count != 4)
             {
-                throw new ArgumentException("value string was not a correct time format", "valueString");
+                throw new ArgumentException("Value string was not a correct time format", "valueString");
             }
             return new Time(
                 int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));

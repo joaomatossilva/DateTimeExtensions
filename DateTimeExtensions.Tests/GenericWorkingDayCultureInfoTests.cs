@@ -66,10 +66,10 @@ namespace DateTimeExtensions.Tests
         public void picks_a_holiday_when_two_holidays_occur_on_the_same_date()
         {
             /* In 2005, Ascension day was on the fifth of May. That year, the fifth of may was
-			 * also a national public holiday (liberation day).	The holiday picker should not
-			 * fail, but it is arbritrary which one of the holidays it should return, so either
-			 * one is OK. HolidayStrategyBase.BuildObservancesMap should survive this.
-			 */
+             * also a national public holiday (liberation day).	The holiday picker should not
+             * fail, but it is arbritrary which one of the holidays it should return, so either
+             * one is OK. HolidayStrategyBase.BuildObservancesMap should survive this.
+             */
 
             var inTheNetherlands = new WorkingDayCultureInfo("nl-NL");
             var fifthOfMay = new DateTime(2005, 5, 5);

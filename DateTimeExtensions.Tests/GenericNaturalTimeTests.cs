@@ -64,7 +64,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full_on_february_with_leap()
         {
-            var fromTime = new DateTime(2012, 2, 27, 23, 59, 59);
+            var fromTime = new DateTime(2012, 2, 27, 23, 59, 58);
             var toTime = fromTime.AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
@@ -76,7 +76,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full_on_february_without_leap()
         {
-            var fromTime = new DateTime(2010, 2, 27, 23, 59, 59);
+            var fromTime = new DateTime(2010, 2, 27, 23, 59, 58);
             var toTime = fromTime.AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
@@ -88,7 +88,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full_on_march()
         {
-            var fromTime = new DateTime(2010, 3, 29, 23, 59, 59);
+            var fromTime = new DateTime(2010, 3, 29, 23, 59, 58);
             var toTime = fromTime.AddDays(3).AddHours(4).AddMinutes(5).AddSeconds(6);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
@@ -100,7 +100,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full_on_april()
         {
-            var fromTime = new DateTime(2010, 4, 29, 23, 59, 59);
+            var fromTime = new DateTime(2010, 4, 29, 23, 59, 58);
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
