@@ -3,8 +3,8 @@ DateTime Extensions
 [http://www.kspace.pt/DateTimeExtensions/](http://www.kspace.pt/DateTimeExtensions/)
 
 [![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/) 
-[![NuGet Downloads](http://img.shields.io/nuget/dt/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/)
-[![Teamcity build status](http://teamcity.codebetter.com/app/rest/builds/buildType:\(id:bt1240\)/statusIcon)](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1240)
+[![NuGet Download](https://img.shields.io/nuget/v/DateTimeExtensions.svg)](https://www.nuget.org/packages/DateTimeExtensions)
+[![Teamcity build status](https://img.shields.io/teamcity/codebetter/bt1240.svg)](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt1240)
 
 
 This project is a merge of several common DateTime operations in the form of 
