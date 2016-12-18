@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.NaturalText.CultureStrategies
@@ -31,32 +27,32 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
     {
         protected override string YearText
         {
-            get { return "jahr"; }
+            get { return "Jahr"; }
         }
 
         protected override string MonthText
         {
-            get { return "monat"; }
+            get { return "Monat"; }
         }
 
         protected override string DayText
         {
-            get { return "tag"; }
+            get { return "Tag"; }
         }
 
         protected override string HourText
         {
-            get { return "stunde"; }
+            get { return "Stunde"; }
         }
 
         protected override string MinuteText
         {
-            get { return "minute"; }
+            get { return "Minute"; }
         }
 
         protected override string SecondText
         {
-            get { return "sekunde"; }
+            get { return "Sekunde"; }
         }
 
         protected override string Pluralize(string text)
