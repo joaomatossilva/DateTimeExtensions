@@ -28,7 +28,7 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
 
             Assert.AreEqual(ChristianHolidays.Christmas.Name, "Weihnachten");
             Assert.AreEqual(GlobalHolidays.NewYear.Name, "Neujahr");
-            Assert.AreEqual(ChristianHolidays.Epiphany.Name, "Epifanía del Señor");
+            Assert.AreEqual(ChristianHolidays.Epiphany.Name, "Heilige Drei Könige");
             Assert.AreEqual(ChristianHolidays.Carnival.Name, "Fasching");
             Assert.AreEqual(ChristianHolidays.AllSaints.Name, "Allerheiligen");
             Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Fronleichnam");
