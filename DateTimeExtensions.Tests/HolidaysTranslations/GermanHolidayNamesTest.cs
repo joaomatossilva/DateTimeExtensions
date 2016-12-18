@@ -16,7 +16,7 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
         }
 
         [Test]
-        public void AssertSpanishHolidaysAreTranslated()
+        public void AssertGermanHolidaysAreTranslated()
         {
             //test holidays still on default culture (en-US)
             Assert.AreEqual(DE_DEHolidayStrategy.GermanUnityDay.Name, "German Unity Day");
