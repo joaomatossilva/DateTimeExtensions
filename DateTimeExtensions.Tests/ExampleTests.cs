@@ -1,11 +1,10 @@
-﻿using System;
-using DateTimeExtensions.Common;
+﻿using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
-using DateTimeExtensions;
-using DateTimeExtensions.WorkingDays;
-using System.Collections.Generic;
 
 namespace DateTimeExtensions.Tests
 {
@@ -83,6 +82,24 @@ namespace DateTimeExtensions.Tests
 
             Assert.IsTrue(nextDay.IsWorkingDay(ptWorkingDayCultureInfo));
             Assert.IsTrue(nextDay.DayOfWeek == DayOfWeek.Tuesday);
+        }
+
+        [Test]
+        public void get_working_days()
+        {
+            var start = new DateTime(2016, 11, 14); //monday
+            var end = new DateTime(2016, 11, 21); // next week monday
+
+            Assert.IsTrue(start.GetWorkingDays(end) == 6);
+        }
+
+        [Test]
+        public void get_working_days_reverse()
+        {
+            var start = new DateTime(2016, 11, 21); //monday
+            var end = new DateTime(2016, 11, 14); // week before monday
+
+            Assert.IsTrue(start.GetWorkingDays(end) == 6);
         }
 
         /* Extensibility */
@@ -230,7 +247,7 @@ namespace DateTimeExtensions.Tests
                 Assert.IsTrue(holidayDate.IsWorkingDay(usWorkingDayCultureInfo) == false,
                     "holiday {0} shouln't be working day in US", holiday.Name);
             }
-            
+
         }
 
         [Test]
