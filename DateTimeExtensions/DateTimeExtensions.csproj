@@ -126,6 +126,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="WorkingDays\HolidayNames.de.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.ko.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.es.resx" />
     <EmbeddedResource Include="WorkingDays\HolidayNames.pt.resx" />
