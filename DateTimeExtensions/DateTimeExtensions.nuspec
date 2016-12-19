@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>@project@</id>
-    <version>@build.number@</version>
+    <id>$id$</id>
+    <version>$version$</version>
     <title>DateTime Extensions</title>
     <summary>Merge of extensions for System.DateTime like localized working days with holidays calculations and natural time date difference.</summary>
-    <authors>@authors@</authors>
-    <owners>@authors@</owners>
+    <authors>kappy</authors>
+    <owners>kappy</owners>
     <projectUrl>https://github.com/kappy/DateTimeExtensions/wiki</projectUrl>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
