@@ -52,6 +52,7 @@
     <Compile Include="TimeExtensions.cs" />
     <Compile Include="TimeOfDay\Time.cs" />
     <Compile Include="WorkingDays\CultureStrategies\ChineseHolidayStrategy.cs" />
+    <Compile Include="WorkingDays\CultureStrategies\DE_ATHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\KO_KRHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\EN_IEHolidayStrategy.cs" />
     <Compile Include="WorkingDays\CultureStrategies\IrelandHolidayStrategy.cs" />
