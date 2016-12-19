@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
@@ -52,7 +48,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (germanUnityDay == null)
                 {
-                    germanUnityDay = new FixedHoliday("German Unity Day", 10, 3);
+                    germanUnityDay = new FixedHoliday("GermanUnityDay", 10, 3);
                 }
                 return germanUnityDay;
             }
