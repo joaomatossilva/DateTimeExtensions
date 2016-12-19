@@ -142,6 +142,9 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v3.10
+- Added translation of german Holidays and a new GetWorkingDays method (thanks @schulz3000)
+
 v3.9
 - Added Vietnam Holidays (thanks @cuongtranba)
 
