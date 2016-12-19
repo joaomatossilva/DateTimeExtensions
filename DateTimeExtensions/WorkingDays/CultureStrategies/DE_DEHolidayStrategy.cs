@@ -36,6 +36,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(ChristianHolidays.Ascension);
             this.InnerHolidays.Add(ChristianHolidays.Pentecost);
+            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
 
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
