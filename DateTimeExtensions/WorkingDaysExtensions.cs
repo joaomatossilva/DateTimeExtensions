@@ -18,10 +18,10 @@
 
 #endregion
 
+using DateTimeExtensions.WorkingDays;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using DateTimeExtensions.WorkingDays;
+using System.Linq;
 
 namespace DateTimeExtensions
 {
@@ -71,6 +71,41 @@ namespace DateTimeExtensions
         public static DateTime AddWorkingDays(this DateTime day, int workingDays)
         {
             return AddWorkingDays(day, workingDays, new WorkingDayCultureInfo());
+        }
+
+        /// <summary>
+        /// Calculates the Workingdays in the range <paramref name="from"/> / <paramref name="to"/>
+        /// </summary>
+        /// <param name="from">The starting day.</param>
+        /// <param name="to">The end day.</param>
+        /// <param name="workingDayCultureInfo">The culture of working days to be used in the calculation. See <seealso cref="WorkingDayCultureInfo"/> for more information.</param>
+        /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
+        public static int GetWorkingDays(DateTime from, DateTime to, WorkingDayCultureInfo workingDayCultureInfo)
+        {
+            if (from.Date == to.Date)
+            {
+                return IsWorkingDay(from.Date) ? 1 : 0;
+            }
+
+            var innerFrom = from < to ? from : to;
+            var innerTo = from < to ? to : from;
+
+            var dayCount = (innerTo.Date - innerFrom.Date).Days;
+
+            var days = Enumerable.Range(0, dayCount).Select(d => innerFrom.AddDays(d));
+
+            return days.Where(w => w.IsWorkingDay(workingDayCultureInfo)).Count();
+        }
+
+        /// <summary>
+        /// Calculates the Workingdays in the range <paramref name="from"/> / <paramref name="to"/>
+        /// </summary>
+        /// <param name="from">The starting day.</param>
+        /// <param name="to">The end day.</param>        
+        /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
+        public static int GetWorkingDays(this DateTime from, DateTime to)
+        {
+            return GetWorkingDays(from, to, new WorkingDayCultureInfo());
         }
 
         /// <summary>
