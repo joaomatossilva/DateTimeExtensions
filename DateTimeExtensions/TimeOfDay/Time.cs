@@ -26,7 +26,7 @@ namespace DateTimeExtensions.TimeOfDay
 {
     public struct Time : IComparable<Time>
     {
-        private const string ParseString = @"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$";
+        private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$", RegexOptions.Compiled);
 
         private string formatString;
 
@@ -131,8 +131,7 @@ namespace DateTimeExtensions.TimeOfDay
 
         public static Time Parse(string valueString)
         {
-            Regex timeValue = new Regex(ParseString);
-            var match = timeValue.Match(valueString);
+            var match = ParseRegex.Match(valueString);
             if (!match.Success || match.Groups.Count != 4)
             {
                 throw new ArgumentException("Value string was not a correct time format", "valueString");
