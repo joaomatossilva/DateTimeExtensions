@@ -1,15 +1,25 @@
 version: '{build}'
+
 pull_requests:
   do_not_increment_build_number: true
+
 branches:  
   only:
   - master
+
 configuration: Release
+
 nuget:
   disable_publish_on_pr: true
-artifacts:
-- path: artifacts\**\*.nupkg
-  name: NuGet
+
+build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+
+#artifacts:
+#- path: artifacts\**\*.nupkg
+#  name: NuGet
+
 deploy:
 - provider: NuGet
   name: production
