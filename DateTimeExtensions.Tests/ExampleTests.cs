@@ -102,6 +102,15 @@ namespace DateTimeExtensions.Tests
             Assert.IsTrue(start.GetWorkingDays(end) == 5);
         }
 
+        [Test]
+        public void get_working_days_same_day()
+        {
+            var start = new DateTime(2016, 11, 14); //monday
+            var end = new DateTime(2016, 11, 14); // same day
+
+            Assert.IsTrue(start.GetWorkingDays(end) == 0);
+        }
+
         /* Extensibility */
 
         [Locale("CustomTest")]

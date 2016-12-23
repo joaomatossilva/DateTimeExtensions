@@ -82,11 +82,6 @@ namespace DateTimeExtensions
         /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
         public static int GetWorkingDays(DateTime from, DateTime to, WorkingDayCultureInfo workingDayCultureInfo)
         {
-            if (from.Date == to.Date)
-            {
-                return IsWorkingDay(from.Date) ? 1 : 0;
-            }
-
             var innerFrom = from < to ? from : to;
             var innerTo = from < to ? to : from;
 
@@ -94,7 +89,7 @@ namespace DateTimeExtensions
 
             var days = Enumerable.Range(0, dayCount).Select(d => innerFrom.AddDays(d));
 
-            return days.Where(w => w.IsWorkingDay(workingDayCultureInfo)).Count();
+            return days.Count(w => w.IsWorkingDay(workingDayCultureInfo));
         }
 
         /// <summary>
