@@ -90,7 +90,7 @@ namespace DateTimeExtensions.Tests
             var start = new DateTime(2016, 11, 14); //monday
             var end = new DateTime(2016, 11, 21); // next week monday
 
-            Assert.IsTrue(start.GetWorkingDays(end) == 6);
+            Assert.IsTrue(start.GetWorkingDays(end) == 5);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace DateTimeExtensions.Tests
             var start = new DateTime(2016, 11, 21); //monday
             var end = new DateTime(2016, 11, 14); // week before monday
 
-            Assert.IsTrue(start.GetWorkingDays(end) == 6);
+            Assert.IsTrue(start.GetWorkingDays(end) == 5);
         }
 
         /* Extensibility */
