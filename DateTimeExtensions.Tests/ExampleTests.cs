@@ -84,33 +84,6 @@ namespace DateTimeExtensions.Tests
             Assert.IsTrue(nextDay.DayOfWeek == DayOfWeek.Tuesday);
         }
 
-        [Test]
-        public void get_working_days()
-        {
-            var start = new DateTime(2016, 11, 14); //monday
-            var end = new DateTime(2016, 11, 21); // next week monday
-
-            Assert.IsTrue(start.GetWorkingDays(end) == 5);
-        }
-
-        [Test]
-        public void get_working_days_reverse()
-        {
-            var start = new DateTime(2016, 11, 21); //monday
-            var end = new DateTime(2016, 11, 14); // week before monday
-
-            Assert.IsTrue(start.GetWorkingDays(end) == 5);
-        }
-
-        [Test]
-        public void get_working_days_same_day()
-        {
-            var start = new DateTime(2016, 11, 14); //monday
-            var end = new DateTime(2016, 11, 14); // same day
-
-            Assert.IsTrue(start.GetWorkingDays(end) == 0);
-        }
-
         /* Extensibility */
 
         [Locale("CustomTest")]
