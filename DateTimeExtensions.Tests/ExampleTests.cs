@@ -1,11 +1,10 @@
-﻿using System;
-using DateTimeExtensions.Common;
+﻿using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
-using DateTimeExtensions;
-using DateTimeExtensions.WorkingDays;
-using System.Collections.Generic;
 
 namespace DateTimeExtensions.Tests
 {
@@ -230,7 +229,7 @@ namespace DateTimeExtensions.Tests
                 Assert.IsTrue(holidayDate.IsWorkingDay(usWorkingDayCultureInfo) == false,
                     "holiday {0} shouln't be working day in US", holiday.Name);
             }
-            
+
         }
 
         [Test]
