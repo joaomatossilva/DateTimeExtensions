@@ -1,4 +1,4 @@
-version: '3.10.0.{build}'
+version: '4.0.0-alpha{build}'
 
 pull_requests:
   do_not_increment_build_number: true
@@ -9,22 +9,17 @@ branches:
 
 configuration: Release
 
+build_script:
+- ps: .\Build.ps1
+
+test: off  
+
 nuget:
   disable_publish_on_pr: true
 
-assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version} $(APPVEYOR_REPO_COMMIT)"
-
-before_build:
-  - nuget restore
-
-build:
-  publish_nuget: true
-  publish_nuget_symbols: true
+artifacts:
+- path: artifacts\**\*.nupkg
+  name: NuGet
 
 deploy:
 - provider: NuGet

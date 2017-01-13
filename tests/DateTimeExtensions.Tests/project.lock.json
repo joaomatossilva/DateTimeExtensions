@@ -2680,7 +2680,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "DateTimeExtensions/1.0.0": {
+      "DateTimeExtensions/4.0.0-alpha": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.1",
         "dependencies": {
@@ -7908,7 +7908,7 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "DateTimeExtensions/1.0.0": {
+    "DateTimeExtensions/4.0.0-alpha": {
       "type": "project",
       "path": "../../src/DateTimeExtensions/project.json",
       "msbuildProject": "../../src/DateTimeExtensions/DateTimeExtensions.xproj"
