@@ -12,7 +12,7 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
         public void Setup()
         {
             //setup a default culture
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+           CultureInfo.CurrentUICulture = new CultureInfo("en-US");
         }
 
         [Test]
@@ -21,8 +21,8 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
             //test holidays still on default culture (en-US)
             Assert.AreEqual(DE_DEHolidayStrategy.GermanUnityDay.Name, "German Unity Day");
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("de-DE");
-            Assert.AreEqual("de-DE", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+            CultureInfo.CurrentUICulture = new CultureInfo("de-DE");
+            Assert.AreEqual("de-DE", CultureInfo.CurrentUICulture.Name);
 
             Assert.AreEqual(DE_DEHolidayStrategy.GermanUnityDay.Name, "Tag der Deutschen Einheit");
 

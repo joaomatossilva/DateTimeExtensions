@@ -107,7 +107,7 @@ namespace DateTimeExtensions.Tests
             //26-04-2011 - end
 
             DateTime endDate = startDate.AddWorkingDays(1, pt_ci);
-            Assert.IsTrue(endDate == startDate.AddDays(5), "Expecting 26-04-2011 but got " + endDate.ToShortDateString());
+            Assert.IsTrue(endDate == startDate.AddDays(5), "Expecting 26-04-2011 but got " + endDate.ToString("dd-MM-yyyy"));
         }
 
         [Test]

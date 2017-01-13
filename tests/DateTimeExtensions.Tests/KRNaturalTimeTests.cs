@@ -20,7 +20,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToNaturalText(toTime, false, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 시간", naturalText);
         }
 
@@ -32,7 +33,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToNaturalText(toTime, true, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("3 시간", naturalText);
         }
 
@@ -45,7 +47,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 시간 30 분", naturalText);
         }
 
@@ -57,7 +60,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 년 2 개월 3 일 4 시간 5 분 6 초", naturalText);
         }
 
@@ -70,8 +74,10 @@ namespace DateTimeExtensions.Tests
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
             var naturalTextReverse = toTime.ToExactNaturalText(fromTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
-            Assert.IsNotNullOrEmpty(naturalTextReverse);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
+            Assert.IsNotNull(naturalTextReverse);
+            Assert.IsNotEmpty(naturalTextReverse);
             Assert.AreEqual(naturalTextReverse, naturalText);
         }
 

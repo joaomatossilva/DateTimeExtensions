@@ -22,14 +22,14 @@ namespace DateTimeExtensions.Tests
             cultureInfo = CultureInfo.CurrentCulture;
 
             //change the default culture to en-GB
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB");
+            CultureInfo.CurrentCulture = new CultureInfo("en-GB");
         }
 
         [TestFixtureTearDown]
         public void TearDown()
         {
             //restore the default culture
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            CultureInfo.CurrentCulture = cultureInfo;
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace DateTimeExtensions.Tests
         {
             var compareTime = new Time(13, 59, 58, "h:mm:ss tt");
             var time = compareTime.ToString();
-            string timeValue = "1:59:58 " + Thread.CurrentThread.CurrentCulture.DateTimeFormat.PMDesignator;
+            string timeValue = "1:59:58 " + CultureInfo.CurrentCulture.DateTimeFormat.PMDesignator;
             Assert.AreEqual(time, timeValue);
         }
 

@@ -20,7 +20,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToNaturalText(toTime, false, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 hours", naturalText);
         }
 
@@ -32,7 +33,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToNaturalText(toTime, true, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("3 hours", naturalText);
         }
 
@@ -45,7 +47,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 hours, 30 minutes", naturalText);
         }
 
@@ -57,7 +60,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 years, 2 months, 3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
         }
 
@@ -69,7 +73,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
         }
 
@@ -81,7 +86,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
         }
 
@@ -93,7 +99,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
         }
 
@@ -105,7 +112,8 @@ namespace DateTimeExtensions.Tests
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
             Assert.AreEqual("2 years, 2 months, 3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
         }
 
@@ -118,8 +126,10 @@ namespace DateTimeExtensions.Tests
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
             var naturalTextReverse = toTime.ToExactNaturalText(fromTime, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText);
-            Assert.IsNotNullOrEmpty(naturalTextReverse);
+            Assert.IsNotNull(naturalText);
+            Assert.IsNotEmpty(naturalText);
+            Assert.IsNotNull(naturalTextReverse);
+            Assert.IsNotEmpty(naturalTextReverse);
             Assert.AreEqual(naturalTextReverse, naturalText);
         }
 
@@ -134,8 +144,10 @@ namespace DateTimeExtensions.Tests
             var naturalText_plural = fromTime.ToNaturalText(toTime_plural, true, foo_ci);
             var naturalText_single = fromTime.ToNaturalText(toTime_single, true, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText_plural);
-            Assert.IsNotNullOrEmpty(naturalText_single);
+            Assert.IsNotNull(naturalText_plural);
+            Assert.IsNotEmpty(naturalText_plural);
+            Assert.IsNotNull(naturalText_single);
+            Assert.IsNotEmpty(naturalText_single);
             Assert.AreEqual("2 years", naturalText_plural);
             Assert.AreEqual("1 year", naturalText_single);
         }
@@ -150,8 +162,10 @@ namespace DateTimeExtensions.Tests
             var naturalText_plural = fromTime.ToNaturalText(toTime_plural, true, foo_ci);
             var naturalText_single = fromTime.ToNaturalText(toTime_single, true, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText_plural);
-            Assert.IsNotNullOrEmpty(naturalText_single);
+            Assert.IsNotNull(naturalText_plural);
+            Assert.IsNotEmpty(naturalText_plural);
+            Assert.IsNotNull(naturalText_single);
+            Assert.IsNotEmpty(naturalText_single);
             Assert.AreEqual("2 months", naturalText_plural);
             Assert.AreEqual("1 month", naturalText_single);
         }
@@ -166,8 +180,10 @@ namespace DateTimeExtensions.Tests
             var naturalText_plural = fromTime.ToExactNaturalText(toTime_plural, foo_ci);
             var naturalText_single = fromTime.ToExactNaturalText(toTime_single, foo_ci);
 
-            Assert.IsNotNullOrEmpty(naturalText_plural);
-            Assert.IsNotNullOrEmpty(naturalText_single);
+            Assert.IsNotNull(naturalText_plural);
+            Assert.IsNotEmpty(naturalText_plural);
+            Assert.IsNotNull(naturalText_single);
+            Assert.IsNotEmpty(naturalText_single);
             Assert.AreEqual("2 days, 2 hours, 2 minutes, 2 seconds", naturalText_plural);
             Assert.AreEqual("1 day, 1 hour, 1 minute, 1 second", naturalText_single);
         }

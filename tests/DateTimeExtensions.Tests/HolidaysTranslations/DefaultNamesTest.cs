@@ -16,7 +16,7 @@ namespace DateTimeExtensions.Tests
         public void Setup()
         {
             //setup a default culture
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
         }
 
         [Test]
