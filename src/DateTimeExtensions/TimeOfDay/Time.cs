@@ -27,7 +27,9 @@ namespace DateTimeExtensions.TimeOfDay
 {
     public struct Time : IComparable<Time>
     {
-        private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$", RegexOptions.Compiled);
+        //TODO: netstandart 1.1 don't support RegexOptions.Compiled, but a compiler directive for futher versions might enable this
+        //private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$", RegexOptions.Compiled);
+        private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$");
 
         private string formatString;
 

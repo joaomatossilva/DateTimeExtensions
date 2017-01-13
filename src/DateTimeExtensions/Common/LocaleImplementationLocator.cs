@@ -29,8 +29,8 @@ namespace DateTimeExtensions.Common
         public static T FindImplementationOf<T>(string locale)
         {
             var type = typeof (T);
-            var types = type.GetTypeInfo().Assembly.GetTypes()
-                .Where(p => type.GetTypeInfo().IsAssignableFrom(p) && p.GetTypeInfo().GetCustomAttributes(typeof(LocaleAttribute), false)
+            var types = type.GetTypeInfo().Assembly.ExportedTypes
+                .Where(p => type.GetTypeInfo().IsAssignableFrom(p.GetTypeInfo()) && p.GetTypeInfo().GetCustomAttributes(typeof(LocaleAttribute), false)
                     .Any(a => ((LocaleAttribute) a).Locale.Equals(locale)));
 
             var implementationType = types.FirstOrDefault();
@@ -46,18 +46,6 @@ namespace DateTimeExtensions.Common
                 return default(T);
             }
             return instance;
-        }
-
-        private static Type[] GetTypesFromAssemblySafe(Assembly assembly)
-        {
-            try
-            {
-                return assembly.GetTypes();
-            }
-            catch
-            {
-                return new Type[] {};
-            }
         }
     }
 }
