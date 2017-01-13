@@ -23,7 +23,7 @@ artifacts:
 
 deploy:
 - provider: NuGet
-name: ci
+  name: ci
   server: https://www.myget.org/F/datetimeextensions/api/v2/package
   api_key:
     secure: YcG+jkipdRz1ahroGCiCndKtgEcRaVtEzQYSNp5Mx5ULWPpZZ/MvwMsggLCYZ3bH
