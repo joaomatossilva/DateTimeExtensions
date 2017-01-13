@@ -47,7 +47,7 @@ namespace DateTimeExtensions.WorkingDays
         public DateTime GetDayOnYear(int year)
         {
             var firstDayOnGregoryanCalendar = new DateTime(year, 1, 1);
-            var dayInstance = new DateTime(Calendar.GetYear(firstDayOnGregoryanCalendar), Month, Day, Calendar);
+            var dayInstance = Calendar.ToDateTime(Calendar.GetYear(firstDayOnGregoryanCalendar), Month, Day, 0, 0, 0, 0);
 
             //check if the instance day falls on previous year on Gregorian calendar.
             // the instance should fall between year and year + 1. 
@@ -62,7 +62,7 @@ namespace DateTimeExtensions.WorkingDays
 
         public bool IsTheSameDay(DateTime day)
         {
-            var thisDayInYear = new DateTime(Calendar.GetYear(day), Month, Day, Calendar);
+            var thisDayInYear = Calendar.ToDateTime(Calendar.GetYear(day), Month, Day, 0, 0, 0, 0);
             return thisDayInYear == day.Date;
         }
     }

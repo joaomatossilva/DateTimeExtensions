@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -59,7 +60,7 @@ namespace DateTimeExtensions.TimeOfDay
         public Time(int hour = 0, int minute = 0, int second = 0, string formatString = "")
         {
             if (formatString == string.Empty)
-                this.formatString = Thread.CurrentThread.CurrentCulture.DateTimeFormat.LongTimePattern;
+                this.formatString = CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern;
             else
                 this.formatString = formatString;
 

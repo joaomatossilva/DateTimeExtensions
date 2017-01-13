@@ -61,15 +61,15 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
 
         protected override string Pluralize(string text)
         {
-            if (text.Equals("année", StringComparison.InvariantCultureIgnoreCase))
+            if (text.Equals("année", StringComparison.OrdinalIgnoreCase))
             {
                 return "ans";
             }
-            if (text.Equals("mois", StringComparison.InvariantCultureIgnoreCase))
+            if (text.Equals("mois", StringComparison.OrdinalIgnoreCase))
             {
                 return "mois";
             }
-            if (text.Equals("jour", StringComparison.InvariantCultureIgnoreCase))
+            if (text.Equals("jour", StringComparison.OrdinalIgnoreCase))
             {
                 return "journées";
             }

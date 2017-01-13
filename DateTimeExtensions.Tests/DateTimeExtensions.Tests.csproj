@@ -79,12 +79,6 @@
     <Compile Include="TimeTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DateTimeExtensions\DateTimeExtensions.csproj">
-      <Project>{EB6355F3-C754-4C8E-9490-D80372D19EA8}</Project>
-      <Name>DateTimeExtensions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Reflection;
 using System.Resources;
 
 namespace DateTimeExtensions.WorkingDays
@@ -50,7 +51,7 @@ namespace DateTimeExtensions.WorkingDays
 
 
         private static ResourceManager resourceManager =
-            new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof (Holiday).Assembly);
+            new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof (Holiday).GetTypeInfo().Assembly);
 
         public static ResourceManager ResourceManager
         {
