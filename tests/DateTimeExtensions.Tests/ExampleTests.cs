@@ -118,6 +118,7 @@ namespace DateTimeExtensions.Tests
             }
         }
 
+        [Ignore("For now discovering Strategies outside of the own DateTimeExtensions library is not supported")]
         [Test]
         public void provide_custom_strategies()
         {

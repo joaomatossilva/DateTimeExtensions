@@ -12,7 +12,7 @@ namespace DateTimeExtensions.Tests
     [TestFixture]
     public class PortugueseHolidaysNamesTest
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void Setup()
         {
             //setup a default culture

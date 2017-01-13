@@ -14,7 +14,7 @@ namespace DateTimeExtensions.Tests
         private WorkingDayCultureInfo dateTimeCulture;
 
         #region test cases
-        private List<DateTime> HungKingsCases = new List<DateTime>()
+        private static readonly List<DateTime> HungKingsCases = new List<DateTime>()
             {
                 new DateTime(2015,3,10),
                 new DateTime(2112,3,10),
@@ -23,7 +23,7 @@ namespace DateTimeExtensions.Tests
                 new DateTime(2017,3,10),
             };
 
-        private List<DateTime> LiberationCases = new List<DateTime>()
+        private static readonly List<DateTime> LiberationCases = new List<DateTime>()
             {
                 new DateTime(2015,4,30),
                 new DateTime(2112,4,30),
@@ -31,7 +31,7 @@ namespace DateTimeExtensions.Tests
                 new DateTime(2022,4,30),
                 new DateTime(2017,4,30),
             };
-        private List<DateTime> InternationalWorkersCases = new List<DateTime>()
+        private static readonly List<DateTime> InternationalWorkersCases = new List<DateTime>()
             {
                 new DateTime(2015,5,1),
                 new DateTime(2112,5,1),
@@ -39,7 +39,7 @@ namespace DateTimeExtensions.Tests
                 new DateTime(2022,5,1),
                 new DateTime(2017,5,1),
             };
-        private List<DateTime> NationalCases = new List<DateTime>()
+        private static readonly List<DateTime> NationalCases = new List<DateTime>()
             {
                 new DateTime(2015,9,2),
                 new DateTime(2112,9,2),
@@ -48,7 +48,7 @@ namespace DateTimeExtensions.Tests
                 new DateTime(2017,9,2),
             };
 
-        private List<DateTime> NewYearCases = new List<DateTime>()
+        private static readonly List<DateTime> NewYearCases = new List<DateTime>()
             {
                 new DateTime(2015,1,1),
                 new DateTime(2112,1,1),
