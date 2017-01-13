@@ -1,0 +1,26 @@
+﻿{
+  "version": "4.0.0-alpha-*",
+  "description": "This project is a merge of several common DateTime operations on the form of extensions to System.DateTime, including natural date difference text (precise and human rounded), holidays and working days calculations on several culture locales. Feedback will be much appreciated.",
+  "authors": [ "kappy" ],
+  "title": "DateTime Extensions",
+  "packOptions": {
+    "tags": [ "Natural", "Date", "Time", "Relative", "Calendar", "Holiday", "Workingday", "DateTime" ],
+    "projectUrl": "https://github.com/kappy/DateTimeExtensions/wiki",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/kappy/datetimeextensions"
+    }
+  },
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "System.Globalization.Calendars": "4.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.1": {
+      "imports": "dnxcore50"
+    }
+  }
+}

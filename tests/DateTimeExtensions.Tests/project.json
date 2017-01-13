@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "DateTimeExtensions": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "Nunit": "3.6.0",
+    "dotnet-test-nunit": "3.4.0-beta-3",
+    "Moq": "4.6.38-alpha"
+  },
+
+  "testRunner": "nunit",
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        }
+      },
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ]
+    }
+
+  }
+}

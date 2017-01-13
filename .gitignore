@@ -9,3 +9,4 @@ packages/
 .build/
 .deploy/
 .test/
+/.vs
