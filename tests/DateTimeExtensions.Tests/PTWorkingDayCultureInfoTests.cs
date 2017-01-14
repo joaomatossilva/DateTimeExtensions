@@ -26,7 +26,7 @@ namespace DateTimeExtensions.Tests
         public void can_locate_by_culture_info()
         {
             string name = "pt-PT";
-            CultureInfo.CurrentCulture = new CultureInfo(name);
+            new CultureInfo(name).SetCurrentCultureInfo();
             WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo();
             Assert.IsTrue(name == workingdayCultureInfo.Name);
             Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));

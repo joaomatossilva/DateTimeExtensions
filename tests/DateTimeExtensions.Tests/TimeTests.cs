@@ -22,14 +22,14 @@ namespace DateTimeExtensions.Tests
             cultureInfo = CultureInfo.CurrentCulture;
 
             //change the default culture to en-GB
-            CultureInfo.CurrentCulture = new CultureInfo("en-GB");
+            new CultureInfo("en-GB").SetCurrentCultureInfo();
         }
 
         [TestFixtureTearDown]
         public void TearDown()
         {
             //restore the default culture
-            CultureInfo.CurrentCulture = cultureInfo;
+            cultureInfo.SetCurrentCultureInfo();
         }
 
         [Test]

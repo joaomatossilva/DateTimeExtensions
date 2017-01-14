@@ -16,7 +16,7 @@ namespace DateTimeExtensions.Tests
         public void Setup()
         {
             //setup a default culture
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
+            new CultureInfo("en-US").SetCurrentUICultureInfo();
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_PTHolidayStrategy.RepublicDay.Name, "Republic Day");
             Assert.AreEqual(PT_PTHolidayStrategy.RestorationOfIndependance.Name, "Restoration of Independance");
 
-            CultureInfo.CurrentUICulture = new CultureInfo("pt-PT");
+            new CultureInfo("pt-PT").SetCurrentUICultureInfo();
             Assert.AreEqual("pt-PT", CultureInfo.CurrentUICulture.Name);
 
             Assert.AreEqual(PT_PTHolidayStrategy.FreedomDay.Name, "Dia da Liberdade");
@@ -61,7 +61,7 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(PT_BRHolidayStrategy.TiradentesDay.Name, "Tiradentes Day");
             */
             //System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pt-BR");
-            CultureInfo.CurrentUICulture = new CultureInfo("pt-BR");
+            new CultureInfo("pt-BR").SetCurrentUICultureInfo();
             Assert.AreEqual("pt-BR", CultureInfo.CurrentUICulture.Name);
 
             Assert.AreEqual(PT_BRHolidayStrategy.IndependanceDay.Name, "Dia da Independência");

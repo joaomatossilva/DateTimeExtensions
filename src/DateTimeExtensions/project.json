@@ -13,14 +13,14 @@
     }
   },
 
-  "dependencies": {
-    "NETStandard.Library": "1.6.0",
-    "System.Globalization.Calendars": "4.0.1"
-  },
-
   "frameworks": {
+    "net35": {},
     "netstandard1.1": {
-      "imports": "dnxcore50"
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "System.Globalization.Calendars": "4.0.1"
+      }
     }
   }
 }

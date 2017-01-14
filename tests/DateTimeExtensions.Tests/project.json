@@ -2,7 +2,7 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "DateTimeExtensions": "1.0.0-*",
+    "DateTimeExtensions": "4.0.0-*",
     "NETStandard.Library": "1.6.0",
     "Nunit": "3.6.0",
     "dotnet-test-nunit": "3.4.0-beta-3",
@@ -12,6 +12,11 @@
   "testRunner": "nunit",
 
   "frameworks": {
+    "net451": {
+      "dependencies": {
+        "Microsoft.NETCore.Platforms": "1.1.0"
+      }
+    },
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {

@@ -16,7 +16,7 @@ namespace DateTimeExtensions.Tests
         public void Setup()
         {
             //setup a default culture
-            CultureInfo.CurrentUICulture = new CultureInfo("en-US");
+            new CultureInfo("en-US").SetCurrentUICultureInfo();
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace DateTimeExtensions.Tests
             //test holidays still on default culture (en-US)
             Assert.AreEqual(KO_KRHolidayStrategy.Seolnal.Name, "Seolnal");
 
-            CultureInfo.CurrentUICulture = new CultureInfo("ko-KR");
+            new CultureInfo("ko-KR").SetCurrentUICultureInfo();
             Assert.AreEqual("ko-KR", CultureInfo.CurrentUICulture.Name);
 
             Assert.AreEqual(KO_KRHolidayStrategy.Seolnal.Name, "설날");

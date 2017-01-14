@@ -11,7 +11,7 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
         [TestFixtureSetUp]
         public void Setup()
         {
-            CultureInfo.CurrentUICulture = new CultureInfo("vi-VN");
+            new CultureInfo("vi-VN").SetCurrentUICultureInfo();
         }
 
         [Test]

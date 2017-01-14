@@ -39,7 +39,7 @@ namespace DateTimeExtensions.Tests
         public void globally_recomended_calculation()
         {
             //Ensure we're running on portuguese context
-            CultureInfo.CurrentCulture = new CultureInfo("pt-PT");
+            new CultureInfo("pt-PT").SetCurrentCultureInfo();
 
             var friday = new DateTime(2011, 5, 13); // A friday
             var friday_plus_two_working_days = friday.AddWorkingDays(2); // friday + 2 working days
