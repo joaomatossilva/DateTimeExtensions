@@ -5,6 +5,7 @@ _ReSharper.*
 /**/bin/**/*
 /**/obj/**/*
 packages/
+*.lock.json
 
 .build/
 .deploy/
