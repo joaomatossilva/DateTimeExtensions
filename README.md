@@ -143,6 +143,11 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v4.0
+- Added support for .net Core using netstandard 1.1
+- breaking change: Locating custom strategies is now not supported by default to look outside own DateTimeExtensions assembly.
+One must override the location strategy on WorkingDayCultureInfo to specify the list of assemblies where to look.
+
 v3.10
 - Added translation of german Holidays and a new GetWorkingDays method (thanks @schulz3000)
 
