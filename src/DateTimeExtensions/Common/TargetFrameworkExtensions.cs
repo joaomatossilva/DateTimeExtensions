@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace DateTimeExtensions.Common
 {
-    public static class TargetFrameworkExtensions
+    internal static class TargetFrameworkExtensions
     {
 #if NET35
         public static Type GetTypeInfo(this Type type)
@@ -13,7 +13,7 @@ namespace DateTimeExtensions.Common
         }
 #endif
 
-        public static IEnumerable<Type> GetAssemblyTypes(this Assembly assembly)
+        internal static IEnumerable<Type> GetAssemblyTypes(this Assembly assembly)
         {
 #if NET35
             return assembly.GetTypes();

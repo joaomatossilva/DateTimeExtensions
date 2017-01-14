@@ -8,10 +8,10 @@ namespace DateTimeExtensions.WorkingDays
     /// This is a copy of <see cref="DateTimeExtensions.Common.TargetFrameworkExtensions"/> only with the GetTypeInfo method because
     /// the Resorces are auto-generated and they use this method that doensn't exist on net35
     /// </summary>
-    public static class TargetFrameworkExtensions
+    internal static class TargetFrameworkExtensions
     {
 #if NET35
-        public static Type GetTypeInfo(this Type type)
+        internal static Type GetTypeInfo(this Type type)
         {
             return type;
         }

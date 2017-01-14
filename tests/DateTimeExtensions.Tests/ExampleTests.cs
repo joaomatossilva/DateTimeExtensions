@@ -4,7 +4,9 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Reflection;
 using System.Threading;
+using DateTimeExtensions.WorkingDays.CultureStrategies;
 
 namespace DateTimeExtensions.Tests
 {
@@ -118,11 +120,20 @@ namespace DateTimeExtensions.Tests
             }
         }
 
-        [Ignore("For now discovering Strategies outside of the own DateTimeExtensions library is not supported")]
         [Test]
         public void provide_custom_strategies()
         {
-            var customWorkingDayCultureInfo = new WorkingDayCultureInfo("CustomTest");
+            var thisAssembly = typeof(ExampleTests).GetTypeInfo().Assembly;
+            var customWorkingDayCultureInfo = new WorkingDayCultureInfo("CustomTest")
+            {
+                LocateHolidayStrategy = name =>
+                    LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name, thisAssembly) ??
+                    new DefaultHolidayStrategy(),
+                LocateWorkingDayOfWeekStrategy = name =>
+                    LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name, thisAssembly) ??
+                    new DefaultWorkingDayOfWeekStrategy()
+        };
+
 
             Assert.IsTrue(DateTime.Today.IsWorkingDay(customWorkingDayCultureInfo) == false);
             Assert.IsTrue(DateTime.Today.AddDays(1).IsWorkingDay(customWorkingDayCultureInfo) == true);

@@ -26,11 +26,15 @@ namespace DateTimeExtensions.Common
 {
     public static class LocaleImplementationLocator
     {
-        public static T FindImplementationOf<T>(string locale)
+        public static T FindImplementationOf<T>(string locale, params Assembly[] assemblies)
         {
-            var type = typeof (T);
-            var types = type.GetTypeInfo().Assembly.GetAssemblyTypes()
-                .Where(p => type.GetTypeInfo().IsAssignableFrom(p.GetTypeInfo()) && p.GetTypeInfo().GetCustomAttributes(typeof(LocaleAttribute), false)
+            var type = typeof(T).GetTypeInfo();
+            if (assemblies == null || assemblies.Length == 0)
+            {
+                assemblies = new [] { type.Assembly };
+            }
+            var types = assemblies.SelectMany(a => a.GetAssemblyTypes())
+                .Where(p => type.IsAssignableFrom(p.GetTypeInfo()) && p.GetTypeInfo().GetCustomAttributes(typeof(LocaleAttribute), false)
                     .Any(a => ((LocaleAttribute) a).Locale.Equals(locale)));
 
             var implementationType = types.FirstOrDefault();
