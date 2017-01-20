@@ -64,7 +64,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (nationalHoliday == null)
                 {
-                    nationalHoliday = new FixedHoliday("NationalHoliday", 7, 21);
+                    nationalHoliday = new FixedHoliday("Belgium_NationalHoliday", 7, 21);
                 }
                 return nationalHoliday;
             }
