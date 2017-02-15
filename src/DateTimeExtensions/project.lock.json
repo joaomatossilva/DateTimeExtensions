@@ -2,7 +2,6 @@
   "locked": false,
   "version": 2,
   "targets": {
-    ".NETFramework,Version=v3.5": {},
     ".NETStandard,Version=v1.1": {
       "Microsoft.NETCore.Platforms/1.0.1": {
         "type": "package",
@@ -2546,7 +2545,6 @@
   },
   "projectFileDependencyGroups": {
     "": [],
-    ".NETFramework,Version=v3.5": [],
     ".NETStandard,Version=v1.1": [
       "NETStandard.Library >= 1.6.0",
       "System.Globalization.Calendars >= 4.0.1"

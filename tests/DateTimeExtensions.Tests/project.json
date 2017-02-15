@@ -12,11 +12,6 @@
   "testRunner": "nunit",
 
   "frameworks": {
-    "net451": {
-      "dependencies": {
-        "Microsoft.NETCore.Platforms": "1.1.0"
-      }
-    },
     "netcoreapp1.0": {
       "dependencies": {
         "Microsoft.NETCore.App": {
