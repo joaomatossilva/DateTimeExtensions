@@ -144,7 +144,8 @@ Example: Portugal_FreedomDay
 
 ## Version History
 v4.0
-- Added support for .net Core using netstandard 1.1
+- Added support for .net Core using netstandard 1.1 
+- Because the last bullet, it was dropped support of the v3.5 Framework. Mminimum framework is now 4.5.
 - breaking change: Locating custom strategies is now not supported by default to look outside own DateTimeExtensions assembly.
 One must override the location strategy on WorkingDayCultureInfo to specify the list of assemblies where to look.
 
