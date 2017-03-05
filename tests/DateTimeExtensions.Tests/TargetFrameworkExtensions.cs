@@ -6,7 +6,7 @@ namespace DateTimeExtensions.Tests
     {
         public static void SetCurrentCultureInfo(this CultureInfo cultureInfo)
         {
-#if NET45
+#if NET451
             System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
 #else
             CultureInfo.CurrentCulture = cultureInfo;
@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests
 
         public static void SetCurrentUICultureInfo(this CultureInfo cultureInfo)
         {
-#if NET45
+#if NET451
             System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
 #else
             CultureInfo.CurrentUICulture = cultureInfo;
