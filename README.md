@@ -143,6 +143,10 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v4.0.1
+- Targeting netstandard 1.3 due to System.Globalization.Calendars not supported in 1.1
+- Added target Framework 4.5 (to redure the impact of moving to netstandard 1.3 and to support older Nuget clients, ty jbogard by the tip)
+
 v4.0
 - Added support for .net Core using netstandard 1.1 
 - Because the last bullet, it was dropped support of the v3.5 Framework. Mminimum framework is now 4.5.
