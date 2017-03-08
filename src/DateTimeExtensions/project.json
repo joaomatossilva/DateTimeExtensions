@@ -1,15 +1,15 @@
 ﻿{
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "This project is a merge of several common DateTime operations on the form of extensions to System.DateTime, including natural date difference text (precise and human rounded), holidays and working days calculations on several culture locales. Feedback will be much appreciated.",
-  "authors": [ "kappy" ],
+  "authors": [ "Joao Matos Silva" ],
   "title": "DateTime Extensions",
   "packOptions": {
     "tags": [ "Natural", "Date", "Time", "Relative", "Calendar", "Holiday", "Workingday", "DateTime" ],
-    "projectUrl": "https://github.com/kappy/DateTimeExtensions/wiki",
+    "projectUrl": "https://github.com/joaomatossilva/DateTimeExtensions/wiki",
     "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
     "repository": {
       "type": "git",
-      "url": "git://github.com/kappy/datetimeextensions"
+      "url": "git://github.com/joaomatossilva/datetimeextensions"
     }
   },
   "frameworks": {

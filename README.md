@@ -5,7 +5,7 @@ DateTime Extensions
 [![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/) 
 [![MyGet Pre Release](https://img.shields.io/myget/datetimeextensions/vpre/DateTimeExtensions.svg)](https://www.myget.org/feed/datetimeextensions/package/nuget/DateTimeExtensions)
 [![AppVeyor](https://img.shields.io/appveyor/ci/kappy/datetimeextensions.svg)](https://ci.appveyor.com/project/kappy/datetimeextensions)
-[![GitHub contributors](https://img.shields.io/github/contributors/kappy/datetimeextensions.svg)](https://github.com/kappy/DateTimeExtensions)
+[![GitHub contributors](https://img.shields.io/github/contributors/joaomatossilva/datetimeextensions.svg)](https://github.com/joaomatossilva/DateTimeExtensions)
 
 
 This project is a merge of several common DateTime operations in the form of 
@@ -143,6 +143,9 @@ Example: Portugal_FreedomDay
 
 
 ## Version History
+v4.0.2
+- Repack to allow github username change
+
 v4.0.1
 - Targeting netstandard 1.3 due to System.Globalization.Calendars not supported in 1.1
 - Added target Framework 4.5 (to redure the impact of moving to netstandard 1.3 and to support older Nuget clients, ty jbogard by the tip)
