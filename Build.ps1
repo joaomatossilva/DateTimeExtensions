@@ -4,7 +4,10 @@ $revision = @{ $true = $env:APPVEYOR_BUILD_NUMBER; $false = 1 }[$env:APPVEYOR_BU
 $revision = "rev{0:D4}" -f [convert]::ToInt32($revision, 10)
 
 # Remove revision suffix if the build was triggered by a tag
-$revision = @{ $true = $NULL; $false = $revision }[$env:APPVEYOR_REPO_TAG -e $true]
+if($env:APPVEYOR_REPO_TAG -eq $true)
+{
+	$revision = $NULL
+}
 
 
 # Restore packages and build product
