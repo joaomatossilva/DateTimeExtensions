@@ -1,4 +1,5 @@
-if(Test-Path .\artifacts) { Remove-Item .\artifacts -Force -Recurse }
+$packageOutputFolder = "$PSScriptRoot\artifacts"
+if(Test-Path $packageOutputFolder) { Remove-Item $packageOutputFolder -Force -Recurse }
 
 $revision = @{ $true = $env:APPVEYOR_BUILD_NUMBER; $false = 1 }[$env:APPVEYOR_BUILD_NUMBER -ne $NULL];
 $revision = "rev{0:D4}" -f [convert]::ToInt32($revision, 10)
@@ -41,8 +42,8 @@ Write-Host "Packaging..." -ForegroundColor "Green"
 Get-ChildItem "DateTimeExtensions*.csproj" -Recurse | Where-Object { $_.Name -NotLike "*.Tests*" } |
 ForEach-Object {
     if ($revision) {
-        & dotnet pack "$_" -c Release -o .\artifacts --version-suffix "$revision"   
+        & dotnet pack "$_" -c Release -o $packageOutputFolder --version-suffix "$revision"   
     } else {
-        & dotnet pack "$_" -c Release -o .\artifacts
+        & dotnet pack "$_" -c Release -o $packageOutputFolder
     }
 }
