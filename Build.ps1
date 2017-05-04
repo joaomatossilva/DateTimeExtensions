@@ -1,7 +1,10 @@
 if(Test-Path .\artifacts) { Remove-Item .\artifacts -Force -Recurse }
 
 $revision = @{ $true = $env:APPVEYOR_BUILD_NUMBER; $false = 1 }[$env:APPVEYOR_BUILD_NUMBER -ne $NULL];
-$revision = "{0:D4}" -f [convert]::ToInt32($revision, 10)
+$revision = "rev{0:D4}" -f [convert]::ToInt32($revision, 10)
+
+# Remove revision suffix if the build was triggered by a tag
+$revision = @{ $true = $NULL; $false = $revision }[$env:APPVEYOR_REPO_TAG -e $true]
 
 
 # Restore packages and build product
@@ -16,7 +19,7 @@ if ($LASTEXITCODE -ne 0)
 Write-Host "Building..." -ForegroundColor "Green"
 Get-ChildItem "DateTimeExtensions*.csproj" -Recurse |
 ForEach-Object {
-    if ($PreReleaseSuffix) {
+    if ($revision) {
         & dotnet build "$_" --version-suffix "$revision"
     } else {
         & dotnet build "$_"
