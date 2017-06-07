@@ -142,4 +142,4 @@ country name to avoid name colisison.
 Example: Portugal_FreedomDay
 
 ### Changelog
-[Changelog](CHAGELOG) 
+[Changelog](CHANGELOG) 
