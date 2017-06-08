@@ -61,7 +61,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             {
                 return text + "n";
             }
-            return text + "en";
+            return text + "e";
         }
     }
 }
