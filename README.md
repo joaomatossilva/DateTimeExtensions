@@ -143,3 +143,6 @@ Example: Portugal_FreedomDay
 
 ### Changelog
 [Changelog](CHANGELOG.md) 
+
+### License
+[License](LICENSE.md) 
