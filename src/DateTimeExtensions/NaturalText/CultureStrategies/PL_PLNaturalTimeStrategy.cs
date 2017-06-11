@@ -1,4 +1,8 @@
-﻿using DateTimeExtensions.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.NaturalText.CultureStrategies
 {
@@ -35,23 +39,40 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "sekunda"; }
         }
 
-        protected override string Pluralize(string text)
+        protected override bool NeedExactValueForPluralizing { get { return true; } }
+
+        protected override string Pluralize(string text, int value)
         {
+            int[] numbersWithDifferentDeclination = { 2, 3, 4 };
+
             if (text.Equals("rok", StringComparison.OrdinalIgnoreCase))
             {
-                return "lata";
+                if(numbersWithDifferentDeclination.Contains(value))
+                {
+                    return "lata";
+                }
+                return "lat";
             }
             if (text.Equals("miesiąc", StringComparison.OrdinalIgnoreCase))
             {
-                return "miesiące";
+                if (numbersWithDifferentDeclination.Contains(value))
+                {
+                    return "miesiące";
+                }
+                return "miesięcy";
             }
             if (text.Equals("dzień", StringComparison.OrdinalIgnoreCase))
             {
                 return "dni";
             }
-            if (text.EndsWith("a"))
+            
+            if(text.EndsWith("a"))
             {
-                return text.Remove(text.Length - 1) + "y";
+                if(numbersWithDifferentDeclination.Contains(value))
+                {
+                    return text.Remove(text.Length - 1) + "y";
+                }
+                return text.Remove(text.Length - 1);
             }
             return base.Pluralize(text);
         }
