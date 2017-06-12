@@ -1,4 +1,8 @@
-﻿using DateTimeExtensions.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.NaturalText.CultureStrategies
 {
@@ -35,23 +39,43 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "sekunda"; }
         }
 
-        protected override string Pluralize(string text)
+        protected override bool NeedExactValueForPluralizing { get { return true; } }
+
+        protected override string Pluralize(string text, int value)
         {
+            List<int> lastDigitsWithDifferentDeclination = new List<int> { 2, 3, 4 };
+            List<int> exceptions = new List<int> { 12, 13, 14 };
+
+            bool hasDifferentDeclination = lastDigitsWithDifferentDeclination.Contains((int)(value % 10)) && !exceptions.Contains((int)(value % 100));
+
             if (text.Equals("rok", StringComparison.OrdinalIgnoreCase))
             {
-                return "lata";
+                if(hasDifferentDeclination)
+                {
+                    return "lata";
+                }
+                return "lat";
             }
             if (text.Equals("miesiąc", StringComparison.OrdinalIgnoreCase))
             {
-                return "miesiące";
+                if (hasDifferentDeclination)
+                {
+                    return "miesiące";
+                }
+                return "miesięcy";
             }
             if (text.Equals("dzień", StringComparison.OrdinalIgnoreCase))
             {
                 return "dni";
             }
-            if (text.EndsWith("a"))
+            
+            if(text.EndsWith("a"))
             {
-                return text.Remove(text.Length - 1) + "y";
+                if(hasDifferentDeclination)
+                {
+                    return text.Remove(text.Length - 1) + "y";
+                }
+                return text.Remove(text.Length - 1);
             }
             return base.Pluralize(text);
         }
