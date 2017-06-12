@@ -1,6 +1,12 @@
 Changelog
 ===================
 
+v5.0
+- Added Polish (pl-PL) NaturalTime and Working Days Strategies (thanks @scoutboy420)
+- Fixed German pluralize (thanks @isepise)
+- This is not really a cahnge but this is the next release after we have a specific file for Changelog and License (thanks @jzeferino)
+- breaking change: Since the polish pluralize needs to have the number as context, the method signature changed to be able to support it and other languages that might need it as well
+
 v4.0.2
 - Repack to allow github username change
 
