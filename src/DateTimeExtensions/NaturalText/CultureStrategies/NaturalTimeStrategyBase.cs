@@ -34,8 +34,6 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
         protected abstract string MinuteText { get; }
         protected abstract string SecondText { get; }
 
-        protected virtual bool NeedExactValueForPluralizing { get { return false; } }
-
         protected virtual string SentenceJoinerFormat
         {
             get { return "{0}, {1}"; }
@@ -184,61 +182,32 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
 
         protected virtual string GetYearsText(int value)
         {
-            if (NeedExactValueForPluralizing)
-            {
-                return string.Format("{0} {1}", value, value == 1 ? YearText : this.Pluralize(YearText, value));
-            }
-            return string.Format("{0} {1}", value, value == 1 ? YearText : this.Pluralize(YearText));
+            return string.Format("{0} {1}", value, value == 1 ? YearText : this.Pluralize(YearText, value));
         }
 
         protected virtual string GetMonthsText(int value)
         {
-            if (NeedExactValueForPluralizing)
-            {
-                return string.Format("{0} {1}", value, value == 1 ? MonthText : this.Pluralize(MonthText, value));
-            }
-            return string.Format("{0} {1}", value, value == 1 ? MonthText : this.Pluralize(MonthText));
+            return string.Format("{0} {1}", value, value == 1 ? MonthText : this.Pluralize(MonthText, value));
         }
 
         protected virtual string GetDaysText(int value)
         {
-            if (NeedExactValueForPluralizing)
-            {
-                return string.Format("{0} {1}", value, value == 1 ? DayText : this.Pluralize(DayText, value));
-            }
-            return string.Format("{0} {1}", value, value == 1 ? DayText : this.Pluralize(DayText));
+            return string.Format("{0} {1}", value, value == 1 ? DayText : this.Pluralize(DayText, value));
         }
 
         protected virtual string GetHoursText(int value)
         {
-            if (NeedExactValueForPluralizing)
-            {
-                return string.Format("{0} {1}", value, value == 1 ? HourText : this.Pluralize(HourText, value));
-            }
-            return string.Format("{0} {1}", value, value == 1 ? HourText : this.Pluralize(HourText));
+            return string.Format("{0} {1}", value, value == 1 ? HourText : this.Pluralize(HourText, value));
         }
 
         protected virtual string GetMinutesText(int value)
         {
-            if (NeedExactValueForPluralizing)
-            {
-                return string.Format("{0} {1}", value, value == 1 ? MinuteText : this.Pluralize(MinuteText, value));
-            }
-            return string.Format("{0} {1}", value, value == 1 ? MinuteText : this.Pluralize(MinuteText));
+            return string.Format("{0} {1}", value, value == 1 ? MinuteText : this.Pluralize(MinuteText, value));
         }
 
         protected virtual string GetSecondsText(int value)
         {
-            if (NeedExactValueForPluralizing)
-            {
-                return string.Format("{0} {1}", value, value == 1 ? SecondText : this.Pluralize(SecondText, value));
-            }
-            return string.Format("{0} {1}", value, value == 1 ? SecondText : this.Pluralize(SecondText));
-        }
-
-        protected virtual string Pluralize(string text)
-        {
-            return text + "s";
+            return string.Format("{0} {1}", value, value == 1 ? SecondText : this.Pluralize(SecondText, value));
         }
 
         protected virtual string Pluralize(string text, int value)
