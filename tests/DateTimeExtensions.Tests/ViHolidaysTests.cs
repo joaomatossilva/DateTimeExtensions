@@ -67,7 +67,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void ShouldGetViVnStrategy()
         {
-            var strategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name);
+            var strategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name, null);
             Assert.AreEqual(typeof(ViVNHolidayStrategy), strategy.GetType());
         }
 

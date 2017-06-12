@@ -8,7 +8,7 @@
     <TargetFrameworks>netstandard1.3;net45</TargetFrameworks>
     <AssemblyName>DateTimeExtensions</AssemblyName>
     <PackageId>DateTimeExtensions</PackageId>
-    <PackageTags>Natural;Date;Time;Relative;Calendar;Holiday;Workingday;DateTime</PackageTags>
+    <PackageTags>Natural;Date;Time;Relative;Calendar;Holiday;Workingday;DateTime;Extensions</PackageTags>
     <PackageProjectUrl>https://github.com/joaomatossilva/DateTimeExtensions/wiki</PackageProjectUrl>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
@@ -16,6 +16,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Version>4.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">

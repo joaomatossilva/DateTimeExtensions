@@ -30,7 +30,8 @@ namespace DateTimeExtensions.WorkingDays
 {
     public class WorkingDayCultureInfo : IWorkingDayCultureInfo
     {
-        private string name;
+        private readonly string name;
+        private readonly string region;
         private IWorkingDayOfWeekStrategy workingDayOfWeekStrategy;
         private IHolidayStrategy holidayStrategy;
 
@@ -38,9 +39,10 @@ namespace DateTimeExtensions.WorkingDays
         {
         }
 
-        public WorkingDayCultureInfo(string name)
+        public WorkingDayCultureInfo(string name, string region = null)
         {
             this.name = name;
+            this.region = region;
             this.LocateWorkingDayOfWeekStrategy = DefaultLocateWorkingDayOfWeekStrategy;
             this.LocateHolidayStrategy = DefaultLocateHolidayStrategy;
         }
@@ -74,14 +76,13 @@ namespace DateTimeExtensions.WorkingDays
             return this.holidayStrategy.GetHolidaysOfYear(year);
         }
 
-        public string Name
-        {
-            get { return name; }
-        }
+        public string Name => name;
 
-        private Func<string, IWorkingDayOfWeekStrategy> locateWorkingDayOfWeekStrategy;
+        public string Region => region;
 
-        public Func<string, IWorkingDayOfWeekStrategy> LocateWorkingDayOfWeekStrategy
+        private Func<string, string, IWorkingDayOfWeekStrategy> locateWorkingDayOfWeekStrategy;
+
+        public Func<string, string, IWorkingDayOfWeekStrategy> LocateWorkingDayOfWeekStrategy
         {
             get { return locateWorkingDayOfWeekStrategy; }
             set
@@ -89,7 +90,7 @@ namespace DateTimeExtensions.WorkingDays
                 if (value != null)
                 {
                     locateWorkingDayOfWeekStrategy = value;
-                    workingDayOfWeekStrategy = locateWorkingDayOfWeekStrategy(name);
+                    workingDayOfWeekStrategy = locateWorkingDayOfWeekStrategy(name, region);
                 }
                 else
                 {
@@ -98,9 +99,9 @@ namespace DateTimeExtensions.WorkingDays
             }
         }
 
-        private Func<string, IHolidayStrategy> locateHolidayWeekStrategy;
+        private Func<string, string, IHolidayStrategy> locateHolidayWeekStrategy;
 
-        public Func<string, IHolidayStrategy> LocateHolidayStrategy
+        public Func<string, string, IHolidayStrategy> LocateHolidayStrategy
         {
             get { return locateHolidayWeekStrategy; }
             set
@@ -108,7 +109,7 @@ namespace DateTimeExtensions.WorkingDays
                 if (value != null)
                 {
                     locateHolidayWeekStrategy = value;
-                    holidayStrategy = locateHolidayWeekStrategy(name);
+                    holidayStrategy = locateHolidayWeekStrategy(name, region);
                 }
                 else
                 {
@@ -117,13 +118,13 @@ namespace DateTimeExtensions.WorkingDays
             }
         }
 
-        public static readonly Func<string, IHolidayStrategy> DefaultLocateHolidayStrategy =
-            name =>
-                LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name) ?? new DefaultHolidayStrategy();
+        public static readonly Func<string, string, IHolidayStrategy> DefaultLocateHolidayStrategy =
+            (name, region) =>
+                LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name, region) ?? new DefaultHolidayStrategy();
 
-        public static readonly Func<string, IWorkingDayOfWeekStrategy> DefaultLocateWorkingDayOfWeekStrategy =
-            name =>
-                LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name) ??
+        public static readonly Func<string, string, IWorkingDayOfWeekStrategy> DefaultLocateWorkingDayOfWeekStrategy =
+            (name, region) =>
+                LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name, region) ??
                 new DefaultWorkingDayOfWeekStrategy();
     }
 }

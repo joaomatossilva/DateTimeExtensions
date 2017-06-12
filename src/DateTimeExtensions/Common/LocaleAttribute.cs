@@ -27,9 +27,12 @@ namespace DateTimeExtensions.Common
     {
         public string Locale { get; private set; }
 
-        public LocaleAttribute(string locale)
+        public string Region { get; private set; }
+
+        public LocaleAttribute(string locale, string region = null)
         {
             Locale = locale;
+            Region = region;
         }
     }
 }

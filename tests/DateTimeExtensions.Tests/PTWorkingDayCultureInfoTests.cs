@@ -19,7 +19,7 @@ namespace DateTimeExtensions.Tests
             string name = "pt-PT";
             WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo(name);
             Assert.IsTrue(name == workingdayCultureInfo.Name);
-            Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
+            Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name, null));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace DateTimeExtensions.Tests
             new CultureInfo(name).SetCurrentCultureInfo();
             WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo();
             Assert.IsTrue(name == workingdayCultureInfo.Name);
-            Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
+            Assert.IsInstanceOf<PT_PTHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name, null));
         }
     }
 }
