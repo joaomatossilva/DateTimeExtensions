@@ -43,28 +43,31 @@ namespace DateTimeExtensions.Common
                     return false;
                 }
 
-                var localeAttribute = proposedType.GetCustomAttributes(typeof(LocaleAttribute), false).FirstOrDefault() as LocaleAttribute;
-                if(localeAttribute == null)
+                var localeAttributes = proposedType.GetCustomAttributes(typeof(LocaleAttribute), false).Cast<LocaleAttribute>();
+                foreach (var localeAttribute in localeAttributes)
                 {
-                    //if we don't have a locale attribure, don't look further also
-                    return false;
-                }
+                    if (localeAttribute == null)
+                    {
+                        //if we don't have a locale attribure, don't look further also
+                        continue;
+                    }
 
-                if(localeAttribute.Locale == null || !localeAttribute.Locale.Equals(locale, StringComparison.OrdinalIgnoreCase))
-                {
-                    //if the locale is not the same, this is not the implementation we're looking for
-                    return false;
-                }
+                    if (localeAttribute.Locale == null || !localeAttribute.Locale.Equals(locale, StringComparison.OrdinalIgnoreCase))
+                    {
+                        //if the locale is not the same, this is not the implementation we're looking for
+                        continue;
+                    }
 
-                if(string.IsNullOrEmpty(region) && string.IsNullOrEmpty(localeAttribute.Region))
-                {
-                    //if there is no region and this type does not have a region set, we've found our candidate
-                    return true;
-                }
-                else if(!string.IsNullOrEmpty(region) && region.Equals(localeAttribute.Region, StringComparison.OrdinalIgnoreCase))
-                {
-                    //we found our locale and region
-                    return true;
+                    if (string.IsNullOrEmpty(region) && string.IsNullOrEmpty(localeAttribute.Region))
+                    {
+                        //if there is no region and this type does not have a region set, we've found our candidate
+                        return true;
+                    }
+                    else if (!string.IsNullOrEmpty(region) && region.Equals(localeAttribute.Region, StringComparison.OrdinalIgnoreCase))
+                    {
+                        //we found our locale and region
+                        return true;
+                    }
                 }
                 return false;
             }
