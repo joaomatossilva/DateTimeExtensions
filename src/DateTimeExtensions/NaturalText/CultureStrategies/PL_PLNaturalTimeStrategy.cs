@@ -39,8 +39,6 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "sekunda"; }
         }
 
-        protected override bool NeedExactValueForPluralizing { get { return true; } }
-
         protected override string Pluralize(string text, int value)
         {
             List<int> lastDigitsWithDifferentDeclination = new List<int> { 2, 3, 4 };
@@ -77,7 +75,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
                 }
                 return text.Remove(text.Length - 1);
             }
-            return base.Pluralize(text);
+            return base.Pluralize(text, value);
         }
     }
 }

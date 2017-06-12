@@ -64,7 +64,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "초"; }
         }
 
-        protected override string Pluralize(string text)
+        protected override string Pluralize(string text, int value)
         {
             return text;
         }

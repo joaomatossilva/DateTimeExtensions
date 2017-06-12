@@ -60,13 +60,13 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "segundo"; }
         }
 
-        protected override string Pluralize(string text)
+        protected override string Pluralize(string text, int value)
         {
             if (text.EndsWith("s"))
             {
                 return text + "es";
             }
-            return base.Pluralize(text);
+            return base.Pluralize(text, value);
         }
     }
 }
