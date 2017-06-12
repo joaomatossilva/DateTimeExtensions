@@ -43,11 +43,14 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
 
         protected override string Pluralize(string text, int value)
         {
-            int[] numbersWithDifferentDeclination = { 2, 3, 4 };
+            List<int> lastDigitsWithDifferentDeclination = new List<int> { 2, 3, 4 };
+            List<int> exceptions = new List<int> { 12, 13, 14 };
+
+            bool hasDifferentDeclination = lastDigitsWithDifferentDeclination.Contains((int)(value % 10)) && !exceptions.Contains((int)(value % 100));
 
             if (text.Equals("rok", StringComparison.OrdinalIgnoreCase))
             {
-                if(numbersWithDifferentDeclination.Contains(value))
+                if(hasDifferentDeclination)
                 {
                     return "lata";
                 }
@@ -55,7 +58,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             }
             if (text.Equals("miesiąc", StringComparison.OrdinalIgnoreCase))
             {
-                if (numbersWithDifferentDeclination.Contains(value))
+                if (hasDifferentDeclination)
                 {
                     return "miesiące";
                 }
@@ -68,7 +71,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             
             if(text.EndsWith("a"))
             {
-                if(numbersWithDifferentDeclination.Contains(value))
+                if(hasDifferentDeclination)
                 {
                     return text.Remove(text.Length - 1) + "y";
                 }
