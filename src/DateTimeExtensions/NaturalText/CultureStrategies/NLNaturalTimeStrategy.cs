@@ -96,7 +96,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
         }
 
 
-        protected override string Pluralize(string text)
+        protected override string Pluralize(string text, int value)
         {
             // Pluralization is dealt with on a case-by-case basis.
             throw new NotImplementedException();

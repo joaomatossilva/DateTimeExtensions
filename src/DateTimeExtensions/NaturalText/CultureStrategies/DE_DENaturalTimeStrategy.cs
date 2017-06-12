@@ -55,7 +55,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "Sekunde"; }
         }
 
-        protected override string Pluralize(string text)
+        protected override string Pluralize(string text, int value)
         {
             if (text.EndsWith("e"))
             {

@@ -59,7 +59,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             get { return "second"; }
         }
 
-        protected override string Pluralize(string text)
+        protected override string Pluralize(string text, int value)
         {
             if (text.Equals("année", StringComparison.OrdinalIgnoreCase))
             {
@@ -77,7 +77,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             {
                 return text + "es";
             }
-            return base.Pluralize(text);
+            return base.Pluralize(text, value);
         }
     }
 }

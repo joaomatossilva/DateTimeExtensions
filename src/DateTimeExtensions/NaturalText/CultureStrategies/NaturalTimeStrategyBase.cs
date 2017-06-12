@@ -182,36 +182,35 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
 
         protected virtual string GetYearsText(int value)
         {
-            return string.Format("{0} {1}", value, value == 1 ? YearText : this.Pluralize(YearText));
+            return string.Format("{0} {1}", value, value == 1 ? YearText : this.Pluralize(YearText, value));
         }
 
         protected virtual string GetMonthsText(int value)
         {
-            return string.Format("{0} {1}", value, value == 1 ? MonthText : this.Pluralize(MonthText));
+            return string.Format("{0} {1}", value, value == 1 ? MonthText : this.Pluralize(MonthText, value));
         }
 
         protected virtual string GetDaysText(int value)
         {
-            return string.Format("{0} {1}", value, value == 1 ? DayText : this.Pluralize(DayText));
+            return string.Format("{0} {1}", value, value == 1 ? DayText : this.Pluralize(DayText, value));
         }
 
         protected virtual string GetHoursText(int value)
         {
-            return string.Format("{0} {1}", value, value == 1 ? HourText : this.Pluralize(HourText));
+            return string.Format("{0} {1}", value, value == 1 ? HourText : this.Pluralize(HourText, value));
         }
 
         protected virtual string GetMinutesText(int value)
         {
-            return string.Format("{0} {1}", value, value == 1 ? MinuteText : this.Pluralize(MinuteText));
+            return string.Format("{0} {1}", value, value == 1 ? MinuteText : this.Pluralize(MinuteText, value));
         }
 
         protected virtual string GetSecondsText(int value)
         {
-            return string.Format("{0} {1}", value, value == 1 ? SecondText : this.Pluralize(SecondText));
+            return string.Format("{0} {1}", value, value == 1 ? SecondText : this.Pluralize(SecondText, value));
         }
 
-
-        protected virtual string Pluralize(string text)
+        protected virtual string Pluralize(string text, int value)
         {
             return text + "s";
         }
