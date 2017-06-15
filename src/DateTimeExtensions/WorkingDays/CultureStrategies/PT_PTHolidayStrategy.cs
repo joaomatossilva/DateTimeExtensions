@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.RegionIdentifiers;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -51,9 +52,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 return;
             }
 
-            if ("Lisboa".Equals(region))
+            switch (region)
             {
-                this.InnerHolidays.Add(StAntonio);
+                case PortugalRegion.Lisboa:
+                   this.InnerHolidays.Add(StAntonio);
+                    break;
+                case PortugalRegion.Porto:
+                    this.InnerHolidays.Add(StJoao);
+                    break;
+                case PortugalRegion.CasteloBranco:
+                    this.InnerHolidays.Add(SraMercules);
+                    break;
             }
         }
 
@@ -113,7 +122,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        public static Lazy<Holiday> stAntonio = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SantoAntonio", 6, 13));
-        public static Holiday StAntonio => stAntonio.Value;
+        private static readonly Lazy<Holiday> StAntonioInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SantoAntonio", 6, 13));
+        public static Holiday StAntonio => StAntonioInstance.Value;
+
+        private static readonly Lazy<Holiday> StJoaoInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SaoJoao", 6, 24));
+        public static Holiday StJoao => StJoaoInstance.Value;
+
+        private static readonly Lazy<Holiday> SraMerculesInstance = new Lazy<Holiday>(() => new EasterBasedHoliday("Portugal_SraMercules", 9));
+        public static Holiday SraMercules => SraMerculesInstance.Value;
     }
 }

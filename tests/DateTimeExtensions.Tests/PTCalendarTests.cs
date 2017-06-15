@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using DateTimeExtensions.WorkingDays;
+using DateTimeExtensions.WorkingDays.CultureStrategies;
+using DateTimeExtensions.WorkingDays.RegionIdentifiers;
 
 namespace DateTimeExtensions.Tests
 {
@@ -129,13 +131,34 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
-        public void can_use_reginal_holidays()
+        public void can_use_reginal_holidays_Lisboa()
         {
-            var cultureInfo = new WorkingDayCultureInfo("pt-PT", "Lisboa");
+            var cultureInfo = new WorkingDayCultureInfo("pt-PT", PortugalRegion.Lisboa);
             DateTime stAntonio = new DateTime(2017, 6, 13);
 
             Assert.AreEqual(stAntonio.DayOfWeek, DayOfWeek.Tuesday);
             Assert.IsTrue(stAntonio.IsHoliday(cultureInfo));
+        }
+
+        [Test]
+        public void can_use_reginal_holidays_Porto()
+        {
+            var cultureInfo = new WorkingDayCultureInfo("pt-PT", PortugalRegion.Porto);
+            DateTime stJoao = new DateTime(2017, 6, 24);
+
+            Assert.AreEqual(stJoao.DayOfWeek, DayOfWeek.Saturday);
+            Assert.IsTrue(stJoao.IsHoliday(cultureInfo));
+        }
+
+        [Test]
+        public void can_use_reginal_holidays_CasteloBranco()
+        {
+            var cultureInfo = new WorkingDayCultureInfo("pt-PT", PortugalRegion.CasteloBranco);
+            // not using 2017 since it's 25th April, same day as another national Holiday
+            var sraMerculesDay = new DateTime(2016, 4, 5);
+
+            Assert.AreEqual(sraMerculesDay.DayOfWeek, DayOfWeek.Tuesday);
+            Assert.IsTrue(sraMerculesDay.IsHoliday(cultureInfo));
         }
     }
 }
