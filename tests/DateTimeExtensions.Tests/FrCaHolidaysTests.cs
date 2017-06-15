@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests
         public void can_get_stratery()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
-            var strategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name);
+            var strategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name, null);
             Assert.AreEqual(typeof (FR_CAHolidayStrategy), strategy.GetType());
         }
 

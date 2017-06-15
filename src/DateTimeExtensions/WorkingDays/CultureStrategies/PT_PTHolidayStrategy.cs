@@ -29,7 +29,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     [Locale("pt-PT")]
     public class PT_PTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
     {
-        public PT_PTHolidayStrategy()
+        public PT_PTHolidayStrategy(string region)
         {
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
@@ -45,6 +45,16 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(PortugalDay);
             this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RepublicDay));
             this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RestorationOfIndependance));
+
+            if (string.IsNullOrEmpty(region))
+            {
+                return;
+            }
+
+            if ("Lisboa".Equals(region))
+            {
+                this.InnerHolidays.Add(StAntonio);
+            }
         }
 
         private static Holiday freedomDay;
@@ -102,5 +112,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 return restorationOfIndependance;
             }
         }
+
+        public static Lazy<Holiday> stAntonio = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SantoAntonio", 6, 13));
+        public static Holiday StAntonio => stAntonio.Value;
     }
 }

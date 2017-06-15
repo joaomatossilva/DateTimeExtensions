@@ -126,11 +126,11 @@ namespace DateTimeExtensions.Tests
             var thisAssembly = typeof(ExampleTests).GetTypeInfo().Assembly;
             var customWorkingDayCultureInfo = new WorkingDayCultureInfo("CustomTest")
             {
-                LocateHolidayStrategy = name =>
-                    LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name, thisAssembly) ??
+                LocateHolidayStrategy = (name, region) =>
+                    LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name, region, thisAssembly) ??
                     new DefaultHolidayStrategy(),
-                LocateWorkingDayOfWeekStrategy = name =>
-                    LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name, thisAssembly) ??
+                LocateWorkingDayOfWeekStrategy = (name, region) =>
+                    LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name, region, thisAssembly) ??
                     new DefaultWorkingDayOfWeekStrategy()
         };
 

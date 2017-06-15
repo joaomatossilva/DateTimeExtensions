@@ -15,9 +15,9 @@ namespace DateTimeExtensions.Tests
         public void can_get_strateryies()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("ko-KR");
-            var holidaysStrategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name);
+            var holidaysStrategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name, null);
             Assert.AreEqual(typeof(KO_KRHolidayStrategy), holidaysStrategy.GetType());
-            var workingDaysStrategy = dateTimeCulture.LocateWorkingDayOfWeekStrategy(dateTimeCulture.Name);
+            var workingDaysStrategy = dateTimeCulture.LocateWorkingDayOfWeekStrategy(dateTimeCulture.Name, null);
             Assert.AreEqual(typeof(DefaultWorkingDayOfWeekStrategy), workingDaysStrategy.GetType());
         }
 

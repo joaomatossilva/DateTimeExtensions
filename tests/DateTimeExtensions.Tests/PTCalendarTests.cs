@@ -127,5 +127,15 @@ namespace DateTimeExtensions.Tests
             Assert.IsFalse(nationalDay.IsWorkingDay(pt_ci));
             Assert.IsTrue(nationalDay.IsHoliday(pt_ci));
         }
+
+        [Test]
+        public void can_use_reginal_holidays()
+        {
+            var cultureInfo = new WorkingDayCultureInfo("pt-PT", "Lisboa");
+            DateTime stAntonio = new DateTime(2017, 6, 13);
+
+            Assert.AreEqual(stAntonio.DayOfWeek, DayOfWeek.Tuesday);
+            Assert.IsTrue(stAntonio.IsHoliday(cultureInfo));
+        }
     }
 }

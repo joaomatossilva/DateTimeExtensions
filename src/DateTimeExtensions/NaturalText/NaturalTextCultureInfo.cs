@@ -79,7 +79,7 @@ namespace DateTimeExtensions.NaturalText
 
         public static readonly Func<string, INaturalTimeStrategy> DefaultLocateNaturalTimeStrategy =
             name =>
-                LocaleImplementationLocator.FindImplementationOf<INaturalTimeStrategy>(name) ??
+                LocaleImplementationLocator.FindImplementationOf<INaturalTimeStrategy>(name, null) ??
                 new DefaultNaturalTimeStrategy();
     }
 }
