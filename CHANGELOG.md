@@ -2,6 +2,7 @@ Changelog
 ===================
 
 v5.0
+- Regions support added
 - Added Polish (pl-PL) NaturalTime and Working Days Strategies (thanks @scoutboy420)
 - Fixed German pluralize (thanks @isepise)
 - This is not really a cahnge but this is the next release after we have a specific file for Changelog and License (thanks @jzeferino)
