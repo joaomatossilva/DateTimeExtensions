@@ -56,6 +56,8 @@ Avaiable CultureInfo implementations:
 | en-NZ | en-GD (gd-GD, not really sure about this locale) 
 | en-IE | sl-SL |
 | kr-KR | zh-CN |
+| pl-PL | vi-VN |
+
 
 If your culture is not listed here you can contribute it!!!
 
@@ -104,6 +106,7 @@ Avaiable CultureInfo implementations:
 | nl-NL |
 | nl-BE |
 | kr-KR |
+| pl-PL |
 
 ### Time of Day
 
