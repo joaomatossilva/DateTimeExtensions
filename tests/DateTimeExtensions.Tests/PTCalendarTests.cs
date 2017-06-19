@@ -160,5 +160,16 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(sraMerculesDay.DayOfWeek, DayOfWeek.Tuesday);
             Assert.IsTrue(sraMerculesDay.IsHoliday(cultureInfo));
         }
+
+        [Test]
+        public void revert_to_national_holidays_on_unknown_region()
+        {
+            var cultureInfo = new WorkingDayCultureInfo("pt-PT", "non-existing-region");
+            // not using 2017 since it's 25th April, same day as another national Holiday
+            var sraMerculesDay = new DateTime(2017, 4, 25);
+
+            Assert.AreEqual(sraMerculesDay.DayOfWeek, DayOfWeek.Tuesday);
+            Assert.IsTrue(sraMerculesDay.IsHoliday(cultureInfo));
+        }
     }
 }
