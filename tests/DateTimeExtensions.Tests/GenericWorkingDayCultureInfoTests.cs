@@ -19,9 +19,9 @@ namespace DateTimeExtensions.Tests
             string name = "foo";
             WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo(name);
             Assert.IsTrue(name == workingdayCultureInfo.Name);
-            Assert.IsInstanceOf<DefaultHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name));
+            Assert.IsInstanceOf<DefaultHolidayStrategy>(workingdayCultureInfo.LocateHolidayStrategy(name, null));
             Assert.IsInstanceOf<DefaultWorkingDayOfWeekStrategy>(
-                workingdayCultureInfo.LocateWorkingDayOfWeekStrategy(name));
+                workingdayCultureInfo.LocateWorkingDayOfWeekStrategy(name, null));
         }
 
         [Test]
@@ -35,8 +35,8 @@ namespace DateTimeExtensions.Tests
 
             WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo()
             {
-                LocateHolidayStrategy = (n) => { return mockHolidayStrategy.Object; },
-                LocateWorkingDayOfWeekStrategy = (n) => { return mockDayOfWeekStartegy.Object; }
+                LocateHolidayStrategy = (n, r) => { return mockHolidayStrategy.Object; },
+                LocateWorkingDayOfWeekStrategy = (n, r) => { return mockDayOfWeekStartegy.Object; }
             };
 
             DateTime marchFirst = new DateTime(1991, 3, 1);
@@ -54,7 +54,7 @@ namespace DateTimeExtensions.Tests
 
             WorkingDayCultureInfo workingdayCultureInfo = new WorkingDayCultureInfo()
             {
-                LocateWorkingDayOfWeekStrategy = (n) => { return mockDayOfWeekStartegy.Object; }
+                LocateWorkingDayOfWeekStrategy = (n, r) => { return mockDayOfWeekStartegy.Object; }
             };
 
             DateTime aThursday = new DateTime(2011, 5, 12);

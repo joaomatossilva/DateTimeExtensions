@@ -23,13 +23,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.RegionIdentifiers;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("pt-PT")]
     public class PT_PTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
     {
-        public PT_PTHolidayStrategy()
+        public PT_PTHolidayStrategy(string region)
         {
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
@@ -45,6 +46,24 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(PortugalDay);
             this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RepublicDay));
             this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RestorationOfIndependance));
+
+            if (string.IsNullOrEmpty(region))
+            {
+                return;
+            }
+
+            switch (region)
+            {
+                case PortugalRegion.Lisboa:
+                   this.InnerHolidays.Add(StAntonio);
+                    break;
+                case PortugalRegion.Porto:
+                    this.InnerHolidays.Add(StJoao);
+                    break;
+                case PortugalRegion.CasteloBranco:
+                    this.InnerHolidays.Add(SraMercules);
+                    break;
+            }
         }
 
         private static Holiday freedomDay;
@@ -102,5 +121,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 return restorationOfIndependance;
             }
         }
+
+        private static readonly Lazy<Holiday> StAntonioInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SantoAntonio", 6, 13));
+        public static Holiday StAntonio => StAntonioInstance.Value;
+
+        private static readonly Lazy<Holiday> StJoaoInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SaoJoao", 6, 24));
+        public static Holiday StJoao => StJoaoInstance.Value;
+
+        private static readonly Lazy<Holiday> SraMerculesInstance = new Lazy<Holiday>(() => new EasterBasedHoliday("Portugal_SraMercules", 9));
+        public static Holiday SraMercules => SraMerculesInstance.Value;
     }
 }

@@ -26,7 +26,7 @@ namespace DateTimeExtensions.Common
 {
     public static class LocaleImplementationLocator
     {
-        public static T FindImplementationOf<T>(string locale, params Assembly[] assemblies)
+        public static T FindImplementationOf<T>(string locale, string region, params Assembly[] assemblies)
         {
             var type = typeof(T).GetTypeInfo();
             if (assemblies == null || assemblies.Length == 0)
@@ -43,7 +43,13 @@ namespace DateTimeExtensions.Common
                 return default(T);
             }
 
-            var instance = (T) Activator.CreateInstance(implementationType);
+            string[] parameters = null;
+            if(implementationType.GetTypeInfo().DeclaredConstructors.Any(x => x.IsPublic && x.GetParameters().Count() > 0))
+            {
+                parameters = new []{ region };
+            }
+
+            var instance = (T) Activator.CreateInstance(implementationType, parameters);
             if (instance == null)
             {
                 //throw new StrategyNotFoundException(string.Format("Could not create a new instance of type '{0}'.", typeName));
