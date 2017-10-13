@@ -1,6 +1,9 @@
 Changelog
 ===================
 
+v5.0.1
+- Fixed an issue on en-US when the NewYear happens on a Saturday, not causin the NewYearEve on Friday to become a holiday (thanks @dalmuti509)
+
 v5.0
 - Regions support added
 - Added Polish (pl-PL) NaturalTime and Working Days Strategies (thanks @scoutboy420)

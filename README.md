@@ -20,6 +20,7 @@ You can check out a sample (WIP) project online on [http://datetimeextensions.az
 The following major features are currently implemented:
 
 +  Add or subtract Working days using locale holidays
++  Support for Regional holidays (limited locales)
 +  Export Holidays to calendar format
 +  Dates Difference in Natural Time (localized)
 +  Time of day
