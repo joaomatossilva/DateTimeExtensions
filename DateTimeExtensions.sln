@@ -1,8 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "build\.build.csproj", "{8BB0AD48-A370-405F-B295-03D7F1811375}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED60F95F-4CCC-4F56-ACB2-DEE39CB00A54}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
@@ -14,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".buildScripts", ".buildScri
 	ProjectSection(SolutionItems) = preProject
 		appveyor.yml = appveyor.yml
 		Build.ps1 = Build.ps1
+		Build_.ps1 = Build_.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB805547-4556-4744-AFF4-314BE0F45704}"
@@ -30,6 +33,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BB0AD48-A370-405F-B295-03D7F1811375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB0AD48-A370-405F-B295-03D7F1811375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,5 +50,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE} = {EB805547-4556-4744-AFF4-314BE0F45704}
 		{2BB0401A-4DCA-4D59-B15D-6C895304D2AF} = {0F8CA42F-760A-4A42-BD0F-0AC9900B6712}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A9C3234-81DF-4A18-8652-547B6454F52B}
 	EndGlobalSection
 EndGlobal
