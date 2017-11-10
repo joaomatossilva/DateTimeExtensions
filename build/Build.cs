@@ -25,9 +25,11 @@ class Build : NukeBuild
     // [Parameter] readonly string MyGetApiKey;
     //  - Returns command-line arguments and environment variables.
 
-    public override AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
+    public bool IsTagged => AppVeyor.Instance?.RepositoryTag ?? false;
 
     int Revision => AppVeyor.Instance?.BuildNumber ?? 1;
+
+    public string RevisionString => IsTagged ? null : $"rev{Revision:D4}";
 
     Target Clean => _ => _
             .Executes(() =>
@@ -44,32 +46,28 @@ class Build : NukeBuild
             });
 
     Target Compile => _ => _
-            .DependsOn(Clean, Restore)
+            .DependsOn(Test)
             .Executes(() =>
             {
-                DotNetBuild(s => s
-                    .SetVersionSuffix($"rev{Revision:D4}")
-                    .SetConfiguration(Configuration));
+                DotNetBuild(s => DefaultDotNetBuild
+                    .SetVersionSuffix(RevisionString));
             });
 
     Target Pack => _ => _
         .DependsOn(Compile, Test)
         .Executes(() =>
         {
-            DotNetPack(s => s
+            DotNetPack(s => DefaultDotNetPack
                 .SetOutputDirectory(ArtifactsDirectory)
                 .SetProject(RootDirectory / "src" / "DateTimeExtensions")
-                .SetNoBuild(true)
-                .SetVersionSuffix($"rev{Revision:D4}")
-                .SetConfiguration(Configuration));
+                .SetVersionSuffix(RevisionString));
         });
 
     Target Test => _ => _
-        .DependsOn(Compile)
+        .DependsOn(Clean, Restore)
         .Executes(() =>
         {
             DotNetTest(s => s
-                .SetProjectFile(RootDirectory / "tests" / "DateTimeExtensions.Tests")
-                .SetConfiguration(Configuration));
+                .SetProjectFile(RootDirectory / "tests" / "DateTimeExtensions.Tests"));
         });
 }
