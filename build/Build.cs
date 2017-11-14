@@ -15,7 +15,7 @@ using Nuke.Core.BuildServers;
 class Build : NukeBuild
 {
     // Console application entry. Also defines the default target.
-    public static int Main () => Execute<Build>(x => x.Compile);
+    public static int Main () => Execute<Build>(x => x.Test);
 
     // Auto-injection fields:
     // [GitVersion] readonly GitVersion GitVersion;
@@ -46,7 +46,7 @@ class Build : NukeBuild
             });
 
     Target Compile => _ => _
-            .DependsOn(Test)
+            .DependsOn(Restore)
             .Executes(() =>
             {
                 DotNetBuild(s => DefaultDotNetBuild
@@ -64,7 +64,7 @@ class Build : NukeBuild
         });
 
     Target Test => _ => _
-        .DependsOn(Clean, Restore)
+        .DependsOn(Compile)
         .Executes(() =>
         {
             DotNetTest(s => s
