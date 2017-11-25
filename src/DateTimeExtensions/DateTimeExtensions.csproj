@@ -18,7 +18,7 @@
     <VersionPrefix>5.0.1</VersionPrefix>
     <AssemblyVersion>5.0.2.0</AssemblyVersion>
     <FileVersion>5.0.2.0</FileVersion>
-    <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
+    <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
