@@ -16,8 +16,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <VersionPrefix>5.0.1</VersionPrefix>
-    <AssemblyVersion>5.0.1.0</AssemblyVersion>
-    <FileVersion>5.0.1.0</FileVersion>
+    <AssemblyVersion>5.0.2.0</AssemblyVersion>
+    <FileVersion>5.0.2.0</FileVersion>
     <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
   </PropertyGroup>
 
