@@ -152,3 +152,9 @@ Example: Portugal_FreedomDay
 
 ### License
 [License](LICENSE.md) 
+
+### Special Thanks
+
++ @manuelbarbosa for making me this awesome logo
++ @matkoch for helping me build the build script using [Nuke](http://www.nuke.build/) and also building a video using this project
++ Jetbrains for allowing me an open source license of their pretty cool suit [![Jetbrains](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/jetbrains/jetbrains-variant-4-200.png)](https://www.jetbrains.com)
