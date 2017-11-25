@@ -1,4 +1,4 @@
-DateTime Extensions
+![DateTimeExtensions](https://github.com/joaomatossilva/DateTimeExtensions/master/assets/datetimeextensions-200-logo.png)] DateTime Extensions
 ===================
 [http://www.kspace.pt/DateTimeExtensions/](http://www.kspace.pt/DateTimeExtensions/)
 
