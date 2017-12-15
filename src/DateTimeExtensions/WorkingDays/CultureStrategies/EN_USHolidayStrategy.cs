@@ -33,7 +33,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
-
+            this.InnerHolidays.Add(NewYearsEve);
             this.InnerHolidays.Add(IndependenceDay);
             this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
             this.InnerHolidays.Add(MartinLutherKing);
@@ -180,6 +180,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                         CountDirection.FromFirst);
                 }
                 return thanksgivingDay;
+            }
+        }
+
+        private static Holiday newYearsEve;
+
+        public static Holiday NewYearsEve
+        {
+            get
+            {
+                if (newYearsEve == null)
+                {
+                    newYearsEve = new NewYearEveFridayOnly();
+                }
+                return newYearsEve;
             }
         }
     }
