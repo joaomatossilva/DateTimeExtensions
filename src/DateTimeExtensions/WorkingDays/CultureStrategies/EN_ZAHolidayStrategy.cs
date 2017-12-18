@@ -64,7 +64,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        //21 March - Human Rigth's Day		
+        //21 March - Human Right's Day		
         private static Holiday humanRightsDay;
 
         public static Holiday HumanRightsDay
@@ -73,7 +73,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (humanRightsDay == null)
                 {
-                    humanRightsDay = new FixedHoliday("Human Rigth's Day", 3, 21);
+                    humanRightsDay = new FixedHoliday("Human Right's Day", 3, 21);
                 }
                 return humanRightsDay;
             }
