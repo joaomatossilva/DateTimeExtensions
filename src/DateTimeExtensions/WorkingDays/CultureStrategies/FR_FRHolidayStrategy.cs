@@ -29,19 +29,29 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     [Locale("fr-FR")]
     public class FR_FRHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
     {
-        public FR_FRHolidayStrategy()
+        public FR_FRHolidayStrategy(string region)
         {
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(ChristianHolidays.Ascension);
             this.InnerHolidays.Add(ChristianHolidays.AllSaints);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerHolidays.Add(ChristianHolidays.Assumption);
 
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
             this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
             this.InnerHolidays.Add(VictoryInEuropeDay);
             this.InnerHolidays.Add(BastilleDay);
-            this.InnerHolidays.Add(StEtienne);
+
+            if (string.IsNullOrEmpty(region))
+            {
+                return;
+            }
+
+            if (region == "Alsace" || region == "Lorraine")
+            {
+                this.InnerHolidays.Add(StStephensDay);
+            }
         }
 
         private static Holiday victoryInEuropeDay;
@@ -72,17 +82,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        private static Holiday stEtienne;
+        private static Holiday stStephensDay;
 
-        public static Holiday StEtienne
+        public static Holiday StStephensDay
         {
             get
             {
-                if (stEtienne == null)
+                if (stStephensDay == null)
                 {
-                    stEtienne = new FixedHoliday("St Etienne", 12, 26);
+                    stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
                 }
-                return stEtienne;
+                return stStephensDay;
             }
         }
     }
