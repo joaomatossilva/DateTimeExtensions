@@ -1,6 +1,9 @@
 Changelog
 ===================
 
+v5.0.3
+- Fixed FR culture, thanks to @YDEFAY
+
 v5.0.2
 - Added logo, thanks to @manuelbarbosa
 
