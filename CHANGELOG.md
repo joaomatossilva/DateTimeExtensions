@@ -1,6 +1,10 @@
 Changelog
 ===================
 
+v5.1
+- Added Target netstandard 2.0
+- Added SourceLink to enable debugging by 3rd parties
+
 v5.0.3
 - Fixed FR culture, thanks to @YDEFAY
 

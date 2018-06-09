@@ -27,6 +27,7 @@ The following major features are currently implemented:
 +  Dates Difference in Natural Time (localized)
 +  Time of day
 +  General "goto" dates
++ Supports SourceLink for debugging
 
 
 ### Working Days Calculations
@@ -132,6 +133,11 @@ before or inside a period.
     fromDate.FirstDayOfWeekOfTheMonth(DayOfWeek)
     fromDate.GetDiff(DateTime toDate)
 
+
+### SourceLink
+
+This library supports SourceLink. Just make sure you have a compatible Visual Studio version and 
+the Just My Code is disabled on Debugging options
 
 
 ## How to Contribute
