@@ -44,7 +44,7 @@ namespace DateTimeExtensions.Common
             }
 
             string[] parameters = null;
-            if(implementationType.GetTypeInfo().DeclaredConstructors.Any(x => x.IsPublic && x.GetParameters().Count() > 0))
+            if(implementationType.GetTypeInfo().GetConstructors().Any(x => x.IsPublic && x.GetParameters().Count() > 0))
             {
                 parameters = new []{ region };
             }

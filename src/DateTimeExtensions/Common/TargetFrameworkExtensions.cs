@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace DateTimeExtensions.Common
@@ -21,5 +22,17 @@ namespace DateTimeExtensions.Common
             return assembly.ExportedTypes;
 #endif
         }
+
+#if NET35
+        internal static IEnumerable<ConstructorInfo> GetConstructors(this Type type)
+        {
+            return type.GetConstructors();
+        }
+#else
+        internal static IEnumerable<ConstructorInfo> GetConstructors(this TypeInfo type)
+        {   
+            return type.DeclaredConstructors;
+        }
+#endif
     }
 }
