@@ -1,5 +1,7 @@
 Changelog
 ===================
+v5.2.0
+- Added es-CO culture, thanks to @canro91
 
 v5.1
 - Added Target netstandard 2.0
