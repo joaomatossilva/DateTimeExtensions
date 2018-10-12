@@ -30,6 +30,10 @@ class Build : NukeBuild
 
     public string RevisionString => IsTagged ? null : $"rev{Revision:D4}";
 
+    public string ArtifactsDirectory => RootDirectory / "artifacts";
+
+    public string OutputDirectory => RootDirectory / ".output";
+
     Target Clean => _ => _
             .Executes(() =>
             {
@@ -41,14 +45,14 @@ class Build : NukeBuild
             .DependsOn(Clean)
             .Executes(() =>
             {
-                DotNetRestore(s => DefaultDotNetRestore);
+                DotNetRestore();
             });
 
     Target Compile => _ => _
             .DependsOn(Restore)
             .Executes(() =>
             {
-                DotNetBuild(s => DefaultDotNetBuild
+                DotNetBuild(s => s
                     .SetVersionSuffix(RevisionString));
             });
 
@@ -56,7 +60,7 @@ class Build : NukeBuild
         .DependsOn(Compile, Test)
         .Executes(() =>
         {
-            DotNetPack(s => DefaultDotNetPack
+            DotNetPack(s => s
                 .SetOutputDirectory(ArtifactsDirectory)
                 .SetProject(RootDirectory / "src" / "DateTimeExtensions")
                 .SetVersionSuffix(RevisionString));
