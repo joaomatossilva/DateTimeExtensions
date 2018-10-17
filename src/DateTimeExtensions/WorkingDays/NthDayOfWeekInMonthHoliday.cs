@@ -57,7 +57,7 @@ namespace DateTimeExtensions.WorkingDays
                 return dayCache[year];
             }
             var day = CalculateDayInYear(year);
-            dayCache.Add(year, day);
+            dayCache[year] = day;
             return day;
         }
 
