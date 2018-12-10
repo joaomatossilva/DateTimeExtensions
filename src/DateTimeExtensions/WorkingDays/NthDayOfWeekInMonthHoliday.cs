@@ -18,6 +18,7 @@
 
 #endregion
 
+using DateTimeExtensions.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace DateTimeExtensions.WorkingDays
         private DayOfWeek dayOfWeek;
         private CountDirection direction;
         private int month;
-        private IDictionary<int, DateTime> dayCache;
+        private ConcurrentLazyDictionary<int, DateTime> dayCache;
 
         public NthDayOfWeekInMonthHoliday(string name, int count, DayOfWeek dayOfWeek, int month,
             CountDirection direction)
@@ -47,18 +48,12 @@ namespace DateTimeExtensions.WorkingDays
             this.dayOfWeek = dayOfWeek;
             this.month = month;
             this.direction = direction;
-            dayCache = new Dictionary<int, DateTime>();
+            dayCache = new ConcurrentLazyDictionary<int, DateTime>();
         }
 
         public override DateTime? GetInstance(int year)
         {
-            if (dayCache.ContainsKey(year))
-            {
-                return dayCache[year];
-            }
-            var day = CalculateDayInYear(year);
-            dayCache.Add(year, day);
-            return day;
+            return dayCache.GetOrAdd(year, () => CalculateDayInYear(year));
         }
 
         public override bool IsInstanceOf(DateTime date)
