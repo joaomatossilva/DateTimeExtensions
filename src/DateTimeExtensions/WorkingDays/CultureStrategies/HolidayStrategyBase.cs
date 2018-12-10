@@ -18,6 +18,7 @@
 
 #endregion
 
+using DateTimeExtensions.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,26 +30,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         protected readonly IList<Holiday> InnerHolidays;
 
-        private readonly IDictionary<int, IDictionary<DateTime, Holiday>> holidaysObservancesCache;
+        private readonly ConcurrentLazyDictionary<int, IDictionary<DateTime, Holiday>> holidaysObservancesCache;
 
         protected HolidayStrategyBase()
         {
-            holidaysObservancesCache = new Dictionary<int, IDictionary<DateTime, Holiday>>();
+            holidaysObservancesCache = new ConcurrentLazyDictionary<int, IDictionary<DateTime, Holiday>>();
             this.InnerHolidays = new List<Holiday>();
         }
 
         public bool IsHoliDay(DateTime day)
         {
-            this.CheckYearHasMap(day.Year);
-            return holidaysObservancesCache[day.Year].Any(m => m.Key.Date == day.Date);
-        }
-
-        private void CheckYearHasMap(int year)
-        {
-            if (!holidaysObservancesCache.ContainsKey(year))
-            {
-                holidaysObservancesCache.Add(year, this.BuildObservancesMap(year));
-            }
+            var map = holidaysObservancesCache.GetOrAdd(day.Year, () => BuildObservancesMap(day.Year));
+            return map.Any(m => m.Key.Date == day.Date);
         }
 
         protected virtual IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
@@ -66,8 +59,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public virtual IEnumerable<Holiday> GetHolidaysOfYear(int year)
         {
-            this.CheckYearHasMap(year);
-            return holidaysObservancesCache[year].Select(m => m.Value);
+            var map = holidaysObservancesCache.GetOrAdd(year, () => BuildObservancesMap(year));
+            return map.Select(m => m.Value);
         }
     }
 }

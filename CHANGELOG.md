@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.3.0
+- Fixed Thread safety issues.
+
 v5.2.0
 - Added es-CO culture, thanks to @canro91
 
