@@ -85,14 +85,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 var date = h.GetInstance(year);
                 if (date.HasValue)
                 {
-                    if (date.Value.DayOfWeek == DayOfWeek.Monday)
-                    {
-                        holidayMap.Add(date.Value, h);
-                    }
-                    else
-                    {
-                        holidayMap.Add(date.Value.NextDayOfWeek(DayOfWeek.Monday), h);
-                    }
+                    var d = (date.Value.DayOfWeek == DayOfWeek.Monday)
+                                ? date.Value
+                                : date.Value.NextDayOfWeek(DayOfWeek.Monday);
+
+                    holidayMap[d] = h;
                 }
             }
 
