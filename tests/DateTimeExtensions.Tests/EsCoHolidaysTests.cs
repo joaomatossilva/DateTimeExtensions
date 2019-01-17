@@ -115,5 +115,17 @@ namespace DateTimeExtensions.Tests
             var sacredHeart = new DateTime(2018, 6, 11);
             Assert.IsTrue(sacredHeart.IsHoliday(workingDayCultureInfo));
         }
+
+        [Test]
+        public void IsHoliday_TwoHolidaysFallsInTheSameDay_ReturnsTrue()
+        {
+            var workingDayCultureInfo = new WorkingDayCultureInfo("es-CO");
+
+            var sacredHeart = new DateTime(2019, 7, 1);
+            Assert.IsTrue(sacredHeart.IsHoliday(workingDayCultureInfo));
+
+            var saintPeterAndSaintPaul = new DateTime(2019, 7, 1);
+            Assert.IsTrue(saintPeterAndSaintPaul.IsHoliday(workingDayCultureInfo));
+        }
     }
 }

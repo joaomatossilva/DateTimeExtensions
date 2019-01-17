@@ -61,6 +61,7 @@ Avaiable CultureInfo implementations:
 | en-IE | sl-SL |
 | kr-KR | zh-CN |
 | pl-PL | vi-VN |
+| es-CO |  |
 
 
 If your culture is not listed here you can contribute it!!!
