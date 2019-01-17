@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.3.1
+-  Fixed 2 columbian holidays on the same date - Thanks @canro91
+
 v5.3.0
 - Fixed Thread safety issues.
 
