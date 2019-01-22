@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests
 
         private IDictionary<int, DateTime> easterDates;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void SetUpYears()
         {
             years = new int[] {1800, 1899, 1900, 1999, 2000, 2025, 2035, 2067, 2099};

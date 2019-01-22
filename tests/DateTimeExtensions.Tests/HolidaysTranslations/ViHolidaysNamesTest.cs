@@ -8,7 +8,7 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
     [TestFixture]
     public class ViHolidaysNamesTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             new CultureInfo("vi-VN").SetCurrentUICultureInfo();

@@ -18,9 +18,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0" />
-    <PackageReference Include="Nunit" Version="3.7.1" />
-    <PackageReference Include="Moq" Version="4.6.38-alpha" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.8.0-alpha1" />
+    <PackageReference Include="Nunit" Version="3.11.0" />
+    <PackageReference Include="Moq" Version="4.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">

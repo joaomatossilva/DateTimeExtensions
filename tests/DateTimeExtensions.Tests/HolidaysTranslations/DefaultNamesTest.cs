@@ -12,7 +12,7 @@ namespace DateTimeExtensions.Tests
     [TestFixture]
     public class DefaultNamesTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //setup a default culture

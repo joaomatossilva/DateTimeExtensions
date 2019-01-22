@@ -8,7 +8,7 @@ namespace DateTimeExtensions.Tests.HolidaysTranslations
     [TestFixture]
     public class GermanHolidayNamesTest
     {
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             //setup a default culture

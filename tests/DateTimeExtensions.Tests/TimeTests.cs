@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests
     {
         private CultureInfo cultureInfo;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             // save the default culture
@@ -25,7 +25,7 @@ namespace DateTimeExtensions.Tests
             new CultureInfo("en-GB").SetCurrentCultureInfo();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             //restore the default culture
