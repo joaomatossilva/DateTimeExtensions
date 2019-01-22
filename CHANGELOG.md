@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.4.0
+- Added extensions to DateTimeOffset (the are proxy to the DateTime existing ones)
+
 v5.3.1
 -  Fixed 2 columbian holidays on the same date - Thanks @canro91
 

@@ -11,7 +11,7 @@ DateTime Extensions
 
 
 This project is a merge of several common DateTime operations in the form of 
-extensions to System.DateTime, including natural date difference text (precise and human rounded),
+extensions to System.DateTime and System.DateTimeOffset, including natural date difference text (precise and human rounded),
 holidays and working days calculations on several culture locales.
 
 Feedback will be much appreciated.
@@ -28,6 +28,7 @@ The following major features are currently implemented:
 +  Time of day
 +  General "goto" dates
 + Supports SourceLink for debugging
++ Extensions to both DateTime and DateTimeOffset (the Date portion)
 
 
 ### Working Days Calculations

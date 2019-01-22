@@ -15,9 +15,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <VersionPrefix>5.3.1</VersionPrefix>
-    <AssemblyVersion>5.3.1.0</AssemblyVersion>
-    <FileVersion>5.3.1.0</FileVersion>
+    <VersionPrefix>5.4.0</VersionPrefix>
     <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
