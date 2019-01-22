@@ -25,7 +25,7 @@ using System.Linq;
 
 namespace DateTimeExtensions
 {
-    public static class WorkingDaysExtensions
+    public static class WorkingDaysDateTimeOffsetExtensions
     {
         /// <summary>
         /// Adds or subctracts the value in <paramref name="workingDays"/> as working days to <paramref name="day"/>. 
@@ -36,25 +36,13 @@ namespace DateTimeExtensions
         /// <param name="day">The starting day.</param>
         /// <param name="workingDays">The number of working days to be added or subtracted.</param>
         /// <param name="workingDayCultureInfo">The culture of working days to be used in the calculation. See <seealso cref="WorkingDayCultureInfo"/> for more information.</param>
-        /// <returns>Returns a DateTime representing a date 
+        /// <returns>Returns a DateTimeOffset representing a date 
         /// with <paramref name="workingDays"/> added or subctracted to <paramref name="day"/>
         /// </returns>
-        public static DateTime AddWorkingDays(this DateTime day, int workingDays,
+        public static DateTimeOffset AddWorkingDays(this DateTimeOffset day, int workingDays,
             IWorkingDayCultureInfo workingDayCultureInfo)
         {
-            DateTime ret;
-            int added = 0;
-
-            ret = day.Subtract(day.TimeOfDay);
-            while (added < Math.Abs(workingDays))
-            {
-                ret = ret.AddDays((workingDays >= 0) ? 1 : -1);
-                if (IsWorkingDay(ret, workingDayCultureInfo))
-                {
-                    added++;
-                }
-            }
-            return ret;
+            return day.Date.AddWorkingDays(workingDays, workingDayCultureInfo);
         }
 
         /// <summary>
@@ -65,10 +53,10 @@ namespace DateTimeExtensions
         /// </remarks>
         /// <param name="day">The starting day.</param>
         /// <param name="workingDays">The number of working days to be added or subtracted.</param>
-        /// <returns>Returns a <typeref name="DateTime"/> representing a date 
+        /// <returns>Returns a <typeref name="DateTimeOffset"/> representing a date 
         /// with <paramref name="workingDays"/> added or subctracted to <paramref name="day"/>
         /// </returns>
-        public static DateTime AddWorkingDays(this DateTime day, int workingDays)
+        public static DateTimeOffset AddWorkingDays(this DateTimeOffset day, int workingDays)
         {
             return AddWorkingDays(day, workingDays, new WorkingDayCultureInfo());
         }
@@ -80,16 +68,9 @@ namespace DateTimeExtensions
         /// <param name="to">The end day.</param>
         /// <param name="workingDayCultureInfo">The culture of working days to be used in the calculation. See <seealso cref="WorkingDayCultureInfo"/> for more information.</param>
         /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
-        public static int GetWorkingDays(this DateTime from, DateTime to, WorkingDayCultureInfo workingDayCultureInfo)
+        public static int GetWorkingDays(this DateTimeOffset from, DateTimeOffset to, WorkingDayCultureInfo workingDayCultureInfo)
         {
-            var innerFrom = from < to ? from : to;
-            var innerTo = from < to ? to : from;
-
-            var dayCount = (innerTo.Date - innerFrom.Date).Days;
-
-            var days = Enumerable.Range(0, dayCount).Select(d => innerFrom.AddDays(d));
-
-            return days.Count(w => w.IsWorkingDay(workingDayCultureInfo));
+            return from.Date.GetWorkingDays(to.Date, workingDayCultureInfo);
         }
 
         /// <summary>
@@ -98,7 +79,7 @@ namespace DateTimeExtensions
         /// <param name="from">The starting day.</param>
         /// <param name="to">The end day.</param>        
         /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
-        public static int GetWorkingDays(this DateTime from, DateTime to)
+        public static int GetWorkingDays(this DateTimeOffset from, DateTimeOffset to)
         {
             return GetWorkingDays(from, to, new WorkingDayCultureInfo());
         }
@@ -109,7 +90,7 @@ namespace DateTimeExtensions
         /// </summary>
         /// <param name="day">The day from calendar to check</param>
         /// <returns></returns>
-        public static bool IsWorkingDay(this DateTime day)
+        public static bool IsWorkingDay(this DateTimeOffset day)
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo();
             return IsWorkingDay(day, workingDayCultureInfo);
@@ -121,9 +102,9 @@ namespace DateTimeExtensions
         /// <param name="day">The day from calendar to check</param>
         /// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the check if the day is a working day</param>
         /// <returns></returns>
-        public static bool IsHoliday(this DateTime day, IWorkingDayCultureInfo workingDayCultureInfo)
+        public static bool IsHoliday(this DateTimeOffset day, IWorkingDayCultureInfo workingDayCultureInfo)
         {
-            return workingDayCultureInfo.IsHoliday(day);
+            return day.Date.IsHoliday(workingDayCultureInfo);
         }
 
         /// <summary>
@@ -131,7 +112,7 @@ namespace DateTimeExtensions
         /// </summary>
         /// <param name="day">The day from calendar to check</param>
         /// <returns></returns>
-        public static bool IsHoliday(this DateTime day)
+        public static bool IsHoliday(this DateTimeOffset day)
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo();
             return IsHoliday(day, workingDayCultureInfo);
@@ -143,13 +124,9 @@ namespace DateTimeExtensions
         /// <param name="day">The day from calendar to check</param>
         /// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the check if the day is a working day</param>
         /// <returns></returns>
-        public static bool IsWorkingDay(this DateTime day, IWorkingDayCultureInfo workingDayCultureInfo)
+        public static bool IsWorkingDay(this DateTimeOffset day, IWorkingDayCultureInfo workingDayCultureInfo)
         {
-            if (!workingDayCultureInfo.IsWorkingDay(day.DayOfWeek))
-            {
-                return false;
-            }
-            return workingDayCultureInfo.IsWorkingDay(day);
+            return day.Date.IsWorkingDay(workingDayCultureInfo);
         }
 
         /// <summary>
@@ -157,7 +134,7 @@ namespace DateTimeExtensions
         /// </summary>
         /// <param name="day">The day used to gat the year from.</param>
         /// <returns>Returns a dictionary with the instance of the holiday observed on the year, and the holiday that gave it the observance.</returns>
-        public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day)
+        public static IDictionary<DateTimeOffset, Holiday> AllYearHolidays(this DateTimeOffset day)
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo();
             return AllYearHolidays(day, workingDayCultureInfo);
@@ -169,19 +146,10 @@ namespace DateTimeExtensions
         /// <param name="day">The day used to gat the year from.</param>
         /// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the get the holidays.</param>
         /// <returns>Returns a dictionary with the instance of the holiday observed on the year, and the holiday that gave it the observance.</returns>
-        public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day,
+        public static IDictionary<DateTimeOffset, Holiday> AllYearHolidays(this DateTimeOffset day,
             IWorkingDayCultureInfo workingDayCultureInfo)
         {
-            var holidays = new SortedDictionary<DateTime, Holiday>();
-            foreach (Holiday holiday in workingDayCultureInfo.GetHolidaysOfYear(day.Year))
-            {
-                var date = holiday.GetInstance(day.Year);
-                if (date.HasValue)
-                {
-                    holidays.Add(date.Value, holiday);
-                }
-            }
-            return holidays;
+            return day.Date.AllYearHolidays(workingDayCultureInfo).ToDictionary(x => (DateTimeOffset)x.Key, x => x.Value);
         }
     }
 }
