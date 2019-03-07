@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.4.1
+- Fixing SV-se Eves Holidays (thanks @rasmusoh)
+
 v5.4.0
 - Added extensions to DateTimeOffset (the are proxy to the DateTime existing ones)
 
