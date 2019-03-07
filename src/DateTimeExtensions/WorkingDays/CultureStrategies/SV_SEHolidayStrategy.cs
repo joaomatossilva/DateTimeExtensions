@@ -18,10 +18,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
@@ -40,10 +36,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Ascension);
             this.InnerHolidays.Add(ChristianHolidays.Pentecost);
             this.InnerHolidays.Add(NationalDay);
+            this.InnerHolidays.Add(GlobalHolidays.MidsummerEve);
             this.InnerHolidays.Add(GlobalHolidays.MidsummerDay);
             this.InnerHolidays.Add(ChristianHolidays.AllSaints);
+            this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
         }
 
         private static Holiday nationalDay;
