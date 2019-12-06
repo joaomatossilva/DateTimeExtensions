@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.4.2
+- Fixing SV-se fix All Saints (thanks @rasmusoh)
+
 v5.4.1
 - Fixing SV-se Eves Holidays (thanks @rasmusoh)
 
