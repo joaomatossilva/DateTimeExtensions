@@ -9,7 +9,7 @@ using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.EnvironmentInfo;
 using System.IO;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.BuildServers;
+using Nuke.Common.CI.AppVeyor;
 
 class Build : NukeBuild
 {
