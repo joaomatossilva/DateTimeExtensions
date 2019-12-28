@@ -62,7 +62,22 @@ namespace DateTimeExtensions.Tests
 
             Assert.IsNotNull(naturalText);
             Assert.IsNotEmpty(naturalText);
-            Assert.AreEqual("2 년 2 개월 3 일 4 시간 5 분 6 초", naturalText);
+
+            var result = string.Empty;
+            var dateDiff = fromTime.GetDiff(toTime);
+            if (dateDiff.Years > 0)
+                result += "2 년";
+            if (dateDiff.Months > 0)
+                result += " 2 개월";
+            if (dateDiff.Days > 0)
+                result += " 3 일";
+            if (dateDiff.Hours > 0)
+                result += " 4 시간";
+            if (dateDiff.Minutes > 0)
+                result += " 5 분";
+            if (dateDiff.Seconds > 0)
+                result += " 6 초";
+            Assert.AreEqual(result, naturalText);
         }
 
         [Test]

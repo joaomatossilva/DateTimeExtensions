@@ -62,7 +62,22 @@ namespace DateTimeExtensions.Tests
 
             Assert.IsNotNull(naturalText);
             Assert.IsNotEmpty(naturalText);
-            Assert.AreEqual("2 ans, 2 mois, 3 journées, 4 heures, 5 minutes, 6 seconds", naturalText);
+
+            var result = string.Empty;
+            var dateDiff = fromTime.GetDiff(toTime);
+            if (dateDiff.Years > 0)
+                result += "2 ans";
+            if (dateDiff.Months > 0)
+                result += ", 2 mois";
+            if (dateDiff.Days > 0)
+                result += ", 3 journées";
+            if (dateDiff.Hours > 0)
+                result += ", 4 heures";
+            if (dateDiff.Minutes > 0)
+                result += ", 5 minutes";
+            if (dateDiff.Seconds > 0)
+                result += ", 6 seconds";
+            Assert.AreEqual(result, naturalText);
         }
 
         [Test]
