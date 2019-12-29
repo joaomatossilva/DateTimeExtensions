@@ -19,58 +19,77 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
 
 namespace DateTimeExtensions.NaturalText
 {
     public struct DateDiff
     {
-        private const int DAYS_IN_MONTH = 30;
+        private const int DAYS_IN_LEAP_YEAR = 366;
         private const int DAYS_IN_YEAR = 365;
         private const int MONTHS_IN_YEAR = 12;
-
+        
         public DateDiff(DateTime startDate, DateTime endDate) : this()
         {
             if (endDate < startDate)
             {
                 throw new ArgumentException("endDate cannot be lesser then startDate");
             }
+            
+            //First, take difference between dates 
+            var dateDiff = endDate - startDate;
 
-            var span = endDate.Subtract(startDate);
-            Seconds = span.Seconds;
-            Minutes = span.Minutes;
-            Hours = span.Hours;
+            Milliseconds = dateDiff.Milliseconds;
+            Seconds = dateDiff.Seconds;
+            Minutes = dateDiff.Minutes;
+            Hours = dateDiff.Hours;
+            Days = dateDiff.Days;
 
-            if (endDate.Hour < startDate.Hour)
+            var year = startDate.Year;
+            var daysToSubstract = (new DateTime(year + 1, 1, 1) - startDate).Days; //days to the end of the year
+            var isAddExtraDays = false;
+            
+            //Round days, for fast counting years, and remember that
+            if (isAddExtraDays = (Days - daysToSubstract > 0))
             {
-                Days--;
+                Days -= daysToSubstract;
+                year++;
             }
-            if (endDate.Day >= startDate.Day)
+            
+            //Count all full years, simple substract days in year from total days count
+            while (Days - DaysInYear(year) >= 0)
             {
-                Days += endDate.Day - startDate.Day;
-            }
-            else
-            {
-                Months--;
-                var daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
-                Days += daysInMonth - startDate.Day + endDate.Day;
-            }
-
-            if (endDate.Month >= startDate.Month)
-            {
-                Months += endDate.Month - startDate.Month;
-            }
-            else
-            {
-                Months += MONTHS_IN_YEAR - startDate.Month + endDate.Month;
-                Years--;
+                Days -= DaysInYear(year++);
+                ++Years;
             }
 
-            if (endDate.Year >= startDate.Year)
+            //If we are used rounding, return difference
+            if (isAddExtraDays)
             {
-                Years += endDate.Year - startDate.Year;
+                Days += daysToSubstract;
+            }
+
+            var month = endDate.Month;
+            year = endDate.Year;
+
+            //Afterall, count all months by substracting days in month
+            while ((Days - DateTime.DaysInMonth(endDate.Year, month)) >= 0 && month > 0)
+            {
+                Days -= DateTime.DaysInMonth(endDate.Year, month--);
+                ++Months;
+
+                if (month == 0)
+                {
+                    --year;
+                    month = MONTHS_IN_YEAR;
+                }
+            }
+
+            //In some cases (when we are not using fast years counting), total months count is bigger or equals 12
+            if (Months >= MONTHS_IN_YEAR)
+            {
+                Years += (Months / MONTHS_IN_YEAR);
+                Months %= MONTHS_IN_YEAR;
             }
         }
 
@@ -85,5 +104,18 @@ namespace DateTimeExtensions.NaturalText
         public int Minutes { get; private set; }
 
         public int Seconds { get; private set; }
+
+        public int Milliseconds { get; private set; }
+
+        /// <summary>
+        /// Return number of days in a given year
+        /// </summary>
+        /// <param name="year">Year to inspect</param>
+        /// <returns>Number of days</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private int DaysInYear(int year)
+        {
+            return DateTime.IsLeapYear(year) ? DAYS_IN_LEAP_YEAR : DAYS_IN_YEAR;
+        }
     }
 }
