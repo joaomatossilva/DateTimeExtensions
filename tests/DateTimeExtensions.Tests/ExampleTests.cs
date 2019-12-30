@@ -38,6 +38,46 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
+        public void get_diff_between_2019_11_27_and_2018_11_28()
+        {
+            //just some exact case, that didn't work for us :)
+            var simpleDate1 = new DateTime(2018, 11, 28);
+            var simpleDate2 = new DateTime(2019, 11, 27);
+
+            var difference = simpleDate2.GetDiff(simpleDate1);
+
+            Assert.AreEqual(0, difference.Years);
+            Assert.AreEqual(11, difference.Months);
+            Assert.AreEqual(30, difference.Days);
+        }
+
+        [Test]
+        public void diff_between_two_leap_years()
+        {
+            var firstLeapYear = new DateTime(2012, 01, 02);
+            var secondLeapYear = firstLeapYear.AddYears(4).AddMonths(3).AddDays(2);
+
+            var difference = secondLeapYear.GetDiff(firstLeapYear);
+
+            Assert.AreEqual(4, difference.Years);
+            Assert.AreEqual(3, difference.Months);
+            Assert.AreEqual(2, difference.Days);
+        }
+
+        [Test]
+        public void diff_between_leap_and_not_leap()
+        {
+            var firstLeapYear = new DateTime(2012, 01, 02);
+            var secondLeapYear = firstLeapYear.AddYears(3).AddMonths(3).AddDays(2);
+
+            var difference = secondLeapYear.GetDiff(firstLeapYear);
+
+            Assert.AreEqual(3, difference.Years);
+            Assert.AreEqual(3, difference.Months);
+            Assert.AreEqual(2, difference.Days);
+        }
+
+        [Test]
         public void globally_recomended_calculation()
         {
             //Ensure we're running on portuguese context

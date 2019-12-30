@@ -70,14 +70,14 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full()
         {
-            var fromTime = DateTime.Now;
+            var fromTime = new DateTime(2019, 12, 30, 19, 51, 15);
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, this.culture);
 
             Assert.IsNotNull(naturalText);
             Assert.IsNotEmpty(naturalText);
-            Assert.AreEqual("2 jaar, 2 maanden, 3 dagen, 4 uur, 5 minuten, 6 seconden", naturalText);
+            Assert.AreEqual("2 jaar, 2 maanden, 2 dagen, 4 uur, 5 minuten, 6 seconden", naturalText);
         }
 
         [Test]

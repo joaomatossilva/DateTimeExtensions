@@ -19,16 +19,12 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.CompilerServices;
 
 namespace DateTimeExtensions.NaturalText
 {
     public struct DateDiff
     {
-        private const int DAYS_IN_MONTH = 30;
-        private const int DAYS_IN_YEAR = 365;
         private const int MONTHS_IN_YEAR = 12;
 
         public DateDiff(DateTime startDate, DateTime endDate) : this()
@@ -38,40 +34,26 @@ namespace DateTimeExtensions.NaturalText
                 throw new ArgumentException("endDate cannot be lesser then startDate");
             }
 
-            var span = endDate.Subtract(startDate);
-            Seconds = span.Seconds;
-            Minutes = span.Minutes;
-            Hours = span.Hours;
+            //First, take difference between dates 
+            var dateDiff = endDate - startDate;
 
-            if (endDate.Hour < startDate.Hour)
+            Milliseconds = dateDiff.Milliseconds;
+            Seconds = dateDiff.Seconds;
+            Minutes = dateDiff.Minutes;
+            Hours = dateDiff.Hours;
+
+            int totalMonth = GetProlepticMonth(endDate) - GetProlepticMonth(startDate);
+            Days = endDate.Day - startDate.Day;
+
+            if (Days < 0)
             {
-                Days--;
-            }
-            if (endDate.Day >= startDate.Day)
-            {
-                Days += endDate.Day - startDate.Day;
-            }
-            else
-            {
-                Months--;
-                var daysInMonth = DateTime.DaysInMonth(startDate.Year, startDate.Month);
-                Days += daysInMonth - startDate.Day + endDate.Day;
+                --totalMonth;
+                var calcDate = startDate.AddMonths(totalMonth);
+                Days = (endDate - calcDate).Days;
             }
 
-            if (endDate.Month >= startDate.Month)
-            {
-                Months += endDate.Month - startDate.Month;
-            }
-            else
-            {
-                Months += MONTHS_IN_YEAR - startDate.Month + endDate.Month;
-                Years--;
-            }
-
-            if (endDate.Year >= startDate.Year)
-            {
-                Years += endDate.Year - startDate.Year;
-            }
+            Years = totalMonth / MONTHS_IN_YEAR;
+            Months = totalMonth % MONTHS_IN_YEAR;
         }
 
         public int Years { get; private set; }
@@ -85,5 +67,18 @@ namespace DateTimeExtensions.NaturalText
         public int Minutes { get; private set; }
 
         public int Seconds { get; private set; }
+
+        public int Milliseconds { get; private set; }
+
+        /// <summary>
+        /// Get total month count - 1
+        /// </summary>
+        /// <param name="dateObj">Date obj for calculate</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private int GetProlepticMonth(DateTime dateObj)
+        {
+            return dateObj.Year * MONTHS_IN_YEAR + dateObj.Month - 1;
+        }
     }
 }

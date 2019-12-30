@@ -55,14 +55,14 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full()
         {
-            var fromTime = DateTime.Now;
+            var fromTime = new DateTime(2019, 12, 30, 19, 51, 15);
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
             Assert.IsNotNull(naturalText);
             Assert.IsNotEmpty(naturalText);
-            Assert.AreEqual("2 years, 2 months, 3 days, 4 hours, 5 minutes, 6 seconds", naturalText);
+            Assert.AreEqual("2 years, 2 months, 2 days, 4 hours, 5 minutes, 6 seconds", naturalText);
         }
 
         [Test]
