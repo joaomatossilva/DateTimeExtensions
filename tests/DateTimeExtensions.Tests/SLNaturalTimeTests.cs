@@ -18,6 +18,7 @@ namespace DateTimeExtensions.Tests
     public class SLNaturalTimeTests
     {
         private readonly NaturalTextCultureInfo culture;
+        private DateTime fromTime = new DateTime(2016, 6, 21, 10, 28, 0);
 
         public SLNaturalTimeTests()
         {
@@ -32,8 +33,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_natural_text()
         {
-            var fromTime = DateTime.Now;
-            var toTime = DateTime.Now.AddHours(2).AddMinutes(45);
+            var toTime = fromTime.AddHours(2).AddMinutes(45);
 
             var naturalText = fromTime.ToNaturalText(toTime, false, this.culture);
 
@@ -45,7 +45,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_natural_text_rounded()
         {
-            var fromTime = DateTime.Now;
             var toTime = fromTime.AddHours(2).AddMinutes(45);
 
             var naturalText = fromTime.ToNaturalText(toTime, true, this.culture);
@@ -59,8 +58,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text()
         {
-            var fromTime = DateTime.Now;
-            var toTime = DateTime.Now.AddHours(2).AddMinutes(30);
+            var toTime = fromTime.AddHours(2).AddMinutes(30);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, this.culture);
 
@@ -72,7 +70,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full()
         {
-            var fromTime = DateTime.Now;
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, this.culture);
@@ -85,7 +82,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void are_orderless()
         {
-            var fromTime = DateTime.Now;
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, this.culture);
@@ -102,7 +98,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_pluralize_years()
         {
-            var fromTime = DateTime.Now;
             var toTime_plural = fromTime.AddYears(2);
             var toTime_plural3 = fromTime.AddYears(3);
             var toTime_plural4 = fromTime.AddYears(4);
@@ -130,7 +125,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_pluralize_months()
         {
-            var fromTime = DateTime.Now;
             var toTime_plural = fromTime.AddMonths(2);
             var toTime_plural3 = fromTime.AddMonths(3);
             var toTime_plural4 = fromTime.AddMonths(4);
@@ -158,7 +152,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_pluralize()
         {
-            var fromTime = DateTime.Now;
             var toTime_plural = fromTime.AddDays(2).AddHours(2).AddMinutes(2).AddSeconds(2);
             var toTime_plural3 = fromTime.AddDays(3).AddHours(3).AddMinutes(3).AddSeconds(3);
             var toTime_plural4 = fromTime.AddDays(4).AddHours(4).AddMinutes(4).AddSeconds(4);
