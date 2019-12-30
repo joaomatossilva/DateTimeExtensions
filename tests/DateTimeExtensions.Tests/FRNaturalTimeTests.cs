@@ -11,12 +11,12 @@ namespace DateTimeExtensions.Tests
     public class FRNaturalTimeTests
     {
         private NaturalTextCultureInfo foo_ci = new NaturalTextCultureInfo("fr-FR");
+        private DateTime fromTime = new DateTime(2016, 6, 21, 10, 28, 0);
 
         [Test]
         public void can_tranlate_to_natural_text()
         {
-            var fromTime = DateTime.Now;
-            var toTime = DateTime.Now.AddHours(2).AddMinutes(45);
+            var toTime = fromTime.AddHours(2).AddMinutes(45);
 
             var naturalText = fromTime.ToNaturalText(toTime, false, foo_ci);
 
@@ -28,7 +28,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_natural_text_rounded()
         {
-            var fromTime = DateTime.Now;
             var toTime = fromTime.AddHours(2).AddMinutes(45);
 
             var naturalText = fromTime.ToNaturalText(toTime, true, foo_ci);
@@ -42,8 +41,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text()
         {
-            var fromTime = DateTime.Now;
-            var toTime = DateTime.Now.AddHours(2).AddMinutes(30);
+            var toTime = fromTime.AddHours(2).AddMinutes(30);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
 
@@ -55,7 +53,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_tranlate_to_exact_natural_text_full()
         {
-            var fromTime = DateTime.Now;
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
@@ -68,7 +65,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void are_orderless()
         {
-            var fromTime = DateTime.Now;
             var toTime = fromTime.AddSeconds(6).AddMinutes(5).AddHours(4).AddDays(3).AddMonths(2).AddYears(2);
 
             var naturalText = fromTime.ToExactNaturalText(toTime, foo_ci);
@@ -85,7 +81,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_pluralize_years()
         {
-            var fromTime = DateTime.Now;
             var toTime_plural = fromTime.AddYears(2);
             var toTime_single = fromTime.AddYears(1);
 
@@ -103,7 +98,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_pluralize_months()
         {
-            var fromTime = DateTime.Now;
             var toTime_plural = fromTime.AddMonths(2);
             var toTime_single = fromTime.AddMonths(1);
 
@@ -121,7 +115,6 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_pluralize()
         {
-            var fromTime = DateTime.Now;
             var toTime_plural = fromTime.AddDays(2).AddHours(2).AddMinutes(2).AddSeconds(2);
             var toTime_single = fromTime.AddDays(1).AddHours(1).AddMinutes(1).AddSeconds(1);
 
