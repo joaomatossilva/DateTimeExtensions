@@ -29,7 +29,7 @@ namespace DateTimeExtensions.WorkingDays
     public class EasterBasedHoliday : Holiday
     {
         private int daysOffset;
-        private ConcurrentLazyDictionary<int, DateTime> dayCache;
+        private readonly ConcurrentLazyDictionary<int, DateTime> dayCache;
 
         public EasterBasedHoliday(string name, int daysOffset)
             : base(name)
