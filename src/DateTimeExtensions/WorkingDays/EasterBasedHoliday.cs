@@ -18,6 +18,7 @@
 
 #endregion
 
+using DateTimeExtensions.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,25 +29,18 @@ namespace DateTimeExtensions.WorkingDays
     public class EasterBasedHoliday : Holiday
     {
         private int daysOffset;
-        private IDictionary<int, DateTime> dayCache;
+        private readonly ConcurrentLazyDictionary<int, DateTime> dayCache;
 
         public EasterBasedHoliday(string name, int daysOffset)
             : base(name)
         {
             this.daysOffset = daysOffset;
-            dayCache = new Dictionary<int, DateTime>();
+            dayCache = new ConcurrentLazyDictionary<int, DateTime>();
         }
 
         public override DateTime? GetInstance(int year)
         {
-            if (dayCache.ContainsKey(year))
-            {
-                return dayCache[year];
-            }
-            var easter = EasterCalculator.CalculateEasterDate(year);
-            var date = easter.AddDays(daysOffset);
-            dayCache.Add(year, date);
-            return date;
+            return dayCache.GetOrAdd(year, () => EasterCalculator.CalculateEasterDate(year).AddDays(daysOffset));
         }
 
         public override bool IsInstanceOf(DateTime date)
@@ -57,22 +51,16 @@ namespace DateTimeExtensions.WorkingDays
 
         public static class EasterCalculator
         {
-            private static IDictionary<int, DateTime> easterPerYear;
+            private static ConcurrentLazyDictionary<int, DateTime> easterPerYear;
 
             static EasterCalculator()
             {
-                easterPerYear = new Dictionary<int, DateTime>();
+                easterPerYear = new ConcurrentLazyDictionary<int, DateTime>();
             }
 
             public static DateTime CalculateEasterDate(int year)
             {
-                if (easterPerYear.ContainsKey(year))
-                {
-                    return easterPerYear[year];
-                }
-                var easter = GetEasterDate(year);
-                easterPerYear.Add(year, easter);
-                return easter;
+                return easterPerYear.GetOrAdd(year, () => GetEasterDate(year));
             }
 
             //Algoritm downloaded from http://tiagoe.blogspot.com/2007/10/easter-calculation-in-c.html
