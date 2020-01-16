@@ -236,5 +236,45 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual("45 minutes", fromTime.ToNaturalText(roundedMinutes_lastQuarter1, foo_ci));
             Assert.AreEqual("45 minutes", fromTime.ToNaturalText(roundedMinutes_lastQuarter2, foo_ci));
         }
+
+        [Test]
+        public void get_diff_between_2019_11_27_and_2018_11_28()
+        {
+            var simpleDate1 = new DateTime(2018, 11, 28);
+            var simpleDate2 = new DateTime(2019, 11, 27);
+
+            var difference = simpleDate2.GetDiff(simpleDate1);
+
+            Assert.AreEqual(0, difference.Years);
+            Assert.AreEqual(11, difference.Months);
+            Assert.AreEqual(29, difference.Days);
+        }
+
+        [Test]
+        public void get_diff_between_2019_02_27_and_2018_02_28()
+        {
+            var simpleDate1 = new DateTime(2018, 2, 28);
+            var simpleDate2 = new DateTime(2019, 2, 27);
+
+            var difference = simpleDate2.GetDiff(simpleDate1);
+
+            Assert.AreEqual(0, difference.Years);
+            Assert.AreEqual(11, difference.Months);
+            Assert.AreEqual(27, difference.Days);
+        }
+
+        [Test]
+        public void get_diff_between_2019_02_28_and_2018_01_29()
+        {
+            var simpleDate1 = new DateTime(2018, 1, 29);
+            var simpleDate2 = new DateTime(2019, 2, 28);
+
+            var difference = simpleDate2.GetDiff(simpleDate1);
+
+            Assert.AreEqual(1, difference.Years);
+            Assert.AreEqual(0, difference.Months);
+            Assert.AreEqual(30, difference.Days);
+        }
+
     }
 }

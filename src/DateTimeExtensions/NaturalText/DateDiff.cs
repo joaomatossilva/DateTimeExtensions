@@ -47,7 +47,8 @@ namespace DateTimeExtensions.NaturalText
             {
                 Days--;
             }
-            if (endDate.Day >= startDate.Day)
+
+            if (Days + endDate.Day >= startDate.Day)
             {
                 Days += endDate.Day - startDate.Day;
             }
@@ -58,7 +59,7 @@ namespace DateTimeExtensions.NaturalText
                 Days += daysInMonth - startDate.Day + endDate.Day;
             }
 
-            if (endDate.Month >= startDate.Month)
+            if (Months + endDate.Month >= startDate.Month)
             {
                 Months += endDate.Month - startDate.Month;
             }
@@ -68,7 +69,7 @@ namespace DateTimeExtensions.NaturalText
                 Years--;
             }
 
-            if (endDate.Year >= startDate.Year)
+            if (Years + endDate.Year >= startDate.Year)
             {
                 Years += endDate.Year - startDate.Year;
             }
