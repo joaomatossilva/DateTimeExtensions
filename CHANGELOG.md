@@ -2,6 +2,7 @@ Changelog
 ===================
 v5.4.3
 - Fixing an issue on DateDiff not taking into account the accomulator when calculating months and days - Thanks @HotTaton 
+- Make EasterBasedHoliday threadsafe - Thanks @SumanKNath
 
 v5.4.2
 - Fixing SV-se fix All Saints (thanks @rasmusoh)
