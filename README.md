@@ -161,6 +161,9 @@ Example: Portugal_FreedomDay
 ### License
 [License](LICENSE.md) 
 
+### Things to improve
+[![](https://codescene.io/projects/9721/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/9721/jobs/latest-successful/results)
+
 ### Special Thanks
 
 + @manuelbarbosa for making me this awesome logo
