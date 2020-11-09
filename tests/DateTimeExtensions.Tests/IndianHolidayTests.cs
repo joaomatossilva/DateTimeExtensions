@@ -28,7 +28,7 @@ namespace DateTimeExtensions.Tests
         {
             var cultureInfo = new WorkingDayCultureInfo("en-IN");
             Assert.IsNotNull(cultureInfo);
-            var holidays = cultureInfo.GetHolidaysOfYear(2017);
+            var holidays = cultureInfo.GetObservationsOfYear(2017);
             Assert.AreEqual(5, holidays.Count());
         }
     }

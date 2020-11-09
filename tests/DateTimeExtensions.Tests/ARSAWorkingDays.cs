@@ -60,7 +60,7 @@ namespace DateTimeExtensions.Tests
             var year = 2000;
             do
             {
-                var holidays = dateTimeCulture.GetHolidaysOfYear(year);
+                var holidays = dateTimeCulture.GetObservationsOfYear(year);
                 Assert.Greater(holidays.Count(), 0);
                 year++;
             } while (year < 2020);

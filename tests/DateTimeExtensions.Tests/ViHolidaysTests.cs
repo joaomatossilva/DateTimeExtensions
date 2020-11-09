@@ -104,7 +104,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void VietNamPublicHolidaysShouldBe5()
         {
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.ObservedDays;
             Assert.IsTrue(5 == holidays.Count());
         }
 

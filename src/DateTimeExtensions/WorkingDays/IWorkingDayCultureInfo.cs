@@ -30,8 +30,8 @@ namespace DateTimeExtensions.WorkingDays
         bool IsHoliday(DateTime date);
         bool IsWorkingDay(DateTime date);
         bool IsWorkingDay(DayOfWeek dayOfWeek);
-        IEnumerable<Holiday> Holidays { get; }
-        IEnumerable<Holiday> GetHolidaysOfYear(int year);
+        IEnumerable<CalendarDay> ObservedDays { get; }
+        IEnumerable<CalendarDay> GetObservationsOfYear(int year);
         string Name { get; }
     }
 }

@@ -34,14 +34,14 @@ namespace DateTimeExtensions.Export
 
         public void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
         {
-            var holidays = dateTimeCultureInfo.GetHolidaysOfYear(year);
+            var holidays = dateTimeCultureInfo.GetObservationsOfYear(year);
             writer.WriteLine(HeaderLineFomat, dateTimeCultureInfo.Name, holidays.Count());
             foreach (var holiday in holidays)
             {
-                var instance = holiday.GetInstance(year);
+                var instance = holiday.Day.GetInstance(year);
                 if (instance.HasValue)
                 {
-                    writer.WriteLine(HolidayLineFormat, holiday.Name, instance);
+                    writer.WriteLine(HolidayLineFormat, holiday.Day.Name, instance);
                 }
             }
         }

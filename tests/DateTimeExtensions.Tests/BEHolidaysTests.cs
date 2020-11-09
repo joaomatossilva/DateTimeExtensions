@@ -15,7 +15,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void Belgium_has_12_main_holidays()
         {
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.ObservedDays;
             Assert.AreEqual(12, holidays.Count());
         }
 

@@ -13,7 +13,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void The_Netherlands_has_11_main_holidays()
         {
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.ObservedDays;
             Assert.AreEqual(11, holidays.Count());
         }
 

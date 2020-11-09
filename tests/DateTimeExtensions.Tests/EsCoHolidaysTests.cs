@@ -33,7 +33,7 @@ namespace DateTimeExtensions.Tests
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo("es-CO");
 
-            var holidays = workingDayCultureInfo.Holidays;
+            var holidays = workingDayCultureInfo.ObservedDays;
 
             Assert.AreEqual(20, holidays.Count());
         }

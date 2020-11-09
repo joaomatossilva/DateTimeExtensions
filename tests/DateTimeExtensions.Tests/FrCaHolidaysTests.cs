@@ -23,7 +23,7 @@ namespace DateTimeExtensions.Tests
         public void assert_holidays_count()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.ObservedDays;
             Assert.AreEqual(8, holidays.Count());
         }
 
@@ -41,7 +41,7 @@ namespace DateTimeExtensions.Tests
         public void CanWorkOn2016()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
-            var holidays = dateTimeCulture.GetHolidaysOfYear(2016);
+            var holidays = dateTimeCulture.GetObservationsOfYear(2016);
             Assert.IsTrue(holidays.Any());
         }
     }
