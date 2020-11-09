@@ -42,18 +42,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
 
         //1st Monday in May	- May Day Bank Holiday
-        private static readonly Lazy<NamedDay> MayDayBankLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer MayDayBank { get; } = new NamedDayInitializer(() =>
             new NamedDay("May Day Bank", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.May, CountDirection.FromFirst)));
-        public static NamedDay MayDayBank => MayDayBankLazy.Value;
 
         //Last Monday in May - Spring Bank Holiday
-        private static readonly Lazy<NamedDay> SpringBankLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer SpringBank { get; } = new NamedDayInitializer(() =>
             new NamedDay("Spring Bank", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.May, CountDirection.FromLast)));
-        public static NamedDay SpringBank => SpringBankLazy.Value;
 
         //Last Monday in August	- Late Summer Bank Holiday
-        private static readonly Lazy<NamedDay> LateSummerBankLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer LateSummerBank { get; } = new NamedDayInitializer(() => 
             new NamedDay("Late Summer Bank", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.August, CountDirection.FromLast)));
-        public static NamedDay LateSummerBank => LateSummerBankLazy.Value;
     }
 }

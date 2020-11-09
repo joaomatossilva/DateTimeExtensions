@@ -90,30 +90,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         //Last Monday in May - Spring Bank Holiday
-        private static readonly Lazy<NamedDay> AustraliaDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer AustraliaDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Australia Day", new FixedDayStrategy(Month.January, 26)));
-        public static NamedDay AustraliaDay => AustraliaDayLazy.Value;
         
         //1st Monday in May	- May Day Bank Holiday (not an national holiday, but observed on some regions)
-        private static readonly Lazy<NamedDay> MayDayLazy = new Lazy<NamedDay>(() => 
-            new NamedDay("May Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, 5, CountDirection.FromFirst)));
-        public static NamedDay MayDay => MayDayLazy.Value;
+        public static NamedDayInitializer MayDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay("May Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.May,
+                CountDirection.FromFirst)));
 
         //25th April - Anzac Day
-        private static readonly Lazy<NamedDay> AnzacDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer AnzacDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Anzac Day", new FixedDayStrategy(Month.April, 25)));
-        public static NamedDay AnzacDay => AnzacDayLazy.Value;
 
         //2nd Monday in June - Queen's Birthday
-        private static readonly Lazy<NamedDay> QueensBirthdayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer QueensBirthday { get; } = new NamedDayInitializer(() => 
             new NamedDay("Queen's Birthday", new NthDayOfWeekInMonthDayStrategy(2, DayOfWeek.Monday, Month.June,
                 CountDirection.FromFirst)));
-        public static NamedDay QueensBirthday => QueensBirthdayLazy.Value;
         
         //1nd Monday in October - Labour Day
-        private static readonly Lazy<NamedDay> LabourDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer LabourDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Labour Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.October,
-                CountDirection.FromFirst)));
-        public static NamedDay LabourDay => LabourDayLazy.Value;
+            CountDirection.FromFirst)));
     }
 }

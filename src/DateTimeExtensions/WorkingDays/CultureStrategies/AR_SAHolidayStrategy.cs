@@ -43,36 +43,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
         {
             var observancesMap = new Dictionary<DateTime, CalendarDay>();
-            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, new Holiday(SaudiNationalDay));
-
-            var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
-            for (int i = 0; i <= 7; i++)
+            var nationalDayObservance = SaudiNationalDay.Value.GetInstance(year);
+            if (nationalDayObservance != null)
             {
-                observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), new Holiday(EndOfRamadan));
+                observancesMap.AddIfInexistent(nationalDayObservance.Value, new Holiday(SaudiNationalDay));
             }
 
-            var endOfHajjObservance = EndOfHajj.GetInstance(year);
-            for (int i = 0; i <= 6; i++)
+            var endOfRamadanObservance = EndOfRamadan.Value.GetInstance(year);
+            if (endOfRamadanObservance != null)
             {
-                observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), new Holiday(EndOfHajj));
+                for (var i = 0; i <= 7; i++)
+                {
+                    observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), new Holiday(EndOfRamadan));
+                }
+            }
+
+            var endOfHajjObservance = EndOfHajj.Value.GetInstance(year);
+            if (endOfHajjObservance != null)
+            {
+                for (var i = 0; i <= 6; i++)
+                {
+                    observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), new Holiday(EndOfHajj));
+                }
             }
 
             return observancesMap;
         }
 
         //1 Shawwal
-        private static readonly Lazy<NamedDay> EndOfRamadanLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer EndOfRamadan { get; } = new NamedDayInitializer(() =>
             new NamedDay("Eid ul-Fitr", new FixedDayStrategy(10, 1, HirijiCalendar)));
-        public static NamedDay EndOfRamadan => EndOfRamadanLazy.Value;
 
         //10 Dhul-Hijjah
-        private static readonly Lazy<NamedDay> EndOfHajjLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer EndOfHajj { get; } = new NamedDayInitializer(() =>
             new NamedDay("Eid ul-Adha", new FixedDayStrategy(12, 10, HirijiCalendar)));
-        public static NamedDay EndOfHajj => EndOfHajjLazy.Value;
 
         //23 September - Saudi National Day
-        private static readonly Lazy<NamedDay> SaudiNationalDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer SaudiNationalDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Saudi National Day", new FixedDayStrategy(Month.September, 23)));
-        public static NamedDay SaudiNationalDay => SaudiNationalDayLazy.Value;
     }
 }

@@ -41,9 +41,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(GermanUnityDay));
             this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.StStephansDay));
         }
-
-        private static readonly Lazy<NamedDay> GermanUnityDayLazy = new Lazy<NamedDay>(() => 
+        
+        public static NamedDayInitializer GermanUnityDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("GermanUnityDay", new FixedDayStrategy(Month.October, 3)));
-        public static NamedDay GermanUnityDay => GermanUnityDayLazy.Value;
     }
 }

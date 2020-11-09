@@ -36,8 +36,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(BattleOfTheBoyneDay));
         }
 
-        private static readonly Lazy<NamedDay> BattleOfTheBoyneDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer BattleOfTheBoyneDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Battle of the Boyne", new FixedDayStrategy(Month.July, 12)));
-        public static NamedDay BattleOfTheBoyneDay => BattleOfTheBoyneDayLazy.Value;
     }
 }

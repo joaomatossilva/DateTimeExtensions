@@ -41,14 +41,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(NationalDay));
         }
 
-        private static readonly Lazy<NamedDay> SpringFestivalLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer SpringFestival { get; } = new NamedDayInitializer(() =>
             new NamedDay("Spring Festival", new FixedDayStrategy(1, 1, ChineseCalendar)));
-        public static NamedDay SpringFestival => SpringFestivalLazy.Value;
         
-        private static readonly Lazy<NamedDay> TombSweepingDayLazy = new Lazy<NamedDay>(() =>
+        public static NamedDayInitializer TombSweepingDay { get; } = new NamedDayInitializer(() =>
         {
             //temporary maps based on https://en.wikipedia.org/wiki/Public_holidays_in_China
-            var knownTombSweepingDayOccurences = new Dictionary<int, DayInYear>
+            var knownTombSweepingDayOccurrences = new Dictionary<int, DayInYear>
             {
                 {2014, new DayInYear(4, 7)},
                 {2015, new DayInYear(4, 5)},
@@ -57,22 +56,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 {2018, new DayInYear(4, 5)}
             };
 
-            return new NamedDay("Tomb-Sweeping Day", new YearMapDayStrategy(knownTombSweepingDayOccurences));
+            return new NamedDay("Tomb-Sweeping Day", new YearMapDayStrategy(knownTombSweepingDayOccurrences));
         });
-        public static NamedDay TombSweepingDay => TombSweepingDayLazy.Value;
         
-        private static readonly Lazy<NamedDay> DragonBoatFestivalLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer DragonBoatFestival { get; } = new NamedDayInitializer(() =>
             new NamedDay("Dragon Boat Festival", new FixedDayStrategy(5, 5, ChineseCalendar)));
-        public static NamedDay DragonBoatFestival => DragonBoatFestivalLazy.Value;
 
         //Mid-Autumn Festival
-        private static readonly Lazy<NamedDay> MidAutumnFestivalLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer MidAutumnFestival { get; } = new NamedDayInitializer(() =>
             new NamedDay("Mid-Autumn Festival", new FixedDayStrategy(8, 15, ChineseCalendar)));
-        public static NamedDay MidAutumnFestival => MidAutumnFestivalLazy.Value;
         
         //National Day
-        private static readonly Lazy<NamedDay> NationalDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer NationalDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("National Day", new FixedDayStrategy(10, 1)));
-        public static NamedDay NationalDay => NationalDayLazy.Value;
     }
 }

@@ -25,11 +25,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.StStephansDay));
             this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYearsEve));
         }
-
-        private static readonly Lazy<NamedDay> AustrianNationalHolidayLazy = new Lazy<NamedDay>(() => 
+            
+        public static NamedDayInitializer AustrianNationalHoliday { get; } = new NamedDayInitializer(() =>
             new NamedDay("Austrian National Holiday", new FixedDayStrategy(Month.October, 26)));
-        public static NamedDay AustrianNationalHoliday => AustrianNationalHolidayLazy.Value;
-        
-        
     }
 }

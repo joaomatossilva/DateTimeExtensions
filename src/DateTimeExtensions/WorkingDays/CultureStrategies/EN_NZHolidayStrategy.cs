@@ -71,49 +71,47 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
 
+        //TODO: improve this to be more behavioral instead of conjuntction of ors and ands
         private static bool IsMondayised(CalendarDay holiday, DayOfWeek occurenceDay)
         {
             return
-                (holiday.Equals(GlobalHolidays.NewYear) && occurenceDay == DayOfWeek.Saturday) ||
-                (holiday.Equals(DayAfterNewYear) && occurenceDay == DayOfWeek.Saturday) ||
-                (holiday.Equals(ChristianHolidays.Christmas) && occurenceDay == DayOfWeek.Saturday) ||
-                (holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Saturday);
+                (holiday.Day == GlobalHolidays.NewYear && occurenceDay == DayOfWeek.Saturday) ||
+                (holiday.Day == DayAfterNewYear && occurenceDay == DayOfWeek.Saturday) ||
+                (holiday.Day == ChristianHolidays.Christmas && occurenceDay == DayOfWeek.Saturday) ||
+                (holiday.Day == GlobalHolidays.BoxingDay && occurenceDay == DayOfWeek.Saturday);
         }
 
         private static bool IsTuesdayised(CalendarDay holiday, DayOfWeek occurenceDay)
         {
             return
-                (holiday.Equals(GlobalHolidays.NewYear) && occurenceDay == DayOfWeek.Sunday) ||
-                (holiday.Equals(DayAfterNewYear) && occurenceDay == DayOfWeek.Sunday) ||
-                (holiday.Equals(ChristianHolidays.Christmas) && occurenceDay == DayOfWeek.Sunday) ||
-                (holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Sunday);
+                (holiday.Day == GlobalHolidays.NewYear && occurenceDay == DayOfWeek.Sunday) ||
+                (holiday.Day == DayAfterNewYear && occurenceDay == DayOfWeek.Sunday) ||
+                (holiday.Day == ChristianHolidays.Christmas && occurenceDay == DayOfWeek.Sunday) ||
+                (holiday.Day == GlobalHolidays.BoxingDay && occurenceDay == DayOfWeek.Sunday);
         }
 
 
         // 2nd Janurary - Day after New Year's Day
-        private static readonly Lazy<NamedDay> DayAfterNewYearLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer DayAfterNewYear { get; } = new NamedDayInitializer(() =>
             new NamedDay("Day after New Year's Day", new FixedDayStrategy(Month.January, 2)));
-        public static NamedDay DayAfterNewYear => DayAfterNewYearLazy.Value;
 
         // 6th Feburary - Waitangi Day
-        private static readonly Lazy<NamedDay> WaitangiDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer WaitangiDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Waitangi Day", new FixedDayStrategy(Month.February, 6)));
-        public static NamedDay WaitangiDay => WaitangiDayLazy.Value;
 
         // 25th April - Anzac Day
-        private static readonly Lazy<NamedDay> AnzacDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer AnzacDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Anzac Day", new FixedDayStrategy(Month.April, 25)));
-        public static NamedDay AnzacDay => AnzacDayLazy.Value;
 
         // 1st Monday in June - Queen's Birthday
-        private static readonly Lazy<NamedDay> QueensBirthdayLazy = new Lazy<NamedDay>(() => 
-            new NamedDay("Queen's Birthday", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.July, CountDirection.FromFirst)));
-        public static NamedDay QueensBirthday => QueensBirthdayLazy.Value;
+        public static NamedDayInitializer QueensBirthday { get; } = new NamedDayInitializer(() =>
+            new NamedDay("Queen's Birthday", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.July, 
+                CountDirection.FromFirst)));
         
         // 4th Monday in October - Labour Day
-        private static readonly Lazy<NamedDay> LabourDayLazy = new Lazy<NamedDay>(() => 
-            new NamedDay("Labour Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.October, CountDirection.FromFirst)));
-        public static NamedDay LabourDay => LabourDayLazy.Value;
+        public static NamedDayInitializer LabourDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay("Labour Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.October, 
+                CountDirection.FromFirst)));
         
         // Todo: Regional Holidays
     }
