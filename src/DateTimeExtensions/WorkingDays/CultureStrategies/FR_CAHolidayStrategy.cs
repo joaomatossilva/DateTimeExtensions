@@ -33,26 +33,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FR_CAHolidayStrategy()
         {
-            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
-            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
-            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.EasterMonday));
             //Victoria Day is not really national
             //this.InnerHolidays.Add(VictoriaDay);
-            this.InnerCalendarDays.Add(CanadaDay);
-            this.InnerCalendarDays.Add(LabourDay);
-            this.InnerCalendarDays.Add(Thanksgiving);
-            this.InnerCalendarDays.Add(RemembranceDay);
-            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(new Holiday(CanadaDay));
+            this.InnerCalendarDays.Add(new Holiday(LabourDay));
+            this.InnerCalendarDays.Add(new Holiday(Thanksgiving));
+            this.InnerCalendarDays.Add(new Holiday(RemembranceDay));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
             //Boxing is not really national
             //this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, CalendarDay> holidayMap = new Dictionary<DateTime, CalendarDay>();
             foreach (var innerHoliday in InnerCalendarDays)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.Day.GetInstance(year);
                 if (date.HasValue)
                 {
                     holidayMap.Add(date.Value, innerHoliday);
@@ -71,82 +71,22 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        //First Monday in September - Canada Day
-        private static Holiday canadaDay;
-
-        public static Holiday CanadaDay
-        {
-            get
-            {
-                if (canadaDay == null)
-                {
-                    canadaDay = new FixedHoliday("Canada Day", 7, 1);
-                }
-                return canadaDay;
-            }
-        }
+        //First of July - Canada Day
+        public static NamedDayInitializer CanadaDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Canada Day", new FixedDayStrategy(Month.July, 1)));
 
         //First Monday in September - Labour Day
-        private static Holiday labourDay;
-
-        public static Holiday LabourDay
-        {
-            get
-            {
-                if (labourDay == null)
-                {
-                    labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 9,
-                        CountDirection.FromFirst);
-                }
-                return labourDay;
-            }
-        }
-
-        //Monday on or before May 24 - Victoria Day
-        private static Holiday victoriaDay;
-
-        public static Holiday VictoriaDay
-        {
-            get
-            {
-                if (victoriaDay == null)
-                {
-                    // 25 = day after 24. NthDayOfWeekAfterDayHoliday doesn't count the start day
-                    victoriaDay = new NthDayOfWeekAfterDayHoliday("Victoria Day", -1, DayOfWeek.Monday, 5, 25);
-                }
-                return victoriaDay;
-            }
-        }
+        public static NamedDayInitializer LabourDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Labour Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.September, CountDirection.FromFirst)));
+        
+        public static NamedDayInitializer VictoriaDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Victoria Day", new NthDayOfWeekAfterDayStrategy(-1, DayOfWeek.Monday, new FixedDayStrategy(Month.May, 25))));
 
         //Second Monday in October - Thanksgiving
-        private static Holiday thanksgiving;
+        public static NamedDayInitializer Thanksgiving { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Thanksgiving", new NthDayOfWeekInMonthDayStrategy(2, DayOfWeek.Monday, Month.October, CountDirection.FromFirst)));
 
-        public static Holiday Thanksgiving
-        {
-            get
-            {
-                if (thanksgiving == null)
-                {
-                    thanksgiving = new NthDayOfWeekInMonthHoliday("Thanksgiving", 2, DayOfWeek.Monday, 10,
-                        CountDirection.FromFirst);
-                }
-                return thanksgiving;
-            }
-        }
-
-        //November 11 - Remembrance Day
-        private static Holiday remembranceDay;
-
-        public static Holiday RemembranceDay
-        {
-            get
-            {
-                if (remembranceDay == null)
-                {
-                    remembranceDay = new FixedHoliday("Remembrance Day", 11, 11);
-                }
-                return remembranceDay;
-            }
-        }
+        public static NamedDayInitializer RemembranceDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Remembrance Day", new FixedDayStrategy(Month.November, 11)));
     }
 }
