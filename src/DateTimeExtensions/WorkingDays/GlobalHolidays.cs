@@ -26,43 +26,34 @@ namespace DateTimeExtensions.WorkingDays
 {
     public static class GlobalHolidays
     {
-        private static readonly Lazy<NamedDay> InternationalWorkersDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer InternationalWorkersDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("InternationalWorkersDay", new FixedDayStrategy(Month.May, 1)));
-        public static NamedDay InternationalWorkersDay => InternationalWorkersDayLazy.Value;
         
-        private static readonly Lazy<NamedDay> StPatricsDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer StPatricsDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("StPatricsDay", new FixedDayStrategy(Month.March, 17)));
-        public static NamedDay StPatricsDay => StPatricsDayLazy.Value;
 
-        private static readonly Lazy<NamedDay> VeteransDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer VeteransDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("VeteransDay", new FixedDayStrategy(Month.November, 11)));
-        public static NamedDay VeteransDay => VeteransDayLazy.Value;
 
-        private static readonly Lazy<NamedDay> BoxingDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer BoxingDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("BoxingDay", new FixedDayStrategy(Month.December, 26)));
-        public static NamedDay BoxingDay => BoxingDayLazy.Value;
 
-        private static readonly Lazy<NamedDay> MayDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer MayDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("MayDay", new FixedDayStrategy(Month.May, 1)));
-        public static NamedDay MayDay => MayDayLazy.Value;
 
         //MidSummer Day - Saturday between 20 June and 26 June
-        private static readonly Lazy<NamedDay> MidsummerDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer MidsummerDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("MidsummerDay", new NthDayOfWeekAfterDayStrategy(1, DayOfWeek.Saturday, new FixedDayStrategy(Month.June, 20))));
-        public static NamedDay MidsummerDay => MidsummerDayLazy.Value;
         
         //Midsummer Eve - Friday between 19 June and 25 June
-        private static readonly Lazy<NamedDay> MidsummerEveLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer MidsummerEve { get; } = new NamedDayInitializer(() =>
             new NamedDay("MidsummerEve", new NthDayOfWeekAfterDayStrategy(-1, DayOfWeek.Friday, new FixedDayStrategy(Month.June, 19))));
-        public static NamedDay MidsummerEve => MidsummerEveLazy.Value;
         
         //New Year's Eve - 31 December
-        private static readonly Lazy<NamedDay> NewYearsEveLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer NewYearsEve { get; } = new NamedDayInitializer(() =>
             new NamedDay("NewYearsEve", new FixedDayStrategy(Month.December, 31)));
-        public static NamedDay NewYearsEve => NewYearsEveLazy.Value;
         
-        private static readonly Lazy<NamedDay> NewYearLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer NewYear { get; } = new NamedDayInitializer(() =>
             new NamedDay("NewYear", new FixedDayStrategy(Month.January, 1)));
-        public static NamedDay NewYear => NewYearLazy.Value;
     }
 }
