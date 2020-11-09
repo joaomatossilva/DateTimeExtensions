@@ -1,4 +1,6 @@
-﻿namespace DateTimeExtensions.Tests.Extensibility
+﻿using System.Linq;
+
+namespace DateTimeExtensions.Tests.Extensibility
 {
     using System;
     using Common;
@@ -24,7 +26,8 @@
         {
             public MyCustomWorkingDayStrategy()
             {
-                this.InnerHolidays.Remove(ColumbusDay);
+                var columbusHoliday = this.InnerCalendarDays.First(x => x.Day == ColumbusDay);
+                this.InnerCalendarDays.Remove(columbusHoliday);
             }
         }
 

@@ -153,9 +153,6 @@
   <data name="ImaculateConception" xml:space="preserve">
     <value>La Inmaculada Concepción</value>
   </data>
-  <data name="InternationalWorkerDay" xml:space="preserve">
-    <value>Fiesta del Trabajo</value>
-  </data>
   <data name="MaundyThursday" xml:space="preserve">
     <value>Jueves Santo</value>
   </data>
@@ -167,5 +164,8 @@
   </data>
   <data name="PentecostMonday" xml:space="preserve">
     <value>Lunes de Pentecostés</value>
+  </data>
+  <data name="InternationalWorkersDay" xml:space="preserve">
+    <value>Fiesta del Trabajo</value>
   </data>
 </root>

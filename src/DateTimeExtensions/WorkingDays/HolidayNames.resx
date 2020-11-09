@@ -169,7 +169,7 @@
     <value>Independance Day</value>
   </data>
   <data name="InternationalWorkerDay" xml:space="preserve">
-    <value>International Workers' day</value>
+    <value />
   </data>
   <data name="MaundyThursday" xml:space="preserve">
     <value>Maundy Thursday</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="TiradentesDay" xml:space="preserve">
     <value>Tiradentes Day</value>
+  </data>
+  <data name="InternationalWorkersDay" xml:space="preserve">
+    <value>International Workers' day</value>
   </data>
 </root>
