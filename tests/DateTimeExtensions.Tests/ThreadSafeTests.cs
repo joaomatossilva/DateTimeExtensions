@@ -33,7 +33,7 @@ namespace DateTimeExtensions.Tests
             var year = 2025;
             var easterDate = new DateTime(2025, 4, 20);
 
-            var ascencionHoliday = ChristianHolidays.Ascension;
+            var ascencionHoliday = ChristianHolidays.Ascension.Value;
             var ascencion = ascencionHoliday.GetInstance(year);
             Assert.IsTrue(ascencion.HasValue);
             Assert.AreEqual(DayOfWeek.Thursday, ascencion.Value.DayOfWeek);

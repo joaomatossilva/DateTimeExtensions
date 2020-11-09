@@ -14,13 +14,13 @@ namespace DateTimeExtensions.Tests
         {
             var independenceDayHoliday = IndianHolidayStrategy.IndependenceDay;
 
-            var observanceIn2015 = independenceDayHoliday.GetInstance(2015);
+            var observanceIn2015 = independenceDayHoliday.Value.GetInstance(2015);
             Assert.AreEqual(new DateTime(2015, 8, 15), observanceIn2015);
 
-            var observanceIn2016 = independenceDayHoliday.GetInstance(2016);
+            var observanceIn2016 = independenceDayHoliday.Value.GetInstance(2016);
             Assert.AreEqual(new DateTime(2016, 8, 15), observanceIn2016);
 
-            var observanceIn2017 = independenceDayHoliday.GetInstance(2017);
+            var observanceIn2017 = independenceDayHoliday.Value.GetInstance(2017);
             Assert.AreEqual(new DateTime(2017, 8, 15), observanceIn2017);
         }
 

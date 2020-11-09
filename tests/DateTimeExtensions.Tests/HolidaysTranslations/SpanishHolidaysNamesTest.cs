@@ -23,29 +23,29 @@ namespace DateTimeExtensions.Tests
         public void AssertSpanishHolidaysAreTranslated()
         {
             //test holidays still on default culture (en-US)
-            Assert.AreEqual(ES_ESHolidayStrategy.NationalDay.Name, "National Day");
-            Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Name, "Constitution Day");
+            Assert.AreEqual(ES_ESHolidayStrategy.NationalDay.Value.Name, "National Day");
+            Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Value.Name, "Constitution Day");
 
             new CultureInfo("es-ES").SetCurrentUICultureInfo();
             Assert.AreEqual("es-ES", CultureInfo.CurrentUICulture.Name);
 
-            Assert.AreEqual(ES_ESHolidayStrategy.NationalDay.Name, "Fiesta Nacional de España");
-            Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Name, "Día de la Constitución");
+            Assert.AreEqual(ES_ESHolidayStrategy.NationalDay.Value.Name, "Fiesta Nacional de España");
+            Assert.AreEqual(ES_ESHolidayStrategy.ConstitutionDay.Value.Name, "Día de la Constitución");
 
-            Assert.AreEqual(ChristianHolidays.Christmas.Name, "Natividad");
-            Assert.AreEqual(GlobalHolidays.NewYear.Name, "Año Nuevo");
-            Assert.AreEqual(ChristianHolidays.Epiphany.Name, "Epifanía del Señor");
-            Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnaval");
-            Assert.AreEqual(ChristianHolidays.AllSaints.Name, "Todos los Santos");
-            Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Corpus Cristi");
-            Assert.AreEqual(ChristianHolidays.Easter.Name, "Pascua");
-            Assert.AreEqual(ChristianHolidays.GoodFriday.Name, "Viernes Santo");
-            Assert.AreEqual(ChristianHolidays.MaundyThursday.Name, "Jueves Santo");
-            Assert.AreEqual(ChristianHolidays.Assumption.Name, "Asunción de la Virgen");
-            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "La Inmaculada Concepción");
-            Assert.AreEqual(ChristianHolidays.Pentecost.Name, "Pentecostés");
-            Assert.AreEqual(ChristianHolidays.PentecostMonday.Name, "Lunes de Pentecostés");
-            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "Fiesta del Trabajo");
+            Assert.AreEqual(ChristianHolidays.Christmas.Value.Name, "Natividad");
+            Assert.AreEqual(GlobalHolidays.NewYear.Value.Name, "Año Nuevo");
+            Assert.AreEqual(ChristianHolidays.Epiphany.Value.Name, "Epifanía del Señor");
+            Assert.AreEqual(ChristianHolidays.Carnival.Value.Name, "Carnaval");
+            Assert.AreEqual(ChristianHolidays.AllSaints.Value.Name, "Todos los Santos");
+            Assert.AreEqual(ChristianHolidays.CorpusChristi.Value.Name, "Corpus Cristi");
+            Assert.AreEqual(ChristianHolidays.Easter.Value.Name, "Pascua");
+            Assert.AreEqual(ChristianHolidays.GoodFriday.Value.Name, "Viernes Santo");
+            Assert.AreEqual(ChristianHolidays.MaundyThursday.Value.Name, "Jueves Santo");
+            Assert.AreEqual(ChristianHolidays.Assumption.Value.Name, "Asunción de la Virgen");
+            Assert.AreEqual(ChristianHolidays.ImaculateConception.Value.Name, "La Inmaculada Concepción");
+            Assert.AreEqual(ChristianHolidays.Pentecost.Value.Name, "Pentecostés");
+            Assert.AreEqual(ChristianHolidays.PentecostMonday.Value.Name, "Lunes de Pentecostés");
+            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Value.Name, "Fiesta del Trabajo");
         }
     }
 }

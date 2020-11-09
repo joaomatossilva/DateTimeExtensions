@@ -14,7 +14,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void SpringFetivalTests()
         {
-            var springFestivalHoliday = ChineseHolidayStrategy.SpringFestival;
+            var springFestivalHoliday = ChineseHolidayStrategy.SpringFestival.Value;
 
             var observanceIn2015 = springFestivalHoliday.GetInstance(2015);
             Assert.AreEqual(new DateTime(2015, 2, 19), observanceIn2015);
@@ -29,7 +29,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void TombSweepingDayTests()
         {
-            var tombSweepingDayHoliday = ChineseHolidayStrategy.TombSweepingDay;
+            var tombSweepingDayHoliday = ChineseHolidayStrategy.TombSweepingDay.Value;
 
             var observanceIn2015 = tombSweepingDayHoliday.GetInstance(2015);
             Assert.AreEqual(new DateTime(2015, 4, 5), observanceIn2015);

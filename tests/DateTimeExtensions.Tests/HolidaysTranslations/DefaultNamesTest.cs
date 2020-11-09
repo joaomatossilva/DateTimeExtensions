@@ -22,19 +22,19 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void AssertDefaultGlobalHolidaysAreTranslated()
         {
-            Assert.AreEqual(ChristianHolidays.Christmas.Name, "Christmas");
-            Assert.AreEqual(GlobalHolidays.NewYear.Name, "New Year");
-            Assert.AreEqual(ChristianHolidays.Carnival.Name, "Carnival");
-            Assert.AreEqual(ChristianHolidays.AllSaints.Name, "All Saints");
-            Assert.AreEqual(ChristianHolidays.CorpusChristi.Name, "Corpus Christi");
-            Assert.AreEqual(ChristianHolidays.Easter.Name, "Easter");
-            Assert.AreEqual(ChristianHolidays.GoodFriday.Name, "Good Friday");
-            Assert.AreEqual(ChristianHolidays.Assumption.Name, "Assumption");
-            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception");
-            Assert.AreEqual(ChristianHolidays.MaundyThursday.Name, "Maundy Thursday");
-            Assert.AreEqual(ChristianHolidays.ImaculateConception.Name, "Imaculate Conception");
-            Assert.AreEqual(ChristianHolidays.DayOfTheDead.Name, "Day of the Dead");
-            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "International Workers' day");
+            Assert.AreEqual(ChristianHolidays.Christmas.Value.Name, "Christmas");
+            Assert.AreEqual(GlobalHolidays.NewYear.Value.Name, "New Year");
+            Assert.AreEqual(ChristianHolidays.Carnival.Value.Name, "Carnival");
+            Assert.AreEqual(ChristianHolidays.AllSaints.Value.Name, "All Saints");
+            Assert.AreEqual(ChristianHolidays.CorpusChristi.Value.Name, "Corpus Christi");
+            Assert.AreEqual(ChristianHolidays.Easter.Value.Name, "Easter");
+            Assert.AreEqual(ChristianHolidays.GoodFriday.Value.Name, "Good Friday");
+            Assert.AreEqual(ChristianHolidays.Assumption.Value.Name, "Assumption");
+            Assert.AreEqual(ChristianHolidays.ImaculateConception.Value.Name, "Imaculate Conception");
+            Assert.AreEqual(ChristianHolidays.MaundyThursday.Value.Name, "Maundy Thursday");
+            Assert.AreEqual(ChristianHolidays.ImaculateConception.Value.Name, "Imaculate Conception");
+            Assert.AreEqual(ChristianHolidays.DayOfTheDead.Value.Name, "Day of the Dead");
+            Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Value.Name, "International Workers' day");
         }
     }
 }

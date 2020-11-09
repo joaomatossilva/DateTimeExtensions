@@ -25,7 +25,7 @@ namespace DateTimeExtensions.Tests
         public void holiday_days_span()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("ko-KR");
-            var holiday = KO_KRHolidayStrategy.Seolnal;
+            var holiday = KO_KRHolidayStrategy.Seolnal.Value;
             var startDay = holiday.GetInstance(2015);
 
             //Seol 2015
@@ -56,7 +56,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_identify_Seolnal()
         {
-            var holiday = KO_KRHolidayStrategy.Seolnal;
+            NamedDay holiday = KO_KRHolidayStrategy.Seolnal;
             var dateOnGregorian = new DateTime(2015, 2, 19);
             TestHoliday(holiday, dateOnGregorian);
         }
@@ -64,7 +64,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_identify_SeokgaTansilil()
         {
-            var holiday = KO_KRHolidayStrategy.SeokgaTansinil;
+            NamedDay holiday = KO_KRHolidayStrategy.SeokgaTansinil;
             var dateOnGregorian = new DateTime(2015, 5, 25);
             TestHoliday(holiday, dateOnGregorian);
         }
@@ -72,12 +72,12 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_identify_Chuseok()
         {
-            var holiday = KO_KRHolidayStrategy.Chuseok;
+            NamedDay holiday = KO_KRHolidayStrategy.Chuseok;
             var dateOnGregorian = new DateTime(2015, 9, 27);
             TestHoliday(holiday, dateOnGregorian);
         }
 
-        private void TestHoliday(Holiday holiday, DateTime dateOnGregorian)
+        private void TestHoliday(NamedDay holiday, DateTime dateOnGregorian)
         {
             var holidayInstance = holiday.GetInstance(dateOnGregorian.Year);
             Assert.IsTrue(holidayInstance.HasValue);
