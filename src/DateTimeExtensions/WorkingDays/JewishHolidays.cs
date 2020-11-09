@@ -28,44 +28,34 @@ namespace DateTimeExtensions.WorkingDays
     {
         private static readonly Calendar HebrewCalendar = new HebrewCalendar();
 
-        private static readonly Lazy<NamedDay> RoshHashanahLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer RoshHashanah { get; } = new NamedDayInitializer(() =>
             new NamedDay("Rosh Hashanah", new FixedDayStrategy(1, 1, HebrewCalendar)));
-        public static NamedDay RoshHashanah => RoshHashanahLazy.Value;
         
-        private static readonly Lazy<NamedDay> RoshHashanahSecondDayLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer RoshHashanahSecondDay { get; } = new NamedDayInitializer(() =>
             new NamedDay("Rosh Hashanah", new FixedDayStrategy(1, 2, HebrewCalendar)));
-        public static NamedDay RoshHashanahSecondDay => RoshHashanahSecondDayLazy.Value;
 
-        private static readonly Lazy<NamedDay> YomKippurLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer YomKippur { get; } = new NamedDayInitializer(() =>
             new NamedDay("Yom Kippur", new FixedDayStrategy(1, 10, HebrewCalendar)));
-        public static NamedDay YomKippur => YomKippurLazy.Value;
 
-        private static readonly Lazy<NamedDay> SukkotLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer Sukkot { get; } = new NamedDayInitializer(() =>
             new NamedDay("Sukkot", new FixedDayStrategy(1, 15, HebrewCalendar)));
-        public static NamedDay Sukkot => SukkotLazy.Value;
 
-        private static readonly Lazy<NamedDay> ShminiAtzeretLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer ShminiAtzeret { get; } = new NamedDayInitializer(() =>
             new NamedDay("Shmini Atzeret", new FixedDayStrategy(1, 22, HebrewCalendar)));
-        public static NamedDay ShminiAtzeret => ShminiAtzeretLazy.Value;
 
-        private static readonly Lazy<NamedDay> ShminiTorahLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer ShminiTorah { get; } = new NamedDayInitializer(() =>
             new NamedDay("Shmini Torah", new FixedDayStrategy(1, 23, HebrewCalendar)));
-        public static NamedDay ShminiTorah => ShminiTorahLazy.Value;
         
-        private static readonly Lazy<NamedDay> PesachLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer Pesach { get; } = new NamedDayInitializer(() =>
             new NamedDay("Pesach", new FixedDayStrategy(7, 15, HebrewCalendar)));
-        public static NamedDay Pesach => PesachLazy.Value;
 
-        private static readonly Lazy<NamedDay> ShviiShelPesachLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer ShviiShelPesach { get; } = new NamedDayInitializer(() =>
             new NamedDay("Shvi'i shel Pesach", new FixedDayStrategy(7, 21, HebrewCalendar)));
-        public static NamedDay ShviiShelPesach => ShviiShelPesachLazy.Value;
 
-        private static readonly Lazy<NamedDay> ShavuotLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer Shavuot { get; } = new NamedDayInitializer(() =>
             new NamedDay("Shavuot", new FixedDayStrategy(9, 6, HebrewCalendar)));
-        public static NamedDay Shavuot => ShavuotLazy.Value;
         
-        private static readonly Lazy<NamedDay> TuBishvatLazy = new Lazy<NamedDay>(() => 
+        public static NamedDayInitializer TuBishvat { get; } = new NamedDayInitializer(() =>
             new NamedDay("Tu Bishvat", new FixedDayStrategy(5, 15, HebrewCalendar)));
-        public static NamedDay TuBishvat => TuBishvatLazy.Value;
     }
 }

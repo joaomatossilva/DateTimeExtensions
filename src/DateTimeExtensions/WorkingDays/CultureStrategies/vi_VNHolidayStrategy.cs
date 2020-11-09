@@ -19,6 +19,7 @@
 #endregion
 
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -27,76 +28,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ViVNHolidayStrategy()
         {
-            this.InnerCalendarDays.Add(HungKingsCommemorations);
-            this.InnerCalendarDays.Add(LiberationDay);
-            this.InnerCalendarDays.Add(InternationalWorkersDay);
-            this.InnerCalendarDays.Add(NationalDay);
-            this.InnerCalendarDays.Add(NewYear);
+            this.InnerCalendarDays.Add(new Holiday(HungKingsCommemorations));
+            this.InnerCalendarDays.Add(new Holiday(LiberationDay));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.InternationalWorkersDay));
+            this.InnerCalendarDays.Add(new Holiday(NationalDay));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
         }
 
-        private static Holiday hungKingsCommemorations;
-        public static Holiday HungKingsCommemorations
-        {
-            get
-            {
-                if (hungKingsCommemorations == null)
-                {
-                    hungKingsCommemorations = new FixedHoliday("HungKingsCommemorations", 3, 10);
-                }
-                return hungKingsCommemorations;
-            }
-        }
+        public static NamedDayInitializer HungKingsCommemorations { get; } = new NamedDayInitializer(() =>
+            new NamedDay("HungKingsCommemorations", new FixedDayStrategy(Month.March, 10)));
 
-        private static Holiday liberationDay;
-        public static Holiday LiberationDay
-        {
-            get
-            {
-                if (liberationDay == null)
-                {
-                    liberationDay = new FixedHoliday("LiberationDay", 4, 30);
-                }
-                return liberationDay;
-            }
-        }
+        public static NamedDayInitializer LiberationDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay("LiberationDay", new FixedDayStrategy(Month.April, 30)));
 
-        private static Holiday internationalWorkersDay;
-        public static Holiday InternationalWorkersDay
-        {
-            get
-            {
-                if (internationalWorkersDay == null)
-                {
-                    internationalWorkersDay = new FixedHoliday("InternationalWorkersDay", 5, 1);
-                }
-                return internationalWorkersDay;
-            }
-        }
-
-        private static Holiday nationalDay;
-        public static Holiday NationalDay
-        {
-            get
-            {
-                if (nationalDay == null)
-                {
-                    nationalDay = new FixedHoliday("NationalDay", 9, 2);
-                }
-                return nationalDay;
-            }
-        }
-
-        private static Holiday newYear;
-        public static Holiday NewYear
-        {
-            get
-            {
-                if (newYear==null)
-                {
-                    newYear = new FixedHoliday("NewYear", 1, 1);
-                }
-                return newYear;
-            }
-        }
+        public static NamedDayInitializer NationalDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay("NationalDay", new FixedDayStrategy(Month.September, 2)));
     }
 }

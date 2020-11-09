@@ -34,7 +34,7 @@ namespace DateTimeExtensions.Tests
         public void holiday_days_span()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("ar-SA");
-            var holiday = AR_SAHolidayStrategy.EndOfHajj;
+            var holiday = AR_SAHolidayStrategy.EndOfHajj.Value;
             var startDay = holiday.GetInstance(2012);
             //Eid-al-Fitr
             DateTime day = new DateTime(2012, 8, 19);

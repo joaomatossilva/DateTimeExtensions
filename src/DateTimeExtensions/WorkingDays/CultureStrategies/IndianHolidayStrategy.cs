@@ -1,5 +1,6 @@
 ﻿using DateTimeExtensions.Common;
 using System.Globalization;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -10,52 +11,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public IndianHolidayStrategy()
         {
-            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
-            this.InnerCalendarDays.Add(GlobalHolidays.MayDay);
-            this.InnerCalendarDays.Add(IndependenceDay);
-            this.InnerCalendarDays.Add(RepublicDay);
-            this.InnerCalendarDays.Add(GandhiBirthAnniversary);
-
-        }
-        private static Holiday independenceDay;
-        public static Holiday IndependenceDay
-        {
-            get
-            {
-                if (independenceDay == null)
-                {
-                    independenceDay = new FixedHoliday("Independence Day", 8, 15, IndianCalendar);
-                }
-                return independenceDay;
-            }
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.MayDay));
+            this.InnerCalendarDays.Add(new Holiday(IndependenceDay));
+            this.InnerCalendarDays.Add(new Holiday(RepublicDay));
+            this.InnerCalendarDays.Add(new Holiday(GandhiBirthAnniversary));
         }
 
+        public static NamedDayInitializer IndependenceDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Independence Day", new FixedDayStrategy(8, 15, IndianCalendar)));
 
-        private static Holiday republicDay;
-        public static Holiday RepublicDay
-        {
-            get
-            {
-                if (republicDay == null)
-                {
-                    republicDay = new FixedHoliday("Republic Day", 1, 26, IndianCalendar);
-                }
-                return republicDay;
-            }
-        }
-
-
-        private static Holiday gandhiBirthAnniversary;
-        public static Holiday GandhiBirthAnniversary
-        {
-            get
-            {
-                if (gandhiBirthAnniversary == null)
-                {
-                    gandhiBirthAnniversary = new FixedHoliday("Gandhi's Birth Anniversary", 10, 2, IndianCalendar);
-                }
-                return gandhiBirthAnniversary;
-            }
-        }
+        public static NamedDayInitializer RepublicDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Republic Day", new FixedDayStrategy(1, 26, IndianCalendar)));
+        
+        public static NamedDayInitializer GandhiBirthAnniversary { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Gandhi's Birth Anniversary", new FixedDayStrategy(10, 2, IndianCalendar)));
     }
 }

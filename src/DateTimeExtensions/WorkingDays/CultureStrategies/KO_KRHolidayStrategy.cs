@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -34,31 +35,31 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public KO_KRHolidayStrategy()
         {
-            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
-            this.InnerCalendarDays.Add(Samiljeol);
-            this.InnerCalendarDays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerCalendarDays.Add(SeokgaTansinil);
-            this.InnerCalendarDays.Add(Hyeonchungil);
-            this.InnerCalendarDays.Add(Gwangbokjeol);
-            this.InnerCalendarDays.Add(Gaecheonjeol);
-            this.InnerCalendarDays.Add(Hangulnal);
-            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(Samiljeol));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.InternationalWorkersDay));
+            this.InnerCalendarDays.Add(new Holiday(SeokgaTansinil));
+            this.InnerCalendarDays.Add(new Holiday(Hyeonchungil));
+            this.InnerCalendarDays.Add(new Holiday(Gwangbokjeol));
+            this.InnerCalendarDays.Add(new Holiday(Gaecheonjeol));
+            this.InnerCalendarDays.Add(new Holiday(Hangulnal));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
 
             // Add these later for substitute holiday rule application when overlapped with other holidays.
-            this.InnerCalendarDays.Add(Seolnal);
-            this.InnerCalendarDays.Add(Chuseok);
-            this.InnerCalendarDays.Add(Eorininal);
+            this.InnerCalendarDays.Add(new Holiday(Seolnal));
+            this.InnerCalendarDays.Add(new Holiday(Chuseok));
+            this.InnerCalendarDays.Add(new Holiday(Eorininal));
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, CalendarDay> holidayMap = new Dictionary<DateTime, CalendarDay>();
             foreach (var innerHoliday in InnerCalendarDays)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.Day.GetInstance(year);
                 if (date.HasValue)
                 {
-                    if (innerHoliday == Seolnal || innerHoliday == Chuseok) {
+                    if (innerHoliday.Day == Seolnal || innerHoliday.Day == Chuseok) {
                         DateTime[] holidays = new DateTime[] { 
                             date.Value.AddDays(-1),
                             date.Value, 
@@ -70,12 +71,12 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                             holidayMap.Add(holiday, innerHoliday);
                         }
                     }
-                    else if (innerHoliday == Eorininal)
+                    else if (innerHoliday.Day == Eorininal)
                     {
                         // Special substitute holiday rule for Eorininal(May 5, children's day)
                         // effective since Oct. 29, 2013.
                         DateTime childrensDay = date.Value;
-                        Holiday overlappedHoliday = null;
+                        CalendarDay overlappedHoliday = null;
                         while (childrensDay.DayOfWeek == DayOfWeek.Saturday ||
                                 childrensDay.DayOfWeek == DayOfWeek.Sunday ||
                                 holidayMap.TryGetValue(childrensDay, out overlappedHoliday))
@@ -95,11 +96,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         // Special substitute holiday rule for Seol(lunisolar new year) and Chuseok(15th of 8th lunisolar month)
         // effective since Oct. 29, 2013.
-        private void AddSubstituteHoliday(IDictionary<DateTime, Holiday> holidayMap, DateTime[] dates, Holiday holiday)
+        private void AddSubstituteHoliday(IDictionary<DateTime, CalendarDay> holidayMap, DateTime[] dates, CalendarDay holiday)
         {
             foreach (DateTime date in dates)
             {
-                Holiday overlappedHoliday = null;
+                CalendarDay overlappedHoliday = null;
                 if (date.DayOfWeek == DayOfWeek.Sunday || 
                     holidayMap.TryGetValue(date, out overlappedHoliday) && overlappedHoliday != holiday)
                 {
@@ -114,130 +115,31 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        private static Holiday seolnal;
+        public static NamedDayInitializer Seolnal { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Seolnal", new FixedDayStrategy(1, 1, KoreanLunisolarCalendar)));
 
-        public static Holiday Seolnal
-        {
-            get
-            {
-                if (seolnal == null)
-                {
-                    seolnal = new FixedHoliday("Seolnal", 1, 1, KoreanLunisolarCalendar);
-                }
-                return seolnal;
-            }
-        }
+        public static NamedDayInitializer Samiljeol { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Samiljeol", new FixedDayStrategy(3, 1)));
 
-        private static Holiday samiljeol;
+        public static NamedDayInitializer Eorininal { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Eorininal", new FixedDayStrategy(5, 5)));
 
-        public static Holiday Samiljeol
-        {
-            get
-            {
-                if (samiljeol == null)
-                {
-                    samiljeol = new FixedHoliday("Samiljeol", 3, 1);
-                }
-                return samiljeol;
-            }
-        }
+        public static NamedDayInitializer SeokgaTansinil { get; } = new NamedDayInitializer(() => 
+            new NamedDay("SeokgaTansinil", new FixedDayStrategy(4, 8, KoreanLunisolarCalendar)));
 
-        private static Holiday eorininal;
+        public static NamedDayInitializer Hyeonchungil { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Hyeonchungil", new FixedDayStrategy(6, 6)));
 
-        public static Holiday Eorininal
-        {
-            get
-            {
-                if (eorininal == null)
-                {
-                    eorininal = new FixedHoliday("Eorininal", 5, 5);
-                }
-                return eorininal;
-            }
-        }
+        public static NamedDayInitializer Gwangbokjeol { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Gwangbokjeol", new FixedDayStrategy(8, 15)));
 
-        private static Holiday seokgatansinil;
+        public static NamedDayInitializer Chuseok { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Chuseok", new FixedDayStrategy(8, 15, KoreanLunisolarCalendar)));
 
-        public static Holiday SeokgaTansinil
-        {
-            get
-            {
-                if (seokgatansinil == null)
-                {
-                    seokgatansinil = new FixedHoliday("SeokgaTansinil", 4, 8, KoreanLunisolarCalendar);
-                }
-                return seokgatansinil;
-            }
-        }
+        public static NamedDayInitializer Gaecheonjeol { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Gaecheonjeol", new FixedDayStrategy(10, 3)));
 
-        private static Holiday hyeonchungil;
-
-        public static Holiday Hyeonchungil
-        {
-            get
-            {
-                if (hyeonchungil == null)
-                {
-                    hyeonchungil = new FixedHoliday("Hyeonchungil", 6, 6);
-                }
-                return hyeonchungil;
-            }
-        }
-
-        private static Holiday gwangbokjeol;
-
-        public static Holiday Gwangbokjeol
-        {
-            get
-            {
-                if (gwangbokjeol == null)
-                {
-                    gwangbokjeol = new FixedHoliday("Gwangbokjeol", 8, 15);
-                }
-                return gwangbokjeol;
-            }
-        }
-
-        private static Holiday chuseok;
-
-        public static Holiday Chuseok
-        {
-            get
-            {
-                if (chuseok == null)
-                {
-                    chuseok = new FixedHoliday("Chuseok", 8, 15, KoreanLunisolarCalendar);
-                }
-                return chuseok;
-            }
-        }
-
-        private static Holiday gaecheonjeol;
-
-        public static Holiday Gaecheonjeol
-        {
-            get
-            {
-                if (gaecheonjeol == null)
-                {
-                    gaecheonjeol = new FixedHoliday("Gaecheonjeol", 10, 3);
-                }
-                return gaecheonjeol;
-            }
-        }
-
-        private static Holiday hangulnal;
-
-        public static Holiday Hangulnal
-        {
-            get
-            {
-                if (hangulnal == null)
-                {
-                    hangulnal = new FixedHoliday("Hangulnal", 10, 9);
-                }
-                return hangulnal;
-            }
-        }
+        public static NamedDayInitializer Hangulnal { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Hangulnal", new FixedDayStrategy(10, 9)));
     }
 }

@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 using DateTimeExtensions.WorkingDays.RegionIdentifiers;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
@@ -32,20 +33,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public PT_PTHolidayStrategy(string region)
         {
-            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
-            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
-            this.InnerCalendarDays.Add(ChristianHolidays.Easter);
-            this.InnerCalendarDays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerCalendarDays.Add(ChristianHolidays.Assumption);
-            this.InnerCalendarDays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, ChristianHolidays.CorpusChristi));
-            this.InnerCalendarDays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, ChristianHolidays.AllSaints));
-            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Easter));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.ImaculateConception));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Assumption));
+            this.InnerCalendarDays.Add(new Holiday(CorpusChristi));
+            this.InnerCalendarDays.Add(new Holiday(AllSaints));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
 
-            this.InnerCalendarDays.Add(FreedomDay);
-            this.InnerCalendarDays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerCalendarDays.Add(PortugalDay);
-            this.InnerCalendarDays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RepublicDay));
-            this.InnerCalendarDays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RestorationOfIndependance));
+            this.InnerCalendarDays.Add(new Holiday(FreedomDay));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.InternationalWorkersDay));
+            this.InnerCalendarDays.Add(new Holiday(PortugalDay));
+            this.InnerCalendarDays.Add(new Holiday(RepublicDay));
+            this.InnerCalendarDays.Add(new Holiday(RestorationOfIndependance));
 
             if (string.IsNullOrEmpty(region))
             {
@@ -55,80 +56,60 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             switch (region)
             {
                 case PortugalRegion.Lisboa:
-                   this.InnerCalendarDays.Add(StAntonio);
+                   this.InnerCalendarDays.Add(new Holiday(StAntonio));
                     break;
                 case PortugalRegion.Porto:
-                    this.InnerCalendarDays.Add(StJoao);
+                    this.InnerCalendarDays.Add(new Holiday(StJoao));
                     break;
                 case PortugalRegion.CasteloBranco:
-                    this.InnerCalendarDays.Add(SraMercules);
+                    this.InnerCalendarDays.Add(new Holiday(SraMercules));
                     break;
             }
         }
 
-        private static Holiday freedomDay;
+        private static readonly Func<int, bool> YearsHolidaysNotSuspended = year => year < 2013 || year >= 2016;
+        
+        public static NamedDayInitializer CorpusChristi { get; } = new NamedDayInitializer(() => 
+            new NamedDay(
+                ChristianHolidays.CorpusChristi.Value.Name,
+                new YearDependantDayStrategy(
+                    YearsHolidaysNotSuspended,
+                    new NamedDayStrategy(ChristianHolidays.CorpusChristi))));
+        
+        public static NamedDayInitializer AllSaints { get; } = new NamedDayInitializer(() => 
+            new NamedDay(
+                ChristianHolidays.AllSaints.Value.Name,
+                new YearDependantDayStrategy(
+                    YearsHolidaysNotSuspended,
+                    new NamedDayStrategy(ChristianHolidays.AllSaints))));
+        
+        public static NamedDayInitializer FreedomDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay("Portugal_FreedomDay", new FixedDayStrategy(Month.April, 25)));
+        
+        public static NamedDayInitializer PortugalDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay("Portugal_PortugalDay", new FixedDayStrategy(Month.June, 10)));
 
-        public static Holiday FreedomDay
-        {
-            get
-            {
-                if (freedomDay == null)
-                {
-                    freedomDay = new FixedHoliday("Portugal_FreedomDay", 4, 25);
-                }
-                return freedomDay;
-            }
-        }
+        public static NamedDayInitializer RepublicDay { get; } = new NamedDayInitializer(() =>
+            new NamedDay(
+                "Portugal_RepublicDay",
+                new YearDependantDayStrategy(
+                    YearsHolidaysNotSuspended,
+                    new FixedDayStrategy(Month.October, 5))));
 
-        private static Holiday portugalDay;
+        public static NamedDayInitializer RestorationOfIndependance { get; } = new NamedDayInitializer(() =>
+            new NamedDay(
+                "Portugal_RestorationIndependance",
+                new YearDependantDayStrategy(
+                    YearsHolidaysNotSuspended,
+                    new FixedDayStrategy(Month.December, 1))));
 
-        public static Holiday PortugalDay
-        {
-            get
-            {
-                if (portugalDay == null)
-                {
-                    portugalDay = new FixedHoliday("Portugal_PortugalDay", 6, 10);
-                }
-                return portugalDay;
-            }
-        }
+        public static NamedDayInitializer StAntonio { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Portugal_SantoAntonio", new FixedDayStrategy(Month.June, 13)));
 
-        private static Holiday republicDay;
+        public static NamedDayInitializer StJoao { get; } = new NamedDayInitializer(() => 
+            new NamedDay("Portugal_SaoJoao", new FixedDayStrategy(Month.June, 24)));
 
-        public static Holiday RepublicDay
-        {
-            get
-            {
-                if (republicDay == null)
-                {
-                    republicDay = new FixedHoliday("Portugal_RepublicDay", 10, 5);
-                }
-                return republicDay;
-            }
-        }
-
-        private static Holiday restorationOfIndependance;
-
-        public static Holiday RestorationOfIndependance
-        {
-            get
-            {
-                if (restorationOfIndependance == null)
-                {
-                    restorationOfIndependance = new FixedHoliday("Portugal_RestorationIndependance", 12, 1);
-                }
-                return restorationOfIndependance;
-            }
-        }
-
-        private static readonly Lazy<Holiday> StAntonioInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SantoAntonio", 6, 13));
-        public static Holiday StAntonio => StAntonioInstance.Value;
-
-        private static readonly Lazy<Holiday> StJoaoInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SaoJoao", 6, 24));
-        public static Holiday StJoao => StJoaoInstance.Value;
-
-        private static readonly Lazy<Holiday> SraMerculesInstance = new Lazy<Holiday>(() => new EasterBasedHoliday("Portugal_SraMercules", 9));
-        public static Holiday SraMercules => SraMerculesInstance.Value;
+        public static NamedDayInitializer SraMercules { get; } = new NamedDayInitializer(() =>
+            new NamedDay("Portugal_SraMercules", new NthDayAfterDayStrategy(9, new NamedDayStrategy(ChristianHolidays.Easter))));
     }
 }

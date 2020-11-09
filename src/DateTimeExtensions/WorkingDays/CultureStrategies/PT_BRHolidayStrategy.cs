@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,74 +32,32 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public PT_BRHolidayStrategy()
         {
-            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
-            this.InnerCalendarDays.Add(ChristianHolidays.Carnival);
-            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
-            this.InnerCalendarDays.Add(ChristianHolidays.Easter);
-            this.InnerCalendarDays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
-            this.InnerCalendarDays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerCalendarDays.Add(ChristianHolidays.DayOfTheDead);
-            this.InnerCalendarDays.Add(TiradentesDay);
-            this.InnerCalendarDays.Add(IndependanceDay);
-            this.InnerCalendarDays.Add(OurLadyOfAparecida);
-            this.InnerCalendarDays.Add(RepublicDay);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Carnival));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Easter));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.CorpusChristi));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.InternationalWorkersDay));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.DayOfTheDead));
+            this.InnerCalendarDays.Add(new Holiday(TiradentesDay));
+            this.InnerCalendarDays.Add(new Holiday(IndependanceDay));
+            this.InnerCalendarDays.Add(new Holiday(OurLadyOfAparecida));
+            this.InnerCalendarDays.Add(new Holiday(RepublicDay));
         }
 
         private static Holiday tiradentesDay;
 
-        public static Holiday TiradentesDay
-        {
-            get
-            {
-                if (tiradentesDay == null)
-                {
-                    tiradentesDay = new FixedHoliday("TiradentesDay", 4, 21);
-                }
-                return tiradentesDay;
-            }
-        }
+        public static NamedDayInitializer TiradentesDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("TiradentesDay", new FixedDayStrategy(Month.April, 21)));
 
-        private static Holiday independanceDay;
+        public static NamedDayInitializer IndependanceDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("IndependanceDay", new FixedDayStrategy(Month.September, 7)));
 
-        public static Holiday IndependanceDay
-        {
-            get
-            {
-                if (independanceDay == null)
-                {
-                    independanceDay = new FixedHoliday("IndependanceDay", 9, 7);
-                }
-                return independanceDay;
-            }
-        }
+        public static NamedDayInitializer OurLadyOfAparecida { get; } = new NamedDayInitializer(() => 
+            new NamedDay("OurLadyOfAparecida", new FixedDayStrategy(Month.October, 12)));
 
-        private static Holiday ourLadyOfAparecida;
-
-        public static Holiday OurLadyOfAparecida
-        {
-            get
-            {
-                if (ourLadyOfAparecida == null)
-                {
-                    ourLadyOfAparecida = new FixedHoliday("OurLadyOfAparecida", 10, 12);
-                }
-                return ourLadyOfAparecida;
-            }
-        }
-
-        private static Holiday republicDay;
-
-        public static Holiday RepublicDay
-        {
-            get
-            {
-                if (republicDay == null)
-                {
-                    republicDay = new FixedHoliday("RepublicDay", 11, 15);
-                }
-                return republicDay;
-            }
-        }
+        public static NamedDayInitializer RepublicDay { get; } = new NamedDayInitializer(() => 
+            new NamedDay("RepublicDay", new FixedDayStrategy(Month.November, 15)));
     }
 }
