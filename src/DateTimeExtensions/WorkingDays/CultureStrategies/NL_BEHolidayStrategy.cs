@@ -28,18 +28,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public NL_BEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(NationalHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(Armistice);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.Easter);
+            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(LabourDay);
+            this.InnerCalendarDays.Add(ChristianHolidays.Ascension);
+            this.InnerCalendarDays.Add(ChristianHolidays.Pentecost);
+            this.InnerCalendarDays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerCalendarDays.Add(NationalHoliday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Assumption);
+            this.InnerCalendarDays.Add(ChristianHolidays.AllSaints);
+            this.InnerCalendarDays.Add(Armistice);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
         }
 
         private static Holiday labourDay;

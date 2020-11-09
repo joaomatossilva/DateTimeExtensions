@@ -18,9 +18,11 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,91 +33,46 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public ChineseHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(SpringFestival);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(DragonBoatFestival);
-            this.InnerHolidays.Add(MidAutumnFestival);
-            this.InnerHolidays.Add(NationalDay);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(SpringFestival));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.InternationalWorkersDay));
+            this.InnerCalendarDays.Add(new Holiday(DragonBoatFestival));
+            this.InnerCalendarDays.Add(new Holiday(MidAutumnFestival));
+            this.InnerCalendarDays.Add(new Holiday(NationalDay));
         }
 
-        private static Holiday springFestival;
-        public static Holiday SpringFestival
+        private static readonly Lazy<NamedDay> SpringFestivalLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Spring Festival", new FixedDayStrategy(1, 1, ChineseCalendar)));
+        public static NamedDay SpringFestival => SpringFestivalLazy.Value;
+        
+        private static readonly Lazy<NamedDay> TombSweepingDayLazy = new Lazy<NamedDay>(() =>
         {
-            get
+            //temporary maps based on https://en.wikipedia.org/wiki/Public_holidays_in_China
+            var knownTombSweepingDayOccurences = new Dictionary<int, DayInYear>
             {
-                if (springFestival == null)
-                {
-                    springFestival = new FixedHoliday("Spring Festival", 1, 1, ChineseCalendar);
-                }
-                return springFestival;
-            }
-        }
+                {2014, new DayInYear(4, 7)},
+                {2015, new DayInYear(4, 5)},
+                {2016, new DayInYear(4, 2)},
+                {2017, new DayInYear(4, 5)},
+                {2018, new DayInYear(4, 5)}
+            };
 
-        private static Holiday tombSweepingDay;
-
-        public static Holiday TombSweepingDay
-        {
-            get
-            {
-                if (tombSweepingDay == null)
-                {
-                    //temporary maps based on https://en.wikipedia.org/wiki/Public_holidays_in_China
-                    var knownTombSweepingDayOccurences = new Dictionary<int, DayInYear>
-                    {
-                        {2014, new DayInYear(4, 7)},
-                        {2015, new DayInYear(4, 5)},
-                        {2016, new DayInYear(4, 2)},
-                        {2017, new DayInYear(4, 5)},
-                        {2018, new DayInYear(4, 5)}
-
-                    };
-
-                    tombSweepingDay = new YearMapHoliday("Tomb-Sweeping Day", knownTombSweepingDayOccurences);
-                }
-                return tombSweepingDay;
-            }
-        }
-
-        private static Holiday dragonBoatFestival;
-        public static Holiday DragonBoatFestival
-        {
-            get
-            {
-                if (dragonBoatFestival == null)
-                {
-                    dragonBoatFestival = new FixedHoliday("Dragon Boat Festival", 5, 5, ChineseCalendar);
-                }
-                return dragonBoatFestival;
-            }
-        }
+            return new NamedDay("Tomb-Sweeping Day", new YearMapDayStrategy(knownTombSweepingDayOccurences));
+        });
+        public static NamedDay TombSweepingDay => TombSweepingDayLazy.Value;
+        
+        private static readonly Lazy<NamedDay> DragonBoatFestivalLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Dragon Boat Festival", new FixedDayStrategy(5, 5, ChineseCalendar)));
+        public static NamedDay DragonBoatFestival => DragonBoatFestivalLazy.Value;
 
         //Mid-Autumn Festival
-        private static Holiday midAutumnFestival;
-        public static Holiday MidAutumnFestival
-        {
-            get
-            {
-                if (midAutumnFestival == null)
-                {
-                    midAutumnFestival = new FixedHoliday("Mid-Autumn Festival", 8, 15, ChineseCalendar);
-                }
-                return midAutumnFestival;
-            }
-        }
-
+        private static readonly Lazy<NamedDay> MidAutumnFestivalLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Mid-Autumn Festival", new FixedDayStrategy(8, 15, ChineseCalendar)));
+        public static NamedDay MidAutumnFestival => MidAutumnFestivalLazy.Value;
+        
         //National Day
-        private static Holiday nationalDay;
-        public static Holiday NationalDay
-        {
-            get
-            {
-                if (nationalDay == null)
-                {
-                    nationalDay = new FixedHoliday("National Day", 10, 1);
-                }
-                return nationalDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> NationalDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("National Day", new FixedDayStrategy(10, 1)));
+        public static NamedDay NationalDay => NationalDayLazy.Value;
     }
 }

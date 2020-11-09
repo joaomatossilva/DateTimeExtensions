@@ -31,18 +31,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public NB_NOHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(ConstitutionDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.MaundyThursday);
+            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Easter);
+            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerCalendarDays.Add(ConstitutionDay);
+            this.InnerCalendarDays.Add(ChristianHolidays.Ascension);
+            this.InnerCalendarDays.Add(ChristianHolidays.Pentecost);
+            this.InnerCalendarDays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(ChristianHolidays.StStephansDay);
         }
 
         private static Holiday constituionDay;

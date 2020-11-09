@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,23 +32,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IS_ISHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.PalmSunday);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(FirstDayOfSummer);
-            this.InnerHolidays.Add(GlobalHolidays.MayDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(SeamensDay);
-            this.InnerHolidays.Add(RepublicsDay);
-            this.InnerHolidays.Add(CommerceDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.PalmSunday);
+            this.InnerCalendarDays.Add(ChristianHolidays.MaundyThursday);
+            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Easter);
+            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(FirstDayOfSummer);
+            this.InnerCalendarDays.Add(GlobalHolidays.MayDay);
+            this.InnerCalendarDays.Add(ChristianHolidays.Ascension);
+            this.InnerCalendarDays.Add(ChristianHolidays.Pentecost);
+            this.InnerCalendarDays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerCalendarDays.Add(SeamensDay);
+            this.InnerCalendarDays.Add(RepublicsDay);
+            this.InnerCalendarDays.Add(CommerceDay);
             //Christmas Eve is usually half holiday observance
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(SecondDayOfChristmas);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(SecondDayOfChristmas);
             //New Year's Eve is usually half holiday observance
         }
 

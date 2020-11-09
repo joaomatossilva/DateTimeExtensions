@@ -28,38 +28,38 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     public abstract class HolidayStrategyBase : IHolidayStrategy
     {
-        protected readonly IList<Holiday> InnerHolidays;
+        protected readonly IList<CalendarDay> InnerCalendarDays;
 
-        private readonly ConcurrentLazyDictionary<int, IDictionary<DateTime, Holiday>> holidaysObservancesCache;
+        private readonly ConcurrentLazyDictionary<int, IDictionary<DateTime, CalendarDay>> calendarDaysObservancesCache;
 
         protected HolidayStrategyBase()
         {
-            holidaysObservancesCache = new ConcurrentLazyDictionary<int, IDictionary<DateTime, Holiday>>();
-            this.InnerHolidays = new List<Holiday>();
+            calendarDaysObservancesCache = new ConcurrentLazyDictionary<int, IDictionary<DateTime, CalendarDay>>();
+            this.InnerCalendarDays = new List<CalendarDay>();
         }
 
         public bool IsHoliDay(DateTime day)
         {
-            var map = holidaysObservancesCache.GetOrAdd(day.Year, () => BuildObservancesMap(day.Year));
+            var map = calendarDaysObservancesCache.GetOrAdd(day.Year, () => BuildObservancesMap(day.Year));
             return map.Any(m => m.Key.Date == day.Date);
         }
 
-        protected virtual IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected virtual IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
         {
-            return this.InnerHolidays.Select(h => new {Date = h.GetInstance(year), Holiday = h})
+            return this.InnerCalendarDays.Select(h => new {Date = h.Day.GetInstance(year), Holiday = h})
                 .Where(h => h.Date.HasValue)
                 .GroupBy(h => h.Date).Select(g => new {Date = g.Key, g.First().Holiday})
                 .ToDictionary(k => k.Date.Value, v => v.Holiday);
         }
 
-        public virtual IEnumerable<Holiday> Holidays
+        public virtual IEnumerable<CalendarDay> Days
         {
-            get { return InnerHolidays.AsEnumerable(); }
+            get { return InnerCalendarDays.AsEnumerable(); }
         }
 
-        public virtual IEnumerable<Holiday> GetHolidaysOfYear(int year)
+        public virtual IEnumerable<CalendarDay> GetAllCalendarDaysOfYear(int year)
         {
-            var map = holidaysObservancesCache.GetOrAdd(year, () => BuildObservancesMap(year));
+            var map = calendarDaysObservancesCache.GetOrAdd(year, () => BuildObservancesMap(year));
             return map.Select(m => m.Value);
         }
     }

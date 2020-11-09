@@ -21,39 +21,38 @@
 using System;
 using System.Globalization;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.OccurrencesCalculators
 {
-    public class FixedHoliday : Holiday
+    public class FixedDayStrategy : ICalculateDayStrategy
     {
         private readonly Func<int, DateTime?> holidayResolver;
 
-        public FixedHoliday(string name, Func<int, DateTime?> holidayResolver)
-            : base(name)
+        private FixedDayStrategy(Func<int, DateTime?> holidayResolver)
         {
             this.holidayResolver = holidayResolver;
         }
 
-        public FixedHoliday(string name, DayInYear day)
-            : this(name, year => day.GetDayOnYear(year))
+        public FixedDayStrategy(DayInYear day)
+            : this(year => day.GetDayOnYear(year))
         {
         }
 
-        public FixedHoliday(string name, int month, int day, Calendar calendar)
-            : this(name, year => new DayInYear(month, day, calendar).GetDayOnYear(year))
+        public FixedDayStrategy(int month, int day, Calendar calendar)
+            : this(year => new DayInYear(month, day, calendar).GetDayOnYear(year))
         {
         }
 
-        public FixedHoliday(string name, int month, int day)
-            : this(name, month, day, new GregorianCalendar())
+        public FixedDayStrategy(int month, int day)
+            : this(month, day, new GregorianCalendar())
         {
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return holidayResolver(year);
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var holidayDate = this.holidayResolver(date.Year);
             return holidayDate != null && holidayDate.Value.Date == date.Date;

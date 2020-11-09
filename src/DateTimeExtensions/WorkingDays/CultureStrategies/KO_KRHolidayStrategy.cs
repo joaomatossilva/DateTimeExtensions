@@ -34,26 +34,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public KO_KRHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(Samiljeol);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(SeokgaTansinil);
-            this.InnerHolidays.Add(Hyeonchungil);
-            this.InnerHolidays.Add(Gwangbokjeol);
-            this.InnerHolidays.Add(Gaecheonjeol);
-            this.InnerHolidays.Add(Hangulnal);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(Samiljeol);
+            this.InnerCalendarDays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerCalendarDays.Add(SeokgaTansinil);
+            this.InnerCalendarDays.Add(Hyeonchungil);
+            this.InnerCalendarDays.Add(Gwangbokjeol);
+            this.InnerCalendarDays.Add(Gaecheonjeol);
+            this.InnerCalendarDays.Add(Hangulnal);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
 
             // Add these later for substitute holiday rule application when overlapped with other holidays.
-            this.InnerHolidays.Add(Seolnal);
-            this.InnerHolidays.Add(Chuseok);
-            this.InnerHolidays.Add(Eorininal);
+            this.InnerCalendarDays.Add(Seolnal);
+            this.InnerCalendarDays.Add(Chuseok);
+            this.InnerCalendarDays.Add(Eorininal);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerCalendarDays)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

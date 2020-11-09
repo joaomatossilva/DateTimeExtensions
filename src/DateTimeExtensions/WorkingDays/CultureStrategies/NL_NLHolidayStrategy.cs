@@ -28,17 +28,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public NL_NLHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(Kingsday);
-            this.InnerHolidays.Add(LiberationDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Easter);
+            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(Kingsday);
+            this.InnerCalendarDays.Add(LiberationDay);
+            this.InnerCalendarDays.Add(ChristianHolidays.Ascension);
+            this.InnerCalendarDays.Add(ChristianHolidays.Pentecost);
+            this.InnerCalendarDays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(GlobalHolidays.BoxingDay);
         }
 
         // 1885-1948: 31 August

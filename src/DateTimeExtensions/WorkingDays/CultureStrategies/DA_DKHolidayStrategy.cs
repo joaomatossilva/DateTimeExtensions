@@ -19,10 +19,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,49 +29,28 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public DA_DKHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GeneralPrayerDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(SecondDayOfChristmas);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.MaundyThursday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Easter));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.EasterMonday));
+            this.InnerCalendarDays.Add(new Holiday(GeneralPrayerDay));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Ascension));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Pentecost));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.PentecostMonday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
+            this.InnerCalendarDays.Add(new Holiday(SecondDayOfChristmas));
         }
 
-        private static Holiday secondDayOfChristmas;
-
-        public static Holiday SecondDayOfChristmas
-        {
-            get
-            {
-                if (secondDayOfChristmas == null)
-                {
-                    secondDayOfChristmas = new FixedHoliday("Christmas (2nd Day)", 12, 26);
-                }
-                return secondDayOfChristmas;
-            }
-        }
-
+        private static readonly Lazy<NamedDay> SecondDayOfChristmasLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Christmas (2nd Day)", new FixedDayStrategy(Month.December, 26)));
+        public static NamedDay SecondDayOfChristmas => SecondDayOfChristmasLazy.Value;
+        
         //source: http://en.wikipedia.org/wiki/Store_Bededag
         // Store Bededag, translated literally as Great Prayer Day or more loosely as General Prayer Day, "All Prayers" Day, Great Day of Prayers or Common Prayer Day,
         //is a Danish holiday celebrated on the 4th Friday after Easter
-        private static Holiday generalPrayerDay;
-
-        public static Holiday GeneralPrayerDay
-        {
-            get
-            {
-                if (generalPrayerDay == null)
-                {
-                    generalPrayerDay = new NthDayOfWeekAfterDayHoliday("General Prayer Day", 4, DayOfWeek.Friday,
-                        ChristianHolidays.Easter);
-                }
-                return generalPrayerDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> GeneralPrayerDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("General Prayer Day", new NthDayOfWeekAfterDayStrategy(4, DayOfWeek.Friday, EasterDayStrategy.Instance)));
+        public static NamedDay GeneralPrayerDay => GeneralPrayerDayLazy.Value;
     }
 }

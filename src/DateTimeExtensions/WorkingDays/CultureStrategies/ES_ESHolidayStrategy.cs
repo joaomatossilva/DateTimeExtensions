@@ -31,23 +31,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ES_ESHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.Epiphany);
+            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
+            this.InnerCalendarDays.Add(ChristianHolidays.ImaculateConception);
+            this.InnerCalendarDays.Add(ChristianHolidays.Assumption);
+            this.InnerCalendarDays.Add(ChristianHolidays.AllSaints);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(NationalDay);
-            this.InnerHolidays.Add(ConstitutionDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerCalendarDays.Add(NationalDay);
+            this.InnerCalendarDays.Add(ConstitutionDay);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerCalendarDays)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

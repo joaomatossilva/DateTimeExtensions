@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -33,42 +34,42 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             // holidays that are observed in at least half of Australian states and territories
             // according to https://en.wikipedia.org/wiki/Public_holidays_in_Australia
 
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(AustraliaDay);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterSaturday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(AnzacDay);
-            this.InnerHolidays.Add(QueensBirthday);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(AustraliaDay));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.EasterSaturday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.EasterMonday));
+            this.InnerCalendarDays.Add(new Holiday(AnzacDay));
+            this.InnerCalendarDays.Add(new Holiday(QueensBirthday));
+            this.InnerCalendarDays.Add(new Holiday(LabourDay));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.BoxingDay));
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            IDictionary<DateTime, CalendarDay> holidayMap = new Dictionary<DateTime, CalendarDay>();
+            foreach (var innerHoliday in InnerCalendarDays)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.Day.GetInstance(year);
                 if (date.HasValue)
                 {
                     holidayMap[date.Value] = innerHoliday;
                 }
             }
 
-            var existingHolidayMap = new Dictionary<DateTime, Holiday>(holidayMap);
+            var existingHolidayMap = new Dictionary<DateTime, CalendarDay>(holidayMap);
             foreach (var existingHoliday in existingHolidayMap)
             {
                 var date = existingHoliday.Key;
                 var innerHoliday = existingHoliday.Value;
 
                 // don't move the holiday if it is easter based since it's already observated
-                if (innerHoliday.GetType() != typeof(EasterBasedHoliday) && innerHoliday != AnzacDay)
+                if (innerHoliday.Day != ChristianHolidays.Easter && innerHoliday.Day != AnzacDay)
                 {
                     if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        AddHolidayOnNextAvailableDay(holidayMap, date, innerHoliday);
+                        AddHolidayOnNextAvailableDay(holidayMap, date, innerHoliday.Day);
                     }
                 }
             }
@@ -76,93 +77,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, Holiday> holidayMap, DateTime date, Holiday holiday)
+        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, CalendarDay> calendarDayMap, DateTime date, NamedDay namedDay)
         {
-            if (!holidayMap.ContainsKey(date) && date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
+            if (!calendarDayMap.ContainsKey(date) && date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
             {
-                holidayMap.Add(date, holiday);
+                calendarDayMap.Add(date, new Holiday(namedDay));
             }
             else
             {
-                AddHolidayOnNextAvailableDay(holidayMap, date.AddDays(1), holiday);
+                AddHolidayOnNextAvailableDay(calendarDayMap, date.AddDays(1), namedDay);
             }
         }
 
         //Last Monday in May - Spring Bank Holiday
-        private static Holiday australiaDay;
-
-        public static Holiday AustraliaDay
-        {
-            get
-            {
-                if (australiaDay == null)
-                {
-                    australiaDay = new FixedHoliday("Australia Day", 1, 26);
-                }
-                return australiaDay;
-            }
-        }
-
+        private static readonly Lazy<NamedDay> AustraliaDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Australia Day", new FixedDayStrategy(Month.January, 26)));
+        public static NamedDay AustraliaDay => AustraliaDayLazy.Value;
+        
         //1st Monday in May	- May Day Bank Holiday (not an national holiday, but observed on some regions)
-        private static Holiday mayDay;
-
-        public static Holiday MayDay
-        {
-            get
-            {
-                if (mayDay == null)
-                {
-                    mayDay = new NthDayOfWeekInMonthHoliday("May Day", 1, DayOfWeek.Monday, 5, CountDirection.FromFirst);
-                }
-                return mayDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> MayDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("May Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, 5, CountDirection.FromFirst)));
+        public static NamedDay MayDay => MayDayLazy.Value;
 
         //25th April - Anzac Day
-        private static Holiday anzacDay;
-
-        public static Holiday AnzacDay
-        {
-            get
-            {
-                if (anzacDay == null)
-                {
-                    anzacDay = new FixedHoliday("Anzac Day", 4, 25);
-                }
-                return anzacDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> AnzacDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Anzac Day", new FixedDayStrategy(Month.April, 25)));
+        public static NamedDay AnzacDay => AnzacDayLazy.Value;
 
         //2nd Monday in June - Queen's Birthday
-        private static Holiday queensBirthday;
-
-        public static Holiday QueensBirthday
-        {
-            get
-            {
-                if (queensBirthday == null)
-                {
-                    queensBirthday = new NthDayOfWeekInMonthHoliday("Queen's Birthday", 2, DayOfWeek.Monday, 6,
-                        CountDirection.FromFirst);
-                }
-                return queensBirthday;
-            }
-        }
-
+        private static readonly Lazy<NamedDay> QueensBirthdayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Queen's Birthday", new NthDayOfWeekInMonthDayStrategy(2, DayOfWeek.Monday, Month.June,
+                CountDirection.FromFirst)));
+        public static NamedDay QueensBirthday => QueensBirthdayLazy.Value;
+        
         //1nd Monday in October - Labour Day
-        private static Holiday labourDay;
-
-        public static Holiday LabourDay
-        {
-            get
-            {
-                if (labourDay == null)
-                {
-                    labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 10,
-                        CountDirection.FromFirst);
-                }
-                return labourDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> LabourDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Labour Day", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.October,
+                CountDirection.FromFirst)));
+        public static NamedDay LabourDay => LabourDayLazy.Value;
     }
 }

@@ -19,31 +19,24 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.OccurrencesCalculators
 {
-    public class YearDependantHoliday : Holiday
+    public class YearDependantDayStrategy : ICalculateDayStrategy
     {
         private readonly Func<int, bool> yearCondition;
-        private readonly Holiday baseHoliday;
+        private readonly ICalculateDayStrategy baseCalculateDayStrategy;
 
-        public YearDependantHoliday(Func<int, bool> yearCondition, Holiday baseHoliday) : base(baseHoliday.Name)
+        public YearDependantDayStrategy(Func<int, bool> yearCondition, ICalculateDayStrategy baseCalculateDayStrategy)
         {
             this.yearCondition = yearCondition;
-            this.baseHoliday = baseHoliday;
+            this.baseCalculateDayStrategy = baseCalculateDayStrategy;
         }
 
-        public override DateTime? GetInstance(int year)
-        {
-            return this.yearCondition(year) ? this.baseHoliday.GetInstance(year) : null;
-        }
+        public DateTime? GetInstance(int year) =>
+            this.yearCondition(year) ? this.baseCalculateDayStrategy.GetInstance(year) : null;
 
-        public override bool IsInstanceOf(DateTime date)
-        {
-            return this.yearCondition(date.Year) && this.baseHoliday.IsInstanceOf(date);
-        }
+        public bool IsInstanceOf(DateTime date) =>
+            this.yearCondition(date.Year) && this.baseCalculateDayStrategy.IsInstanceOf(date);
     }
 }

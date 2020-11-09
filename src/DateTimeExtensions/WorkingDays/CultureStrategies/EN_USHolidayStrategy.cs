@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,23 +32,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_USHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(NewYearsEve);
-            this.InnerHolidays.Add(IndependenceDay);
-            this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
-            this.InnerHolidays.Add(MartinLutherKing);
-            this.InnerHolidays.Add(WashingtonsBirthday);
-            this.InnerHolidays.Add(MemorialDay);
-            this.InnerHolidays.Add(LaborDay);
-            this.InnerHolidays.Add(ColumbusDay);
-            this.InnerHolidays.Add(ThanksgivingDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(NewYearsEve);
+            this.InnerCalendarDays.Add(IndependenceDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.VeteransDay);
+            this.InnerCalendarDays.Add(MartinLutherKing);
+            this.InnerCalendarDays.Add(WashingtonsBirthday);
+            this.InnerCalendarDays.Add(MemorialDay);
+            this.InnerCalendarDays.Add(LaborDay);
+            this.InnerCalendarDays.Add(ColumbusDay);
+            this.InnerCalendarDays.Add(ThanksgivingDay);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerCalendarDays)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

@@ -100,12 +100,12 @@ namespace DateTimeExtensions.Tests
                 return false;
             }
 
-            public IEnumerable<Holiday> Holidays
+            public IEnumerable<CalendarDay> Days
             {
                 get { return null; }
             }
 
-            public IEnumerable<Holiday> GetHolidaysOfYear(int year)
+            public IEnumerable<CalendarDay> GetAllCalendarDaysOfYear(int year)
             {
                 return null;
             }

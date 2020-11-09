@@ -10,11 +10,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public IndianHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(GlobalHolidays.MayDay);
-            this.InnerHolidays.Add(IndependenceDay);
-            this.InnerHolidays.Add(RepublicDay);
-            this.InnerHolidays.Add(GandhiBirthAnniversary);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(GlobalHolidays.MayDay);
+            this.InnerCalendarDays.Add(IndependenceDay);
+            this.InnerCalendarDays.Add(RepublicDay);
+            this.InnerCalendarDays.Add(GandhiBirthAnniversary);
 
         }
         private static Holiday independenceDay;

@@ -19,288 +19,96 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public static class ChristianHolidays
     {
-        private static Holiday christmas;
+        private static readonly Lazy<NamedDay> ChristmasLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Christmas", new FixedDayStrategy(Month.December, 25)));
+        public static NamedDay Christmas => ChristmasLazy.Value;
 
-        public static Holiday Christmas
-        {
-            get
-            {
-                if (christmas == null)
-                {
-                    christmas = new FixedHoliday("Christmas", 12, 25);
-                }
-                return christmas;
-            }
-        }
+        private static readonly Lazy<NamedDay> EpiphanyLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Epiphany", new FixedDayStrategy(Month.January, 6)));
+        public static NamedDay Epiphany => EpiphanyLazy.Value;
+        
+        private static readonly Lazy<NamedDay> AssumptionLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Assumption", new FixedDayStrategy(Month.August, 15)));
+        public static NamedDay Assumption => AssumptionLazy.Value;
+        
+        private static readonly Lazy<NamedDay> AllSaintsLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("AllSaints", new FixedDayStrategy(Month.November, 1)));
+        public static NamedDay AllSaints => AllSaintsLazy.Value;
 
-        private static Holiday epiphany;
+        private static readonly Lazy<NamedDay> DayOfTheDeadLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("DayOfTheDead", new FixedDayStrategy(Month.November, 2)));
+        public static NamedDay DayOfTheDead => DayOfTheDeadLazy.Value;       
 
-        public static Holiday Epiphany
-        {
-            get
-            {
-                if (epiphany == null)
-                {
-                    epiphany = new FixedHoliday("Epiphany", 1, 6);
-                }
-                return epiphany;
-            }
-        }
+        private static readonly Lazy<NamedDay> ImaculateConceptionLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("ImaculateConception", new FixedDayStrategy(Month.December, 8)));
+        public static NamedDay ImaculateConception => ImaculateConceptionLazy.Value;   
 
-        private static Holiday assumption;
+        private static readonly Lazy<NamedDay> EasterLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Easter", EasterDayStrategy.Instance));
+        public static NamedDay Easter => EasterLazy.Value;  
 
-        public static Holiday Assumption
-        {
-            get
-            {
-                if (assumption == null)
-                {
-                    assumption = new FixedHoliday("Assumption", 8, 15);
-                }
-                return assumption;
-            }
-        }
-
-        private static Holiday allSaints;
-
-        public static Holiday AllSaints
-        {
-            get
-            {
-                if (allSaints == null)
-                {
-                    allSaints = new FixedHoliday("AllSaints", 11, 1);
-                }
-                return allSaints;
-            }
-        }
-
-        private static Holiday dayOfTheDead;
-
-        public static Holiday DayOfTheDead
-        {
-            get
-            {
-                if (dayOfTheDead == null)
-                {
-                    dayOfTheDead = new FixedHoliday("DayOfTheDead", 11, 2);
-                }
-                return dayOfTheDead;
-            }
-        }
-
-        private static Holiday imaculateConception;
-
-        public static Holiday ImaculateConception
-        {
-            get
-            {
-                if (imaculateConception == null)
-                {
-                    imaculateConception = new FixedHoliday("ImaculateConception", 12, 8);
-                }
-                return imaculateConception;
-            }
-        }
-
-        private static Holiday easter;
-
-        public static Holiday Easter
-        {
-            get
-            {
-                if (easter == null)
-                {
-                    easter = new EasterBasedHoliday("Easter", 0);
-                }
-                return easter;
-            }
-        }
-
-        private static Holiday carnival;
-
-        public static Holiday Carnival
-        {
-            get
-            {
-                if (carnival == null)
-                {
-                    carnival = new EasterBasedHoliday("Carnival", -47);
-                }
-                return carnival;
-            }
-        }
+        private static readonly Lazy<NamedDay> CarnivalLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Carnival", new NthDayAfterDayStrategy(-47, EasterDayStrategy.Instance)));
+        public static NamedDay Carnival => CarnivalLazy.Value; 
 
         //source: http://en.wikipedia.org/wiki/Palm_Sunday
         //Palm Sunday is a Christian moveable feast that falls on the Sunday before Easter
-        private static Holiday palmSunday;
+        private static readonly Lazy<NamedDay> PalmSundayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("PalmSunday", new NthDayOfWeekAfterDayStrategy(-1, DayOfWeek.Sunday, EasterDayStrategy.Instance)));
+        public static NamedDay PalmSunday => PalmSundayLazy.Value;
+        
+        private static readonly Lazy<NamedDay> MaundyThursdayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("MaundyThursday", new NthDayAfterDayStrategy(-3, EasterDayStrategy.Instance)));
+        public static NamedDay MaundyThursday => MaundyThursdayLazy.Value;
+        
+        private static readonly Lazy<NamedDay> GoodFridayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("GoodFriday", new NthDayAfterDayStrategy(-2, EasterDayStrategy.Instance)));
+        public static NamedDay GoodFriday => GoodFridayLazy.Value;
+        
+        private static readonly Lazy<NamedDay> EasterMondayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("EasterMonday", new NthDayAfterDayStrategy(1, EasterDayStrategy.Instance)));
+        public static NamedDay EasterMonday => EasterMondayLazy.Value;
+        
+        private static readonly Lazy<NamedDay> EasterSaturdayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("EasterSaturday", new NthDayAfterDayStrategy(-1, EasterDayStrategy.Instance)));
+        public static NamedDay EasterSaturday => EasterSaturdayLazy.Value;
 
-        public static Holiday PalmSunday
-        {
-            get
-            {
-                if (palmSunday == null)
-                {
-                    palmSunday = new NthDayOfWeekAfterDayHoliday("PalmSunday", -1, DayOfWeek.Sunday, Easter);
-                }
-                return palmSunday;
-            }
-        }
-
-        private static Holiday maundyThursday;
-
-        public static Holiday MaundyThursday
-        {
-            get
-            {
-                if (maundyThursday == null)
-                {
-                    maundyThursday = new EasterBasedHoliday("MaundyThursday", -3);
-                }
-                return maundyThursday;
-            }
-        }
-
-        private static Holiday goodFriday;
-
-        public static Holiday GoodFriday
-        {
-            get
-            {
-                if (goodFriday == null)
-                {
-                    goodFriday = new EasterBasedHoliday("GoodFriday", -2);
-                }
-                return goodFriday;
-            }
-        }
-
-        private static Holiday easterMonday;
-
-        public static Holiday EasterMonday
-        {
-            get
-            {
-                if (easterMonday == null)
-                {
-                    easterMonday = new EasterBasedHoliday("EasterMonday", 1);
-                }
-                return easterMonday;
-            }
-        }
-
-        private static Holiday easterSaturday;
-
-        public static Holiday EasterSaturday
-        {
-            get
-            {
-                if (easterSaturday == null)
-                {
-                    easterSaturday = new EasterBasedHoliday("EasterSaturday", -1);
-                }
-                return easterSaturday;
-            }
-        }
-
-        private static Holiday corpusChristi;
-
-        public static Holiday CorpusChristi
-        {
-            get
-            {
-                if (corpusChristi == null)
-                {
-                    corpusChristi = new EasterBasedHoliday("CorpusChristi", 60);
-                }
-                return corpusChristi;
-            }
-        }
-
+        private static readonly Lazy<NamedDay> CorpusChristiLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("CorpusChristi", new NthDayAfterDayStrategy(60, EasterDayStrategy.Instance)));
+        public static NamedDay CorpusChristi => CorpusChristiLazy.Value;
+        
         //source: http://en.wikipedia.org/wiki/Pentecost
         //50 days after Easter (inclusive of Easter Day). In other words, it falls on the eighth Sunday, counting Easter Day 
         //Also know as Whit Sunday, Whitsun, Whit
-        private static Holiday pentecost;
-
-        public static Holiday Pentecost
-        {
-            get
-            {
-                if (pentecost == null)
-                {
-                    //count offset is 7 because we aren't counting with the easter day inclusive
-                    pentecost = new NthDayOfWeekAfterDayHoliday("Pentecost", 7, DayOfWeek.Sunday, Easter);
-                }
-                return pentecost;
-            }
-        }
+        private static readonly Lazy<NamedDay> PentecostLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Pentecost", new NthDayAfterDayStrategy(49, EasterDayStrategy.Instance)));
+        public static NamedDay Pentecost => PentecostLazy.Value;
 
         //Also known as Whit monday
-        private static Holiday pentecostMonday;
-
-        public static Holiday PentecostMonday
-        {
-            get
-            {
-                if (pentecostMonday == null)
-                {
-                    pentecostMonday = new EasterBasedHoliday("PentecostMonday", 50);
-                }
-                return pentecostMonday;
-            }
-        }
+        private static readonly Lazy<NamedDay> PentecostMondayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("PentecostMonday", new NthDayAfterDayStrategy(50, EasterDayStrategy.Instance)));
+        public static NamedDay PentecostMonday => PentecostMondayLazy.Value;
 
         //source: http://en.wikipedia.org/wiki/Ascension_Day
         // Ascension Day is traditionally celebrated on a Thursday, the fortieth day of Easter
         // again, easter day is included
-        private static Holiday ascension;
-
-        public static Holiday Ascension
-        {
-            get
-            {
-                if (ascension == null)
-                {
-                    ascension = new EasterBasedHoliday("Ascension", 39);
-                }
-                return ascension;
-            }
-        }
-
-        private static Holiday christmasEve;
-
-        public static Holiday ChristmasEve
-        {
-            get
-            {
-                if (christmasEve == null)
-                {
-                    christmasEve = new FixedHoliday("ChristmasEve", 12, 24);
-                }
-                return christmasEve;
-            }
-        }
-
-        private static Holiday stStephensDay;
-
-        public static Holiday StStephansDay
-        {
-            get
-            {
-                if (stStephensDay == null)
-                {
-                    stStephensDay = new FixedHoliday("StStephenDay", 12, 26);
-                }
-                return stStephensDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> AscensionLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Ascension", new NthDayAfterDayStrategy(39, EasterDayStrategy.Instance)));
+        public static NamedDay Ascension => AscensionLazy.Value;
+            
+        private static readonly Lazy<NamedDay> ChristmasEveLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("ChristmasEve", new FixedDayStrategy(Month.December, 24)));
+        public static NamedDay ChristmasEve => ChristmasEveLazy.Value;
+        
+        private static readonly Lazy<NamedDay> StStephansDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("StStephansDay", new FixedDayStrategy(Month.December, 26)));
+        public static NamedDay StStephansDay => StStephansDayLazy.Value;
     }
 }

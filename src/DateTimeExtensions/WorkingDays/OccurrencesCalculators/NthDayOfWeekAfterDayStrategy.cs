@@ -18,51 +18,47 @@
 
 #endregion
 
-using DateTimeExtensions.Common;
 using System;
+using DateTimeExtensions.Common;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.OccurrencesCalculators
 {
-    public class NthDayOfWeekAfterDayHoliday : Holiday
+    public class NthDayOfWeekAfterDayStrategy : ICalculateDayStrategy
     {
         private readonly DayOfWeek dayOfWeek;
         private readonly int count;
-        private readonly Holiday baseHoliday;
+        private readonly ICalculateDayStrategy baseCalculatorStrategy;
         private readonly ConcurrentLazyDictionary<int, DateTime?> dayCache;
 
-        public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, int month, int day)
-            : this(name, count, dayOfWeek, new FixedHoliday(name, month, day))
+        public NthDayOfWeekAfterDayStrategy(int count, DayOfWeek dayOfWeek, int month, int day)
+            : this(count, dayOfWeek, new FixedDayStrategy(month, day))
         {
         }
 
-        public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, DayInYear dayInYear)
-            : this(name, count, dayOfWeek, new FixedHoliday(name, dayInYear))
+        public NthDayOfWeekAfterDayStrategy(int count, DayOfWeek dayOfWeek, DayInYear dayInYear)
+            : this(count, dayOfWeek, new FixedDayStrategy(dayInYear))
         {
         }
 
-        public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, Holiday baseHoliday)
-            : base(name)
+        public NthDayOfWeekAfterDayStrategy(int count, DayOfWeek dayOfWeek, ICalculateDayStrategy baseCalculatorStrategy)
         {
             if (count == 0)
             {
-                throw new ArgumentException("count must not be 0", "count");
+                throw new ArgumentException("count must not be 0", nameof(count));
             }
-            if (baseHoliday == null)
-            {
-                throw new ArgumentException("baseHoliday cannot be null", "baseHoliday");
-            }
+
             this.count = count;
             this.dayOfWeek = dayOfWeek;
-            this.baseHoliday = baseHoliday;
+            this.baseCalculatorStrategy = baseCalculatorStrategy ?? throw new ArgumentException("baseCalculatorStrategy cannot be null", nameof(baseCalculatorStrategy));
             dayCache = new ConcurrentLazyDictionary<int, DateTime?>();
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return dayCache.GetOrAdd(year, () => CalculateDayInYear(year));
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var day = GetInstance(date.Year);
             return day.HasValue && date.Month == day.Value.Month && date.Day == day.Value.Day;
@@ -70,7 +66,7 @@ namespace DateTimeExtensions.WorkingDays
 
         private DateTime? CalculateDayInYear(int year)
         {
-            var startDate = baseHoliday.GetInstance(year);
+            var startDate = baseCalculatorStrategy.GetInstance(year);
             if (!startDate.HasValue)
             {
                 return null;

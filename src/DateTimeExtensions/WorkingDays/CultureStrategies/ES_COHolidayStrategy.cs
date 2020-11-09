@@ -64,7 +64,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             var all = fixedDayHolidays.Concat(nextMondayHolidays);
             foreach (var h in all)
             {
-                this.InnerHolidays.Add(h);
+                this.InnerCalendarDays.Add(h);
             }
         }
 

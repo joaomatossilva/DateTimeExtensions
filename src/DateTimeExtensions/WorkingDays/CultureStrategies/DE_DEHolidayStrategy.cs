@@ -18,7 +18,9 @@
 
 #endregion
 
+using System;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -27,31 +29,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public DE_DEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.EasterMonday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Ascension));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Pentecost));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.PentecostMonday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(GermanUnityDay);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.InternationalWorkersDay));
+            this.InnerCalendarDays.Add(new Holiday(GermanUnityDay));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.StStephansDay));
         }
 
-        private static Holiday germanUnityDay;
-
-        public static Holiday GermanUnityDay
-        {
-            get
-            {
-                if (germanUnityDay == null)
-                {
-                    germanUnityDay = new FixedHoliday("GermanUnityDay", 10, 3);
-                }
-                return germanUnityDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> GermanUnityDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("GermanUnityDay", new FixedDayStrategy(Month.October, 3)));
+        public static NamedDay GermanUnityDay => GermanUnityDayLazy.Value;
     }
 }

@@ -19,10 +19,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,77 +29,31 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_GBHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.NewYear));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.EasterMonday));
+            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.Christmas));
 
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(MayDayBank);
-            this.InnerHolidays.Add(SpringBank);
-            this.InnerHolidays.Add(LateSummerBank);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.BoxingDay));
+            this.InnerCalendarDays.Add(new Holiday(MayDayBank));
+            this.InnerCalendarDays.Add(new Holiday(SpringBank));
+            this.InnerCalendarDays.Add(new Holiday(LateSummerBank));
         }
 
-        private static Holiday boxingDay;
-
-        public static Holiday BoxingDay
-        {
-            get
-            {
-                if (boxingDay == null)
-                {
-                    boxingDay = new FixedHoliday("Boxing Day", 12, 26);
-                }
-                return boxingDay;
-            }
-        }
 
         //1st Monday in May	- May Day Bank Holiday
-        private static Holiday mayDayBank;
-
-        public static Holiday MayDayBank
-        {
-            get
-            {
-                if (mayDayBank == null)
-                {
-                    mayDayBank = new NthDayOfWeekInMonthHoliday("May Day Bank", 1, DayOfWeek.Monday, 5,
-                        CountDirection.FromFirst);
-                }
-                return mayDayBank;
-            }
-        }
+        private static readonly Lazy<NamedDay> MayDayBankLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("May Day Bank", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.May, CountDirection.FromFirst)));
+        public static NamedDay MayDayBank => MayDayBankLazy.Value;
 
         //Last Monday in May - Spring Bank Holiday
-        private static Holiday springBank;
-
-        public static Holiday SpringBank
-        {
-            get
-            {
-                if (springBank == null)
-                {
-                    springBank = new NthDayOfWeekInMonthHoliday("Spring Bank", 1, DayOfWeek.Monday, 5,
-                        CountDirection.FromLast);
-                }
-                return springBank;
-            }
-        }
+        private static readonly Lazy<NamedDay> SpringBankLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Spring Bank", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.May, CountDirection.FromLast)));
+        public static NamedDay SpringBank => SpringBankLazy.Value;
 
         //Last Monday in August	- Late Summer Bank Holiday
-        private static Holiday lateSummerBank;
-
-        public static Holiday LateSummerBank
-        {
-            get
-            {
-                if (lateSummerBank == null)
-                {
-                    lateSummerBank = new NthDayOfWeekInMonthHoliday("Late Summer Bank", 1, DayOfWeek.Monday, 8,
-                        CountDirection.FromLast);
-                }
-                return lateSummerBank;
-            }
-        }
+        private static readonly Lazy<NamedDay> LateSummerBankLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Late Summer Bank", new NthDayOfWeekInMonthDayStrategy(1, DayOfWeek.Monday, Month.August, CountDirection.FromLast)));
+        public static NamedDay LateSummerBank => LateSummerBankLazy.Value;
     }
 }

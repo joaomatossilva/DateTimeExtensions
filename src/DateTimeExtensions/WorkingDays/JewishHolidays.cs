@@ -19,10 +19,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays
 {
@@ -30,100 +28,44 @@ namespace DateTimeExtensions.WorkingDays
     {
         private static readonly Calendar HebrewCalendar = new HebrewCalendar();
 
-        private static Holiday roshHashanah;
+        private static readonly Lazy<NamedDay> RoshHashanahLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Rosh Hashanah", new FixedDayStrategy(1, 1, HebrewCalendar)));
+        public static NamedDay RoshHashanah => RoshHashanahLazy.Value;
+        
+        private static readonly Lazy<NamedDay> RoshHashanahSecondDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Rosh Hashanah", new FixedDayStrategy(1, 2, HebrewCalendar)));
+        public static NamedDay RoshHashanahSecondDay => RoshHashanahSecondDayLazy.Value;
 
-        public static Holiday RoshHashanah
-        {
-            get
-            {
-                return roshHashanah ??
-                       (roshHashanah = new FixedHoliday("Rosh Hashanah", new DayInYear(1, 1, HebrewCalendar)));
-            }
-        }
+        private static readonly Lazy<NamedDay> YomKippurLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Yom Kippur", new FixedDayStrategy(1, 10, HebrewCalendar)));
+        public static NamedDay YomKippur => YomKippurLazy.Value;
 
-        private static Holiday roshHashanahSecondDay;
+        private static readonly Lazy<NamedDay> SukkotLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Sukkot", new FixedDayStrategy(1, 15, HebrewCalendar)));
+        public static NamedDay Sukkot => SukkotLazy.Value;
 
-        public static Holiday RoshHashanahSecondDay
-        {
-            get
-            {
-                return roshHashanahSecondDay ??
-                       (roshHashanahSecondDay = new FixedHoliday("Rosh Hashanah", new DayInYear(1, 2, HebrewCalendar)));
-            }
-        }
+        private static readonly Lazy<NamedDay> ShminiAtzeretLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Shmini Atzeret", new FixedDayStrategy(1, 22, HebrewCalendar)));
+        public static NamedDay ShminiAtzeret => ShminiAtzeretLazy.Value;
 
-        private static Holiday yomKippur;
+        private static readonly Lazy<NamedDay> ShminiTorahLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Shmini Torah", new FixedDayStrategy(1, 23, HebrewCalendar)));
+        public static NamedDay ShminiTorah => ShminiTorahLazy.Value;
+        
+        private static readonly Lazy<NamedDay> PesachLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Pesach", new FixedDayStrategy(7, 15, HebrewCalendar)));
+        public static NamedDay Pesach => PesachLazy.Value;
 
-        public static Holiday YomKippur
-        {
-            get
-            {
-                return yomKippur ?? (yomKippur = new FixedHoliday("Yom Kippur", new DayInYear(1, 10, HebrewCalendar)));
-            }
-        }
+        private static readonly Lazy<NamedDay> ShviiShelPesachLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Shvi'i shel Pesach", new FixedDayStrategy(7, 21, HebrewCalendar)));
+        public static NamedDay ShviiShelPesach => ShviiShelPesachLazy.Value;
 
-        private static Holiday sukkot;
-
-        public static Holiday Sukkot
-        {
-            get { return sukkot ?? (sukkot = new FixedHoliday("Sukkot", new DayInYear(1, 15, HebrewCalendar))); }
-        }
-
-        private static Holiday shminiAtzeret;
-
-        public static Holiday ShminiAtzeret
-        {
-            get
-            {
-                return shminiAtzeret ??
-                       (shminiAtzeret = new FixedHoliday("Shmini Atzeret", new DayInYear(1, 22, HebrewCalendar)));
-            }
-        }
-
-        private static Holiday shminiTorah;
-
-        public static Holiday ShminiTorah
-        {
-            get
-            {
-                return shminiTorah ??
-                       (shminiTorah = new FixedHoliday("Shmini Torah", new DayInYear(1, 23, HebrewCalendar)));
-            }
-        }
-
-        private static Holiday pesach;
-
-        public static Holiday Pesach
-        {
-            get { return pesach ?? (pesach = new FixedHoliday("Pesach", new DayInYear(7, 15, HebrewCalendar))); }
-        }
-
-        private static Holiday shviiShelPesach;
-
-        public static Holiday ShviiShelPesach
-        {
-            get
-            {
-                return shviiShelPesach ??
-                       (shviiShelPesach = new FixedHoliday("Shvi'i shel Pesach", new DayInYear(7, 21, HebrewCalendar)));
-            }
-        }
-
-        private static Holiday shavuot;
-
-        public static Holiday Shavuot
-        {
-            get { return shavuot ?? (shavuot = new FixedHoliday("Shavuot", new DayInYear(9, 6, HebrewCalendar))); }
-        }
-
-        private static Holiday tuBishvat;
-
-        public static Holiday TuBishvat
-        {
-            get
-            {
-                return tuBishvat ?? (tuBishvat = new FixedHoliday("Tu Bishvat", new DayInYear(5, 15, HebrewCalendar)));
-            }
-        }
+        private static readonly Lazy<NamedDay> ShavuotLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Shavuot", new FixedDayStrategy(9, 6, HebrewCalendar)));
+        public static NamedDay Shavuot => ShavuotLazy.Value;
+        
+        private static readonly Lazy<NamedDay> TuBishvatLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Tu Bishvat", new FixedDayStrategy(5, 15, HebrewCalendar)));
+        public static NamedDay TuBishvat => TuBishvatLazy.Value;
     }
 }

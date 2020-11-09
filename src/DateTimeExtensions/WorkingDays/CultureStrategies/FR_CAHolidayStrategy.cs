@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -32,16 +33,16 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FR_CAHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
+            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
             //Victoria Day is not really national
             //this.InnerHolidays.Add(VictoriaDay);
-            this.InnerHolidays.Add(CanadaDay);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(Thanksgiving);
-            this.InnerHolidays.Add(RemembranceDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(CanadaDay);
+            this.InnerCalendarDays.Add(LabourDay);
+            this.InnerCalendarDays.Add(Thanksgiving);
+            this.InnerCalendarDays.Add(RemembranceDay);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
             //Boxing is not really national
             //this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
@@ -49,7 +50,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerCalendarDays)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

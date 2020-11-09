@@ -19,141 +19,50 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public static class GlobalHolidays
     {
-        private static Holiday internationalWorkersDay;
+        private static readonly Lazy<NamedDay> InternationalWorkersDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("InternationalWorkersDay", new FixedDayStrategy(Month.May, 1)));
+        public static NamedDay InternationalWorkersDay => InternationalWorkersDayLazy.Value;
+        
+        private static readonly Lazy<NamedDay> StPatricsDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("StPatricsDay", new FixedDayStrategy(Month.March, 17)));
+        public static NamedDay StPatricsDay => StPatricsDayLazy.Value;
 
-        public static Holiday InternationalWorkersDay
-        {
-            get
-            {
-                if (internationalWorkersDay == null)
-                {
-                    internationalWorkersDay = new FixedHoliday("InternationalWorkerDay", 5, 1);
-                }
-                return internationalWorkersDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> VeteransDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("VeteransDay", new FixedDayStrategy(Month.November, 11)));
+        public static NamedDay VeteransDay => VeteransDayLazy.Value;
 
-        private static Holiday stPatricksDay;
+        private static readonly Lazy<NamedDay> BoxingDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("BoxingDay", new FixedDayStrategy(Month.December, 26)));
+        public static NamedDay BoxingDay => BoxingDayLazy.Value;
 
-        public static Holiday StPatricsDay
-        {
-            get
-            {
-                if (stPatricksDay == null)
-                {
-                    stPatricksDay = new FixedHoliday("St. Patric's Day", 3, 17);
-                }
-                return stPatricksDay;
-            }
-        }
-
-        private static Holiday veteransDay;
-
-        public static Holiday VeteransDay
-        {
-            get
-            {
-                if (veteransDay == null)
-                {
-                    veteransDay = new FixedHoliday("Veterans Day", 11, 11);
-                }
-                return veteransDay;
-            }
-        }
-
-        private static Holiday boxingDay;
-
-        public static Holiday BoxingDay
-        {
-            get
-            {
-                if (boxingDay == null)
-                {
-                    boxingDay = new FixedHoliday("Boxing Day", 12, 26);
-                }
-                return boxingDay;
-            }
-        }
-
-        private static Holiday mayDay;
-
-        public static Holiday MayDay
-        {
-            get
-            {
-                if (mayDay == null)
-                {
-                    mayDay = new FixedHoliday("MayDay", 5, 1);
-                }
-                return mayDay;
-            }
-        }
-
-        //Midsummer Eve - Friday between 19 June and 25 June
-        private static Holiday midsummerEve;
-
-        public static Holiday MidsummerEve
-        {
-            get
-            {
-                if (midsummerEve == null)
-                {
-                    midsummerEve = new NthDayOfWeekAfterDayHoliday("Midsummer Eve", 1, DayOfWeek.Friday, 6, 19);
-                }
-                return midsummerEve;
-            }
-        }
+        private static readonly Lazy<NamedDay> MayDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("MayDay", new FixedDayStrategy(Month.May, 1)));
+        public static NamedDay MayDay => MayDayLazy.Value;
 
         //MidSummer Day - Saturday between 20 June and 26 June
-        private static Holiday midsummerDay;
-
-        public static Holiday MidsummerDay
-        {
-            get
-            {
-                if (midsummerDay == null)
-                {
-                    midsummerDay = new NthDayOfWeekAfterDayHoliday("Midsummer Day", 1, DayOfWeek.Saturday, 6, 20);
-                }
-                return midsummerDay;
-            }
-        }
-
+        private static readonly Lazy<NamedDay> MidsummerDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("MidsummerDay", new NthDayOfWeekAfterDayStrategy(1, DayOfWeek.Saturday, new FixedDayStrategy(Month.June, 20))));
+        public static NamedDay MidsummerDay => MidsummerDayLazy.Value;
+        
+        //Midsummer Eve - Friday between 19 June and 25 June
+        private static readonly Lazy<NamedDay> MidsummerEveLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("MidsummerEve", new NthDayOfWeekAfterDayStrategy(-1, DayOfWeek.Friday, new FixedDayStrategy(Month.June, 19))));
+        public static NamedDay MidsummerEve => MidsummerEveLazy.Value;
+        
         //New Year's Eve - 31 December
-        private static Holiday newYearsEve;
-
-        public static Holiday NewYearsEve
-        {
-            get
-            {
-                if (newYearsEve == null)
-                {
-                    newYearsEve = new FixedHoliday("New Year's Eve", 12, 31);
-                }
-                return newYearsEve;
-            }
-        }
-
-        private static Holiday newYear;
-
-        public static Holiday NewYear
-        {
-            get
-            {
-                if (newYear == null)
-                {
-                    newYear = new FixedHoliday("NewYear", 1, 1);
-                }
-                return newYear;
-            }
-        }
+        private static readonly Lazy<NamedDay> NewYearsEveLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("NewYearsEve", new FixedDayStrategy(Month.December, 31)));
+        public static NamedDay NewYearsEve => NewYearsEveLazy.Value;
+        
+        private static readonly Lazy<NamedDay> NewYearLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("NewYear", new FixedDayStrategy(Month.January, 1)));
+        public static NamedDay NewYear => NewYearLazy.Value;
     }
 }

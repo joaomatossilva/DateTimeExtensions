@@ -24,6 +24,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -34,74 +35,44 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public AR_SAHolidayStrategy()
         {
-            this.InnerHolidays.Add(EndOfRamadan);
-            this.InnerHolidays.Add(EndOfHajj);
-            this.InnerHolidays.Add(SaudiNationalDay);
+            this.InnerCalendarDays.Add(new Holiday(EndOfRamadan));
+            this.InnerCalendarDays.Add(new Holiday(EndOfHajj));
+            this.InnerCalendarDays.Add(new Holiday(SaudiNationalDay));
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
         {
-            var observancesMap = new Dictionary<DateTime, Holiday>();
-            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
+            var observancesMap = new Dictionary<DateTime, CalendarDay>();
+            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, new Holiday(SaudiNationalDay));
 
             var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
             for (int i = 0; i <= 7; i++)
             {
-                observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), EndOfRamadan);
+                observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), new Holiday(EndOfRamadan));
             }
 
             var endOfHajjObservance = EndOfHajj.GetInstance(year);
             for (int i = 0; i <= 6; i++)
             {
-                observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), EndOfHajj);
+                observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), new Holiday(EndOfHajj));
             }
 
             return observancesMap;
         }
 
         //1 Shawwal
-        private static Holiday endOfRamadan;
-
-        public static Holiday EndOfRamadan
-        {
-            get
-            {
-                if (endOfRamadan == null)
-                {
-                    endOfRamadan = new FixedHoliday("Eid ul-Fitr", 10, 1, HirijiCalendar);
-                }
-                return endOfRamadan;
-            }
-        }
+        private static readonly Lazy<NamedDay> EndOfRamadanLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Eid ul-Fitr", new FixedDayStrategy(10, 1, HirijiCalendar)));
+        public static NamedDay EndOfRamadan => EndOfRamadanLazy.Value;
 
         //10 Dhul-Hijjah
-        private static Holiday endOfHajj;
-
-        public static Holiday EndOfHajj
-        {
-            get
-            {
-                if (endOfHajj == null)
-                {
-                    endOfHajj = new FixedHoliday("Eid ul-Adha", 12, 10, HirijiCalendar);
-                }
-                return endOfHajj;
-            }
-        }
+        private static readonly Lazy<NamedDay> EndOfHajjLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Eid ul-Adha", new FixedDayStrategy(12, 10, HirijiCalendar)));
+        public static NamedDay EndOfHajj => EndOfHajjLazy.Value;
 
         //23 September - Saudi National Day
-        private static Holiday saudiNationalDay;
-
-        public static Holiday SaudiNationalDay
-        {
-            get
-            {
-                if (saudiNationalDay == null)
-                {
-                    saudiNationalDay = new FixedHoliday("Saudi National Day", 9, 23);
-                }
-                return saudiNationalDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> SaudiNationalDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Saudi National Day", new FixedDayStrategy(Month.September, 23)));
+        public static NamedDay SaudiNationalDay => SaudiNationalDayLazy.Value;
     }
 }

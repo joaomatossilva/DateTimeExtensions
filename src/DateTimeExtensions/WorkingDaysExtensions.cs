@@ -1,7 +1,7 @@
 #region License
 
 // 
-// Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
+// Copyright (c) 2011-2012, Joï¿½o Matos Silva <kappy@acydburne.com.pt>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -175,7 +175,7 @@ namespace DateTimeExtensions
             var holidays = new SortedDictionary<DateTime, Holiday>();
             foreach (Holiday holiday in workingDayCultureInfo.GetHolidaysOfYear(day.Year))
             {
-                var date = holiday.GetInstance(day.Year);
+                var date = holiday.Day.GetInstance(day.Year);
                 if (date.HasValue)
                 {
                     holidays.Add(date.Value, holiday);

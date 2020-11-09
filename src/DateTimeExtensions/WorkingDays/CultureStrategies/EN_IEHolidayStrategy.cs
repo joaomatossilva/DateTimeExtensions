@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -31,22 +32,12 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_IEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(BattleOfTheBoyneDay);
+            this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.BoxingDay));
+            this.InnerCalendarDays.Add(new Holiday(BattleOfTheBoyneDay));
         }
 
-        private static Holiday battleOfTheBoyneDay;
-
-        public static Holiday BattleOfTheBoyneDay
-        {
-            get
-            {
-                if (battleOfTheBoyneDay == null)
-                {
-                    battleOfTheBoyneDay = new FixedHoliday("Battle of the Boyne", 7, 12);
-                }
-                return battleOfTheBoyneDay;
-            }
-        }
+        private static readonly Lazy<NamedDay> BattleOfTheBoyneDayLazy = new Lazy<NamedDay>(() => 
+            new NamedDay("Battle of the Boyne", new FixedDayStrategy(Month.July, 12)));
+        public static NamedDay BattleOfTheBoyneDay => BattleOfTheBoyneDayLazy.Value;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -11,15 +12,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IrelandHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(new NthDayOfWeekAfterDayHoliday("May Day", 1, DayOfWeek.Monday, GlobalHolidays.MayDay));
-            this.InnerHolidays.Add(JuneHoliday);
-            this.InnerHolidays.Add(AugustHoliday);
-            this.InnerHolidays.Add(OctoberHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerCalendarDays.Add(GlobalHolidays.NewYear);
+            this.InnerCalendarDays.Add(GlobalHolidays.StPatricsDay);
+            this.InnerCalendarDays.Add(ChristianHolidays.EasterMonday);
+            this.InnerCalendarDays.Add(new NthDayOfWeekAfterDayHoliday("May Day", 1, DayOfWeek.Monday, GlobalHolidays.MayDay));
+            this.InnerCalendarDays.Add(JuneHoliday);
+            this.InnerCalendarDays.Add(AugustHoliday);
+            this.InnerCalendarDays.Add(OctoberHoliday);
+            this.InnerCalendarDays.Add(ChristianHolidays.Christmas);
+            this.InnerCalendarDays.Add(ChristianHolidays.StStephansDay);
         }
 
         // 1st Monday in June - June Holiday

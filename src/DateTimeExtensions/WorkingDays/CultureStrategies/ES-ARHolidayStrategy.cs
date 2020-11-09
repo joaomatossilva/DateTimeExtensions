@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -54,13 +55,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             foreach (var turisticHoliday in TuristicHolidays)
             {
-                this.InnerHolidays.Add(turisticHoliday);
+                this.InnerCalendarDays.Add(turisticHoliday);
             }
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(AnniversaryOfDeathGeneralJoseSanMartin);
-            this.InnerHolidays.Add(DayOfRespectForCulturalDiversity);
-            this.InnerHolidays.Add(DayOfNationalSovereignity);
+            this.InnerCalendarDays.Add(ChristianHolidays.MaundyThursday);
+            this.InnerCalendarDays.Add(ChristianHolidays.GoodFriday);
+            this.InnerCalendarDays.Add(AnniversaryOfDeathGeneralJoseSanMartin);
+            this.InnerCalendarDays.Add(DayOfRespectForCulturalDiversity);
+            this.InnerCalendarDays.Add(DayOfNationalSovereignity);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
