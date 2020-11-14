@@ -29,6 +29,6 @@ namespace DateTimeExtensions.WorkingDays
     {
         IEnumerable<CalendarDay> Days { get; }
         IEnumerable<CalendarDay> GetAllCalendarDaysOfYear(int year);
-        bool IsHoliDay(DateTime day);
+        bool IsHoliday(DateTime day);
     }
 }

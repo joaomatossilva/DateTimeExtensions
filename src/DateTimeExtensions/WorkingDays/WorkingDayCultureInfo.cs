@@ -49,7 +49,7 @@ namespace DateTimeExtensions.WorkingDays
 
         public bool IsHoliday(DateTime date)
         {
-            return holidayStrategy.IsHoliDay(date);
+            return holidayStrategy.IsHoliday(date);
         }
 
         public bool IsWorkingDay(DateTime date)

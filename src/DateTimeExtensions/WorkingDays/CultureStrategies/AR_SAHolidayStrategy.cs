@@ -40,34 +40,31 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(SaudiNationalDay));
         }
 
-        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
+        protected override IEnumerable<KeyValuePair<DateTime, CalendarDay>> GetYearObservances(int year)
         {
-            var observancesMap = new Dictionary<DateTime, CalendarDay>();
             var nationalDayObservance = SaudiNationalDay.Value.GetInstance(year);
             if (nationalDayObservance != null)
             {
-                observancesMap.AddIfInexistent(nationalDayObservance.Value, new Holiday(SaudiNationalDay));
+                yield return new KeyValuePair<DateTime, CalendarDay>(nationalDayObservance.Value, new Holiday(SaudiNationalDay));
             }
-
+            
             var endOfRamadanObservance = EndOfRamadan.Value.GetInstance(year);
             if (endOfRamadanObservance != null)
             {
                 for (var i = 0; i <= 7; i++)
                 {
-                    observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), new Holiday(EndOfRamadan));
+                    yield return new KeyValuePair<DateTime, CalendarDay>(endOfRamadanObservance.Value.AddDays(i), new Holiday(EndOfRamadan));
                 }
             }
-
+            
             var endOfHajjObservance = EndOfHajj.Value.GetInstance(year);
             if (endOfHajjObservance != null)
             {
                 for (var i = 0; i <= 6; i++)
                 {
-                    observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), new Holiday(EndOfHajj));
+                    yield return new KeyValuePair<DateTime, CalendarDay>(endOfHajjObservance.Value.AddDays(i), new Holiday(EndOfHajj));
                 }
             }
-
-            return observancesMap;
         }
 
         //1 Shawwal

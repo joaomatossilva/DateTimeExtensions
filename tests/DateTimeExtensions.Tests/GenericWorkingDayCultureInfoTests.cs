@@ -28,7 +28,7 @@ namespace DateTimeExtensions.Tests
         public void can_provide_custom_locator_holiday_dayOfWeek_strategy()
         {
             var mockHolidayStrategy = new Mock<IHolidayStrategy>();
-            mockHolidayStrategy.Setup(x => x.IsHoliDay(It.IsAny<DateTime>())).Returns(true);
+            mockHolidayStrategy.Setup(x => x.IsHoliday(It.IsAny<DateTime>())).Returns(true);
 
             var mockDayOfWeekStartegy = new Mock<IWorkingDayOfWeekStrategy>();
             mockDayOfWeekStartegy.Setup(x => x.IsWorkingDay(It.IsAny<DayOfWeek>())).Returns(true);
@@ -42,7 +42,7 @@ namespace DateTimeExtensions.Tests
             DateTime marchFirst = new DateTime(1991, 3, 1);
             Assert.IsTrue(marchFirst.IsHoliday(workingdayCultureInfo));
             Assert.IsFalse(marchFirst.IsWorkingDay(workingdayCultureInfo));
-            mockHolidayStrategy.Verify(x => x.IsHoliDay(marchFirst), Times.AtLeastOnce);
+            mockHolidayStrategy.Verify(x => x.IsHoliday(marchFirst), Times.AtLeastOnce);
             mockDayOfWeekStartegy.Verify(x => x.IsWorkingDay(marchFirst.DayOfWeek), Times.AtLeastOnce);
         }
 

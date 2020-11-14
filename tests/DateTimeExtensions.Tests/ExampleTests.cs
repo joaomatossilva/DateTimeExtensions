@@ -91,7 +91,7 @@ namespace DateTimeExtensions.Tests
         [Locale("CustomTest")]
         public class CustomHolidayStrategy : IHolidayStrategy
         {
-            public bool IsHoliDay(DateTime day)
+            public bool IsHoliday(DateTime day)
             {
                 if (day.Date == DateTime.Today)
                 {
