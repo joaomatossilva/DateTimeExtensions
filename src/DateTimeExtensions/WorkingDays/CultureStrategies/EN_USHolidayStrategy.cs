@@ -74,6 +74,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                                     calendarDay.Day.Name + " Observed", 
                                     new NthDayAfterDayStrategy(1, new NamedDayStrategy(calendarDay.Day)))));
                         break;
+                    default:
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            date.Value,
+                            calendarDay);
+                        break;
                 }
             }
         }

@@ -20,8 +20,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
 using DateTimeExtensions.WorkingDays.OccurrencesCalculators;
 
@@ -50,122 +48,133 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 //TODO: only half day. should it be included?
                 //this.InnerHolidays.Add(new Holiday(GlobalHolidays.NewYearsEve));
             };
+        
+        private static readonly IEnumerable<Holiday> MoveableHolidays =
+            new Holiday[]
+            {
+                new Holiday(DayOfRespectForCulturalDiversity), 
+                new Holiday(DayOfNationalSovereignity)
+            };
+
+        private static readonly IEnumerable<Holiday> NormalHolidays =
+            new Holiday[]
+            {
+                new Holiday(ChristianHolidays.MaundyThursday), 
+                new Holiday(ChristianHolidays.GoodFriday),
+                new Holiday(AnniversaryOfDeathGeneralJoseSanMartin)
+            };
 
         public ES_ARHolidayStrategy()
         {
+            foreach (var holiday in TuristicHolidays)
+            {
+                this.InnerCalendarDays.Add(holiday);
+            }
+            foreach (var holiday in MoveableHolidays)
+            {
+                this.InnerCalendarDays.Add(holiday);
+            }
+            foreach (var holiday in NormalHolidays)
+            {
+                this.InnerCalendarDays.Add(holiday);
+            }
+        }
+
+        protected override IEnumerable<KeyValuePair<DateTime, CalendarDay>> GetYearObservances(int year)
+        {
+            foreach (var turisticHoliday in BuildTuristicObservanceMap(year))
+            {
+                yield return turisticHoliday;
+            }
+            foreach (var moveableHoliday in BuildMoveableObservanceMap(year))
+            {
+                yield return moveableHoliday;
+            }
+            foreach (var normalHoliday in BuildNormalObservanceMap(year))
+            {
+                yield return normalHoliday;
+            }
+        }
+
+        private IEnumerable<KeyValuePair<DateTime, CalendarDay>> BuildNormalObservanceMap(int year)
+        {
+            foreach (var holiday in NormalHolidays)
+            {
+                var date = holiday.Day.GetInstance(year);
+                if (date == null)
+                {
+                    continue;
+                }
+                
+                yield return new KeyValuePair<DateTime, CalendarDay>(
+                    date.Value,
+                    holiday);
+            }
+        }
+
+        private IEnumerable<KeyValuePair<DateTime, CalendarDay>> BuildTuristicObservanceMap(int year)
+        {
             foreach (var turisticHoliday in TuristicHolidays)
             {
-                this.InnerCalendarDays.Add(turisticHoliday);
-            }
-            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.MaundyThursday));
-            this.InnerCalendarDays.Add(new Holiday(ChristianHolidays.GoodFriday));
-            this.InnerCalendarDays.Add(new Holiday(AnniversaryOfDeathGeneralJoseSanMartin));
-            this.InnerCalendarDays.Add(new Holiday(DayOfRespectForCulturalDiversity));
-            this.InnerCalendarDays.Add(new Holiday(DayOfNationalSovereignity));
-        }
-
-        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
-        {
-            var observancesMap = new Dictionary<DateTime, CalendarDay>();
-            this.BuildMoveableObservanceMap(year, new Holiday(DayOfRespectForCulturalDiversity), observancesMap);
-            this.BuildMoveableObservanceMap(year, new Holiday(DayOfNationalSovereignity), observancesMap);
-            foreach (var turisticHoliday in TuristicHolidays)
-            {
-                this.BuildTuristicObservanceMap(year, turisticHoliday, observancesMap);
-            }
-            this.BuildNormalObservanceMap(year, new Holiday(ChristianHolidays.MaundyThursday), observancesMap);
-            this.BuildNormalObservanceMap(year, new Holiday(ChristianHolidays.GoodFriday), observancesMap);
-            this.BuildNormalObservanceMap(year, new Holiday(AnniversaryOfDeathGeneralJoseSanMartin), observancesMap);
-            return observancesMap;
-        }
-
-        private void BuildNormalObservanceMap(int year, Holiday holiday, Dictionary<DateTime, CalendarDay> map)
-        {
-            var holidayInstance = holiday.Day.GetInstance(year);
-            if (!holidayInstance.HasValue)
-            {
-                return;
-            }
-            map.AddIfInexistent(holidayInstance.Value, holiday);
-        }
-
-        private void BuildTuristicObservanceMap(int year, Holiday holiday, Dictionary<DateTime, CalendarDay> map)
-        {
-            var holidayInstance = holiday.Day.GetInstance(year);
-            if (!holidayInstance.HasValue)
-            {
-                return;
-            }
-            map.AddIfInexistent(holidayInstance.Value, holiday);
-            //if holiday falls on tuesday, the holiday is also observed on the last monday
-            if (holidayInstance.Value.DayOfWeek == DayOfWeek.Tuesday)
-            {
-                map.AddIfInexistent(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
-            }
-            //if holiday falls on thursday, the holiday is also observed on the next friday
-            if (holidayInstance.Value.DayOfWeek == DayOfWeek.Thursday)
-            {
-                map.AddIfInexistent(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Friday), holiday);
+                var date = turisticHoliday.Day.GetInstance(year);
+                if (date == null)
+                {
+                    continue;
+                }
+                
+                yield return new KeyValuePair<DateTime, CalendarDay>(
+                    date.Value,
+                    turisticHoliday);
+                
+                //if holiday falls on tuesday, the holiday is also observed on the last monday
+                if (date.Value.DayOfWeek == DayOfWeek.Tuesday)
+                {
+                    yield return new KeyValuePair<DateTime, CalendarDay>(
+                        date.Value.LastDayOfWeek(DayOfWeek.Monday),
+                        turisticHoliday);
+                }
+                //if holiday falls on thursday, the holiday is also observed on the next friday
+                if (date.Value.DayOfWeek == DayOfWeek.Thursday)
+                {
+                    yield return new KeyValuePair<DateTime, CalendarDay>(
+                        date.Value.NextDayOfWeek(DayOfWeek.Friday),
+                        turisticHoliday);
+                }
             }
         }
 
-        private void BuildMoveableObservanceMap(int year, Holiday holiday, Dictionary<DateTime, CalendarDay> map)
+        private IEnumerable<KeyValuePair<DateTime, CalendarDay>> BuildMoveableObservanceMap(int year)
         {
-            var holidayInstance = holiday.Day.GetInstance(year);
-            if (!holidayInstance.HasValue)
+            foreach (var moveableHoliday in MoveableHolidays)
             {
-                return;
-            }
-            switch (holidayInstance.Value.DayOfWeek)
-            {
-                case DayOfWeek.Monday:
-                    map.AddIfInexistent(holidayInstance.Value, holiday);
-                    break;
+                var date = moveableHoliday.Day.GetInstance(year);
+                if (date == null)
+                {
+                    continue;
+                }
+                
+                switch (date.Value.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            date.Value,
+                            moveableHoliday);
+                        break;
                     //if holiday falls on tuesday or wednesday, the holiday is observed on the last monday
-                case DayOfWeek.Tuesday:
-                case DayOfWeek.Wednesday:
-                    map.AddIfInexistent(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
-                    break;
+                    case DayOfWeek.Tuesday:
+                    case DayOfWeek.Wednesday:
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            date.Value.LastDayOfWeek(DayOfWeek.Monday),
+                            moveableHoliday);
+                        break;
                     //if holiday falls on thu, fri, sat, sun, the holiday is observed on the next monday
-                default:
-                    map.AddIfInexistent(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Monday), holiday);
-                    break;
+                    default:
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            date.Value.NextDayOfWeek(DayOfWeek.Monday),
+                            moveableHoliday);
+                        break;
+                }
             }
-        }
-
-        private bool IsNormalHoliday(DateTime day)
-        {
-            if (ChristianHolidays.MaundyThursday.Value.IsInstanceOf(day))
-            {
-                return true;
-            }
-            if (ChristianHolidays.GoodFriday.Value.IsInstanceOf(day))
-            {
-                return true;
-            }
-            if (AnniversaryOfDeathGeneralJoseSanMartin.Value.IsInstanceOf(day))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsTuristicHoliday(DateTime day)
-        {
-            return TuristicHolidays.Any(h => h.Day.IsInstanceOf(day));
-        }
-
-        private bool IsMoveableHoliday(DateTime day)
-        {
-            if (DayOfRespectForCulturalDiversity.Value.IsInstanceOf(day))
-            {
-                return true;
-            }
-            if (DayOfNationalSovereignity.Value.IsInstanceOf(day))
-            {
-                return true;
-            }
-            return false;
         }
 
         //24 March - Day of Remembrance for Truth and Justice
