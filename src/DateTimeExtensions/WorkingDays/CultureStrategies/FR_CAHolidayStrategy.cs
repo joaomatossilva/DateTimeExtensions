@@ -47,28 +47,37 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
+        protected override IEnumerable<KeyValuePair<DateTime, CalendarDay>> GetYearObservances(int year)
         {
-            IDictionary<DateTime, CalendarDay> holidayMap = new Dictionary<DateTime, CalendarDay>();
-            foreach (var innerHoliday in InnerCalendarDays)
+            foreach (var calendarDay in InnerCalendarDays)
             {
-                var date = innerHoliday.Day.GetInstance(year);
-                if (date.HasValue)
+                var date = calendarDay.Day.GetInstance(year);
+                if (date == null)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
-                    //if the holiday is a saturday, the holiday is observed on previous friday
-                    if (date.Value.DayOfWeek == DayOfWeek.Saturday)
-                    {
-                        holidayMap.Add(date.Value.AddDays(2), innerHoliday);
-                    }
-                    //if the holiday is a sunday, the holiday is observed on next monday
-                    if (date.Value.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        holidayMap.Add(date.Value.AddDays(1), innerHoliday);
-                    }
+                    continue;
+                }
+                
+                //if the holiday is a saturday, the holiday is observed on previous friday
+                switch (date.Value.DayOfWeek)
+                {
+                    case DayOfWeek.Saturday:
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            date.Value.AddDays(-1),
+                            new Holiday(
+                                new NamedDay(
+                                    calendarDay.Day.Name + " Observed", 
+                                    new NthDayAfterDayStrategy(-1, new NamedDayStrategy(calendarDay.Day)))));
+                        break;
+                    case DayOfWeek.Sunday:
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            date.Value.AddDays(1),
+                            new Holiday(
+                                new NamedDay(
+                                    calendarDay.Day.Name + " Observed", 
+                                    new NthDayAfterDayStrategy(1, new NamedDayStrategy(calendarDay.Day)))));
+                        break;
                 }
             }
-            return holidayMap;
         }
 
         //First of July - Canada Day

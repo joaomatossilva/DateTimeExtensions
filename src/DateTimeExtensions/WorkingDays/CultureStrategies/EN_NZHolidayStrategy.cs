@@ -29,47 +29,50 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.BoxingDay));
         }
 
-        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
+        //Before refactoring, Credit to David Smith
+        protected override IEnumerable<KeyValuePair<DateTime, CalendarDay>> GetYearObservances(int year)
         {
-            IDictionary<DateTime, CalendarDay> holidayMap = new Dictionary<DateTime, CalendarDay>();
-            foreach (var innerHoliday in InnerCalendarDays)
+            foreach (var calendarDay in InnerCalendarDays)
             {
-                var date = innerHoliday.Day.GetInstance(year);
-                if (date.HasValue)
+                var date = calendarDay.Day.GetInstance(year);
+                if (date == null)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
+                    continue;
+                }
+                
+                yield return new KeyValuePair<DateTime, CalendarDay>(date.Value, calendarDay);
 
-                    // New Year, Day After New Year, Christmas and Boxing Days are 'Mondayised'
-                    // ie if these dates fall on a weekday then they are observed on the actual day.
-                    // If they fall on a weekend then they are observed on the following Monday/Tuesday
-
-                    if (IsMondayised(innerHoliday, date.Value.DayOfWeek))
+                // New Year, Day After New Year, Christmas and Boxing Days are 'Mondayised'
+                // ie if these dates fall on a weekday then they are observed on the actual day.
+                // If they fall on a weekend then they are observed on the following Monday/Tuesday
+                if (IsMondayised(calendarDay, date.Value.DayOfWeek))
+                {
+                    var observation = new Holiday(new NamedDay(
+                        calendarDay.Day.Name + " Observed", 
+                        new NthDayOfWeekAfterDayStrategy(1, DayOfWeek.Monday, new NamedDayStrategy(calendarDay.Day))));
+                    var observedInstance = observation.Day.GetInstance(year);
+                    if (observedInstance != null)
                     {
-                        var observation = new Holiday(new NamedDay(
-                            innerHoliday.Day.Name + " Observed", 
-                            new NthDayOfWeekAfterDayStrategy(1, DayOfWeek.Monday, new NamedDayStrategy(innerHoliday.Day))));
-                        var observedIntance = observation.Day.GetInstance(year);
-                        if (observedIntance != null)
-                        {
-                            holidayMap.Add(observedIntance.Value, observation);
-                        }
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            observedInstance.Value,
+                            observation);
                     }
-                    if (IsTuesdayised(innerHoliday, date.Value.DayOfWeek))
+                }
+                else if (IsTuesdayised(calendarDay, date.Value.DayOfWeek))
+                {
+                    var observation = new Holiday(new NamedDay(
+                        calendarDay.Day.Name + " Observed", 
+                        new NthDayOfWeekAfterDayStrategy(1, DayOfWeek.Tuesday, new NamedDayStrategy(calendarDay.Day))));
+                    var observedInstance = observation.Day.GetInstance(year);
+                    if (observedInstance != null)
                     {
-                        var observation = new Holiday(new NamedDay(
-                            innerHoliday.Day.Name + " Observed", 
-                            new NthDayOfWeekAfterDayStrategy(1, DayOfWeek.Tuesday, new NamedDayStrategy(innerHoliday.Day))));
-                        var observedIntance = observation.Day.GetInstance(year);
-                        if (observedIntance != null)
-                        {
-                            holidayMap.Add(observedIntance.Value, observation);
-                        }
+                        yield return new KeyValuePair<DateTime, CalendarDay>(
+                            observedInstance.Value,
+                            observation);
                     }
                 }
             }
-            return holidayMap;
         }
-
 
         //TODO: improve this to be more behavioral instead of conjuntction of ors and ands
         private static bool IsMondayised(CalendarDay holiday, DayOfWeek occurenceDay)

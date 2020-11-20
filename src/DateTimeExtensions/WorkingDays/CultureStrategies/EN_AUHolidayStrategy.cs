@@ -46,46 +46,36 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerCalendarDays.Add(new Holiday(GlobalHolidays.BoxingDay));
         }
 
-        protected override IDictionary<DateTime, CalendarDay> BuildObservancesMap(int year)
+        protected override IEnumerable<KeyValuePair<DateTime, CalendarDay>> GetYearObservances(int year)
         {
-            IDictionary<DateTime, CalendarDay> holidayMap = new Dictionary<DateTime, CalendarDay>();
-            foreach (var innerHoliday in InnerCalendarDays)
+            foreach (var calendarDay in InnerCalendarDays)
             {
-                var date = innerHoliday.Day.GetInstance(year);
-                if (date.HasValue)
+                var date = calendarDay.Day.GetInstance(year);
+                if (date == null)
                 {
-                    holidayMap[date.Value] = innerHoliday;
+                    continue;
                 }
-            }
+                
+                yield return new KeyValuePair<DateTime, CalendarDay>(date.Value, calendarDay);
 
-            var existingHolidayMap = new Dictionary<DateTime, CalendarDay>(holidayMap);
-            foreach (var existingHoliday in existingHolidayMap)
-            {
-                var date = existingHoliday.Key;
-                var innerHoliday = existingHoliday.Value;
-
-                // don't move the holiday if it is easter based since it's already observated
-                if (innerHoliday.Day != ChristianHolidays.Easter && innerHoliday.Day != AnzacDay)
+                // don't move the holiday if it is easter based since it's already observed
+                //credit: Tony Zhu
+                if (calendarDay.Day != ChristianHolidays.Easter && calendarDay.Day != AnzacDay)
                 {
-                    if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+                    switch (date.Value.DayOfWeek)
                     {
-                        AddHolidayOnNextAvailableDay(holidayMap, date, innerHoliday.Day);
+                        case DayOfWeek.Saturday:
+                            yield return new KeyValuePair<DateTime, CalendarDay>(
+                                date.Value.AddDays(2),
+                                calendarDay);
+                            break;
+                        case DayOfWeek.Sunday:
+                            yield return new KeyValuePair<DateTime, CalendarDay>(
+                                date.Value.AddDays(1),
+                                calendarDay);
+                            break;
                     }
                 }
-            }
-
-            return holidayMap;
-        }
-
-        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, CalendarDay> calendarDayMap, DateTime date, NamedDay namedDay)
-        {
-            if (!calendarDayMap.ContainsKey(date) && date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
-            {
-                calendarDayMap.Add(date, new Holiday(namedDay));
-            }
-            else
-            {
-                AddHolidayOnNextAvailableDay(calendarDayMap, date.AddDays(1), namedDay);
             }
         }
 
