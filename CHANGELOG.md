@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.5.0
+- Added tr-TR culture, thanks @onurozten
+
 v5.4.3
 - Fixing an issue on DateDiff not taking into account the accomulator when calculating months and days - Thanks @HotTaton 
 - Make EasterBasedHoliday threadsafe - Thanks @SumanKNath
