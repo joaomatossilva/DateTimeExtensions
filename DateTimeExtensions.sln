@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "build\.build.csproj", "{8BB0AD48-A370-405F-B295-03D7F1811375}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED60F95F-4CCC-4F56-ACB2-DEE39CB00A54}"
 	ProjectSection(SolutionItems) = preProject
 		CHANGELOG.md = CHANGELOG.md
@@ -22,6 +20,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB805547-4556-4744-AFF4-314BE0F45704}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0F8CA42F-760A-4A42-BD0F-0AC9900B6712}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "build\.build.csproj", "{8BB0AD48-A370-405F-B295-03D7F1811375}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeExtensions", "src\DateTimeExtensions\DateTimeExtensions.csproj", "{650FA9EC-03BE-43AF-87FF-9632856E31EE}"
 EndProject

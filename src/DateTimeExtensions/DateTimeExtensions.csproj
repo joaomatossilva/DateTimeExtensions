@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
     <Description>This project is a merge of several common DateTime operations on the form of extensions to System.DateTime, including natural date difference text (precise and human rounded), holidays and working days calculations on several culture locales. Feedback will be much appreciated.</Description>
     <AssemblyTitle>DateTime Extensions</AssemblyTitle>
@@ -17,10 +16,12 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <VersionPrefix>5.4.3</VersionPrefix>
     <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
-	<PublishRepositoryUrl>true</PublishRepositoryUrl>
-	<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\Users\Alsay\Desktop\DateTimeExtensions\Backup\src\DateTimeExtensions\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
     <PackageReference Include="System.Linq" Version="4.3.0" />
@@ -32,12 +33,11 @@
     <PackageReference Include="System.Text.RegularExpressions" Version="4.3.0" />
     <PackageReference Include="System.Globalization.Calendars" Version="4.3.0" />
   </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-<!--
+  <!--
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62925-02">
       <PrivateAssets>all</PrivateAssets>
