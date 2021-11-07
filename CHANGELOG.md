@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.5.1
+- Fixed de-DE culture, thanks @Dabbel
+
 v5.5.0
 - Added tr-TR culture, thanks @onurozten
 
