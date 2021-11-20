@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.5.2
+- Fixed Liberation Day in Nl_NL, thanks @sergiu05
+
 v5.5.1
 - Fixed de-DE culture, thanks @Dabbel
 

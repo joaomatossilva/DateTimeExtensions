@@ -76,7 +76,6 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //after 2000, Liberation Day only ocours 5 in 5 years
         private static Holiday liberationDay;
 
         public static Holiday LiberationDay
@@ -85,7 +84,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new YearDependantHoliday(year => (year <= 2000 || year%5 == 0),
+                    liberationDay = new YearDependantHoliday(year => (year >= 1990 || (year % 5 == 0 && year >= 1945)),
                         new FixedHoliday("Liberation Day", 5, 5));
                 }
                 return liberationDay;

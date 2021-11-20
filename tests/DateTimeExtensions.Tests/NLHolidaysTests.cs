@@ -44,11 +44,27 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
-        public void Liberation_Day_is_a_regular_day_in_2006()
+        public void Liberation_Day_is_a_national_holiday_in_2006()
         {
             // Liberation_Day_is_a_national_holiday_once_every_5_years
 
-            Assert.That(LiberationDay(2006).IsWorkingDay(dateTimeCulture));
+            Assert.That(!LiberationDay(2006).IsWorkingDay(dateTimeCulture));
+        }
+
+        [Test]
+        public void Liberation_Day_is_a_national_holiday_in_1955()
+        {
+            // Liberation_Day_is_a_national_holiday_once_every_5_years
+
+            Assert.That(LiberationDay(1955).IsHoliday(dateTimeCulture));
+        }
+
+        [Test]
+        public void Liberation_Day_is_a_regular_day_in_1956()
+        {
+            // Liberation_Day_is_a_national_holiday_once_every_5_years
+
+            Assert.That(!LiberationDay(1956).IsWorkingDay(dateTimeCulture));
         }
 
         private static DateTime Kingsday(int year)
