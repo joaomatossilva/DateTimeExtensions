@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.5.3
+- Added en-US Juneteenth, thanks @rdepin and @JonahGregory 
+
 v5.5.2
 - Fixed Liberation Day in Nl_NL, thanks @sergiu05
 
