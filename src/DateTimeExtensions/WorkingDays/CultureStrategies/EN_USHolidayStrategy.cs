@@ -42,6 +42,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(LaborDay);
             this.InnerHolidays.Add(ColumbusDay);
             this.InnerHolidays.Add(ThanksgivingDay);
+            this.InnerHolidays.Add(Juneteenth);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
@@ -69,7 +70,22 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
             return holidayMap;
         }
-
+        
+        //Juneteenth - new as of 2021
+        private static Holiday juneteenth;
+        
+        public static Holiday Juneteenth
+        {
+            get
+            {
+                if (juneteenth == null)
+                {
+                    juneteenth = new YearDependantHoliday(year => year >= 2021, new FixedHoliday("Juneteenth", 6, 19));
+                }
+                return juneteenth;
+            }
+        }
+        
         private static Holiday independenceDay;
 
         public static Holiday IndependenceDay
