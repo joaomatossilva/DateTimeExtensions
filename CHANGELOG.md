@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.5.4
+- Fixed issue on en-ZA with overlapping holidays, thanks @samodeller
+
 v5.5.3
 - Added en-US Juneteenth, thanks @rdepin and @JonahGregory 
 
