@@ -36,7 +36,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (may3rdConstitutionDay == null)
                 {
-                    may3rdConstitutionDay = new FixedHoliday("May 3rd Constitution Day", 3, 5);
+                    may3rdConstitutionDay = new FixedHoliday("May 3rd Constitution Day", 5, 3);
                 }
                 return may3rdConstitutionDay;
             }
