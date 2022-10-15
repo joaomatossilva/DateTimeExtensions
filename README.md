@@ -36,9 +36,10 @@ The following major features are currently implemented:
 These extensions for System.DateTime adds methods to make calculations based on working days.
 A working day is defined in `IWorkingDayCultureInfo` in two ways:
 
-    IsWorkingDay(DayOfWeek dayOfWeek)
-    IsWorkingDay(DateTime date)
-
+````csharp
+IsWorkingDay(DayOfWeek dayOfWeek)
+IsWorkingDay(DateTime date)
+````
 The first defines which day of the week is a working day (by default, working days are all 
 week days except weekends). The last does the same as the first, but it's also able to check 
 for any holiday. By default, no holidays are defined, unless there is a `IWorkingDayCultureInfo` 
@@ -76,23 +77,24 @@ Fork me, implement it and send me the pull request, or just create an issue on t
 This feature allows you to export the holidays from a `DateTimeCultureInfo` (see above)
 and export it to Microsoft Office Outlook.
 The `IExportHolidaysFormat` interface exposes one simple method for it:
-
-    void Export(DateTimeCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
-
+````csharp
+void Export(DateTimeCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
+````
 Example:
-
-    var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
-    exporter.Export(new WorkingDayCultureInfo("pt-PT"), 2012, textwriter);
-
+````csharp
+var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
+exporter.Export(new WorkingDayCultureInfo("pt-PT"), 2012, textwriter);
+````
 
 ### Dates Diff in Natural Time
 
 These extensions can compare two dates in natural language based on the current locale on 
 current thread `CultureInfo`.
 There are 2 API points for them:
-
-    fromDate.ToNaturalText(toTime, bool round = true)
-    fromDate.ToExactNaturalText(toTime)
+````csharp
+fromDate.ToNaturalText(toTime, bool round = true)
+fromDate.ToExactNaturalText(toTime)
+````
 
 The first will return the most valuable time component with value > 0. The round flag will 
 try to round the most significant time component based on the next least significant. 
@@ -118,23 +120,23 @@ Avaiable CultureInfo implementations:
 
 These extensions allow easy parsing of time expressions and add the ability to check if a DateTime instance is after,
 before or inside a period.
-
-    bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
-    bool IsBefore(this DateTime dateTime, Time time)
-    bool IsAfter(this DateTime dateTime, Time time)
-
+````csharp
+bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
+bool IsBefore(this DateTime dateTime, Time time)
+bool IsAfter(this DateTime dateTime, Time time)
+````
 
 ### Other Extensions:
 
-
-    fromDate.FirstDayOfTheMonth()
-    fromDate.LastDayOfTheMonth()
-    fromDate.LastDayOfWeek(DayOfWeek)
-    fromDate.NextDayOfWeek(DayOfWeek)
-    fromDate.LastDayOfWeekOfTheMonth(DayOfWeek)
-    fromDate.FirstDayOfWeekOfTheMonth(DayOfWeek)
-    fromDate.GetDiff(DateTime toDate)
-
+````csharp
+fromDate.FirstDayOfTheMonth()
+fromDate.LastDayOfTheMonth()
+fromDate.LastDayOfWeek(DayOfWeek)
+fromDate.NextDayOfWeek(DayOfWeek)
+fromDate.LastDayOfWeekOfTheMonth(DayOfWeek)
+fromDate.FirstDayOfWeekOfTheMonth(DayOfWeek)
+fromDate.GetDiff(DateTime toDate)
+````
 
 ### SourceLink
 
