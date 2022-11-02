@@ -31,7 +31,7 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
     {
         protected override string YearText
         {
-            get { return "ano"; }
+            get { return "año"; }
         }
 
         protected override string MonthText
