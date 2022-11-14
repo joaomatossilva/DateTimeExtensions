@@ -1,5 +1,8 @@
 Changelog
 ===================
+v5.5.7
+- Fixed de-AT with GoodFriday not being an holiday, thanks @cknabb Fixes #119
+
 v5.5.4
 - Fixed issue on en-ZA with overlapping holidays, thanks @samodeller
 
