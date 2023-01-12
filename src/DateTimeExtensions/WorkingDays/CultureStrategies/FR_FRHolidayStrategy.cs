@@ -37,6 +37,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.AllSaints);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(ChristianHolidays.Assumption);
+            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
 
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
             this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
@@ -51,6 +52,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             if (region == "Alsace" || region == "Lorraine")
             {
                 this.InnerHolidays.Add(StStephensDay);
+                this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
             }
         }
 
