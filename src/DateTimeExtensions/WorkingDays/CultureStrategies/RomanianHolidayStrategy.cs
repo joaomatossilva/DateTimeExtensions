@@ -43,11 +43,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //It celebrates the unification of the Romanian Principalities of Moldavia and Wallachia in 1859 and the foundation of the Romanian modern state.[2] A non-working day since 2016. 
             this.InnerHolidays.Add(DayOfTheUnification);
 
+            //Vinerea Mare
+            this.InnerHolidays.Add(ChristianOrthodoxHolidays.GoodFriday);
+
             //Paștele 	Easter, Easter Monday
             //The official holiday is the Orthodox Easter.
             //The holiday is three days long, Good Friday,[3] Easter Sunday and Monday are non-working, Tuesday is not a public holiday. 
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+            this.InnerHolidays.Add(ChristianOrthodoxHolidays.Easter);
+            this.InnerHolidays.Add(ChristianOrthodoxHolidays.EasterMonday);
 
             //1 May
             //Ziua Muncii
@@ -64,8 +67,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //Rusaliile
             //Pentecost, Whit Monday
             //The 50th and 51st day after the Orthodox Easter. 
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerHolidays.Add(ChristianOrthodoxHolidays.Pentecost);
+            this.InnerHolidays.Add(ChristianOrthodoxHolidays.PentecostMonday);
 
             //15 August
             //Adormirea Maicii Domnului/Sfânta Maria Mare
@@ -128,7 +131,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (childrensDay == null)
                 {
-                    childrensDay = new YearDependantHoliday(year => year >= 2017, new FixedHoliday("Children's Day", 6, 1));
+                    childrensDay = new YearDependantHoliday(year => year >= 2017, new FixedHoliday("ChildrensDay", 6, 1));
                 }
                 return childrensDay;
             }
@@ -154,7 +157,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (saintAndrewDay == null)
                 {
-                    saintAndrewDay = new YearDependantHoliday(year => year >= 2012, new FixedHoliday("Saint Andrew's Day", 11, 30));
+                    saintAndrewDay = new YearDependantHoliday(year => year >= 2012, new FixedHoliday("SaintAndrewDay", 11, 30));
                 }
                 return saintAndrewDay;
             }
@@ -167,7 +170,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (nationalDayOfRomania == null)
                 {
-                    nationalDayOfRomania = new YearDependantHoliday(year => year >= 1990, new FixedHoliday("National Day of Romania", 12, 1));
+                    nationalDayOfRomania = new YearDependantHoliday(year => year >= 1990, new FixedHoliday("NationalDayOfRomania", 12, 1));
                 }
                 return nationalDayOfRomania;
             }
@@ -180,7 +183,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (christmasSecondDay == null)
                 {
-                    christmasSecondDay = new FixedHoliday("Christmas", 12, 26);
+                    christmasSecondDay = new FixedHoliday("ChristmasSecondDay", 12, 26);
                 }
                 return christmasSecondDay;
             }

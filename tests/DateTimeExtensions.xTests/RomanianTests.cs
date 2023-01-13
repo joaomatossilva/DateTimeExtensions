@@ -1,10 +1,12 @@
 using DateTimeExtensions.NaturalText;
 using DateTimeExtensions.WorkingDays;
 using DateTimeExtensions.WorkingDays.CultureStrategies;
+using System.IO;
+using DateTimeExtensions.Export;
 
 namespace DateTimeExtensions.xTests
 {
-    public class UnitTest1
+    public class RomanianTests
     {
         private NaturalTextCultureInfo ro_ci = new NaturalTextCultureInfo("ro-RO");
         private WorkingDayCultureInfo dateTimeCulture = new WorkingDayCultureInfo("ro-RO");
@@ -48,6 +50,22 @@ namespace DateTimeExtensions.xTests
             var holiday = RomanianHolidayStrategy.ChildrensDay;
             var day = new DateTime(2022, 6, 1);
             TestHoliday(holiday, day);
+        }
+        
+        [Fact]
+        public void Test4()
+        {
+            var orthodoxEaster = ChristianOrthodoxHolidays.Easter;
+            var easter_2022 = orthodoxEaster.GetInstance(2022);
+            var easter_2023 = orthodoxEaster.GetInstance(2023);
+            var easter_2024 = orthodoxEaster.GetInstance(2024);
+            var easter_2025 = orthodoxEaster.GetInstance(2025);
+
+            TextWriter textwriter = new StringWriter();
+            var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
+            exporter.Export(dateTimeCulture, 2024, textwriter);
+            var s = textwriter.ToString();
+            Assert.NotNull(s);
         }
 
         private void TestHoliday(Holiday holiday, DateTime dateOnGregorian)
