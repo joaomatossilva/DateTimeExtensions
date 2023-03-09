@@ -134,7 +134,7 @@ namespace DateTimeExtensions.WorkingDays
             {
                 if (ashWednesday == null)
                 {
-                    ashWednesday = new NthDayOfWeekAfterDayHoliday("AshWednesday", -46, DayOfWeek.Wednesday,Easter);
+                    ashWednesday = new EasterBasedHoliday("AshWednesday", -46);
                 }
                 return ashWednesday;
             }
