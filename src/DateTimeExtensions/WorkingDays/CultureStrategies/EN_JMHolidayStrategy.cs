@@ -32,31 +32,55 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public EN_JMHolidayStrategy()
         {
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
+            this.InnerHolidays.Add(ChristianHolidays.AshWednesday);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.AshWednesday);
-            
 
+            this.InnerHolidays.Add(LaborDay);
+            this.InnerHolidays.Add(EmancipationDay);
+            this.InnerHolidays.Add(IndependenceDay);
+            this.InnerHolidays.Add(NationalHeroesDay);
+
+            this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(MayDayBank);
-            
         }
 
-        //1st Monday in May	- May Day Bank Holiday
-        private static Holiday mayDayBank;
-
-        public static Holiday MayDayBank
+        private Holiday laborDay;
+        public Holiday LaborDay
         {
             get
             {
-                if (mayDayBank == null)
-                {
-                    mayDayBank = new NthDayOfWeekInMonthHoliday("May Day Bank", 1, DayOfWeek.Monday, 5,
-                        CountDirection.FromFirst);
-                }
-                return mayDayBank;
+                if (laborDay == null)
+                    laborDay = new FixedHoliday("Labor Day", 5, 23);
+                return laborDay;
             }
-        }      
+        }
+        private Holiday emancipationDay;
+        public Holiday EmancipationDay {
+            get
+            {
+                if (emancipationDay == null)
+                    emancipationDay = new FixedHoliday("Emancipation Day", 8, 1);
+                return emancipationDay;
+            }
+        }
+        private Holiday independenceDay;
+        public Holiday IndependenceDay {
+            get
+            {
+                if (independenceDay == null)
+                    independenceDay = new FixedHoliday("Independence Day", 8, 6);
+                return independenceDay;
+            }
+        }
+        private Holiday nationalHeroesDay;
+        public Holiday NationalHeroesDay {
+            get
+            {
+                if (nationalHeroesDay == null)
+                    nationalHeroesDay = new FixedHoliday("National Heroes Day", 10, 16);
+                return nationalHeroesDay;
+            }
+        }
     }
 }
