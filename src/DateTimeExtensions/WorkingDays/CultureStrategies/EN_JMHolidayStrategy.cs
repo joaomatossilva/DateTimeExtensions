@@ -44,6 +44,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
+        protected override IDictionary<DateTime,Holiday> BuildObservancesMap(int year)
+        {
+            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            foreach(var innerHoliday in InnerHolidays)
+            {
+                var date = innerHoliday.GetInstance(year);
+                if (date.HasValue)
+                {
+                    if (date.Value.DayOfWeek == DayOfWeek.Sunday)
+                        holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                    else
+                        holidayMap.Add(date.Value, innerHoliday);
+
+                }
+            }
+            return holidayMap;
+        }
 
         private Holiday laborDay;
         public Holiday LaborDay
