@@ -46,32 +46,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = 
+            IDictionary<DateTime, Holiday> holidayMap =
             this.InnerHolidays.Select(h => new { Date = h.GetInstance(year), Holiday = h })
                 .Where(h => h.Date.HasValue)
                 .GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().Holiday })
                 .ToDictionary(k => k.Date.Value, v => v.Holiday);
-            
-            foreach(var h in holidayMap)
+
+
+            if (holidayMap.Any(h => h.Key.DayOfWeek == DayOfWeek.Sunday))
             {
-                if (h.Key.DayOfWeek == DayOfWeek.Sunday)
+                var sundayHolidays = holidayMap.OrderBy(d => d.Key).Where(s => s.Key.DayOfWeek == DayOfWeek.Sunday);
+                foreach (var h in sundayHolidays)
                 {
                     var sundayHoliday = h;
-                    var dateObserved = h.Key.AddDays(1);
 
-                    if (holidayMap.ContainsKey(dateObserved))
+                    var observation = new NthDayOfWeekAfterDayHoliday(sundayHoliday.Value.Name + " Observed", 1, DayOfWeek.Monday, sundayHoliday.Value);
+                    var dateObserved = observation.GetInstance(year);
+
+                    if (holidayMap.ContainsKey(dateObserved.Value))
                     {//if a holiday is already observed on the new date, remove from map and find new date of observance
                         var existingMondayHoliday = holidayMap.First(m => m.Key == dateObserved);
-                        holidayMap.Remove(dateObserved);
-                        var observedOn = dateObserved.AddDays(1);
+                        holidayMap.Remove(dateObserved.Value);
+
+                        var observedOn = dateObserved.Value.AddDays(1);//New Date for removed holiday
                         while (holidayMap.ContainsKey(observedOn) && observedOn.DayOfWeek != DayOfWeek.Sunday)
-                            observedOn.AddDays(1);
-                        holidayMap.Add(observedOn, existingMondayHoliday.Value);
+                            observedOn.AddDays(1);//check for all existing holidays to find free date
+
+                        var daysAfter = existingMondayHoliday.Key.GetDiff(observedOn).Days;
+                        var holidayMoved = new NthDayOfWeekAfterDayHoliday(existingMondayHoliday.Value.Name + " Observed", daysAfter, observedOn.DayOfWeek, existingMondayHoliday.Value);
+
+                        var newObservedDate = holidayMoved.GetInstance(year);
+
+                        holidayMap.Add(newObservedDate.Value, holidayMoved);
                     }
-                    holidayMap.Add(sundayHoliday.Key.AddDays(1), h.Value);
-                   
+                    holidayMap.Add(dateObserved.Value, observation);
                 }
-               
+
+
             }
             return holidayMap;
         }
@@ -112,7 +123,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             get
             {
                 if (nationalHeroesDay == null)
-                    nationalHeroesDay = new FixedHoliday("National Heroes Day", 10, 16);
+                    nationalHeroesDay = new NthDayOfWeekInMonthHoliday("National Heroes Day", 3, DayOfWeek.Monday, 10, CountDirection.FromFirst);
                 return nationalHeroesDay;
             }
         }
