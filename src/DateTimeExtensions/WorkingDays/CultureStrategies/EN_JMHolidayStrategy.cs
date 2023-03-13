@@ -79,6 +79,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
                         holidayMap.Add(newObservedDate.Value, holidayMoved);
                     }
+                    holidayMap.Remove(sundayHoliday.Key);
                     holidayMap.Add(dateObserved.Value, observation);
                 }
 
