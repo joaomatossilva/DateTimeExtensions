@@ -10,26 +10,18 @@ namespace DateTimeExtensions.Tests
     [TestFixture]
     internal class enJMHolidaysTests
     {
-        private readonly WorkingDayCultureInfo dateTimeCulture = new WorkingDayCultureInfo("en-JM");
+        private readonly WorkingDayCultureInfo dateTimeCulture = new WorkingDayCultureInfo("en-JM", "Jamaica");
         [Test]
-        public void can_get_strateryies()
-        {            
-            var holidaysStrategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name, null);
-            Assert.AreEqual(typeof(EN_JMHolidayStrategy), holidaysStrategy.GetType());
-            //var workingDaysStrategy = dateTimeCulture.LocateWorkingDayOfWeekStrategy(dateTimeCulture.Name, null);
-            //Assert.AreEqual(typeof(AR_SAWorkingDayOfWeekStrategy), workingDaysStrategy.GetType());
+        public void SundayChristmass2022()
+        {//Holiday's falling on Sunday are observed on the following monday.
+            //boxing day was the 26th, a monday, which would result in a clash, hence the clashing holiday would be observed on the following day (Tuesday)
+            var date = new DateTime("25-Dec-2022");
+            TestHoliday(culture, date);
         }
-
-        private void AssertIsHoliday(IWorkingDayCultureInfo dateTimeCulture, DateTime dateOnGregorian)
+        private void TestHoliday(IWorkingDayCultureInfo workingDayCultureInfo, DateTime dateOnGregorian)
         {
-            var isHoliday = dateTimeCulture.IsHoliday(dateOnGregorian);
+            var isHoliday = workingDayCultureInfo.IsHoliday(dateOnGregorian);
             Assert.IsTrue(isHoliday);
-        }
-
-        private void AssertIsNotHoliday(IWorkingDayCultureInfo dateTimeCulture, DateTime dateOnGregorian)
-        {
-            var isHoliday = dateTimeCulture.IsHoliday(dateOnGregorian);
-            Assert.IsFalse(isHoliday);
         }
     }
 }
