@@ -3,7 +3,7 @@
     <Description>This project is a merge of several common DateTime operations on the form of extensions to System.DateTime, including natural date difference text (precise and human rounded), holidays and working days calculations on several culture locales. Feedback will be much appreciated.</Description>
     <AssemblyTitle>DateTime Extensions</AssemblyTitle>
     <Authors>Joao Matos Silva</Authors>
-    <TargetFrameworks>netstandard1.3;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;net462</TargetFrameworks>
     <AssemblyName>DateTimeExtensions</AssemblyName>
     <PackageId>DateTimeExtensions</PackageId>
     <PackageTags>Natural;Date;Time;Relative;Calendar;Holiday;Workingday;DateTime</PackageTags>

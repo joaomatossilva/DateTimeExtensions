@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp1.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp1.0;net462</TargetFrameworks>
     <AssemblyName>DateTimeExtensions.Tests</AssemblyName>
     <PackageId>DateTimeExtensions.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
@@ -10,7 +10,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>\</UpgradeBackupLocation>
+    <UpgradeBackupLocation>C:\Users\Alsay\Desktop\DateTimeExtensions\Backup\tests\DateTimeExtensions.Tests\</UpgradeBackupLocation>
     <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
   <ItemGroup>
