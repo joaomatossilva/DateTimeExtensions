@@ -63,7 +63,7 @@ Avaiable CultureInfo implementations:
 | en-IE | sl-SL |
 | kr-KR | zh-CN |
 | pl-PL | vi-VN |
-| es-CO |  |
+| es-CO | ro-RO |
 
 
 If your culture is not listed here you can contribute it!!!
@@ -100,7 +100,7 @@ The first will return the most valuable time component with value > 0. The round
 try to round the most significant time component based on the next least significant. 
 Also, the round flag will round minutes and seconds to quarters after the first one.
 
-Avaiable CultureInfo implementations:
+Available CultureInfo implementations:
 
 | Culture |
 | ------- |
@@ -115,6 +115,7 @@ Avaiable CultureInfo implementations:
 | nl-BE |
 | kr-KR |
 | pl-PL |
+| ro-RO |
 
 ### Time of Day
 
