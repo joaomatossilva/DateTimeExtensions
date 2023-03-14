@@ -1,8 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using System.Globalization;
-using System.Threading;
-using DateTimeExtensions;
 using DateTimeExtensions.WorkingDays;
 using System.Collections.Generic;
 
