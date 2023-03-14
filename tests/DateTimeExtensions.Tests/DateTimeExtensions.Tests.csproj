@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.5;netframework461</TargetFrameworks>
+    <TargetFrameworks>netstandard1.5;net461</TargetFrameworks>
     <AssemblyName>DateTimeExtensions.Tests</AssemblyName>
     <PackageId>DateTimeExtensions.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
