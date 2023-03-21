@@ -34,6 +34,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.Epiphany);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+            this.InnerHolidays.Add(LiberationDay);
             this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
             this.InnerHolidays.Add(RepublicDay);
             this.InnerHolidays.Add(ChristianHolidays.Assumption);
@@ -55,6 +56,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     republicDay = new FixedHoliday("Republic Day", 6, 2);
                 }
                 return republicDay;
+            }
+        }
+        
+        //25 April - Liberation Day
+        private static Holiday liberationDay;
+
+        public static Holiday LiberationDay
+        {
+            get
+            {
+                if (liberationDay == null)
+                {
+                    liberationDay = new FixedHoliday("Liberation Day", 4, 25);
+                }
+                return liberationDay;
             }
         }
     }
