@@ -54,7 +54,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
 
             if (holidayMap.Any(h => h.Key.DayOfWeek == DayOfWeek.Sunday))
-            {
+            {//Holidays falling on Sunday is observed on Monday
                 var sundayHolidays = holidayMap.OrderBy(d => d.Key).Where(s => s.Key.DayOfWeek == DayOfWeek.Sunday);
                 foreach (var h in sundayHolidays)
                 {
