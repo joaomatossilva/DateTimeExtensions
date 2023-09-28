@@ -125,6 +125,22 @@ namespace DateTimeExtensions.WorkingDays
             }
         }
 
+        //source: https://en.wikipedia.org/wiki/Ash_Wednesday
+        //
+        private static Holiday ashWednesday;
+        public static Holiday AshWednesday
+        {
+            get
+            {
+                if (ashWednesday == null)
+                {
+                    ashWednesday = new EasterBasedHoliday("AshWednesday", -46);
+                }
+                return ashWednesday;
+            }
+        }
+
+
         private static Holiday carnival;
 
         public static Holiday Carnival
