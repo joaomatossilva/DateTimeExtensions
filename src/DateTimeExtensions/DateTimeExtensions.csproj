@@ -20,8 +20,6 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <FileUpgradeFlags>40</FileUpgradeFlags>
     <UpgradeBackupLocation>C:\Users\Alsay\Desktop\DateTimeExtensions\Backup\src\DateTimeExtensions\</UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
-    <TargetFramework>netstandard1.5</TargetFramework>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
     <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
