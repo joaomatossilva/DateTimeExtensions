@@ -26,7 +26,7 @@ using System.Text;
 namespace DateTimeExtensions
 {
     /*
-     * Some of This Extensions were taken from http://dotnetslackers.com/articles/aspnet/5-Helpful-DateTime-Extension-Methods.aspx
+     * Some of This Extensions were taken from https://web.archive.org/web/20170325054219/https://dotnetslackers.com/articles/aspnet/5-Helpful-DateTime-Extension-Methods.aspx
      */
 
     public static class GeneralDateTimeExtensions
