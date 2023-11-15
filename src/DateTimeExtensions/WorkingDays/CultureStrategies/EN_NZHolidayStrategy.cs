@@ -10,7 +10,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     public class EN_NZHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
     {
         // Rules / Dates sourced from
-        //		http://www.dol.govt.nz/er/holidaysandleave/publicholidays/publicholidaydates/future-dates.asp
+        //		https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/
         //		http://www.whatdate.co.nz/
 
         public EN_NZHolidayStrategy()
