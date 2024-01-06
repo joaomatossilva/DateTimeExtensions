@@ -145,7 +145,7 @@ This library supports SourceLink. Just make sure you have a compatible Visual St
 the Just My Code is disabled on Debugging options
 
 
-## How to Contribute
+### How to Contribute
 
 Feel free to fork the project, work on your fork and send me the pull requests.
 You can also create issues with the features or changes that you think important.
