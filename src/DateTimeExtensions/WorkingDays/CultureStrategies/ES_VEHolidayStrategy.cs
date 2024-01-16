@@ -72,7 +72,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //24 July - Simon Bolivar Birthday
+        //24 July - Simon Bolívar Birthday
         private static Holiday simonBolivarBithDay;
 
         public static Holiday SimonBolivarBirthDay
@@ -81,7 +81,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (simonBolivarBithDay == null)
                 {
-                    simonBolivarBithDay = new FixedHoliday("Simón Bolivar's Birthday", 7, 24);
+                    simonBolivarBithDay = new FixedHoliday("Simón Bolívar's Birthday", 7, 24);
                 }
                 return simonBolivarBithDay;
             }
@@ -110,7 +110,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             {
                 if (joseGregorioHernandezDay == null)
                 {
-                    joseGregorioHernandezDay = new FixedHoliday("José Gregorio Hernández's  Day ", 26, 10);
+                    joseGregorioHernandezDay = new FixedHoliday("José Gregorio Hernández's  Day", 26, 10);
                 }
                 return joseGregorioHernandezDay;
             }
