@@ -73,18 +73,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         //24 July - Simon Bolivar Birthday
-        private static Holiday benitoJuarezBirthDay;
+        private static Holiday simonBolivarBithDay;
 
         public static Holiday SimonBolivarBirthDay
         {
             get
             {
-                if (benitoJuarezBirthDay == null)
+                if (simonBolivarBithDay == null)
                 {
-                    benitoJuarezBirthDay = new NthDayOfWeekInMonthHoliday("Benito Juarez Birthday", 3, DayOfWeek.Monday,
-                        3, CountDirection.FromFirst);
+                    simonBolivarBithDay = new FixedHoliday("Simón Bolivar's Birthday", 7, 24);
                 }
-                return benitoJuarezBirthDay;
+                return simonBolivarBithDay;
             }
         }
 
@@ -117,37 +116,5 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //Third Monday of November - Revolution Day
-        private static Holiday revolutionDay;
-
-        public static Holiday RevolutionDay
-        {
-            get
-            {
-                if (revolutionDay == null)
-                {
-                    revolutionDay = new NthDayOfWeekInMonthHoliday("Revolution Day", 3, DayOfWeek.Monday, 11,
-                        CountDirection.FromFirst);
-                }
-                return revolutionDay;
-            }
-        }
-
-        //1 December (Every 6 years from year 2000 and on)- Change of Federal Government
-        private static Holiday changeOfFederalGovernment;
-
-        public static Holiday ChangeOfFederalGovernment
-        {
-            get
-            {
-                if (changeOfFederalGovernment == null)
-                {
-                    changeOfFederalGovernment =
-                        new YearDependantHoliday(year => year >= 2000 && Math.Abs(year - 2000) % 6 == 0,
-                            new FixedHoliday("National Day", 12, 1));
-                }
-                return changeOfFederalGovernment;
-            }
-        }
     }
 }
