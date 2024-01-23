@@ -142,7 +142,7 @@ fromDate.GetDiff(DateTime toDate)
 ### SourceLink
 
 This library supports SourceLink. Just make sure you have a compatible Visual Studio version and 
-the Just My Code is disabled on Debugging options
+the Just My Code is disabled on Debugging options.
 
 
 ## How to Contribute
@@ -154,7 +154,7 @@ Also, this repository is built with autocrlf = true.
 
 ### Holidays Names
 
-When adding holidays resources names, plase prefix the culture specific holidays with the
+When adding holidays resources names, please prefix the culture specific holidays with the
 country name to avoid name colisison.
 Example: Portugal_FreedomDay
 
