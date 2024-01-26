@@ -1,7 +1,7 @@
 #region License
 
 // 
-// Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
+// Copyright (c) 2011-2012, Joï¿½o Matos Silva <kappy@acydburne.com.pt>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@ namespace DateTimeExtensions
         /// <param name="to">The end day.</param>
         /// <param name="workingDayCultureInfo">The culture of working days to be used in the calculation. See <seealso cref="WorkingDayCultureInfo"/> for more information.</param>
         /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
-        public static int GetWorkingDays(this DateTime from, DateTime to, WorkingDayCultureInfo workingDayCultureInfo)
+        public static int GetWorkingDays(this DateTime from, DateTime to, IWorkingDayCultureInfo workingDayCultureInfo)
         {
             var innerFrom = from < to ? from : to;
             var innerTo = from < to ? to : from;
@@ -100,7 +100,9 @@ namespace DateTimeExtensions
         /// <returns>the number of Workingdays in the range <paramref name="from"/> / <paramref name="to"/></returns>
         public static int GetWorkingDays(this DateTime from, DateTime to)
         {
-            return GetWorkingDays(from, to, new WorkingDayCultureInfo());
+            var workingDayCultureInfo = new WorkingDayCultureInfo();
+
+            return GetWorkingDays(from, to, workingDayCultureInfo);
         }
 
         /// <summary>
