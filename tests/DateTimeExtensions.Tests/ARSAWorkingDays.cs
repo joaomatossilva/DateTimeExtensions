@@ -13,7 +13,7 @@ namespace DateTimeExtensions.Tests
     public class ARSAWorkingDays
     {
         [Test]
-        public void can_get_strateryies()
+        public void can_get_strategies()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("ar-SA");
             var holidaysStrategy = dateTimeCulture.LocateHolidayStrategy(dateTimeCulture.Name, null);
