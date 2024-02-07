@@ -12,7 +12,7 @@ namespace DateTimeExtensions.Tests
     public class ChineseHolidaysTests
     {
         [Test]
-        public void SpringFetivalTests()
+        public void SpringFestivalTests()
         {
             var springFestivalHoliday = ChineseHolidayStrategy.SpringFestival;
 
