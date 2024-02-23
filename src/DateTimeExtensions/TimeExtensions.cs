@@ -34,6 +34,10 @@ namespace DateTimeExtensions
 
         public Time(int hour, int minute, int second)
         {
+            if (hour < 0 || hour > 23) throw new ArgumentOutOfRangeException(nameof(hour), "Hour must be between 0 and 23.");
+            if (minute < 0 || minute > 59) throw new ArgumentOutOfRangeException(nameof(minute), "Minute must be between 0 and 59.");
+            if (second < 0 || second > 59) throw new ArgumentOutOfRangeException(nameof(second), "Second must be between 0 and 59.");
+
             Hour = hour;
             Minute = minute;
             Second = second;
