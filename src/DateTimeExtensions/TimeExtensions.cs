@@ -26,16 +26,82 @@ using DateTimeExtensions.TimeOfDay;
 
 namespace DateTimeExtensions
 {
+    public class Time : IComparable<Time>
+    {
+        public int Hour { get; private set; }
+        public int Minute { get; private set; }
+        public int Second { get; private set; }
+
+        public Time(int hour, int minute, int second)
+        {
+            Hour = hour;
+            Minute = minute;
+            Second = second;
+        }
+
+        public static bool TryParse(string timeValueString, out Time result)
+        {
+            result = null;
+            var parts = timeValueString.Split(':');
+            if (parts.Length != 3) return false;
+
+            if (int.TryParse(parts[0], out int hour) &&
+                int.TryParse(parts[1], out int minute) &&
+                int.TryParse(parts[2], out int second))
+            {
+                result = new Time(hour, minute, second);
+                return true;
+            }
+
+            return false;
+        }
+
+        public int CompareTo(Time other)
+        {
+            if (Hour != other.Hour) return Hour.CompareTo(other.Hour);
+            if (Minute != other.Minute) return Minute.CompareTo(other.Minute);
+            return Second.CompareTo(other.Second);
+        }
+
+        public static bool operator <(Time a, Time b) => a.CompareTo(b) < 0;
+        public static bool operator >(Time a, Time b) => a.CompareTo(b) > 0;
+        public static bool operator <=(Time a, Time b) => a.CompareTo(b) <= 0;
+        public static bool operator >=(Time a, Time b) => a.CompareTo(b) >= 0;
+        public static bool operator ==(Time a, Time b) => a.CompareTo(b) == 0;
+        public static bool operator !=(Time a, Time b) => a.CompareTo(b) != 0;
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Time other)
+            {
+                return Hour == other.Hour && Minute == other.Minute && Second == other.Second;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                hash = hash * 23 + Hour.GetHashCode();
+                hash = hash * 23 + Minute.GetHashCode();
+                hash = hash * 23 + Second.GetHashCode();
+                return hash;
+            }
+        }
+    }
+
     public static class TimeExtensions
     {
         public static DateTime AddTime(this DateTime dateTime, Time timeToAdd)
         {
-            return dateTime.AddSeconds(timeToAdd.Second).AddMinutes(timeToAdd.Minute).AddHours(timeToAdd.Hour);
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, timeToAdd.Hour, timeToAdd.Minute, timeToAdd.Second);
         }
 
         public static DateTime SetTime(this DateTime dateTime, Time timeToAdd)
         {
-            return AddTime(dateTime.Date, timeToAdd);
+            return dateTime.Date.AddTime(timeToAdd);
         }
 
         public static Time TimeOfTheDay(this DateTime dateTime)
@@ -46,44 +112,28 @@ namespace DateTimeExtensions
         public static bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
         {
             var currentTime = dateTime.TimeOfTheDay();
-            //start time is lesser or equal than end time
-            if (startTime.CompareTo(endTime) <= 0)
-            {
-                //currentTime should be between start time and end time
-                if (currentTime.CompareTo(startTime) >= 0 && currentTime.CompareTo(endTime) <= 0)
-                {
-                    return true;
-                }
-                return false;
-            }
-            else
-            {
-                //currentTime should be between end time time and start time
-                if (currentTime.CompareTo(startTime) >= 0 || currentTime.CompareTo(endTime) <= 0)
-                {
-                    return true;
-                }
-                return false;
-            }
+            return startTime <= endTime
+                ? currentTime >= startTime && currentTime <= endTime
+                : currentTime >= startTime || currentTime <= endTime;
         }
 
         public static bool IsBefore(this DateTime dateTime, Time time)
         {
-            var currentTime = dateTime.TimeOfTheDay();
-            //currentTime should be lesser than time
-            return currentTime.CompareTo(time) < 0;
+            return dateTime.TimeOfTheDay() < time;
         }
 
         public static bool IsAfter(this DateTime dateTime, Time time)
         {
-            var currentTime = dateTime.TimeOfTheDay();
-            //currentTime should be greater than time
-            return currentTime.CompareTo(time) > 0;
+            return dateTime.TimeOfTheDay() > time;
         }
 
         public static Time ToTimeOfDay(this string timeValueString)
         {
-            return Time.Parse(timeValueString);
+            if (Time.TryParse(timeValueString, out Time result))
+            {
+                return result;
+            }
+            throw new FormatException("Invalid time format.");
         }
     }
 }
