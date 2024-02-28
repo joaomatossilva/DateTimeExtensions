@@ -326,11 +326,25 @@ namespace DateTimeExtensions.WorkingDays
         {
             get
             {
-                if(StsPeterAndPaul == null)
+                if(stsPeterAndPaul == null)
                 {
                     stsPeterAndPaul = new FixedHoliday("StsPeterAndPaul", 6, 29);
                 }
                 return stsPeterAndPaul;
+            }
+        }
+
+        private static Holiday stRoseofLima;
+
+        public static Holiday StRoseOfLima
+        {
+            get
+            {
+                if(stRoseofLima == null)
+                {
+                    stRoseofLima = new FixedHoliday("St. Rose of Lima", 8, 23);
+                }
+                return stRoseofLima;
             }
         }
     }
