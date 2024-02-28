@@ -20,6 +20,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -316,6 +317,20 @@ namespace DateTimeExtensions.WorkingDays
                     stStephensDay = new FixedHoliday("StStephenDay", 12, 26);
                 }
                 return stStephensDay;
+            }
+        }
+
+        private static Holiday stsPeterAndPaul;
+
+        public static Holiday StsPeterAndPaul
+        {
+            get
+            {
+                if(StsPeterAndPaul == null)
+                {
+                    stsPeterAndPaul = new FixedHoliday("StsPeterAndPaul", 6, 29);
+                }
+                return stsPeterAndPaul;
             }
         }
     }
