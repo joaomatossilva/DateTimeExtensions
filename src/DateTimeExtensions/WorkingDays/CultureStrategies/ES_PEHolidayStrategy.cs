@@ -46,6 +46,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             ChristianHolidays.Christmas,
             GlobalHolidays.NewYearsEve
         };
+        public ES_PEHolidayStrategy()
+        {
+            foreach(var i in fixedHolidays)
+            {
+                this.InnerHolidays.Add(i);
+            }
+        }
+
         private static Holiday flagDay;
 
         public static Holiday FlagDay
