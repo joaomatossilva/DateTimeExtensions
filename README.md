@@ -45,7 +45,7 @@ week days except weekends). The last does the same as the first, but it's also a
 for any holiday. By default, no holidays are defined, unless there is a `IWorkingDayCultureInfo` 
 implemented for the current thread `CultureInfo`.
 
-Avaiable CultureInfo implementations:
+Available CultureInfo implementations:
 
 | Culture | Culture |
 | ------- | ------- |
