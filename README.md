@@ -48,7 +48,7 @@ implemented for the current thread `CultureInfo`.
 Available CultureInfo implementations:
 
 | Culture | Culture |
-| :-------: | :-------: |
+| ------- | ------- |
 | pt-PT	| da-DK |
 | pt-BR	| fi-FI |
 | en-US	| is-IS |
@@ -59,7 +59,7 @@ Available CultureInfo implementations:
 | es-MX	| en-AU |
 | en-ZA	| fr-CA (en-CA)|
 | ar-SA	| it-IT |
-| en-NZ | en-GD<br>(gd-GD, not really sure about this locale) 
+| en-NZ | en-GD (gd-GD, not really sure about this locale) 
 | en-IE | sl-SL |
 | kr-KR | zh-CN |
 | pl-PL | vi-VN |
