@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;net461</TargetFrameworks>
     <AssemblyName>DateTimeExtensions.Tests</AssemblyName>
     <PackageId>DateTimeExtensions.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
@@ -17,12 +17,15 @@
     <ProjectReference Include="..\..\src\DateTimeExtensions\DateTimeExtensions.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
     <PackageReference Include="Moq" Version="4.10.1" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
   </ItemGroup> 
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+  </ItemGroup> 
+  <ItemGroup>
+    <Folder Include="Seasons\" />
   </ItemGroup>
 </Project>

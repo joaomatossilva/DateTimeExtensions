@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeExtensions", "src\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeExtensions.Tests", "tests\DateTimeExtensions.Tests\DateTimeExtensions.Tests.csproj", "{2BB0401A-4DCA-4D59-B15D-6C895304D2AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "tests\TestProject1\TestProject1.csproj", "{4AE18ABA-67D6-4CCD-92F7-8E0C4506DC76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{2BB0401A-4DCA-4D59-B15D-6C895304D2AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BB0401A-4DCA-4D59-B15D-6C895304D2AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BB0401A-4DCA-4D59-B15D-6C895304D2AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AE18ABA-67D6-4CCD-92F7-8E0C4506DC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AE18ABA-67D6-4CCD-92F7-8E0C4506DC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AE18ABA-67D6-4CCD-92F7-8E0C4506DC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AE18ABA-67D6-4CCD-92F7-8E0C4506DC76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE} = {EB805547-4556-4744-AFF4-314BE0F45704}
 		{2BB0401A-4DCA-4D59-B15D-6C895304D2AF} = {0F8CA42F-760A-4A42-BD0F-0AC9900B6712}
+		{4AE18ABA-67D6-4CCD-92F7-8E0C4506DC76} = {0F8CA42F-760A-4A42-BD0F-0AC9900B6712}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A9C3234-81DF-4A18-8652-547B6454F52B}

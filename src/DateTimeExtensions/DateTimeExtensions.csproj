@@ -38,7 +38,8 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net461" Version="1.0.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    </PackageReference>    
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="WorkingDays\HolidayNames.Designer.cs">
