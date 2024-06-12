@@ -1,0 +1,62 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v0
+        with:
+          versionSpec: '5.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Determine Version
+        id:   gitversion # id to later be referenced
+        uses: gittools/actions/gitversion/execute@v0
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release --property:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+
+      - name: Test
+        run: dotnet test --no-build --configuration Release --verbosity normal
+
+      - name: Publish Package to Nuget
+        if: github.event_name != 'pull_request'
+        run: |
+          rm -rf nuget/
+          dotnet pack --no-build --configuration Release --property:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }} --output nuget
+          dotnet nuget push nuget/*.nupkg -k '${{ secrets.NUGET_API_KEY }}' --skip-duplicate -s https://api.nuget.org/v3/index.json
+
+      - name: Create Release
+        if: github.event_name != 'pull_request'
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v${{ steps.gitversion.outputs.nuGetVersionV2 }}
+          release_name: v${{ steps.gitversion.outputs.nuGetVersionV2 }}
+          body: |
+            Release ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+          draft: false
+          prerelease: false
