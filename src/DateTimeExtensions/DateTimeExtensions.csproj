@@ -3,7 +3,7 @@
     <Description>This project is a merge of several common DateTime operations on the form of extensions to System.DateTime, including natural date difference text (precise and human rounded), holidays and working days calculations on several culture locales. Feedback will be much appreciated.</Description>
     <AssemblyTitle>DateTime Extensions</AssemblyTitle>
     <Authors>Joao Matos Silva</Authors>
-    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>DateTimeExtensions</AssemblyName>
     <PackageId>DateTimeExtensions</PackageId>
     <PackageTags>Natural;Date;Time;Relative;Calendar;Holiday;Workingday;DateTime</PackageTags>
@@ -18,28 +18,7 @@
     <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>C:\Users\Alsay\Desktop\DateTimeExtensions\Backup\src\DateTimeExtensions\</UpgradeBackupLocation>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="System.Diagnostics.Debug" Version="4.3.0" />
-    <PackageReference Include="System.Linq" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Extensions" Version="4.3.0" />
-    <PackageReference Include="System.Resources.ResourceManager" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
-    <PackageReference Include="System.Globalization.Calendars" Version="4.3.0" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>    
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net461" Version="1.0.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
   <ItemGroup>
     <Compile Update="WorkingDays\HolidayNames.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -53,11 +32,7 @@
       <LastGenOutput>HolidayNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <!--
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0-beta-62925-02">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
--->
 </Project>

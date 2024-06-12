@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB805547-455
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0F8CA42F-760A-4A42-BD0F-0AC9900B6712}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".build", "build\.build.csproj", "{8BB0AD48-A370-405F-B295-03D7F1811375}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeExtensions", "src\DateTimeExtensions\DateTimeExtensions.csproj", "{650FA9EC-03BE-43AF-87FF-9632856E31EE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeExtensions.Tests", "tests\DateTimeExtensions.Tests\DateTimeExtensions.Tests.csproj", "{2BB0401A-4DCA-4D59-B15D-6C895304D2AF}"
@@ -33,8 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8BB0AD48-A370-405F-B295-03D7F1811375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BB0AD48-A370-405F-B295-03D7F1811375}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{650FA9EC-03BE-43AF-87FF-9632856E31EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
