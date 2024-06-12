@@ -41,12 +41,14 @@ jobs:
         run: dotnet test --no-build --configuration Release --verbosity normal
 
       - name: Publish Package to Nuget
+        if: github.event_name != 'pull_request'
         run: |
           rm -rf nuget/
           dotnet pack --no-build --configuration Release --property:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }} --output nuget
           dotnet nuget push nuget/*.nupkg -k '${{ secrets.NUGET_API_KEY }}' --skip-duplicate -s https://api.nuget.org/v3/index.json
 
       - name: Create Release
+        if: github.event_name != 'pull_request'
         id: create_release
         uses: actions/create-release@latest
         env:
