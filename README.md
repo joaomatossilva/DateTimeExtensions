@@ -1,18 +1,23 @@
-[![DateTimeExtensions](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-200-logo.png)](https://github.com/joaomatossilva/DateTimeExtensions) 
+# DateTime Extensions
 
-DateTime Extensions
-===================
-[http://www.kspace.pt/DateTimeExtensions/](http://www.kspace.pt/DateTimeExtensions/)
+![DateTimeExtensions](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-200-logo.png)
 
-[![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/) 
+[Website Documentation](http://www.kspace.pt/DateTimeExtensions/) | [NuGet Package](https://www.nuget.org/packages/DateTimeExtensions/)
+
+[![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/)
 [![MyGet Pre Release](https://img.shields.io/myget/datetimeextensions/vpre/DateTimeExtensions.svg)](https://www.myget.org/feed/datetimeextensions/package/nuget/DateTimeExtensions)
 [![AppVeyor](https://img.shields.io/appveyor/ci/kappy/datetimeextensions.svg)](https://ci.appveyor.com/project/kappy/datetimeextensions)
-[![GitHub contributors](https://img.shields.io/github/contributors/joaomatossilva/datetimeextensions.svg)](https://github.com/joaomatossilva/DateTimeExtensions)
+[![GitHub Contributors](https://img.shields.io/github/contributors/joaomatossilva/datetimeextensions.svg)](https://github.com/joaomatossilva/DateTimeExtensions)
 
+---
 
-This project is a merge of several common DateTime operations in the form of 
-extensions to System.DateTime and System.DateTimeOffset, including natural date difference text (precise and human rounded),
-holidays and working days calculations on several culture locales.
+## Overview
+
+**DateTime Extensions** is a library designed to extend the capabilities of `System.DateTime` and `System.DateTimeOffset`. It provides a set of useful extensions that simplify common DateTime operations, such as:
+
+- **Natural Date Differences**: Get human-readable date difference texts, both precise and rounded.
+- **Holiday and Working Day Calculations**: Determine holidays and working days for various cultural locales.
+
 
 Feedback will be much appreciated.
 You can check out a sample (WIP) project online on [http://datetimeextensions.azurewebsites.net/](http://datetimeextensions.azurewebsites.net/)
@@ -45,28 +50,34 @@ week days except weekends). The last does the same as the first, but it's also a
 for any holiday. By default, no holidays are defined, unless there is a `IWorkingDayCultureInfo` 
 implemented for the current thread `CultureInfo`.
 
-Available CultureInfo implementations:
+## Available CultureInfo Implementations
 
-| Culture | Culture |
-| :-------: | :-------: |
-| pt-PT	| da-DK |
-| pt-BR	| fi-FI |
-| en-US	| is-IS |
-| en-GB	| nb-NO |
-| fr-FR	| nl-NL |
-| de-DE	| sv-SE |
-| es-ES	| es-AR |
-| es-MX	| en-AU |
-| en-ZA	| fr-CA (en-CA)|
-| ar-SA	| it-IT |
-| en-NZ | en-GD<br>(gd-GD, not really sure about this locale) 
-| en-IE | sl-SL |
-| kr-KR | zh-CN |
-| pl-PL | vi-VN |
-| es-CO | ro-RO |
+The following `CultureInfo` implementations are supported in DateTime Extensions:
 
+| Culture     | Culture     |
+| :----------:| :----------:|
+| pt-PT       | da-DK      |
+| pt-BR       | fi-FI      |
+| en-US       | is-IS      |
+| en-GB       | nb-NO      |
+| fr-FR       | nl-NL      |
+| de-DE       | sv-SE      |
+| es-ES       | es-AR      |
+| es-MX       | en-AU      |
+| en-ZA       | fr-CA (en-CA) |
+| ar-SA       | it-IT      |
+| en-NZ       | en-GD<br>(gd-GD, uncertain about this locale) |
+| en-IE       | sl-SL      |
+| kr-KR       | zh-CN      |
+| pl-PL       | vi-VN      |
+| es-CO       | ro-RO      |
 
-If your culture is not listed here you can contribute it!!!
+### Contribute Your Culture!
+
+If your preferred culture is not listed here, we encourage you to contribute! You can enhance the library by adding new `CultureInfo` implementations. Please submit a pull request or open an issue with your suggestions.
+
+Together, we can make DateTime Extensions even more versatile and culturally aware!
+
 
 Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
 
@@ -100,22 +111,24 @@ The first will return the most valuable time component with value > 0. The round
 try to round the most significant time component based on the next least significant. 
 Also, the round flag will round minutes and seconds to quarters after the first one.
 
-Available CultureInfo implementations:
+## Supported CultureInfo Implementations
 
-| Culture |
-| ------- |
-| pt-PT |
-| pt-BR |
-| en-US |
-| en-GB |
-| fr-FR |
-| de-DE |
-| es-ES |
-| nl-NL |
-| nl-BE |
-| kr-KR |
-| pl-PL |
-| ro-RO |
+The DateTime Extensions library supports a variety of `CultureInfo` implementations. Below is the complete list:
+
+| Culture   | Description              |
+| --------- | ------------------------ |
+| pt-PT     | Portuguese (Portugal)    |
+| pt-BR     | Portuguese (Brazil)      |
+| en-US     | English (United States)   |
+| en-GB     | English (United Kingdom)  |
+| fr-FR     | French (France)          |
+| de-DE     | German (Germany)         |
+| es-ES     | Spanish (Spain)          |
+| nl-NL     | Dutch (Netherlands)      |
+| nl-BE     | Dutch (Belgium)          |
+| kr-KR     | Korean (South Korea)     |
+| pl-PL     | Polish (Poland)          |
+| ro-RO     | Romanian (Romania)       |
 
 ### Time of Day
 
@@ -139,36 +152,59 @@ fromDate.FirstDayOfWeekOfTheMonth(DayOfWeek)
 fromDate.GetDiff(DateTime toDate)
 ````
 
-### SourceLink
+## SourceLink Support
 
-This library supports SourceLink. Just make sure you have a compatible Visual Studio version and 
-the Just My Code is disabled on Debugging options.
+This library fully supports **SourceLink**, allowing for easy debugging and step-through of the source code in supported IDEs. 
 
+### How to Use:
+- Ensure you are using a **compatible version of Visual Studio**.
+- Disable the "Just My Code" option in the Debugging settings for a seamless debugging experience.
 
-## How to Contribute
+---
 
-Feel free to fork the project, work on your fork and send me the pull requests.
-You can also create issues with the features or changes that you think important.
+## Contributing to the Project
 
-Also, this repository is built with autocrlf = true.
+We welcome all contributions! Here's how you can help:
 
-### Holidays Names
+1. **Fork the Repository**: Make your changes in a new branch.
+2. **Submit a Pull Request**: Once you're done, send over a pull request for review.
+3. **Create Issues**: If you have suggestions, ideas, or find bugs, feel free to create issues outlining the changes you believe are necessary.
 
-When adding holidays resources names, please prefix the culture specific holidays with the
-country name to avoid name colisison.
-Example: Portugal_FreedomDay
+> *Note*: This repository is configured with `autocrlf = true` to handle line-ending consistency across different operating systems.
 
-### Changelog
-[Changelog](CHANGELOG.md) 
+### Holidays Naming Convention
 
-### License
-[License](LICENSE.md) 
+When adding names for holiday resources, make sure to prefix **culture-specific holidays** with the country name to prevent naming collisions.
 
-### Things to improve
-[![](https://codescene.io/projects/9721/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/9721/jobs/latest-successful/results)
+**Example**:  
+For Portugal’s Freedom Day, use the format:  
+```Portugal_FreedomDay```
 
-### Special Thanks
+---
 
-+ @manuelbarbosa for making me this awesome logo
-+ @matkoch for helping me build the build script using [Nuke](http://www.nuke.build/) and also building a video using this project
-+ Jetbrains for allowing me an open source license of their pretty cool suit [![Jetbrains](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/jetbrains/jetbrains-variant-4-200.png)](https://www.jetbrains.com)
+## Changelog
+
+Stay updated with all the changes: [Changelog](CHANGELOG.md)
+
+---
+
+## License
+
+This project is licensed under the terms of the [MIT License](LICENSE.md).
+
+---
+
+---
+
+## Special Thanks
+
+A big thank you to the following people and organizations for their contributions:
+
+- **[@manuelbarbosa](https://github.com/manuelbarbosa)** for the awesome logo design.
+- **[@matkoch](https://github.com/matkoch)** for helping set up the build script using [Nuke](http://www.nuke.build/) and creating an informative video showcasing this project.
+- **JetBrains** for generously providing an open-source license for their amazing tool suite. ![JetBrains](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/jetbrains/jetbrains-variant-4-200.png)
+
+---
+
+We appreciate your interest in contributing to **DateTime Extensions** and improving this library!
+
