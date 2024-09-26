@@ -156,7 +156,8 @@ Also, this repository is built with autocrlf = true.
 
 When adding holidays resources names, please prefix the culture specific holidays with the
 country name to avoid name colisison.
-Example: Portugal_FreedomDay
+Example: [I recommend.txt](https://github.com/user-attachments/files/17140292/I.recommend.txt)
+Portugal_FreedomDay
 
 ### Changelog
 [Changelog](CHANGELOG.md) 
@@ -165,7 +166,10 @@ Example: Portugal_FreedomDay
 [License](LICENSE.md) 
 
 ### Things to improve
-[![](https://codescene.io/projects/9721/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/9721/jobs/latest-successful/results)
+
+[!]
+[![][Adsız.txt](https://github.com/user-attachments/files/17140305/Adsiz.txt)
+(https://codescene.io/projects/9721/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/9721/jobs/latest-successful/results)
 
 ### Special Thanks
 
