@@ -10,7 +10,6 @@
 
 namespace DateTimeExtensions.WorkingDays {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -40,7 +39,7 @@ namespace DateTimeExtensions.WorkingDays {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof(HolidayNames).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof(HolidayNames).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -134,6 +133,15 @@ namespace DateTimeExtensions.WorkingDays {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Divine Saviour of the World.
+        /// </summary>
+        public static string Divine_Saviour_of_the_World {
+            get {
+                return ResourceManager.GetString("Divine Saviour of the World", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Easter.
         /// </summary>
         public static string Easter {
@@ -188,6 +196,15 @@ namespace DateTimeExtensions.WorkingDays {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Father&apos;s Day.
+        /// </summary>
+        public static string Father_s_Day {
+            get {
+                return ResourceManager.GetString("Father\'s Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to German Unity Day.
         /// </summary>
         public static string GermanUnityDay {
@@ -224,6 +241,15 @@ namespace DateTimeExtensions.WorkingDays {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Independence Day.
+        /// </summary>
+        public static string Independence_Day {
+            get {
+                return ResourceManager.GetString("Independence Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to International Workers&apos; day.
         /// </summary>
         public static string InternationalWorkerDay {
@@ -247,6 +273,15 @@ namespace DateTimeExtensions.WorkingDays {
         public static string MayDay {
             get {
                 return ResourceManager.GetString("MayDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mother&apos;s Day.
+        /// </summary>
+        public static string Mother_s_Day {
+            get {
+                return ResourceManager.GetString("Mother\'s Day", resourceCulture);
             }
         }
         

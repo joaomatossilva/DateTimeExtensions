@@ -64,6 +64,7 @@ Available CultureInfo implementations:
 | kr-KR | zh-CN |
 | pl-PL | vi-VN |
 | es-CO | ro-RO |
+| es-SV |  |
 
 
 If your culture is not listed here you can contribute it!!!

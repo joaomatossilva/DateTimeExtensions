@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllSaints" xml:space="preserve">
     <value>Todos los Santos</value>
@@ -127,10 +127,13 @@
     <value>Carnaval</value>
   </data>
   <data name="Christmas" xml:space="preserve">
-    <value>Natividad</value>
+    <value>Navidad</value>
   </data>
   <data name="CorpusChristi" xml:space="preserve">
     <value>Corpus Cristi</value>
+  </data>
+  <data name="Divine Saviour of the World" xml:space="preserve">
+    <value>Divino Salvador del Mundo</value>
   </data>
   <data name="Easter" xml:space="preserve">
     <value>Pascua</value>
@@ -147,17 +150,26 @@
   <data name="Espanha_NationalDay" xml:space="preserve">
     <value>Fiesta Nacional de España</value>
   </data>
+  <data name="Father's Day" xml:space="preserve">
+    <value>Día del padre</value>
+  </data>
   <data name="GoodFriday" xml:space="preserve">
     <value>Viernes Santo</value>
   </data>
   <data name="ImaculateConception" xml:space="preserve">
     <value>La Inmaculada Concepción</value>
   </data>
+  <data name="Independence Day" xml:space="preserve">
+    <value>Día de la Independencia</value>
+  </data>
   <data name="InternationalWorkerDay" xml:space="preserve">
     <value>Fiesta del Trabajo</value>
   </data>
   <data name="MaundyThursday" xml:space="preserve">
     <value>Jueves Santo</value>
+  </data>
+  <data name="Mother's Day" xml:space="preserve">
+    <value>Día de la madre</value>
   </data>
   <data name="NewYear" xml:space="preserve">
     <value>Año Nuevo</value>
