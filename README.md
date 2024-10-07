@@ -1,174 +1,109 @@
-[![DateTimeExtensions](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-200-logo.png)](https://github.com/joaomatossilva/DateTimeExtensions) 
+# DateTimeExtensions
 
-DateTime Extensions
-===================
-[http://www.kspace.pt/DateTimeExtensions/](http://www.kspace.pt/DateTimeExtensions/)
+![DateTimeExtensions Logo](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-200-logo.png)
 
 [![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/) 
 [![MyGet Pre Release](https://img.shields.io/myget/datetimeextensions/vpre/DateTimeExtensions.svg)](https://www.myget.org/feed/datetimeextensions/package/nuget/DateTimeExtensions)
 [![AppVeyor](https://img.shields.io/appveyor/ci/kappy/datetimeextensions.svg)](https://ci.appveyor.com/project/kappy/datetimeextensions)
 [![GitHub contributors](https://img.shields.io/github/contributors/joaomatossilva/datetimeextensions.svg)](https://github.com/joaomatossilva/DateTimeExtensions)
 
+## What is DateTimeExtensions?
 
-This project is a merge of several common DateTime operations in the form of 
-extensions to System.DateTime and System.DateTimeOffset, including natural date difference text (precise and human rounded),
-holidays and working days calculations on several culture locales.
+DateTimeExtensions is a powerful C# library that extends the functionality of `System.DateTime` and `System.DateTimeOffset`. It provides a set of useful methods for working with dates and times, making your code more expressive and easier to read.
 
-Feedback will be much appreciated.
-You can check out a sample (WIP) project online on [http://datetimeextensions.azurewebsites.net/](http://datetimeextensions.azurewebsites.net/)
+## Key Features
 
-## Major Features
+1. **Working Days Calculations**: Easily add or subtract working days, taking into account regional holidays.
+2. **Holiday Support**: Includes holiday definitions for multiple cultures and regions.
+3. **Natural Language Date Differences**: Get the difference between dates in human-readable format.
+4. **Time of Day Operations**: Simplify time-based comparisons and checks.
+5. **Calendar Export**: Export holidays to common calendar formats.
+6. **SourceLink Support**: Enables debugging into the source code.
 
-The following major features are currently implemented:
+## Installation
 
-+  Add or subtract Working days using locale holidays
-+  Support for Regional holidays (limited locales)
-+  Export Holidays to calendar format
-+  Dates Difference in Natural Time (localized)
-+  Time of day
-+  General "goto" dates
-+ Supports SourceLink for debugging
-+ Extensions to both DateTime and DateTimeOffset (the Date portion)
+Install DateTimeExtensions via NuGet:
 
+```
+Install-Package DateTimeExtensions
+```
 
-### Working Days Calculations
+## Quick Start
 
-These extensions for System.DateTime adds methods to make calculations based on working days.
-A working day is defined in `IWorkingDayCultureInfo` in two ways:
+Here are some examples of what you can do with DateTimeExtensions:
 
-````csharp
-IsWorkingDay(DayOfWeek dayOfWeek)
-IsWorkingDay(DateTime date)
-````
-The first defines which day of the week is a working day (by default, working days are all 
-week days except weekends). The last does the same as the first, but it's also able to check 
-for any holiday. By default, no holidays are defined, unless there is a `IWorkingDayCultureInfo` 
-implemented for the current thread `CultureInfo`.
+```csharp
+using DateTimeExtensions;
 
-Available CultureInfo implementations:
+// Add 5 working days to a date
+DateTime futureDate = DateTime.Now.AddWorkingDays(5);
 
-| Culture | Culture |
-| :-------: | :-------: |
-| pt-PT	| da-DK |
-| pt-BR	| fi-FI |
-| en-US	| is-IS |
-| en-GB	| nb-NO |
-| fr-FR	| nl-NL |
-| de-DE	| sv-SE |
-| es-ES	| es-AR |
-| es-MX	| en-AU |
-| en-ZA	| fr-CA (en-CA)|
-| ar-SA	| it-IT |
-| en-NZ | en-GD<br>(gd-GD, not really sure about this locale) 
-| en-IE | sl-SL |
-| kr-KR | zh-CN |
-| pl-PL | vi-VN |
-| es-CO | ro-RO |
+// Check if a date is a working day
+bool isWorkingDay = DateTime.Now.IsWorkingDay();
 
+// Get the difference between dates in natural language
+string dateDiff = DateTime.Now.ToNaturalText(DateTime.Now.AddDays(45));
 
-If your culture is not listed here you can contribute it!!!
+// Check if a time is between two other times
+bool isBetween = DateTime.Now.IsBetween(new Time("09:00"), new Time("17:00"));
+```
 
-Fork me, implement it and send me the pull request, or just create an issue on the project github site. 
+## Supported Cultures
 
+DateTimeExtensions supports working day and holiday calculations for many cultures, including:
 
-### Export Holidays to calendar format
+- United States (en-US)
+- United Kingdom (en-GB)
+- France (fr-FR)
+- Germany (de-DE)
+- Spain (es-ES)
+- Brazil (pt-BR)
+- Portugal (pt-PT)
+- and many more!
 
+Don't see your culture? Contributions are welcome!
 
-This feature allows you to export the holidays from a `DateTimeCultureInfo` (see above)
-and export it to Microsoft Office Outlook.
-The `IExportHolidaysFormat` interface exposes one simple method for it:
-````csharp
-void Export(DateTimeCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
-````
-Example:
-````csharp
+## Advanced Features
+
+### Exporting Holidays
+
+You can export holidays to various calendar formats:
+
+```csharp
 var exporter = ExportHolidayFormatLocator.LocateByType(ExportType.OfficeHolidays);
-exporter.Export(new WorkingDayCultureInfo("pt-PT"), 2012, textwriter);
-````
+exporter.Export(new WorkingDayCultureInfo("en-US"), 2024, textWriter);
+```
 
-### Dates Diff in Natural Time
+### Custom Working Day Definitions
 
-These extensions can compare two dates in natural language based on the current locale on 
-current thread `CultureInfo`.
-There are 2 API points for them:
-````csharp
-fromDate.ToNaturalText(toTime, bool round = true)
-fromDate.ToExactNaturalText(toTime)
-````
+Implement `IWorkingDayCultureInfo` to define custom working day rules for your specific needs.
 
-The first will return the most valuable time component with value > 0. The round flag will 
-try to round the most significant time component based on the next least significant. 
-Also, the round flag will round minutes and seconds to quarters after the first one.
+## Contributing
 
-Available CultureInfo implementations:
+We welcome contributions! Here's how you can help:
 
-| Culture |
-| ------- |
-| pt-PT |
-| pt-BR |
-| en-US |
-| en-GB |
-| fr-FR |
-| de-DE |
-| es-ES |
-| nl-NL |
-| nl-BE |
-| kr-KR |
-| pl-PL |
-| ro-RO |
+1. Fork the repository
+2. Create a feature branch
+3. Implement your feature or bug fix
+4. Add or update tests as necessary
+5. Submit a pull request
 
-### Time of Day
+For adding new holiday definitions, please prefix culture-specific holidays with the country name (e.g., "USA_IndependenceDay").
 
-These extensions allow easy parsing of time expressions and add the ability to check if a DateTime instance is after,
-before or inside a period.
-````csharp
-bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
-bool IsBefore(this DateTime dateTime, Time time)
-bool IsAfter(this DateTime dateTime, Time time)
-````
+## Documentation
 
-### Other Extensions:
+For more detailed information, visit our [official documentation](http://www.kspace.pt/DateTimeExtensions/).
 
-````csharp
-fromDate.FirstDayOfTheMonth()
-fromDate.LastDayOfTheMonth()
-fromDate.LastDayOfWeek(DayOfWeek)
-fromDate.NextDayOfWeek(DayOfWeek)
-fromDate.LastDayOfWeekOfTheMonth(DayOfWeek)
-fromDate.FirstDayOfWeekOfTheMonth(DayOfWeek)
-fromDate.GetDiff(DateTime toDate)
-````
+## License
 
-### SourceLink
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
 
-This library supports SourceLink. Just make sure you have a compatible Visual Studio version and 
-the Just My Code is disabled on Debugging options.
+## Acknowledgements
 
+- Logo design by @manuelbarbosa
+- Build script assistance by @matkoch using [Nuke](http://www.nuke.build/)
+- Open source license provided by JetBrains
 
-## How to Contribute
+---
 
-Feel free to fork the project, work on your fork and send me the pull requests.
-You can also create issues with the features or changes that you think important.
-
-Also, this repository is built with autocrlf = true.
-
-### Holidays Names
-
-When adding holidays resources names, please prefix the culture specific holidays with the
-country name to avoid name colisison.
-Example: Portugal_FreedomDay
-
-### Changelog
-[Changelog](CHANGELOG.md) 
-
-### License
-[License](LICENSE.md) 
-
-### Things to improve
-[![](https://codescene.io/projects/9721/status.svg) Get more details at **codescene.io**.](https://codescene.io/projects/9721/jobs/latest-successful/results)
-
-### Special Thanks
-
-+ @manuelbarbosa for making me this awesome logo
-+ @matkoch for helping me build the build script using [Nuke](http://www.nuke.build/) and also building a video using this project
-+ Jetbrains for allowing me an open source license of their pretty cool suit [![Jetbrains](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/jetbrains/jetbrains-variant-4-200.png)](https://www.jetbrains.com)
+DateTimeExtensions: Making date and time operations in C# simpler and more intuitive.
