@@ -141,6 +141,9 @@
   <data name="DayOfTheDead" xml:space="preserve">
     <value>Day of the Dead</value>
   </data>
+  <data name="Divine Saviour of the World" xml:space="preserve">
+    <value>Divine Saviour of the World</value>
+  </data>
   <data name="Easter" xml:space="preserve">
     <value>Easter</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="Espanha_NationalDay" xml:space="preserve">
     <value>National Day</value>
   </data>
+  <data name="Father's Day" xml:space="preserve">
+    <value>Father's Day</value>
+  </data>
   <data name="GermanUnityDay" xml:space="preserve">
     <value>German Unity Day</value>
   </data>
@@ -171,6 +177,9 @@
   <data name="IndependanceDay" xml:space="preserve">
     <value>Independance Day</value>
   </data>
+  <data name="Independence Day" xml:space="preserve">
+    <value>Independence Day</value>
+  </data>
   <data name="InternationalWorkerDay" xml:space="preserve">
     <value>International Workers' day</value>
   </data>
@@ -179,6 +188,9 @@
   </data>
   <data name="MayDay" xml:space="preserve">
     <value>May Day</value>
+  </data>
+  <data name="Mother's Day" xml:space="preserve">
+    <value>Mother's Day</value>
   </data>
   <data name="NewYear" xml:space="preserve">
     <value>New Year</value>
