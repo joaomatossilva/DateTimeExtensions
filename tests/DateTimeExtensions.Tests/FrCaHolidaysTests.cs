@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DateTimeExtensions.WorkingDays;
 using DateTimeExtensions.WorkingDays.CultureStrategies;
 using NUnit.Framework;
@@ -28,13 +26,23 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
-        public void assert_holidays_on_weekend_observed_on_monday()
+        public void assert_holidays_on_sunday_observed_on_monday()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
             // 01-07-2012 Canada Day on a Sunday
             var mondayAfterCanadaDay = new DateTime(2012, 07, 02);
             Assert.AreEqual(DayOfWeek.Monday, mondayAfterCanadaDay.DayOfWeek);
             Assert.IsFalse(mondayAfterCanadaDay.IsWorkingDay(dateTimeCulture));
+        }
+
+        [Test]
+        public void assert_holidays_on_saturday_observed_on_friday()
+        {
+            var dateTimeCulture = new WorkingDayCultureInfo("fr-CA");
+            // 25-12-2010 Christmas on a Saturday
+            var fridayBeforeCanadaDay = new DateTime(2010, 12, 24);
+            Assert.AreEqual(DayOfWeek.Friday, fridayBeforeCanadaDay.DayOfWeek);
+            Assert.IsFalse(fridayBeforeCanadaDay.IsWorkingDay(dateTimeCulture));
         }
 
         [Test]

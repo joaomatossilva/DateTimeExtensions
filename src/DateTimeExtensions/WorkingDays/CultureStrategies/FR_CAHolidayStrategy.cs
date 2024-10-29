@@ -20,8 +20,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
@@ -35,44 +33,46 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(GlobalHolidays.NewYear);
             this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            //Victoria Day is not really national
-            //this.InnerHolidays.Add(VictoriaDay);
             this.InnerHolidays.Add(CanadaDay);
             this.InnerHolidays.Add(LabourDay);
             this.InnerHolidays.Add(Thanksgiving);
             this.InnerHolidays.Add(RemembranceDay);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            //Boxing is not really national
-            //this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
 
         protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
+
                 if (date.HasValue)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
-                    //if the holiday is a saturday, the holiday is observed on previous friday
+                    holidayMap.AddIfInexistent(date.Value, innerHoliday);
+
                     if (date.Value.DayOfWeek == DayOfWeek.Saturday)
                     {
-                        holidayMap.Add(date.Value.AddDays(2), innerHoliday);
+                        //if the holiday is a saturday, the holiday is observed on previous friday
+                        holidayMap.AddIfInexistent(date.Value.AddDays(-1), innerHoliday);
                     }
-                    //if the holiday is a sunday, the holiday is observed on next monday
+
                     if (date.Value.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                        //if the holiday is a sunday, the holiday is observed on next monday
+                        holidayMap.AddIfInexistent(date.Value.AddDays(1), innerHoliday);
                     }
                 }
             }
             return holidayMap;
         }
 
-        //First Monday in September - Canada Day
         private static Holiday canadaDay;
 
+        /// <summary>
+        /// July 1 - Canada Day
+        /// </summary>
         public static Holiday CanadaDay
         {
             get
@@ -85,9 +85,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //First Monday in September - Labour Day
         private static Holiday labourDay;
 
+        /// <summary>
+        /// First Monday in September - Labour Day
+        /// </summary>
         public static Holiday LabourDay
         {
             get
@@ -101,25 +103,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //Monday on or before May 24 - Victoria Day
-        private static Holiday victoriaDay;
-
-        public static Holiday VictoriaDay
-        {
-            get
-            {
-                if (victoriaDay == null)
-                {
-                    // 25 = day after 24. NthDayOfWeekAfterDayHoliday doesn't count the start day
-                    victoriaDay = new NthDayOfWeekAfterDayHoliday("Victoria Day", -1, DayOfWeek.Monday, 5, 25);
-                }
-                return victoriaDay;
-            }
-        }
-
-        //Second Monday in October - Thanksgiving
         private static Holiday thanksgiving;
 
+        /// <summary>
+        /// Second Monday in October - Thanksgiving
+        /// </summary>
         public static Holiday Thanksgiving
         {
             get
@@ -133,9 +121,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //November 11 - Remembrance Day
         private static Holiday remembranceDay;
 
+        /// <summary>
+        /// November 11 - Remembrance Day
+        /// </summary>
         public static Holiday RemembranceDay
         {
             get
