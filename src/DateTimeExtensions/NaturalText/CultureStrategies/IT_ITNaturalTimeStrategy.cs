@@ -1,7 +1,7 @@
 #region License
 
 // 
-// Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
+// Copyright (c) 2011-2012, Joï¿½o Matos Silva <kappy@acydburne.com.pt>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -60,11 +60,11 @@ namespace DateTimeExtensions.NaturalText.CultureStrategies
             // referring to hours
             if (text.EndsWith("a"))
             {
-                return text + "e";
+                return text.Remove(text.Length -1, 1) + "e";
             }
 
             // referring to years, months, days, minutes and seconds
-            return text + "i";
+            return text.Remove(text.Length -1, 1) + "i";
         }
     }
 }
