@@ -132,7 +132,7 @@ v3.0
 - DateTimeCultureInfo have been split into specific contexts. This will improve the single responsibility of the classes.
 - Added Time feature
 - BreakingChanges:
-	- DateTimeCultureInfo is split in WorkingDayCultureInfo and NaturealTextCultureInfo
+	- DateTimeCultureInfo is split in WorkingDayCultureInfo and NaturalTextCultureInfo
 	- A lot of classes were moved and namespaced properly
 
 v2.2.5
