@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RootNamespace>
+    </RootNamespace>
+    <IsPackable>false</IsPackable>
+    <NoWarn>CS0649;CS0169</NoWarn>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\Users\Alsay\Desktop\DateTimeExtensions\Backup\build\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Nuke.Common" Version="0.22.2" />
+    <PackageReference Include="GitVersion.CommandLine" Version="4.0.0-beta0011" />
+  </ItemGroup>
+</Project>
