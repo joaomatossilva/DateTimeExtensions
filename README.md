@@ -9,11 +9,11 @@
 
 ## What is DateTimeExtensions?
 
-DateTimeExtensions is a powerful C# library that extends the functionality of `System.DateTime` and `System.DateTimeOffset`. It provides a set of useful methods for working with dates and times, making your code more expressive and easier to read.
+DateTimeExtensions is a powerful C# library that extends the functionality of `System.DateTime` and `System.DateTimeOffset`. It provides useful methods for working with dates and times, making your code more expressive and easier to read.
 
 ## Key Features
 
-1. **Working Days Calculations**: Easily add or subtract working days, taking into account regional holidays.
+1. **Working Days Calculations**: Easily add or subtract working days, considering regional holidays.
 2. **Holiday Support**: Includes holiday definitions for multiple cultures and regions.
 3. **Natural Language Date Differences**: Get the difference between dates in human-readable format.
 4. **Time of Day Operations**: Simplify time-based comparisons and checks.
@@ -88,7 +88,7 @@ We welcome contributions! Here's how you can help:
 4. Add or update tests as necessary
 5. Submit a pull request
 
-For adding new holiday definitions, please prefix culture-specific holidays with the country name (e.g., "USA_IndependenceDay").
+To add new holiday definitions, please prefix culture-specific holidays with the country name (e.g., "USA_IndependenceDay").
 
 ## Documentation
 
@@ -102,7 +102,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) fi
 
 - Logo design by @manuelbarbosa
 - Build script assistance by @matkoch using [Nuke](http://www.nuke.build/)
-- Open source license provided by JetBrains
+- Open source license provided by [JetBrains](https://www.jetbrains.com/)
 
 ---
 
