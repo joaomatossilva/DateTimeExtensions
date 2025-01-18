@@ -1,3 +1,4 @@
+sudo su
 # DateTimeExtensions
 
 ![DateTimeExtensions Logo](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-200-logo.png)
