@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="Current">
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
 	<ImplicitUsings>disable</ImplicitUsings>
 	<Nullable>disable</Nullable>
     <AssemblyName>DateTimeExtensions.Tests</AssemblyName>
@@ -8,6 +7,7 @@
 
 	<IsPackable>false</IsPackable>
 	<IsTestProject>true</IsTestProject>
+	<TargetFramework>net8.0</TargetFramework>
     
   </PropertyGroup>
   <ItemGroup>
