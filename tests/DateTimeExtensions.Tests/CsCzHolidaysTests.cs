@@ -23,7 +23,7 @@ namespace DateTimeExtensions.Tests
         public void Good_Friday_Is_A_Holiday_From_2016(int year)
         {
             DateTime goodFriday = ChristianHolidays.GoodFriday.GetInstance(year).Value;
-            Assert.That(goodFriday.IsHoliday(), Is.True);
+            Assert.That(dateTimeCulture.IsHoliday(goodFriday), Is.True);
         }
 
         [Test]
@@ -33,7 +33,7 @@ namespace DateTimeExtensions.Tests
         public void Good_Friday_Is_Not_A_Holiday_Before_2016(int year)
         {
             DateTime goodFriday = ChristianHolidays.GoodFriday.GetInstance(year).Value;
-            Assert.That(goodFriday.IsWorkingDay(), Is.True);
+            Assert.That(dateTimeCulture.IsWorkingDay(goodFriday), Is.True);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace DateTimeExtensions.Tests
         public void Dates_Are_Correctly_Identified_As_Specific_Czech_Holidays(int year, int month, int day)
         {
             DateTime holiday = new(year, month, day);
-            Assert.That(holiday.IsHoliday(), Is.True);
+            Assert.That(dateTimeCulture.IsHoliday(holiday), Is.True);
         }
     }
 }
