@@ -19,25 +19,19 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Globalization;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public class DayInYear
     {
-        public DayInYear(int month, int day)
-            : this(month, day, new GregorianCalendar())
-        {
-        }
+        public DayInYear(int month, int day) : this(month, day, new GregorianCalendar()) { }
 
         public DayInYear(int month, int day, Calendar calendar)
         {
-            this.Month = month;
-            this.Day = day;
-            this.Calendar = calendar;
+            Month = month;
+            Day = day;
+            Calendar = calendar ?? throw new ArgumentNullException(nameof(calendar));
         }
 
         public int Day { get; private set; }
@@ -46,15 +40,13 @@ namespace DateTimeExtensions.WorkingDays
 
         public DateTime GetDayOnYear(int year)
         {
-            var firstDayOnGregoryanCalendar = new DateTime(year, 1, 1);
-            var dayInstance = Calendar.ToDateTime(Calendar.GetYear(firstDayOnGregoryanCalendar), Month, Day, 0, 0, 0, 0);
-
-            //check if the instance day falls on previous year on Gregorian calendar.
-            // the instance should fall between year and year + 1. 
-            // TODO: This smells a bit. Ensure this is true for all types of calendars.
-            if (dayInstance.Year < firstDayOnGregoryanCalendar.Year)
+            // Directly create the target date in the provided year, avoiding redundant calendar adjustments
+            DateTime dayInstance = Calendar.ToDateTime(year, Month, Day, 0, 0, 0, 0);
+            
+            // If the date is in the previous year (due to the calendar system), adjust by adding a year
+            if (dayInstance.Year < year)
             {
-                dayInstance = Calendar.AddYears(dayInstance, 1);
+                dayInstance = dayInstance.AddYears(1);
             }
 
             return dayInstance;
@@ -62,8 +54,8 @@ namespace DateTimeExtensions.WorkingDays
 
         public bool IsTheSameDay(DateTime day)
         {
-            var thisDayInYear = Calendar.ToDateTime(Calendar.GetYear(day), Month, Day, 0, 0, 0, 0);
-            return thisDayInYear == day.Date;
+            // Simply compare the month and day values to avoid unnecessary object creation
+            return day.Month == Month && day.Day == Day;
         }
     }
 }
