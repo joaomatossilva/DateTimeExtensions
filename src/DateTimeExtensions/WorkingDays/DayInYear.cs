@@ -40,13 +40,12 @@ namespace DateTimeExtensions.WorkingDays
 
         public DateTime GetDayOnYear(int year)
         {
-            // Directly create the target date in the provided year, avoiding redundant calendar adjustments
             DateTime dayInstance = Calendar.ToDateTime(year, Month, Day, 0, 0, 0, 0);
-            
-            // If the date is in the previous year (due to the calendar system), adjust by adding a year
+
+            // Ensure the calculated day falls in the correct year
             if (dayInstance.Year < year)
             {
-                dayInstance = dayInstance.AddYears(1);
+                dayInstance = Calendar.AddYears(dayInstance, 1);
             }
 
             return dayInstance;
@@ -54,8 +53,7 @@ namespace DateTimeExtensions.WorkingDays
 
         public bool IsTheSameDay(DateTime day)
         {
-            // Simply compare the month and day values to avoid unnecessary object creation
-            return day.Month == Month && day.Day == Day;
+            return Calendar.GetMonth(day) == Month && Calendar.GetDayOfMonth(day) == Day;
         }
     }
 }
