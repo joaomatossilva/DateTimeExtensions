@@ -1,4 +1,4 @@
-﻿#region License
+#region License
 
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
@@ -46,21 +46,22 @@ namespace DateTimeExtensions
         public static bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
         {
             var currentTime = dateTime.TimeOfTheDay();
-            //start time is lesser or equal than end time
-            if (startTime.CompareTo(endTime) <= 0)
-            {
-                //currentTime should be between start time and end time
-                if (currentTime.CompareTo(startTime) >= 0 && currentTime.CompareTo(endTime) <= 0)
-                {
+            // If startTime and endTime are equal
+            if (startTime.Equals(endTime)) {
+                if (currentTime.CompareTo(startTime) >= 0 && currentTime.CompareTo(endTime) <= 0) {
+                    return true;
+                }
+            }
+            // Start time is lesser or equal than end time
+            if (startTime.CompareTo(endTime) <= 0) {
+                // CurrentTime should be between start time and end time
+                if (currentTime.CompareTo(startTime) >= 0 && currentTime.CompareTo(endTime) <= 0) {
                     return true;
                 }
                 return false;
-            }
-            else
-            {
-                //currentTime should be between end time time and start time
-                if (currentTime.CompareTo(startTime) >= 0 || currentTime.CompareTo(endTime) <= 0)
-                {
+            } else {
+                // CurrentTime should be between end time and start time
+                if (currentTime.CompareTo(startTime) >= 0 || currentTime.CompareTo(endTime) <= 0) {
                     return true;
                 }
                 return false;
