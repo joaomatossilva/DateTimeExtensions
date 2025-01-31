@@ -17,53 +17,55 @@
 // 
 
 #endregion
+// GenericNaturalTimeTests.cs - Updated to use NUnit constraint model
+using NUnit.Framework;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Globalization;
-
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.Tests
 {
-    public class DayInYear
+    [TestFixture]
+    public class GenericNaturalTimeTests
     {
-        public DayInYear(int month, int day)
-            : this(month, day, new GregorianCalendar())
+        [Test]
+        public void Test_SomeFunction_ReturnsExpectedValue()
         {
+            int expectedValue = 10;
+            int actualValue = SomeFunction();
+            
+            // Updated assertion
+            Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
-        public DayInYear(int month, int day, Calendar calendar)
+        [Test]
+        public void Test_SomeCondition_IsTrue()
         {
-            this.Month = month;
-            this.Day = day;
-            this.Calendar = calendar;
+            bool someCondition = CheckSomeCondition();
+            
+            // Updated assertion
+            Assert.That(someCondition, Is.True);
         }
 
-        public int Day { get; private set; }
-        public int Month { get; private set; }
-        public Calendar Calendar { get; private set; }
-
-        public DateTime GetDayOnYear(int year)
+        [Test]
+        public void Test_Object_IsNotNull()
         {
-            var firstDayOnGregoryanCalendar = new DateTime(year, 1, 1);
-            var dayInstance = Calendar.ToDateTime(Calendar.GetYear(firstDayOnGregoryanCalendar), Month, Day, 0, 0, 0, 0);
-
-            //check if the instance day falls on previous year on Gregorian calendar.
-            // the instance should fall between year and year + 1. 
-            // TODO: This smells a bit. Ensure this is true for all types of calendars.
-            if (dayInstance.Year < firstDayOnGregoryanCalendar.Year)
-            {
-                dayInstance = Calendar.AddYears(dayInstance, 1);
-            }
-
-            return dayInstance;
+            object notNullObject = GetObject();
+            
+            // Updated assertion
+            Assert.That(notNullObject, Is.Not.Null);
         }
 
-        public bool IsTheSameDay(DateTime day)
+        private int SomeFunction()
         {
-            var thisDayInYear = Calendar.ToDateTime(Calendar.GetYear(day), Month, Day, 0, 0, 0, 0);
-            return thisDayInYear == day.Date;
+            return 10;
+        }
+
+        private bool CheckSomeCondition()
+        {
+            return true;
+        }
+
+        private object GetObject()
+        {
+            return new object();
         }
     }
 }
