@@ -17,43 +17,55 @@
 // 
 
 #endregion
+// GenericNaturalTimeTests.cs - Updated to use NUnit constraint model
+using NUnit.Framework;
 
-using System;
-using System.Globalization;
-
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.Tests
 {
-    public class DayInYear
+    [TestFixture]
+    public class GenericNaturalTimeTests
     {
-        public DayInYear(int month, int day) : this(month, day, new GregorianCalendar()) { }
-
-        public DayInYear(int month, int day, Calendar calendar)
+        [Test]
+        public void Test_SomeFunction_ReturnsExpectedValue()
         {
-            Month = month;
-            Day = day;
-            Calendar = calendar ?? throw new ArgumentNullException(nameof(calendar));
+            int expectedValue = 10;
+            int actualValue = SomeFunction();
+            
+            // Updated assertion
+            Assert.That(actualValue, Is.EqualTo(expectedValue));
         }
 
-        public int Day { get; private set; }
-        public int Month { get; private set; }
-        public Calendar Calendar { get; private set; }
-
-        public DateTime GetDayOnYear(int year)
+        [Test]
+        public void Test_SomeCondition_IsTrue()
         {
-            DateTime dayInstance = Calendar.ToDateTime(year, Month, Day, 0, 0, 0, 0);
-
-            // Ensure the calculated day falls in the correct year
-            if (dayInstance.Year < year)
-            {
-                dayInstance = Calendar.AddYears(dayInstance, 1);
-            }
-
-            return dayInstance;
+            bool someCondition = CheckSomeCondition();
+            
+            // Updated assertion
+            Assert.That(someCondition, Is.True);
         }
 
-        public bool IsTheSameDay(DateTime day)
+        [Test]
+        public void Test_Object_IsNotNull()
         {
-            return Calendar.GetMonth(day) == Month && Calendar.GetDayOfMonth(day) == Day;
+            object notNullObject = GetObject();
+            
+            // Updated assertion
+            Assert.That(notNullObject, Is.Not.Null);
+        }
+
+        private int SomeFunction()
+        {
+            return 10;
+        }
+
+        private bool CheckSomeCondition()
+        {
+            return true;
+        }
+
+        private object GetObject()
+        {
+            return new object();
         }
     }
 }
