@@ -63,6 +63,54 @@ namespace DateTimeExtensions.Tests
         }
 
         [Test]
+        public void EasterAnzacClash()
+        {
+            var workingDayCultureInfo = new WorkingDayCultureInfo("en-NZ");
+
+            var holidays = workingDayCultureInfo.GetHolidaysOfYear(2010);
+            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday"));
+            Assert.IsTrue(holidays.Any(h => h.Name == "Anzac Day"));
+            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+
+            holidays = workingDayCultureInfo.GetHolidaysOfYear(2011);
+            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday"));
+            Assert.IsFalse(holidays.Any(h => h.Name == "Anzac Day"));
+            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+
+            holidays = workingDayCultureInfo.GetHolidaysOfYear(2012);
+            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday"));
+            Assert.IsTrue(holidays.Any(h => h.Name == "Anzac Day"));
+            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+
+            holidays = workingDayCultureInfo.GetHolidaysOfYear(2095);
+            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday"));
+            Assert.IsFalse(holidays.Any(h => h.Name == "Anzac Day"));
+            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+        }
+
+        [Test]
+        public void Matariki()
+        {
+            var workingDayCultureInfo = new WorkingDayCultureInfo("en-NZ");
+
+            var dateOnGregorian = new DateTime(2022, 6, 24);
+            TestHoliday(workingDayCultureInfo, dateOnGregorian);
+            dateOnGregorian = new DateTime(2023, 7, 14);
+            TestHoliday(workingDayCultureInfo, dateOnGregorian);
+            dateOnGregorian = new DateTime(2024, 6, 28);
+            TestHoliday(workingDayCultureInfo, dateOnGregorian);
+            dateOnGregorian = new DateTime(2025, 6, 20);
+            TestHoliday(workingDayCultureInfo, dateOnGregorian);
+            dateOnGregorian = new DateTime(2026, 7, 10);
+
+
+            var holidays = workingDayCultureInfo.GetHolidaysOfYear(2021);
+            Assert.IsFalse(holidays.Any(h => h.Name == "Matariki"));
+            holidays = workingDayCultureInfo.GetHolidaysOfYear(2022);
+            Assert.IsTrue(holidays.Any(h => h.Name == "Matariki"));
+        }
+
+        [Test]
         public void Christmas()
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo("en-NZ");
@@ -108,31 +156,7 @@ namespace DateTimeExtensions.Tests
             TestHoliday(workingDayCultureInfo, dateOnGregorian);
         }
 
-        [Test]
-        public void EasterAnzacClash()
-        {
-            var workingDayCultureInfo = new WorkingDayCultureInfo("en-NZ");
 
-            var holidays = workingDayCultureInfo.GetHolidaysOfYear(2010);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
-
-            holidays = workingDayCultureInfo.GetHolidaysOfYear(2011);
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
-
-            holidays = workingDayCultureInfo.GetHolidaysOfYear(2012);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
-
-            holidays = workingDayCultureInfo.GetHolidaysOfYear(2095);
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
-        }
 
 
         private void TestHoliday(IWorkingDayCultureInfo workingDayCultureInfo, DateTime dateOnGregorian)
