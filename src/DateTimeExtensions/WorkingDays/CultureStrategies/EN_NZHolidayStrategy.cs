@@ -36,7 +36,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
+                    // If the holiday already exists in the map, combine the two holidays.
+                    // This is apparent for Anzac Day/Easter Monday on 25 April 2011.
+                    if (holidayMap.TryGetValue(date.Value, out var existingHoliday))
+                    {
+                        var combinedHoliday = new FixedHoliday($"{existingHoliday.Name}/{innerHoliday.Name}", 
+                            date.Value.Month, date.Value.Day);
+                        holidayMap[date.Value] = combinedHoliday;
+                    }
+                    else
+                    {
+                        holidayMap.Add(date.Value, innerHoliday);
+                    }
 
                     // New Year, Day After New Year, Christmas and Boxing Days are 'Mondayised'
                     // ie if these dates fall on a weekday then they are observed on the actual day.
