@@ -38,7 +38,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 if (date.HasValue)
                 {
                     // If the holiday already exists in the map, combine the two holidays.
-                    // This is apparent for Anzac Day/Easter Monday on 25 April 2011.
+                    // This is apparent for Easter Monday/Anzac Day on 25 April 2011.
                     if (holidayMap.TryGetValue(date.Value, out var existingHoliday))
                     {
                         var combinedHoliday = new FixedHoliday($"{existingHoliday.Name}/{innerHoliday.Name}", 
