@@ -23,6 +23,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(AnzacDay);
             this.InnerHolidays.Add(QueensBirthday);
+            this.InnerHolidays.Add(Matariki);
             this.InnerHolidays.Add(LabourDay);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
@@ -36,7 +37,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
+                    // If the holiday already exists in the map, combine the two holidays.
+                    // This is apparent for Easter Monday/Anzac Day on 25 April 2011.
+                    if (holidayMap.TryGetValue(date.Value, out var existingHoliday))
+                    {
+                        var combinedHoliday = new FixedHoliday($"{existingHoliday.Name}/{innerHoliday.Name}", 
+                            date.Value.Month, date.Value.Day);
+                        holidayMap[date.Value] = combinedHoliday;
+                    }
+                    else
+                    {
+                        holidayMap.Add(date.Value, innerHoliday);
+                    }
 
                     // New Year, Day After New Year, Christmas and Boxing Days are 'Mondayised'
                     // ie if these dates fall on a weekday then they are observed on the actual day.
@@ -145,6 +157,42 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                         CountDirection.FromFirst);
                 }
                 return queensBirthday;
+            }
+        }
+
+        // Some Friday on June or July - Matariki
+        private static Holiday matariki;
+        private static Holiday Matariki
+        {
+            get
+            {
+                if (matariki == null)
+                {
+                    // Matariki doesn't have a readily-available algorithm and its dates have been calulated up to
+                    // 2052 by the Matariki Advisory Committee.
+                    // See https://www.mbie.govt.nz/assets/matariki-dates-2022-to-2052-matariki-advisory-group.pdf
+
+                    var knownMatarikiOccurences = new Dictionary<int, DayInYear>
+                    {
+                        {2022, new DayInYear(6, 24)},
+                        {2023, new DayInYear(7, 14)},
+                        {2024, new DayInYear(6, 28)},
+                        {2025, new DayInYear(6, 20)},
+                        {2026, new DayInYear(7, 10)},
+                        {2027, new DayInYear(6, 25)},
+                        {2028, new DayInYear(7, 14)},
+                        {2029, new DayInYear(7, 6)},
+                        {2030, new DayInYear(6, 21)},
+                        {2031, new DayInYear(7, 11)},
+                        {2032, new DayInYear(7, 2)},
+                        {2033, new DayInYear(6, 24)},
+                        {2034, new DayInYear(7, 7)},
+                        {2035, new DayInYear(6, 29)}
+                    };
+
+                    matariki = new YearMapHoliday("Matariki", knownMatarikiOccurences);
+                }
+                return matariki;
             }
         }
 
