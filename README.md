@@ -1,17 +1,20 @@
+<div align="center">
+
 # DateTimeExtensions
 
 ![DateTimeExtensions Logo](https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-200-logo.png)
 
 [![NuGet Version](http://img.shields.io/nuget/v/DateTimeExtensions.svg?style=flat)](https://www.nuget.org/packages/DateTimeExtensions/) 
 [![MyGet Pre Release](https://img.shields.io/myget/datetimeextensions/vpre/DateTimeExtensions.svg)](https://www.myget.org/feed/datetimeextensions/package/nuget/DateTimeExtensions)
-[![AppVeyor](https://img.shields.io/appveyor/ci/kappy/datetimeextensions.svg)](https://ci.appveyor.com/project/kappy/datetimeextensions)
 [![GitHub contributors](https://img.shields.io/github/contributors/joaomatossilva/datetimeextensions.svg)](https://github.com/joaomatossilva/DateTimeExtensions)
 
-## What is DateTimeExtensions?
+</div>
+
+## 📅 What is DateTimeExtensions?
 
 DateTimeExtensions is a powerful C# library that extends the functionality of `System.DateTime` and `System.DateTimeOffset`. It provides useful methods for working with dates and times, making your code more expressive and easier to read.
 
-## Key Features
+## ✨ Key Features
 
 1. **Working Days Calculations**: Easily add or subtract working days, considering regional holidays.
 2. **Holiday Support**: Includes holiday definitions for multiple cultures and regions.
@@ -20,15 +23,15 @@ DateTimeExtensions is a powerful C# library that extends the functionality of `S
 5. **Calendar Export**: Export holidays to common calendar formats.
 6. **SourceLink Support**: Enables debugging into the source code.
 
-## Installation
+## 📦 Installation
 
-Install DateTimeExtensions via NuGet:
+Install DateTimeExtensions via [NuGet](https://learn.microsoft.com/en-us/nuget/reference/nuget-exe-cli-reference?tabs=windows):
 
 ```
 Install-Package DateTimeExtensions
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 Here are some examples of what you can do with DateTimeExtensions:
 
@@ -48,7 +51,7 @@ string dateDiff = DateTime.Now.ToNaturalText(DateTime.Now.AddDays(45));
 bool isBetween = DateTime.Now.IsBetween(new Time("09:00"), new Time("17:00"));
 ```
 
-## Supported Cultures
+## 🌍 Supported Cultures
 
 DateTimeExtensions supports working day and holiday calculations for many cultures, including:
 
@@ -63,7 +66,7 @@ DateTimeExtensions supports working day and holiday calculations for many cultur
 
 Don't see your culture? Contributions are welcome!
 
-## Advanced Features
+## 🔧 Advanced Features
 
 ### Exporting Holidays
 
@@ -78,7 +81,7 @@ exporter.Export(new WorkingDayCultureInfo("en-US"), 2024, textWriter);
 
 Implement `IWorkingDayCultureInfo` to define custom working day rules for your specific needs.
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions! Here's how you can help:
 
@@ -90,15 +93,15 @@ We welcome contributions! Here's how you can help:
 
 To add new holiday definitions, please prefix culture-specific holidays with the country name (e.g., "USA_IndependenceDay").
 
-## Documentation
+## 📖 Documentation
 
 For more detailed information, visit our [official documentation](http://www.kspace.pt/DateTimeExtensions/).
 
-## License
+## 📃 License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.
+This project is licensed under the Apache License. See the [LICENSE](LICENSE.md) file for details.
 
-## Acknowledgements
+## ❤️ Acknowledgements
 
 - Logo design by @manuelbarbosa
 - Build script assistance by @matkoch using [Nuke](http://www.nuke.build/)
