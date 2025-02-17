@@ -40,6 +40,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
             this.InnerHolidays.Add(AnzacDay);
             this.InnerHolidays.Add(QueensBirthday);
+            this.InnerHolidays.Add(KingsBirthday);
             this.InnerHolidays.Add(LabourDay);
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
@@ -133,7 +134,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //2nd Monday in June - Queen's Birthday
+        //2nd Monday in June (2022 and earlier) - Queen's Birthday
         private static Holiday queensBirthday;
 
         public static Holiday QueensBirthday
@@ -144,8 +145,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 {
                     queensBirthday = new NthDayOfWeekInMonthHoliday("Queen's Birthday", 2, DayOfWeek.Monday, 6,
                         CountDirection.FromFirst);
+                    queensBirthday = new YearDependantHoliday(year => (year <= 2022), queensBirthday);
                 }
                 return queensBirthday;
+            }
+        }
+
+        //2nd Monday in June (2023 and later) - Kings's Birthday
+        private static Holiday kingsBirthday;
+
+        public static Holiday KingsBirthday
+        {
+            get
+            {
+                if (kingsBirthday == null)
+                {
+                    kingsBirthday = new NthDayOfWeekInMonthHoliday("King's Birthday", 2, DayOfWeek.Monday, 6,
+                        CountDirection.FromFirst);
+                    kingsBirthday = new YearDependantHoliday(year => (year >= 2023), kingsBirthday);
+                }
+                return kingsBirthday;
             }
         }
 
