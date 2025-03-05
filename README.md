@@ -93,6 +93,8 @@ We welcome contributions! Here's how you can help:
 
 To add new holiday definitions, please prefix culture-specific holidays with the country name (e.g., "USA_IndependenceDay").
 
+For more details, please refer to our [CONTRIBUTING.md](.github/CONTRIBUTING.md) file.
+
 ## 📖 Documentation
 
 For more detailed information, visit our [official documentation](http://www.kspace.pt/DateTimeExtensions/).
