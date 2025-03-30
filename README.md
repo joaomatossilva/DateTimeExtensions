@@ -110,3 +110,10 @@ This project is licensed under the Apache License. See the [LICENSE](LICENSE.md)
 ---
 
 DateTimeExtensions: Making date and time operations in C# simpler and more intuitive.
+
+<p align="center">
+  <img  src="https://raw.githubusercontent.com/Elanza-48/Elanza-48/main/resources/img/github-contribution-grid-snake.svg"
+    alt="example" />
+</p>
+
+
