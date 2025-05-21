@@ -1,0 +1,9 @@
+
+
+
+# FAKE - F# Make
+.fake/*.sln.iml
+
+# JetBrains Rider
+.idea/
+*.sln.iml

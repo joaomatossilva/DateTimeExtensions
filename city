@@ -1,0 +1,353 @@
+Python 3.13.3 [tags/v3.13.3:6280bb5, MSC v.1943 64 bit (AMD64)]
+Windows-10
+Module Index : Topics : Keywords
+    
+ 
+ 
+Index of Modules	 
+ 
+Built-in Modules
+      	 	
+_abc
+_ast
+_bisect
+_blake2
+_codecs
+_codecs_cn
+_codecs_hk
+_codecs_iso2022
+_codecs_jp
+_codecs_kr
+_codecs_tw
+_collections
+_contextvars
+_csv
+_datetime
+_functools
+_heapq
+_imp
+_interpchannels
+_interpqueues
+_interpreters
+_io
+_json
+_locale
+_lsprof
+_md5
+_multibytecodec
+_opcode
+_operator
+_pickle
+_random
+_sha1
+_sha2
+_sha3
+_signal
+_sre
+_stat
+_statistics
+_string
+_struct
+_suggestions
+_symtable
+_sysconfig
+_thread
+_tokenize
+_tracemalloc
+_typing
+_warnings
+_weakref
+_winapi
+array
+atexit
+binascii
+builtins
+cmath
+errno
+faulthandler
+gc
+itertools
+marshal
+math
+mmap
+msvcrt
+nt
+sys
+time
+winreg
+xxsubtype
+zlib
+
+ 
+C:\
+      	 	
+
+ 
+C:\python313.zip
+      	 	
+
+ 
+C:\DLLs
+      	 	
+_asyncio
+_asyncio_d
+_bz2
+_bz2_d
+_ctypes
+_ctypes_d
+_ctypes_test
+_ctypes_test_d
+_decimal
+_decimal_d
+_elementtree
+_elementtree_d
+_hashlib
+_hashlib_d
+_lzma
+_lzma_d
+_multiprocessing
+_multiprocessing_d
+_overlapped
+_overlapped_d
+_queue
+_queue_d
+_socket
+_socket_d
+_sqlite3
+_sqlite3_d
+_ssl
+_ssl_d
+_testbuffer
+_testbuffer_d
+_testcapi
+_testcapi_d
+_testclinic
+_testclinic_d
+_testclinic_limited
+_testclinic_limited_d
+_testconsole
+_testconsole_d
+_testimportmultiple
+_testimportmultiple_d
+_testinternalcapi
+_testinternalcapi_d
+_testlimitedcapi
+_testlimitedcapi_d
+_testmultiphase
+_testmultiphase_d
+_testsinglephase
+_testsinglephase_d
+_tkinter
+_tkinter_d
+_uuid
+_uuid_d
+_wmi
+_wmi_d
+_zoneinfo
+_zoneinfo_d
+pyexpat
+pyexpat_d
+select
+select_d
+unicodedata
+unicodedata_d
+winsound
+winsound_d
+
+ 
+C:\Lib
+      	 	
+__future__
+__hello__
+__phello__ (package)
+_aix_support
+_android_support
+_apple_support
+_collections_abc
+_colorize
+_compat_pickle
+_compression
+_ios_support
+_markupbase
+_opcode_metadata
+_osx_support
+_py_abc
+_pydatetime
+_pydecimal
+_pyio
+_pylong
+_pyrepl (package)
+_sitebuiltins
+_strptime
+_threading_local
+_weakrefset
+abc
+antigravity
+argparse
+ast
+asyncio (package)
+base64
+bdb
+bisect
+bz2
+cProfile
+calendar
+cmd
+code
+codecs
+codeop
+collections (package)
+colorsys
+compileall
+concurrent (package)
+configparser
+contextlib
+contextvars
+copy
+copyreg
+csv
+ctypes (package)
+curses (package)
+dataclasses
+datetime
+dbm (package)
+decimal
+difflib
+dis
+doctest
+email (package)
+encodings (package)
+ensurepip (package)
+enum
+filecmp
+fileinput
+fnmatch
+fractions
+ftplib
+functools
+genericpath
+getopt
+getpass
+gettext
+glob
+graphlib
+gzip
+hashlib
+heapq
+hmac
+html (package)
+http (package)
+idlelib (package)
+imaplib
+importlib (package)
+inspect
+io
+ipaddress
+json (package)
+keyword
+linecache
+locale
+logging (package)
+lzma
+mailbox
+mimetypes
+modulefinder
+multiprocessing (package)
+netrc
+ntpath
+nturl2path
+numbers
+opcode
+operator
+optparse
+os
+pathlib (package)
+pdb
+pickle
+pickletools
+pkgutil
+platform
+plistlib
+poplib
+posixpath
+pprint
+profile
+pstats
+pty
+py_compile
+pyclbr
+pydoc
+pydoc_data (package)
+queue
+quopri
+random
+re (package)
+reprlib
+rlcompleter
+runpy
+sched
+secrets
+selectors
+shelve
+shlex
+shutil
+signal
+site
+smtplib
+socket
+socketserver
+sqlite3 (package)
+sre_compile
+sre_constants
+sre_parse
+ssl
+stat
+statistics
+string
+stringprep
+struct
+subprocess
+symtable
+sysconfig (package)
+tabnanny
+tarfile
+tempfile
+test (package)
+textwrap
+this
+threading
+timeit
+tkinter (package)
+token
+tokenize
+tomllib (package)
+trace
+traceback
+tracemalloc
+tty
+turtle
+turtledemo (package)
+types
+typing
+unittest (package)
+urllib (package)
+uuid
+venv (package)
+warnings
+wave
+weakref
+webbrowser
+wsgiref (package)
+xml (package)
+xmlrpc (package)
+zipapp
+zipfile (package)
+zipimport
+zoneinfo (package)
+
+ 
+C:\
+      	 	
+
+ 
+C:\Lib\site-packages
