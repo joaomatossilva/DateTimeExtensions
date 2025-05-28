@@ -114,6 +114,33 @@ namespace DateTimeExtensions.TimeOfDay
                 return hoursDiff;
             }
 
+            public override bool Equals(object obj)
+{
+    if (!(obj is Time))
+        return false;
+
+    var other = (Time)obj;
+    return this.Hour == other.Hour &&
+           this.Minute == other.Minute &&
+           this.Second == other.Second;
+}
+
+public override int GetHashCode()
+{
+    return HashCode.Combine(hour, minute, second);
+}
+
+public static bool operator ==(Time left, Time right)
+{
+    return left.Equals(right);
+}
+
+public static bool operator !=(Time left, Time right)
+{
+    return !(left == right);
+}
+
+
             //Hours are the same, so compare minutes
             var minutesDiff = this.Minute.CompareTo(other.Minute);
             if (minutesDiff != 0)
