@@ -26,6 +26,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerHolidays.Add(ChristmasEveFrom2025);
         }
 
         private static Holiday may3rdConstitutionDay;
@@ -53,6 +54,19 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     nationalIndependenceDay = new FixedHoliday("National Independence Day", 11, 11);
                 }
                 return nationalIndependenceDay;
+            }
+        }
+
+        private static Holiday christmasEveFrom2025;
+        public static Holiday ChristmasEveFrom2025
+        {
+            get
+            {
+                if (christmasEveFrom2025 == null)
+                {
+                    christmasEveFrom2025 = new YearDependantHoliday(year => year >= 2025, new FixedHoliday("Christmas Eve", 12, 24));
+                }
+                return christmasEveFrom2025;
             }
         }
     }
