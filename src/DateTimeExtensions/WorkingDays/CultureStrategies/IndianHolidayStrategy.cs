@@ -48,7 +48,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(Lohri);
         }
 
-        // --- Global Holidays ---        private static Holiday newYear;
+        // --- Global Holidays ---        
+        private static Holiday newYear;
         public static Holiday NewYear => newYear ?? (newYear = new FixedHoliday("New Year", 1, 1, IndianCalendar));
 
         private static Holiday mayDay;
@@ -57,7 +58,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         private static Holiday christmas;
         public static Holiday Christmas => christmas ?? (christmas = new FixedHoliday("Christmas", 12, 25, IndianCalendar));
 
-        // --- National Days ---        private static Holiday republicDay;
+        // --- National Days ---        
+        private static Holiday republicDay;
         public static Holiday RepublicDay => republicDay ?? (republicDay = new FixedHoliday("Republic Day", 1, 26, IndianCalendar));
 
         private static Holiday independenceDay;
@@ -66,7 +68,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         private static Holiday gandhiJayanti;
         public static Holiday GandhiJayanti => gandhiJayanti ?? (gandhiJayanti = new FixedHoliday("Gandhi Jayanti", 10, 2, IndianCalendar));
 
-        // --- Religious & Regional ---        private static Holiday makarSankranti;
+        // --- Religious & Regional ---        
+        private static Holiday makarSankranti;
         public static Holiday MakarSankranti => makarSankranti ?? (makarSankranti = new FixedHoliday("Makar Sankranti", 1, 14, IndianCalendar));
 
         private static Holiday pongal;
@@ -79,7 +82,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public static Holiday Holi => holi ?? (holi = new FixedHoliday("Holi", 3, 25, IndianCalendar));
 
         private static Holiday goodFriday;
-        public static Holiday GoodFriday => goodFriday ?? (goodFriday = new FixedHoliday("Good Friday", 3, 29, IndianCalendar));        private static Holiday mahavirJayanti;
+        public static Holiday GoodFriday => goodFriday ?? (goodFriday = new FixedHoliday("Good Friday", 3, 29, IndianCalendar));        
+        
+        private static Holiday mahavirJayanti;
         public static Holiday MahavirJayanti => mahavirJayanti ?? (mahavirJayanti = new FixedHoliday("Mahavir Jayanti", 4, 21, IndianCalendar));
 
         private static Holiday eidUlFitr;
@@ -92,7 +97,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public static Holiday RakshaBandhan => rakshaBandhan ?? (rakshaBandhan = new FixedHoliday("Raksha Bandhan", 8, 19, IndianCalendar));
 
         private static Holiday janmashtami;
-        public static Holiday Janmashtami => janmashtami ?? (janmashtami = new FixedHoliday("Janmashtami", 8, 26, IndianCalendar));        private static Holiday ganeshChaturthi;
+        public static Holiday Janmashtami => janmashtami ?? (janmashtami = new FixedHoliday("Janmashtami", 8, 26, IndianCalendar));        
+        
+        private static Holiday ganeshChaturthi;
         public static Holiday GaneshChaturthi => ganeshChaturthi ?? (ganeshChaturthi = new FixedHoliday("Ganesh Chaturthi", 9, 7, IndianCalendar));
 
         private static Holiday onam;
