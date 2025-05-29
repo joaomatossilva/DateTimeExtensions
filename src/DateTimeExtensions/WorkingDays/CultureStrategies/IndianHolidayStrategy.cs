@@ -15,6 +15,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(IndependenceDay);
             this.InnerHolidays.Add(RepublicDay);
             this.InnerHolidays.Add(GandhiBirthAnniversary);
+            this.InnerHolidays.Add(TeachersDay);
 
         }
         private static Holiday independenceDay;
@@ -57,5 +58,10 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 return gandhiBirthAnniversary;
             }
         }
+
+
+        private static Holiday teachersDay;
+        public static Holiday TeachersDay =>
+            teachersDay ??= new FixedHoliday("Teacher's Day", 9, 5, IndianCalendar);
     }
 }
