@@ -1,7 +1,6 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+# This workflow will build a.NET project
 
-name: .NET
+name:.NET
 
 on:
   push:
@@ -14,6 +13,9 @@ jobs:
     permissions:
       contents: write
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '8.0.x', '7.0.x', '6.0.x' ]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,13 +25,21 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0
         with:
           versionSpec: '5.x'
-      - name: Setup .NET
+      - name: Setup.NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: ${{ matrix.dotnet-version }}
       - name: Determine Version
         id:   gitversion # id to later be referenced
         uses: gittools/actions/gitversion/execute@v0
+
+      - name: Cache NuGet dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.nuget/packages
+          key: nuget-packages
+          restore-keys: |
+            nuget-packages-${{ matrix.dotnet-version }}
 
       - name: Restore dependencies
         run: dotnet restore
@@ -41,14 +51,12 @@ jobs:
         run: dotnet test --no-build --configuration Release --verbosity normal
 
       - name: Publish Package to Nuget
-        if: github.event_name != 'pull_request'
+        if: github.event_name!= 'pull_request'
         run: |
-          rm -rf nuget/
-          dotnet pack --no-build --configuration Release --property:Version=${{ steps.gitversion.outputs.nuGetVersionV2 }} --output nuget
           dotnet nuget push nuget/*.nupkg -k '${{ secrets.NUGET_API_KEY }}' --skip-duplicate -s https://api.nuget.org/v3/index.json
 
       - name: Create Release
-        if: github.event_name != 'pull_request'
+        if: github.event_name!= 'pull_request'
         id: create_release
         uses: actions/create-release@latest
         env:
