@@ -26,44 +26,49 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays
 {
     /// <summary>
-    /// Base representation of an holiday instance
+    /// Representation of a named day instance
     /// </summary>
-    public abstract class Holiday
+    public class NamedDay
     {
         /// <summary>
-        /// Base Constructor for a new holiday instance
+        /// Constructs a new instance of the NamedDay class
         /// </summary>
-        /// <param name="name">name or resource key of the holiday</param>
-        protected Holiday(string name)
+        /// <param name="name">name or resource key of the day</param>
+        /// <param name="resolver">The day resolver to resolve the day in a given year</param>
+        public NamedDay(string name, IDayResolver resolver)
         {
-            this.Name = name;
+            this.name = name;
+            this.resolver = resolver;
         }
 
-        private string name;
+        private readonly string name;
+
+        private readonly IDayResolver resolver;
 
         public string Name
         {
             get { return ResourceManager.GetString(name) ?? name; }
-            private set { this.name = value; }
         }
 
-        public abstract DateTime? GetInstance(int year);
-        public abstract bool IsInstanceOf(DateTime date);
+        public IDayResolver Resolver
+        {
+            get { return resolver; }
+        }
+
+        public DateTime? GetInstance(int year) => resolver.GetInstance(year);
+
+        public bool IsInstanceOf(DateTime date) => resolver.IsInstanceOf(date);
 
 
         private static ResourceManager resourceManager =
-            new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof (Holiday).GetTypeInfo().Assembly);
+            new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof (NamedDay).GetTypeInfo().Assembly);
 
         public static ResourceManager ResourceManager
         {
             get { return resourceManager; }
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("value");
-                }
-                resourceManager = value;
+                resourceManager = value ?? throw new ArgumentNullException("value");
             }
         }
     }

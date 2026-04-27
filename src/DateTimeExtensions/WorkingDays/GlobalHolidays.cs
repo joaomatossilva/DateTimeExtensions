@@ -19,138 +19,136 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public static class GlobalHolidays
     {
-        private static Holiday internationalWorkersDay;
+        private static NamedDay internationalWorkersDay;
 
-        public static Holiday InternationalWorkersDay
+        public static NamedDay InternationalWorkersDay
         {
             get
             {
                 if (internationalWorkersDay == null)
                 {
-                    internationalWorkersDay = new FixedHoliday("InternationalWorkerDay", 5, 1);
+                    internationalWorkersDay = new NamedDay("InternationalWorkerDay", new FixedDayResolver(5, 1));
                 }
                 return internationalWorkersDay;
             }
         }
 
-        private static Holiday stPatricksDay;
+        private static NamedDay stPatricksDay;
 
-        public static Holiday StPatricsDay
+        public static NamedDay StPatricsDay
         {
             get
             {
                 if (stPatricksDay == null)
                 {
-                    stPatricksDay = new FixedHoliday("St. Patric's Day", 3, 17);
+                    stPatricksDay = new NamedDay("St. Patric's Day", new FixedDayResolver(3, 17));
                 }
                 return stPatricksDay;
             }
         }
 
-        private static Holiday veteransDay;
+        private static NamedDay veteransDay;
 
-        public static Holiday VeteransDay
+        public static NamedDay VeteransDay
         {
             get
             {
                 if (veteransDay == null)
                 {
-                    veteransDay = new FixedHoliday("Veterans Day", 11, 11);
+                    veteransDay = new NamedDay("Veterans Day", new FixedDayResolver(11, 11));
                 }
                 return veteransDay;
             }
         }
 
-        private static Holiday boxingDay;
+        private static NamedDay boxingDay;
 
-        public static Holiday BoxingDay
+        public static NamedDay BoxingDay
         {
             get
             {
                 if (boxingDay == null)
                 {
-                    boxingDay = new FixedHoliday("Boxing Day", 12, 26);
+                    boxingDay = new NamedDay("Boxing Day", new FixedDayResolver(12, 26));
                 }
                 return boxingDay;
             }
         }
 
-        private static Holiday mayDay;
+        private static NamedDay mayDay;
 
-        public static Holiday MayDay
+        public static NamedDay MayDay
         {
             get
             {
                 if (mayDay == null)
                 {
-                    mayDay = new FixedHoliday("MayDay", 5, 1);
+                    mayDay = new NamedDay("MayDay", new FixedDayResolver(5, 1));
                 }
                 return mayDay;
             }
         }
 
         //Midsummer Eve - Friday between 19 June and 25 June
-        private static Holiday midsummerEve;
+        private static NamedDay midsummerEve;
 
-        public static Holiday MidsummerEve
+        public static NamedDay MidsummerEve
         {
             get
             {
                 if (midsummerEve == null)
                 {
-                    midsummerEve = new NthDayOfWeekAfterDayHoliday("Midsummer Eve", 1, DayOfWeek.Friday, 6, 19);
+                    midsummerEve = new NamedDay("Midsummer Eve", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Friday, 6, 19));
                 }
                 return midsummerEve;
             }
         }
 
         //MidSummer Day - Saturday between 20 June and 26 June
-        private static Holiday midsummerDay;
+        private static NamedDay midsummerDay;
 
-        public static Holiday MidsummerDay
+        public static NamedDay MidsummerDay
         {
             get
             {
                 if (midsummerDay == null)
                 {
-                    midsummerDay = new NthDayOfWeekAfterDayHoliday("Midsummer Day", 1, DayOfWeek.Saturday, 6, 20);
+                    midsummerDay = new NamedDay("Midsummer Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Saturday, 6, 20));
                 }
                 return midsummerDay;
             }
         }
 
         //New Year's Eve - 31 December
-        private static Holiday newYearsEve;
+        private static NamedDay newYearsEve;
 
-        public static Holiday NewYearsEve
+        public static NamedDay NewYearsEve
         {
             get
             {
                 if (newYearsEve == null)
                 {
-                    newYearsEve = new FixedHoliday("New Year's Eve", 12, 31);
+                    newYearsEve = new NamedDay("New Year's Eve", new FixedDayResolver(12, 31));
                 }
                 return newYearsEve;
             }
         }
 
-        private static Holiday newYear;
+        private static NamedDay newYear;
 
-        public static Holiday NewYear
+        public static NamedDay NewYear
         {
             get
             {
                 if (newYear == null)
                 {
-                    newYear = new FixedHoliday("NewYear", 1, 1);
+                    newYear = new NamedDay("NewYear", new FixedDayResolver(1, 1));
                 }
                 return newYear;
             }

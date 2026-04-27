@@ -20,11 +20,8 @@
 
 using DateTimeExtensions.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
 {
     public enum CountDirection
     {
@@ -32,17 +29,18 @@ namespace DateTimeExtensions.WorkingDays
         FromLast
     };
 
-    public class NthDayOfWeekInMonthHoliday : Holiday
+    /// <summary>
+    /// Representation of a calendar day that is the nth occurrence of a given day of week in a given month.
+    /// </summary>
+    public class NthDayOfWeekInMonthDayResolver : IDayResolver
     {
-        private int count;
-        private DayOfWeek dayOfWeek;
-        private CountDirection direction;
-        private int month;
-        private ConcurrentLazyDictionary<int, DateTime> dayCache;
+        private readonly int count;
+        private readonly DayOfWeek dayOfWeek;
+        private readonly CountDirection direction;
+        private readonly int month;
+        private readonly ConcurrentLazyDictionary<int, DateTime> dayCache;
 
-        public NthDayOfWeekInMonthHoliday(string name, int count, DayOfWeek dayOfWeek, int month,
-            CountDirection direction)
-            : base(name)
+        public NthDayOfWeekInMonthDayResolver(int count, DayOfWeek dayOfWeek, int month, CountDirection direction)
         {
             this.count = count;
             this.dayOfWeek = dayOfWeek;
@@ -51,12 +49,12 @@ namespace DateTimeExtensions.WorkingDays
             dayCache = new ConcurrentLazyDictionary<int, DateTime>();
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return dayCache.GetOrAdd(year, () => CalculateDayInYear(year));
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var day = GetInstance(date.Year);
             return day.HasValue && date.Month == day.Value.Month && date.Day == day.Value.Day;

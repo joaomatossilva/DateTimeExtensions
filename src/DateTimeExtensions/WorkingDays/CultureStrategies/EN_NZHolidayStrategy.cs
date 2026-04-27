@@ -30,9 +30,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -42,8 +42,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     // This is apparent for Easter Monday/Anzac Day on 25 April 2011.
                     if (holidayMap.TryGetValue(date.Value, out var existingHoliday))
                     {
-                        var combinedHoliday = new FixedHoliday($"{existingHoliday.Name}/{innerHoliday.Name}", 
-                            date.Value.Month, date.Value.Day);
+                        var combinedHoliday = new NamedDay($"{existingHoliday.Name}/{innerHoliday.Name}", new FixedDayResolver(date.Value.Month, date.Value.Day));
                         holidayMap[date.Value] = combinedHoliday;
                     }
                     else
@@ -57,8 +56,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
                     if (IsMondayised(innerHoliday, date.Value.DayOfWeek))
                     {
-                        var observation = new NthDayOfWeekAfterDayHoliday(innerHoliday.Name + " Observed", 1,
-                            DayOfWeek.Monday, innerHoliday);
+                        var observation = new NamedDay(
+                            innerHoliday.Name + " Observed",
+                            new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, innerHoliday.Resolver));
                         var observedIntance = observation.GetInstance(year);
                         if (observedIntance != null)
                         {
@@ -67,8 +67,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     }
                     if (IsTuesdayised(innerHoliday, date.Value.DayOfWeek))
                     {
-                        var observation = new NthDayOfWeekAfterDayHoliday(innerHoliday.Name + " Observed", 1,
-                            DayOfWeek.Tuesday, innerHoliday);
+                        var observation = new NamedDay(
+                            innerHoliday.Name + " Observed",
+                            new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Tuesday, innerHoliday.Resolver));
                         var observedIntance = observation.GetInstance(year);
                         if (observedIntance != null)
                         {
@@ -81,7 +82,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
 
-        private static bool IsMondayised(Holiday holiday, DayOfWeek occurenceDay)
+        private static bool IsMondayised(NamedDay holiday, DayOfWeek occurenceDay)
         {
             return
                 (holiday.Equals(GlobalHolidays.NewYear) && occurenceDay == DayOfWeek.Saturday) ||
@@ -90,7 +91,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 (holiday.Equals(GlobalHolidays.BoxingDay) && occurenceDay == DayOfWeek.Saturday);
         }
 
-        private static bool IsTuesdayised(Holiday holiday, DayOfWeek occurenceDay)
+        private static bool IsTuesdayised(NamedDay holiday, DayOfWeek occurenceDay)
         {
             return
                 (holiday.Equals(GlobalHolidays.NewYear) && occurenceDay == DayOfWeek.Sunday) ||
@@ -101,87 +102,91 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
 
         // 2nd Janurary - Day after New Year's Day
-        private static Holiday dayAfterNewYear;
+        private static NamedDay dayAfterNewYear;
 
-        public static Holiday DayAfterNewYear
+        public static NamedDay DayAfterNewYear
         {
             get
             {
                 if (dayAfterNewYear == null)
                 {
-                    dayAfterNewYear = new FixedHoliday("Day after New Year's Day", 1, 2);
+                    dayAfterNewYear = new NamedDay("Day after New Year's Day", new FixedDayResolver(1, 2));
                 }
                 return dayAfterNewYear;
             }
         }
 
         // 6th Feburary - Waitangi Day
-        private static Holiday waitangiDay;
+        private static NamedDay waitangiDay;
 
-        public static Holiday WaitangiDay
+        public static NamedDay WaitangiDay
         {
             get
             {
                 if (waitangiDay == null)
                 {
-                    waitangiDay = new FixedHoliday("Waitangi Day", 2, 6);
+                    waitangiDay = new NamedDay("Waitangi Day", new FixedDayResolver(2, 6));
                 }
                 return waitangiDay;
             }
         }
 
         // 25th April - Anzac Day
-        private static Holiday anzacDay;
+        private static NamedDay anzacDay;
 
-        public static Holiday AnzacDay
+        public static NamedDay AnzacDay
         {
             get
             {
                 if (anzacDay == null)
                 {
-                    anzacDay = new FixedHoliday("Anzac Day", 4, 25);
+                    anzacDay = new NamedDay("Anzac Day", new FixedDayResolver(4, 25));
                 }
                 return anzacDay;
             }
         }
 
         // 1st Monday in June (2022 and earlier) - Queen's Birthday
-        private static Holiday queensBirthday;
+        private static NamedDay queensBirthday;
 
-        public static Holiday QueensBirthday
+        public static NamedDay QueensBirthday
         {
             get
             {
                 if (queensBirthday == null)
                 {
-                    queensBirthday = new NthDayOfWeekInMonthHoliday("Queen's Birthday", 1, DayOfWeek.Monday, 6,
-                        CountDirection.FromFirst);
-                    queensBirthday = new YearDependantHoliday(year => (year <= 2022), queensBirthday);
+                    queensBirthday = new NamedDay(
+                        "Queen's Birthday",
+                        new YearDependantDayResolver(
+                            year => year <= 2022,
+                            new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 6, CountDirection.FromFirst)));
                 }
                 return queensBirthday;
             }
         }
 
         // 1st Monday in June (2023 and later) - King's Birthday
-        private static Holiday kingsBirthday;
+        private static NamedDay kingsBirthday;
 
-        public static Holiday KingsBirthday
+        public static NamedDay KingsBirthday
         {
             get
             {
                 if (kingsBirthday == null)
                 {
-                    kingsBirthday = new NthDayOfWeekInMonthHoliday("King's Birthday", 1, DayOfWeek.Monday, 6,
-                        CountDirection.FromFirst);
-                    kingsBirthday = new YearDependantHoliday(year => (year >= 2023), kingsBirthday);
+                    kingsBirthday = new NamedDay(
+                        "King's Birthday",
+                        new YearDependantDayResolver(
+                            year => year >= 2023,
+                            new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 6, CountDirection.FromFirst)));
                 }
                 return kingsBirthday;
             }
         }
 
         // Some Friday on June or July - Matariki
-        private static Holiday matariki;
-        private static Holiday Matariki
+        private static NamedDay matariki;
+        private static NamedDay Matariki
         {
             get
             {
@@ -209,23 +214,22 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                         {2035, new DayInYear(6, 29)}
                     };
 
-                    matariki = new YearMapHoliday("Matariki", knownMatarikiOccurences);
+                    matariki = new YearMapNamedDay("Matariki", knownMatarikiOccurences);
                 }
                 return matariki;
             }
         }
 
         // 4th Monday in October - Labour Day
-        private static Holiday labourDay;
+        private static NamedDay labourDay;
 
-        public static Holiday LabourDay
+        public static NamedDay LabourDay
         {
             get
             {
                 if (labourDay == null)
                 {
-                    labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 4, DayOfWeek.Monday, 10,
-                        CountDirection.FromFirst);
+                    labourDay = new NamedDay("Labour Day", new NthDayOfWeekInMonthDayResolver(4, DayOfWeek.Monday, 10, CountDirection.FromFirst));
                 }
                 return labourDay;
             }

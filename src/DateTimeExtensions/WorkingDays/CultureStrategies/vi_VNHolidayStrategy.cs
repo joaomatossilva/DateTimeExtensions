@@ -34,66 +34,66 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(NewYear);
         }
 
-        private static Holiday hungKingsCommemorations;
-        public static Holiday HungKingsCommemorations
+        private static NamedDay hungKingsCommemorations;
+        public static NamedDay HungKingsCommemorations
         {
             get
             {
                 if (hungKingsCommemorations == null)
                 {
-                    hungKingsCommemorations = new FixedHoliday("HungKingsCommemorations", 3, 10);
+                    hungKingsCommemorations = new NamedDay("HungKingsCommemorations", new FixedDayResolver(3, 10));
                 }
                 return hungKingsCommemorations;
             }
         }
 
-        private static Holiday liberationDay;
-        public static Holiday LiberationDay
+        private static NamedDay liberationDay;
+        public static NamedDay LiberationDay
         {
             get
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new FixedHoliday("LiberationDay", 4, 30);
+                    liberationDay = new NamedDay("LiberationDay", new FixedDayResolver(4, 30));
                 }
                 return liberationDay;
             }
         }
 
-        private static Holiday internationalWorkersDay;
-        public static Holiday InternationalWorkersDay
+        private static NamedDay internationalWorkersDay;
+        public static NamedDay InternationalWorkersDay
         {
             get
             {
                 if (internationalWorkersDay == null)
                 {
-                    internationalWorkersDay = new FixedHoliday("InternationalWorkersDay", 5, 1);
+                    internationalWorkersDay = new NamedDay("InternationalWorkersDay", new FixedDayResolver(5, 1));
                 }
                 return internationalWorkersDay;
             }
         }
 
-        private static Holiday nationalDay;
-        public static Holiday NationalDay
+        private static NamedDay nationalDay;
+        public static NamedDay NationalDay
         {
             get
             {
                 if (nationalDay == null)
                 {
-                    nationalDay = new FixedHoliday("NationalDay", 9, 2);
+                    nationalDay = new NamedDay("NationalDay", new FixedDayResolver(9, 2));
                 }
                 return nationalDay;
             }
         }
 
-        private static Holiday newYear;
-        public static Holiday NewYear
+        private static NamedDay newYear;
+        public static NamedDay NewYear
         {
             get
             {
                 if (newYear==null)
                 {
-                    newYear = new FixedHoliday("NewYear", 1, 1);
+                    newYear = new NamedDay("NewYear", new FixedDayResolver(1, 1));
                 }
                 return newYear;
             }

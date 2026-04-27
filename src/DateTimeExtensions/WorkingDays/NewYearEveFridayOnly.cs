@@ -1,21 +1,16 @@
-﻿using System;
+using System;
+using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 
 namespace DateTimeExtensions.WorkingDays
 {
-    public class NewYearEveFridayOnly : FixedHoliday
+    public class NewYearEveFridayOnly : NamedDay
     {
-        public NewYearEveFridayOnly() : base(GlobalHolidays.NewYearsEve.Name, 12, 31)
+        public NewYearEveFridayOnly()
+            : base(GlobalHolidays.NewYearsEve.Name,
+                new YearDependantDayResolver(
+                    year => new DateTime(year, 12, 31).DayOfWeek == DayOfWeek.Friday,
+                    new FixedDayResolver(12, 31)))
         {
-        }
-
-        public override DateTime? GetInstance(int year)
-        {
-            DateTime? date = base.GetInstance(year);
-            if (date.HasValue && date.Value.DayOfWeek == DayOfWeek.Friday)
-            {
-                return date;
-            }
-            return null;
         }
     }
 }

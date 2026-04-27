@@ -21,6 +21,7 @@
 using System;
 using System.Collections.Generic;
 using DateTimeExtensions.Common;
+using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -46,9 +47,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -58,14 +59,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 }
             }
 
-            var existingHolidayMap = new Dictionary<DateTime, Holiday>(holidayMap);
+            var existingHolidayMap = new Dictionary<DateTime, NamedDay>(holidayMap);
             foreach (var existingHoliday in existingHolidayMap)
             {
                 var date = existingHoliday.Key;
                 var innerHoliday = existingHoliday.Value;
 
                 // don't move the holiday if it is easter based since it's already observated
-                if (innerHoliday.GetType() != typeof(EasterBasedHoliday) && innerHoliday != AnzacDay)
+                if (!(innerHoliday.Resolver is EasterBasedDayResolver) && innerHoliday != AnzacDay)
                 {
                     if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     {
@@ -77,7 +78,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, Holiday> holidayMap, DateTime date, Holiday holiday)
+        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, NamedDay> holidayMap, DateTime date, NamedDay holiday)
         {
             if (!holidayMap.ContainsKey(date) && date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
             {
@@ -89,96 +90,99 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        //Last Monday in May - Spring Bank Holiday
-        private static Holiday australiaDay;
+        //Last Monday in May - Spring Bank NamedDay
+        private static NamedDay australiaDay;
 
-        public static Holiday AustraliaDay
+        public static NamedDay AustraliaDay
         {
             get
             {
                 if (australiaDay == null)
                 {
-                    australiaDay = new FixedHoliday("Australia Day", 1, 26);
+                    australiaDay = new NamedDay("Australia Day", new FixedDayResolver(1, 26));
                 }
                 return australiaDay;
             }
         }
 
-        //1st Monday in May	- May Day Bank Holiday (not an national holiday, but observed on some regions)
-        private static Holiday mayDay;
+        //1st Monday in May	- May Day Bank NamedDay (not an national holiday, but observed on some regions)
+        private static NamedDay mayDay;
 
-        public static Holiday MayDay
+        public static NamedDay MayDay
         {
             get
             {
                 if (mayDay == null)
                 {
-                    mayDay = new NthDayOfWeekInMonthHoliday("May Day", 1, DayOfWeek.Monday, 5, CountDirection.FromFirst);
+                    mayDay = new NamedDay("May Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 5, CountDirection.FromFirst));
                 }
                 return mayDay;
             }
         }
 
         //25th April - Anzac Day
-        private static Holiday anzacDay;
+        private static NamedDay anzacDay;
 
-        public static Holiday AnzacDay
+        public static NamedDay AnzacDay
         {
             get
             {
                 if (anzacDay == null)
                 {
-                    anzacDay = new FixedHoliday("Anzac Day", 4, 25);
+                    anzacDay = new NamedDay("Anzac Day", new FixedDayResolver(4, 25));
                 }
                 return anzacDay;
             }
         }
 
         //2nd Monday in June (2022 and earlier) - Queen's Birthday
-        private static Holiday queensBirthday;
+        private static NamedDay queensBirthday;
 
-        public static Holiday QueensBirthday
+        public static NamedDay QueensBirthday
         {
             get
             {
                 if (queensBirthday == null)
                 {
-                    queensBirthday = new NthDayOfWeekInMonthHoliday("Queen's Birthday", 2, DayOfWeek.Monday, 6,
-                        CountDirection.FromFirst);
-                    queensBirthday = new YearDependantHoliday(year => (year <= 2022), queensBirthday);
+                    queensBirthday = new NamedDay(
+                        "Queen's Birthday",
+                        new YearDependantDayResolver(
+                            year => year <= 2022,
+                            new NthDayOfWeekInMonthDayResolver(2, DayOfWeek.Monday, 6, CountDirection.FromFirst)));
                 }
                 return queensBirthday;
             }
         }
 
         //2nd Monday in June (2023 and later) - Kings's Birthday
-        private static Holiday kingsBirthday;
+        private static NamedDay kingsBirthday;
 
-        public static Holiday KingsBirthday
+        public static NamedDay KingsBirthday
         {
             get
             {
                 if (kingsBirthday == null)
                 {
-                    kingsBirthday = new NthDayOfWeekInMonthHoliday("King's Birthday", 2, DayOfWeek.Monday, 6,
-                        CountDirection.FromFirst);
-                    kingsBirthday = new YearDependantHoliday(year => (year >= 2023), kingsBirthday);
+                    kingsBirthday = new NamedDay(
+                        "King's Birthday",
+                        new YearDependantDayResolver(
+                            year => year >= 2023,
+                            new NthDayOfWeekInMonthDayResolver(2, DayOfWeek.Monday, 6, CountDirection.FromFirst)));
                 }
                 return kingsBirthday;
             }
         }
 
         //1nd Monday in October - Labour Day
-        private static Holiday labourDay;
+        private static NamedDay labourDay;
 
-        public static Holiday LabourDay
+        public static NamedDay LabourDay
         {
             get
             {
                 if (labourDay == null)
                 {
-                    labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 10,
-                        CountDirection.FromFirst);
+                    labourDay = new NamedDay("Labour Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 10, CountDirection.FromFirst));
                 }
                 return labourDay;
             }

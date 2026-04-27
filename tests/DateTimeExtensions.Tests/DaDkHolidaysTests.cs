@@ -2,6 +2,7 @@
 using System.Linq;
 using DateTimeExtensions.WorkingDays;
 using DateTimeExtensions.WorkingDays.CultureStrategies;
+using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 using NUnit.Framework;
 
 namespace DateTimeExtensions.Tests
@@ -30,7 +31,7 @@ namespace DateTimeExtensions.Tests
         {
             var dateTimeCulture = new WorkingDayCultureInfo("da-DK");
             var storeBedeDag =
-                new NthDayOfWeekAfterDayHoliday("General Prayer Day", 4, DayOfWeek.Friday, ChristianHolidays.Easter)
+                new NamedDay("General Prayer Day", new NthDayOfWeekAfterDayResolver(4, DayOfWeek.Friday, ChristianHolidays.Easter.Resolver))
                     .GetInstance(2023);
 
             Assert.IsNotNull(storeBedeDag);
@@ -42,7 +43,7 @@ namespace DateTimeExtensions.Tests
         {
             var dateTimeCulture = new WorkingDayCultureInfo("da-DK");
             var storeBedeDag =
-                new NthDayOfWeekAfterDayHoliday("General Prayer Day", 4, DayOfWeek.Friday, ChristianHolidays.Easter)
+                new NamedDay("General Prayer Day", new NthDayOfWeekAfterDayResolver(4, DayOfWeek.Friday, ChristianHolidays.Easter.Resolver))
                     .GetInstance(2024);
 
             Assert.IsNotNull(storeBedeDag);

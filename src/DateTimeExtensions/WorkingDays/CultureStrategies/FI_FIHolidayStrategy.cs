@@ -48,15 +48,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
         }
 
-        private static Holiday independanceDay;
+        private static NamedDay independanceDay;
 
-        public static Holiday IndependanceDay
+        public static NamedDay IndependanceDay
         {
             get
             {
                 if (independanceDay == null)
                 {
-                    independanceDay = new FixedHoliday("Independance Day", 12, 6);
+                    independanceDay = new NamedDay("Independance Day", new FixedDayResolver(12, 6));
                 }
                 return independanceDay;
             }
@@ -64,15 +64,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         //All Saints' Day - Saturday between 31 October and 6 November
         // - Same as ChristianHolidays.AllSaints but has diferent ocurrence
-        private static Holiday allSaintsDay;
+        private static NamedDay allSaintsDay;
 
-        public static Holiday AllSaintsDay
+        public static NamedDay AllSaintsDay
         {
             get
             {
                 if (allSaintsDay == null)
                 {
-                    allSaintsDay = new NthDayOfWeekAfterDayHoliday("All Saint's Day", 1, DayOfWeek.Saturday, 10, 31);
+                    allSaintsDay = new NamedDay("All Saint's Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Saturday, 10, 31));
                 }
                 return allSaintsDay;
             }

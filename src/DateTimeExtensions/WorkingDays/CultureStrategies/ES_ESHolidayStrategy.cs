@@ -44,9 +44,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ConstitutionDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -63,29 +63,29 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private static Holiday nationalDay;
+        private static NamedDay nationalDay;
 
-        public static Holiday NationalDay
+        public static NamedDay NationalDay
         {
             get
             {
                 if (nationalDay == null)
                 {
-                    nationalDay = new FixedHoliday("Espanha_NationalDay", 10, 12);
+                    nationalDay = new NamedDay("Espanha_NationalDay", new FixedDayResolver(10, 12));
                 }
                 return nationalDay;
             }
         }
 
-        private static Holiday constitutionDay;
+        private static NamedDay constitutionDay;
 
-        public static Holiday ConstitutionDay
+        public static NamedDay ConstitutionDay
         {
             get
             {
                 if (constitutionDay == null)
                 {
-                    constitutionDay = new FixedHoliday("Espanha_ConstitutionDay", 12, 6);
+                    constitutionDay = new NamedDay("Espanha_ConstitutionDay", new FixedDayResolver(12, 6));
                 }
                 return constitutionDay;
             }

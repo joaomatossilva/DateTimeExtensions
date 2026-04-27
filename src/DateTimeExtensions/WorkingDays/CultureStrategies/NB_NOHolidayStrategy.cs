@@ -45,15 +45,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
         }
 
-        private static Holiday constituionDay;
+        private static NamedDay constituionDay;
 
-        public static Holiday ConstitutionDay
+        public static NamedDay ConstitutionDay
         {
             get
             {
                 if (constituionDay == null)
                 {
-                    constituionDay = new FixedHoliday("Constitution Day", 5, 17);
+                    constituionDay = new NamedDay("Constitution Day", new FixedDayResolver(5, 17));
                 }
                 return constituionDay;
             }

@@ -45,9 +45,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(Juneteenth);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -72,45 +72,48 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
         
         //Juneteenth - new as of 2021
-        private static Holiday juneteenth;
+        private static NamedDay juneteenth;
         
-        public static Holiday Juneteenth
+        public static NamedDay Juneteenth
         {
             get
             {
                 if (juneteenth == null)
                 {
-                    juneteenth = new YearDependantHoliday(year => year >= 2021, new FixedHoliday("Juneteenth", 6, 19));
+                    juneteenth = new NamedDay(
+                        "Juneteenth",
+                        new YearDependantDayResolver(year => year >= 2021, new FixedDayResolver(6, 19)));
                 }
                 return juneteenth;
             }
         }
         
-        private static Holiday independenceDay;
+        private static NamedDay independenceDay;
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("Independence Day", 7, 4);
+                    independenceDay = new NamedDay("Independence Day", new FixedDayResolver(7, 4));
                 }
                 return independenceDay;
             }
         }
 
         //Third Monday in January - Birthday of Martin Luther King, Jr.
-        private static Holiday martinLutherKing;
+        private static NamedDay martinLutherKing;
 
-        public static Holiday MartinLutherKing
+        public static NamedDay MartinLutherKing
         {
             get
             {
                 if (martinLutherKing == null)
                 {
-                    martinLutherKing = new NthDayOfWeekInMonthHoliday("Birthday of Martin Luther King, Jr.", 3,
-                        DayOfWeek.Monday, 1, CountDirection.FromFirst);
+                    martinLutherKing = new NamedDay(
+                        "Birthday of Martin Luther King, Jr.",
+                        new NthDayOfWeekInMonthDayResolver(3, DayOfWeek.Monday, 1, CountDirection.FromFirst));
                 }
                 return martinLutherKing;
             }
@@ -120,88 +123,83 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         //First January 20th following a Presidential election
 
         //Third Monday in February - Washington's Birthday
-        private static Holiday washingtonsBirthday;
+        private static NamedDay washingtonsBirthday;
 
-        public static Holiday WashingtonsBirthday
+        public static NamedDay WashingtonsBirthday
         {
             get
             {
                 if (washingtonsBirthday == null)
                 {
-                    washingtonsBirthday = new NthDayOfWeekInMonthHoliday("Washington's Birthday", 3, DayOfWeek.Monday, 2,
-                        CountDirection.FromFirst);
+                    washingtonsBirthday = new NamedDay("Washington's Birthday", new NthDayOfWeekInMonthDayResolver(3, DayOfWeek.Monday, 2, CountDirection.FromFirst));
                 }
                 return washingtonsBirthday;
             }
         }
 
         //Last Monday in May - Memorial Day
-        private static Holiday memorialDay;
+        private static NamedDay memorialDay;
 
-        public static Holiday MemorialDay
+        public static NamedDay MemorialDay
         {
             get
             {
                 if (memorialDay == null)
                 {
-                    memorialDay = new NthDayOfWeekInMonthHoliday("Memorial Day", 1, DayOfWeek.Monday, 5,
-                        CountDirection.FromLast);
+                    memorialDay = new NamedDay("Memorial Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 5, CountDirection.FromLast));
                 }
                 return memorialDay;
             }
         }
 
         //Third Monday in February - Washington's Birthday
-        private static Holiday laborDay;
+        private static NamedDay laborDay;
 
-        public static Holiday LaborDay
+        public static NamedDay LaborDay
         {
             get
             {
                 if (laborDay == null)
                 {
-                    laborDay = new NthDayOfWeekInMonthHoliday("Labor Day", 1, DayOfWeek.Monday, 9,
-                        CountDirection.FromFirst);
+                    laborDay = new NamedDay("Labor Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 9, CountDirection.FromFirst));
                 }
                 return laborDay;
             }
         }
 
         //Second Monday in October - Columbus Day
-        private static Holiday columbusDay;
+        private static NamedDay columbusDay;
 
-        public static Holiday ColumbusDay
+        public static NamedDay ColumbusDay
         {
             get
             {
                 if (columbusDay == null)
                 {
-                    columbusDay = new NthDayOfWeekInMonthHoliday("Columbus Day", 2, DayOfWeek.Monday, 10,
-                        CountDirection.FromFirst);
+                    columbusDay = new NamedDay("Columbus Day", new NthDayOfWeekInMonthDayResolver(2, DayOfWeek.Monday, 10, CountDirection.FromFirst));
                 }
                 return columbusDay;
             }
         }
 
         //Fourth Thursday in November - Thanksgiving Day
-        private static Holiday thanksgivingDay;
+        private static NamedDay thanksgivingDay;
 
-        public static Holiday ThanksgivingDay
+        public static NamedDay ThanksgivingDay
         {
             get
             {
                 if (thanksgivingDay == null)
                 {
-                    thanksgivingDay = new NthDayOfWeekInMonthHoliday("Thanksgiving Day", 4, DayOfWeek.Thursday, 11,
-                        CountDirection.FromFirst);
+                    thanksgivingDay = new NamedDay("Thanksgiving Day", new NthDayOfWeekInMonthDayResolver(4, DayOfWeek.Thursday, 11, CountDirection.FromFirst));
                 }
                 return thanksgivingDay;
             }
         }
 
-        private static Holiday newYearsEve;
+        private static NamedDay newYearsEve;
 
-        public static Holiday NewYearsEve
+        public static NamedDay NewYearsEve
         {
             get
             {

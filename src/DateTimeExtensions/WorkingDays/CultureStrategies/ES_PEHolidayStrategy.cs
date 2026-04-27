@@ -26,7 +26,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     [Locale("es-PE")]
     public class ES_PEHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
     {
-        private readonly static IEnumerable<Holiday> fixedHolidays = new Holiday[]
+        private readonly static IEnumerable<NamedDay> fixedHolidays = new NamedDay[]
         {
             GlobalHolidays.NewYear,
             GlobalHolidays.InternationalWorkersDay,
@@ -54,83 +54,83 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        private static Holiday flagDay;
+        private static NamedDay flagDay;
 
-        public static Holiday FlagDay
+        public static NamedDay FlagDay
         {
             get
             {
                 if(flagDay == null) 
                 {
-                    flagDay = new FixedHoliday("The Flag Day", 6, 7);
+                    flagDay = new NamedDay("The Flag Day", new FixedDayResolver(6, 7));
                 }
                 return flagDay;
             }
         }
-        private static Holiday farmersDay;
+        private static NamedDay farmersDay;
         
-        public static Holiday FarmersDay
+        public static NamedDay FarmersDay
         {
             get
             {
                 if(farmersDay == null)
                 {
-                    farmersDay = new FixedHoliday("The farmers day", 6, 14);
+                    farmersDay = new NamedDay("The farmers day", new FixedDayResolver(6, 14));
                 }
                 return farmersDay;
             }
         }
 
-        private static Holiday independenceDay;
+        private static NamedDay independenceDay;
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if(independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("Independece Day", 7, 28);
+                    independenceDay = new NamedDay("Independece Day", new FixedDayResolver(7, 28));
                 }
                 return independenceDay;
             }
         }
 
-        private static Holiday battleofAngamos;
+        private static NamedDay battleofAngamos;
 
-        public static Holiday BattleofAngamos
+        public static NamedDay BattleofAngamos
         {
             get
             {
                 if(battleofAngamos == null)
                 {
-                    battleofAngamos = new FixedHoliday("The Battle of Angamos", 10, 8);
+                    battleofAngamos = new NamedDay("The Battle of Angamos", new FixedDayResolver(10, 8));
                 }
                 return battleofAngamos;
             }
         }
 
-        private static Holiday nationalDignityDay;
+        private static NamedDay nationalDignityDay;
 
-        public static Holiday NationalDignityDay
+        public static NamedDay NationalDignityDay
         {
             get
             {
                 if(nationalDignityDay == null)
                 {
-                    nationalDignityDay = new FixedHoliday("The National Dignity Day", 10, 9);
+                    nationalDignityDay = new NamedDay("The National Dignity Day", new FixedDayResolver(10, 9));
                 }
                 return nationalDignityDay;
             }
         }
 
-        private static Holiday battleOfAyacucho;
-        public static Holiday BattleOfAyacucho
+        private static NamedDay battleOfAyacucho;
+        public static NamedDay BattleOfAyacucho
         {
             get
             {
                 if(battleOfAyacucho == null)
                 {
-                    battleOfAyacucho = new FixedHoliday("The Battle of Ayacucho", 12, 9);
+                    battleOfAyacucho = new NamedDay("The Battle of Ayacucho", new FixedDayResolver(12, 9));
                 }
                 return battleOfAyacucho;
             }

@@ -23,15 +23,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
         }
 
-        private static Holiday austrianNationalHoliday;
+        private static NamedDay austrianNationalHoliday;
 
-        public static Holiday AustrianNationalHoliday
+        public static NamedDay AustrianNationalHoliday
         {
             get
             {
                 if (austrianNationalHoliday == null)
                 {
-                    austrianNationalHoliday = new FixedHoliday("Austrian National Holiday", 10, 26);
+                    austrianNationalHoliday = new NamedDay("Austrian National NamedDay", new FixedDayResolver(10, 26));
                 }
                 return austrianNationalHoliday;
             }

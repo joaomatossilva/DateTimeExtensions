@@ -19,31 +19,31 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
 {
-    public class YearDependantHoliday : Holiday
+    /// <summary>
+    /// Representation of a calendar day that depends on the year. The actual day is determined by an inner day resolver, but only if a given condition on the year is verified.
+    /// </summary>
+    public class YearDependantDayResolver : IDayResolver
     {
         private readonly Func<int, bool> yearCondition;
-        private readonly Holiday baseHoliday;
+        private readonly IDayResolver innerDayResolver;
 
-        public YearDependantHoliday(Func<int, bool> yearCondition, Holiday baseHoliday) : base(baseHoliday.Name)
+        public YearDependantDayResolver(Func<int, bool> yearCondition, IDayResolver innerDayResolver)
         {
             this.yearCondition = yearCondition;
-            this.baseHoliday = baseHoliday;
+            this.innerDayResolver = innerDayResolver;
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
-            return this.yearCondition(year) ? this.baseHoliday.GetInstance(year) : null;
+            return this.yearCondition(year) ? this.innerDayResolver.GetInstance(year) : null;
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
-            return this.yearCondition(date.Year) && this.baseHoliday.IsInstanceOf(date);
+            return this.yearCondition(date.Year) && this.innerDayResolver.IsInstanceOf(date);
         }
     }
 }

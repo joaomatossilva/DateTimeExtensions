@@ -72,7 +72,7 @@ namespace DateTimeExtensions.Tests
             Assert.NotNull(s);
         }
 
-        private void TestHoliday(Holiday holiday, DateTime dateOnGregorian)
+        private void TestHoliday(NamedDay holiday, DateTime dateOnGregorian)
         {
             var holidayInstance = holiday.GetInstance(dateOnGregorian.Year);
             Assert.True(holidayInstance.HasValue);

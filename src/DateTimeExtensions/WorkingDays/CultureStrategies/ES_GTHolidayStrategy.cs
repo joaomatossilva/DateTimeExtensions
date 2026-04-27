@@ -1,4 +1,4 @@
-using DateTimeExtensions.Common;
+﻿using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
@@ -24,75 +24,75 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(AllSaintsDay); // Día de Todos los Santos
         }
 
-        private static Holiday _mothersDay;
+        private static NamedDay _mothersDay;
 
-        private static Holiday _independenceDay;
+        private static NamedDay _independenceDay;
 
-        private static Holiday _revolutionDay;
+        private static NamedDay _revolutionDay;
 
-        private static Holiday _armyDay;
+        private static NamedDay _armyDay;
 
-        private static Holiday _allSaintsDay;
+        private static NamedDay _allSaintsDay;
 
-        public static Holiday MothersDay
+        public static NamedDay MothersDay
         {
             get
             {
                 if (_mothersDay == null)
                 {
-                    _mothersDay = new FixedHoliday("Día de la Madre", 5, 10);
+                    _mothersDay = new NamedDay("Día de la Madre", new FixedDayResolver(5, 10));
                 }
 
                 return _mothersDay;
             }
         }
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (_independenceDay == null)
                 {
-                    _independenceDay = new FixedHoliday("Día de la Independencia", 9, 15);
+                    _independenceDay = new NamedDay("Día de la Independencia", new FixedDayResolver(9, 15));
                 }
 
                 return _independenceDay;
             }
         }
 
-        public static Holiday RevolutionDay
+        public static NamedDay RevolutionDay
         {
             get
             {
                 if (_revolutionDay == null)
                 {
-                    _revolutionDay = new FixedHoliday("Día de la Revolución", 10, 20);
+                    _revolutionDay = new NamedDay("Día de la Revolución", new FixedDayResolver(10, 20));
                 }
 
                 return _revolutionDay;
             }
         }
 
-        public static Holiday ArmyDay
+        public static NamedDay ArmyDay
         {
             get
             {
                 if (_armyDay == null)
                 {
-                    _armyDay = new FixedHoliday("Día del Ejercito", 6, 30);
+                    _armyDay = new NamedDay("Día del Ejercito", new FixedDayResolver(6, 30));
                 }
 
                 return _armyDay;
             }
         }
 
-        public static Holiday AllSaintsDay
+        public static NamedDay AllSaintsDay
         {
             get
             {
                 if (_allSaintsDay == null)
                 {
-                    _allSaintsDay = new FixedHoliday("Día de Todos los Santos", 11, 1);
+                    _allSaintsDay = new NamedDay("Día de Todos los Santos", new FixedDayResolver(11, 1));
                 }
 
                 return _allSaintsDay;

@@ -44,15 +44,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(SecondDayOfChristmas);
         }
 
-        private static Holiday secondDayOfChristmas;
+        private static NamedDay secondDayOfChristmas;
 
-        public static Holiday SecondDayOfChristmas
+        public static NamedDay SecondDayOfChristmas
         {
             get
             {
                 if (secondDayOfChristmas == null)
                 {
-                    secondDayOfChristmas = new FixedHoliday("Christmas (2nd Day)", 12, 26);
+                    secondDayOfChristmas = new NamedDay("Christmas (2nd Day)", new FixedDayResolver(12, 26));
                 }
                 return secondDayOfChristmas;
             }
@@ -62,16 +62,19 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         // Store Bededag, translated literally as Great Prayer Day or more loosely as General Prayer Day, "All Prayers" Day, Great Day of Prayers or Common Prayer Day,
         //is a Danish holiday celebrated on the 4th Friday after Easter
         //NB: On 28 February 2023, the Danish Parliament voted to abolish Store Bededag, effective from 2024. See wiki link above.
-        private static Holiday generalPrayerDay;
+        private static NamedDay generalPrayerDay;
 
-        public static Holiday GeneralPrayerDay
+        public static NamedDay GeneralPrayerDay
         {
             get
             {
                 if (generalPrayerDay == null)
                 {
-                    generalPrayerDay = new YearDependantHoliday(year => year < 2024, new NthDayOfWeekAfterDayHoliday("General Prayer Day", 4, DayOfWeek.Friday,
-                        ChristianHolidays.Easter));
+                    generalPrayerDay = new NamedDay(
+                        "General Prayer Day",
+                        new YearDependantDayResolver(
+                            year => year < 2024,
+                            new NthDayOfWeekAfterDayResolver(4, DayOfWeek.Friday, ChristianHolidays.Easter.Resolver)));
                 }
                 return generalPrayerDay;
             }

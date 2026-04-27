@@ -20,30 +20,31 @@
 
 using DateTimeExtensions.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
 {
-    public class EasterBasedHoliday : Holiday
+    /// <summary>
+    /// Representation of a calendar day that is based on the date of Easter, with a fixed offset in days.
+    /// A 0 offset represents Easter, a -2 offset represents Good Friday, a 1 offset represents Easter Monday, etc.
+    /// </summary>
+    public class EasterBasedDayResolver : IDayResolver
     {
-        private int daysOffset;
+        private readonly int daysOffset;
+
         private readonly ConcurrentLazyDictionary<int, DateTime> dayCache;
 
-        public EasterBasedHoliday(string name, int daysOffset)
-            : base(name)
+        public EasterBasedDayResolver(int daysOffset)
         {
             this.daysOffset = daysOffset;
             dayCache = new ConcurrentLazyDictionary<int, DateTime>();
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return dayCache.GetOrAdd(year, () => EasterCalculator.CalculateEasterDate(year).AddDays(daysOffset));
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var day = GetInstance(date.Year);
             return day.HasValue && date.Month == day.Value.Month && date.Day == day.Value.Day;

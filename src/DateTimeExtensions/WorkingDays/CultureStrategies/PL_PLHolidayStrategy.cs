@@ -29,42 +29,44 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristmasEveFrom2025);
         }
 
-        private static Holiday may3rdConstitutionDay;
+        private static NamedDay may3rdConstitutionDay;
 
-        public static Holiday May3rdConstitutionDay
+        public static NamedDay May3rdConstitutionDay
         {
             get
             {
                 if (may3rdConstitutionDay == null)
                 {
-                    may3rdConstitutionDay = new FixedHoliday("May 3rd Constitution Day", 5, 3);
+                    may3rdConstitutionDay = new NamedDay("May 3rd Constitution Day", new FixedDayResolver(5, 3));
                 }
                 return may3rdConstitutionDay;
             }
         }
 
-        private static Holiday nationalIndependenceDay;
+        private static NamedDay nationalIndependenceDay;
 
-        public static Holiday NationalIndependenceDay
+        public static NamedDay NationalIndependenceDay
         {
             get
             {
                 if (nationalIndependenceDay == null)
                 {
-                    nationalIndependenceDay = new FixedHoliday("National Independence Day", 11, 11);
+                    nationalIndependenceDay = new NamedDay("National Independence Day", new FixedDayResolver(11, 11));
                 }
                 return nationalIndependenceDay;
             }
         }
 
-        private static Holiday christmasEveFrom2025;
-        public static Holiday ChristmasEveFrom2025
+        private static NamedDay christmasEveFrom2025;
+        public static NamedDay ChristmasEveFrom2025
         {
             get
             {
                 if (christmasEveFrom2025 == null)
                 {
-                    christmasEveFrom2025 = new YearDependantHoliday(year => year >= 2025, new FixedHoliday("Christmas Eve", 12, 24));
+                    christmasEveFrom2025 = new NamedDay(
+                        "Christmas Eve",
+                        new YearDependantDayResolver(year => year >= 2025, new FixedDayResolver(12, 24)));
                 }
                 return christmasEveFrom2025;
             }

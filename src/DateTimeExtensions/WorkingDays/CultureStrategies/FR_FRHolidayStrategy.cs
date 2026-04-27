@@ -56,43 +56,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        private static Holiday victoryInEuropeDay;
+        private static NamedDay victoryInEuropeDay;
 
-        public static Holiday VictoryInEuropeDay
+        public static NamedDay VictoryInEuropeDay
         {
             get
             {
                 if (victoryInEuropeDay == null)
                 {
-                    victoryInEuropeDay = new FixedHoliday("Victory in Europe Day", 5, 8);
+                    victoryInEuropeDay = new NamedDay("Victory in Europe Day", new FixedDayResolver(5, 8));
                 }
                 return victoryInEuropeDay;
             }
         }
 
-        private static Holiday bastilleDay;
+        private static NamedDay bastilleDay;
 
-        public static Holiday BastilleDay
+        public static NamedDay BastilleDay
         {
             get
             {
                 if (bastilleDay == null)
                 {
-                    bastilleDay = new FixedHoliday("Bastille Day", 7, 14);
+                    bastilleDay = new NamedDay("Bastille Day", new FixedDayResolver(7, 14));
                 }
                 return bastilleDay;
             }
         }
 
-        private static Holiday stStephensDay;
+        private static NamedDay stStephensDay;
 
-        public static Holiday StStephensDay
+        public static NamedDay StStephensDay
         {
             get
             {
                 if (stStephensDay == null)
                 {
-                    stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
+                    stStephensDay = new NamedDay("St Stephen's Day", new FixedDayResolver(12, 26));
                 }
                 return stStephensDay;
             }

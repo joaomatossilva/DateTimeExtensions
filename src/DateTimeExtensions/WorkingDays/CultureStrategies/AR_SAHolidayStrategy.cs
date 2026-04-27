@@ -39,9 +39,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(SaudiNationalDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            var observancesMap = new Dictionary<DateTime, Holiday>();
+            var observancesMap = new Dictionary<DateTime, NamedDay>();
             observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
 
             var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
@@ -60,45 +60,45 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         //1 Shawwal
-        private static Holiday endOfRamadan;
+        private static NamedDay endOfRamadan;
 
-        public static Holiday EndOfRamadan
+        public static NamedDay EndOfRamadan
         {
             get
             {
                 if (endOfRamadan == null)
                 {
-                    endOfRamadan = new FixedHoliday("Eid ul-Fitr", 10, 1, HirijiCalendar);
+                    endOfRamadan = new NamedDay("Eid ul-Fitr", new FixedDayResolver(10, 1, HirijiCalendar));
                 }
                 return endOfRamadan;
             }
         }
 
         //10 Dhul-Hijjah
-        private static Holiday endOfHajj;
+        private static NamedDay endOfHajj;
 
-        public static Holiday EndOfHajj
+        public static NamedDay EndOfHajj
         {
             get
             {
                 if (endOfHajj == null)
                 {
-                    endOfHajj = new FixedHoliday("Eid ul-Adha", 12, 10, HirijiCalendar);
+                    endOfHajj = new NamedDay("Eid ul-Adha", new FixedDayResolver(12, 10, HirijiCalendar));
                 }
                 return endOfHajj;
             }
         }
 
         //23 September - Saudi National Day
-        private static Holiday saudiNationalDay;
+        private static NamedDay saudiNationalDay;
 
-        public static Holiday SaudiNationalDay
+        public static NamedDay SaudiNationalDay
         {
             get
             {
                 if (saudiNationalDay == null)
                 {
-                    saudiNationalDay = new FixedHoliday("Saudi National Day", 9, 23);
+                    saudiNationalDay = new NamedDay("Saudi National Day", new FixedDayResolver(9, 23));
                 }
                 return saudiNationalDay;
             }

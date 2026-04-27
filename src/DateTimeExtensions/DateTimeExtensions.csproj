@@ -18,6 +18,7 @@
     <PackageIconUrl>https://github.com/joaomatossilva/DateTimeExtensions/raw/master/assets/datetimeextensions-60-logo.png</PackageIconUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="WorkingDays\HolidayNames.Designer.cs">

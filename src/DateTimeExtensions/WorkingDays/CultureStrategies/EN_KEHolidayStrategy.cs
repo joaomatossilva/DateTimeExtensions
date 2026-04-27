@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
@@ -42,84 +42,84 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         // 1 June - Madaraka Day
-        private static Holiday madarakaDay;
-        public static Holiday MadarakaDay
+        private static NamedDay madarakaDay;
+        public static NamedDay MadarakaDay
         {
             get
             {
                 if (madarakaDay == null)
                 {
-                    madarakaDay = new FixedHoliday("Madaraka Day", 6, 1);
+                    madarakaDay = new NamedDay("Madaraka Day", new FixedDayResolver(6, 1));
                 }
                 return madarakaDay;
             }
         }
 
         // 20 October - Mashujaa Day
-        private static Holiday mashujaaDay;
-        public static Holiday MashujaaDay
+        private static NamedDay mashujaaDay;
+        public static NamedDay MashujaaDay
         {
             get
             {
                 if (mashujaaDay == null)
                 {
-                    mashujaaDay = new FixedHoliday("Mashujaa Day", 10, 20);
+                    mashujaaDay = new NamedDay("Mashujaa Day", new FixedDayResolver(10, 20));
                 }
                 return mashujaaDay;
             }
         }
 
         // 12 December - Jamhuri Day
-        private static Holiday jamhuriDay;
-        public static Holiday JamhuriDay
+        private static NamedDay jamhuriDay;
+        public static NamedDay JamhuriDay
         {
             get
             {
                 if (jamhuriDay == null)
                 {
-                    jamhuriDay = new FixedHoliday("Jamhuri Day", 12, 12);
+                    jamhuriDay = new NamedDay("Jamhuri Day", new FixedDayResolver(12, 12));
                 }
                 return jamhuriDay;
             }
         }
 
         // 10 October - Moi Day
-        private static Holiday moiDay;
-        public static Holiday MoiDay
+        private static NamedDay moiDay;
+        public static NamedDay MoiDay
         {
             get
             {
                 if (moiDay == null)
                 {
-                    moiDay = new FixedHoliday("Moi Day", 10, 10);
+                    moiDay = new NamedDay("Moi Day", new FixedDayResolver(10, 10));
                 }
                 return moiDay;
             }
         }
 
         // 10 October - Huduma Day (alternative to Moi Day)
-        private static Holiday hudumaDay;
-        public static Holiday HudumaDay
+        private static NamedDay hudumaDay;
+        public static NamedDay HudumaDay
         {
             get
             {
                 if (hudumaDay == null)
                 {
-                    hudumaDay = new FixedHoliday("Huduma Day", 10, 10);
+                    hudumaDay = new NamedDay("Huduma Day", new FixedDayResolver(10, 10));
                 }
                 return hudumaDay;
             }
         }
 
         // 26 December - Boxing Day
-        private static Holiday boxingDay;
-        public static Holiday BoxingDay
+        private static NamedDay boxingDay;
+        public static NamedDay BoxingDay
         {
             get
             {
                 if (boxingDay == null)
                 {
-                    boxingDay = new FixedHoliday("Boxing Day", 12, 26);
+                    boxingDay = new NamedDay("Boxing Day", new FixedDayResolver(12, 26));
                 }
                 return boxingDay;
             }

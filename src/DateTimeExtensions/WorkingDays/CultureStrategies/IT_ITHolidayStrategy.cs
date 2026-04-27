@@ -45,30 +45,30 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         //2 June - Republic Day
-        private static Holiday republicDay;
+        private static NamedDay republicDay;
 
-        public static Holiday RepublicDay
+        public static NamedDay RepublicDay
         {
             get
             {
                 if (republicDay == null)
                 {
-                    republicDay = new FixedHoliday("Republic Day", 6, 2);
+                    republicDay = new NamedDay("Republic Day", new FixedDayResolver(6, 2));
                 }
                 return republicDay;
             }
         }
         
         //25 April - Liberation Day
-        private static Holiday liberationDay;
+        private static NamedDay liberationDay;
 
-        public static Holiday LiberationDay
+        public static NamedDay LiberationDay
         {
             get
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new FixedHoliday("Liberation Day", 4, 25);
+                    liberationDay = new NamedDay("Liberation Day", new FixedDayResolver(4, 25));
                 }
                 return liberationDay;
             }

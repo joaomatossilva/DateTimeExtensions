@@ -40,15 +40,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
         }
 
-        private static Holiday germanUnityDay;
+        private static NamedDay germanUnityDay;
 
-        public static Holiday GermanUnityDay
+        public static NamedDay GermanUnityDay
         {
             get
             {
                 if (germanUnityDay == null)
                 {
-                    germanUnityDay = new FixedHoliday("GermanUnityDay", 10, 3);
+                    germanUnityDay = new NamedDay("GermanUnityDay", new FixedDayResolver(10, 3));
                 }
                 return germanUnityDay;
             }

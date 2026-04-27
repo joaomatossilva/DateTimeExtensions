@@ -42,43 +42,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
         }
 
-        private static Holiday labourDay;
+        private static NamedDay labourDay;
 
-        public static Holiday LabourDay
+        public static NamedDay LabourDay
         {
             get
             {
                 if (labourDay == null)
                 {
-                    labourDay = new FixedHoliday("LabourDay", 5,1);
+                    labourDay = new NamedDay("LabourDay", new FixedDayResolver(5, 1));
                 }
                 return labourDay;
             }
         }
 
-        private static Holiday nationalHoliday;
+        private static NamedDay nationalHoliday;
 
-        public static Holiday NationalHoliday
+        public static NamedDay NationalHoliday
         {
             get
             {
                 if (nationalHoliday == null)
                 {
-                    nationalHoliday = new FixedHoliday("Belgium_NationalHoliday", 7, 21);
+                    nationalHoliday = new NamedDay("Belgium_NationalHoliday", new FixedDayResolver(7, 21));
                 }
                 return nationalHoliday;
             }
         }
 
-        private static Holiday armistice;
+        private static NamedDay armistice;
 
-        public static Holiday Armistice
+        public static NamedDay Armistice
         {
             get
             {
                 if (armistice == null)
                 {
-                    armistice = new FixedHoliday("Armistice", 11, 11);
+                    armistice = new NamedDay("Armistice", new FixedDayResolver(11, 11));
                 }
                 return armistice;
             }

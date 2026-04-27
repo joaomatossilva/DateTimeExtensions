@@ -1,7 +1,7 @@
 #region License
 
 // 
-// Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
+// Copyright (c) 2011-2012, Joï¿½o Matos Silva <kappy@acydburne.com.pt>
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ namespace DateTimeExtensions
         /// </summary>
         /// <param name="day">The day used to gat the year from.</param>
         /// <returns>Returns a dictionary with the instance of the holiday observed on the year, and the holiday that gave it the observance.</returns>
-        public static IDictionary<DateTimeOffset, Holiday> AllYearHolidays(this DateTimeOffset day)
+        public static IDictionary<DateTimeOffset, NamedDay> AllYearHolidays(this DateTimeOffset day)
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo();
             return AllYearHolidays(day, workingDayCultureInfo);
@@ -146,7 +146,7 @@ namespace DateTimeExtensions
         /// <param name="day">The day used to gat the year from.</param>
         /// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the get the holidays.</param>
         /// <returns>Returns a dictionary with the instance of the holiday observed on the year, and the holiday that gave it the observance.</returns>
-        public static IDictionary<DateTimeOffset, Holiday> AllYearHolidays(this DateTimeOffset day,
+        public static IDictionary<DateTimeOffset, NamedDay> AllYearHolidays(this DateTimeOffset day,
             IWorkingDayCultureInfo workingDayCultureInfo)
         {
             return day.Date.AllYearHolidays(workingDayCultureInfo).ToDictionary(x => (DateTimeOffset)x.Key, x => x.Value);

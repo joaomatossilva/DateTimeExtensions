@@ -98,92 +98,102 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
         }
 
-        private static Holiday newYearSecondDay;
-        public static Holiday NewYearSecondDay
+        private static NamedDay newYearSecondDay;
+        public static NamedDay NewYearSecondDay
         {
             get
             {
                 if (newYearSecondDay == null)
                 {
-                    newYearSecondDay = new FixedHoliday("NewYearSecondDay", 1, 2);
+                    newYearSecondDay = new NamedDay("NewYearSecondDay", new FixedDayResolver(1, 2));
                 }
                 return newYearSecondDay;
             }
         }
 
-        private static Holiday dayOfTheUnification;
-        public static Holiday DayOfTheUnification
+        private static NamedDay dayOfTheUnification;
+        public static NamedDay DayOfTheUnification
         {
             get
             {
                 if (dayOfTheUnification == null)
                 {
-                    dayOfTheUnification = new YearDependantHoliday(year => year >= 2016, new FixedHoliday("DayOfTheUnification", 1, 24));
+                    dayOfTheUnification = new NamedDay(
+                        "DayOfTheUnification",
+                        new YearDependantDayResolver(year => year >= 2016, new FixedDayResolver(1, 24)));
                 }
                 return dayOfTheUnification;
             }
         }
 
-        private static Holiday childrensDay;
-        public static Holiday ChildrensDay
+        private static NamedDay childrensDay;
+        public static NamedDay ChildrensDay
         {
             get
             {
                 if (childrensDay == null)
                 {
-                    childrensDay = new YearDependantHoliday(year => year >= 2017, new FixedHoliday("ChildrensDay", 6, 1));
+                    childrensDay = new NamedDay(
+                        "ChildrensDay",
+                        new YearDependantDayResolver(year => year >= 2017, new FixedDayResolver(6, 1)));
                 }
                 return childrensDay;
             }
         }
         
-        private static Holiday assumption;
-        public static Holiday Assumption
+        private static NamedDay assumption;
+        public static NamedDay Assumption
         {
             get
             {
                 if (assumption == null)
                 {
-                    assumption = new YearDependantHoliday(year => year >= 2008, ChristianHolidays.Assumption);
+                    assumption = new NamedDay(
+                        ChristianHolidays.Assumption.Name,
+                        new YearDependantDayResolver(year => year >= 2008, ChristianHolidays.Assumption.Resolver));
                 }
                 return assumption;
             }
         }
 
-        private static Holiday saintAndrewDay;
-        public static Holiday SaintAndrewDay
+        private static NamedDay saintAndrewDay;
+        public static NamedDay SaintAndrewDay
         {
             get
             {
                 if (saintAndrewDay == null)
                 {
-                    saintAndrewDay = new YearDependantHoliday(year => year >= 2012, new FixedHoliday("SaintAndrewDay", 11, 30));
+                    saintAndrewDay = new NamedDay(
+                        "SaintAndrewDay",
+                        new YearDependantDayResolver(year => year >= 2012, new FixedDayResolver(11, 30)));
                 }
                 return saintAndrewDay;
             }
         }
 
-        private static Holiday nationalDayOfRomania;
-        public static Holiday NationalDayOfRomania
+        private static NamedDay nationalDayOfRomania;
+        public static NamedDay NationalDayOfRomania
         {
             get
             {
                 if (nationalDayOfRomania == null)
                 {
-                    nationalDayOfRomania = new YearDependantHoliday(year => year >= 1990, new FixedHoliday("NationalDayOfRomania", 12, 1));
+                    nationalDayOfRomania = new NamedDay(
+                        "NationalDayOfRomania",
+                        new YearDependantDayResolver(year => year >= 1990, new FixedDayResolver(12, 1)));
                 }
                 return nationalDayOfRomania;
             }
         }
 
-        private static Holiday christmasSecondDay;
-        public static Holiday ChristmasSecondDay
+        private static NamedDay christmasSecondDay;
+        public static NamedDay ChristmasSecondDay
         {
             get
             {
                 if (christmasSecondDay == null)
                 {
-                    christmasSecondDay = new FixedHoliday("ChristmasSecondDay", 12, 26);
+                    christmasSecondDay = new NamedDay("ChristmasSecondDay", new FixedDayResolver(12, 26));
                 }
                 return christmasSecondDay;
             }

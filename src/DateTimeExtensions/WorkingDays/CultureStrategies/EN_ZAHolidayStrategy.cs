@@ -45,9 +45,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(DayOfGoodwill);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                  var date = innerHoliday.GetInstance(year);
@@ -55,7 +55,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     {
                         if (holidayMap.ContainsKey(date.Value))
                             // Check to see if holiday falling on the Sunday then moves to the monday, and there is another holiday scheduled for the monday
-                            // Update the Holiday Name of the Monday
+                            // Update the NamedDay Name of the Monday
                             holidayMap[date.Value] = innerHoliday;
                         else
                             holidayMap.Add(date.Value, innerHoliday);
@@ -70,120 +70,120 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         //21 March - Human Right's Day		
-        private static Holiday humanRightsDay;
+        private static NamedDay humanRightsDay;
 
-        public static Holiday HumanRightsDay
+        public static NamedDay HumanRightsDay
         {
             get
             {
                 if (humanRightsDay == null)
                 {
-                    humanRightsDay = new FixedHoliday("Human Right's Day", 3, 21);
+                    humanRightsDay = new NamedDay("Human Right's Day", new FixedDayResolver(3, 21));
                 }
                 return humanRightsDay;
             }
         }
 
         //First Monday after Easter Sunday - Family Day
-        private static Holiday familyDay;
+        private static NamedDay familyDay;
 
-        public static Holiday FamilyDay
+        public static NamedDay FamilyDay
         {
             get
             {
                 if (familyDay == null)
                 {
-                    familyDay = new EasterBasedHoliday("Family Day", 1);
+                    familyDay = new NamedDay("Family Day", new EasterBasedDayResolver(1));
                 }
                 return familyDay;
             }
         }
 
         //27th April - Freedom Day
-        private static Holiday freedomDay;
+        private static NamedDay freedomDay;
 
-        public static Holiday FreedomDay
+        public static NamedDay FreedomDay
         {
             get
             {
                 if (freedomDay == null)
                 {
-                    freedomDay = new FixedHoliday("Freedom Day", 4, 27);
+                    freedomDay = new NamedDay("Freedom Day", new FixedDayResolver(4, 27));
                 }
                 return freedomDay;
             }
         }
 
         //16th June - Youth Day
-        private static Holiday youthDay;
+        private static NamedDay youthDay;
 
-        public static Holiday YouthDay
+        public static NamedDay YouthDay
         {
             get
             {
                 if (youthDay == null)
                 {
-                    youthDay = new FixedHoliday("Youth Day", 6, 16);
+                    youthDay = new NamedDay("Youth Day", new FixedDayResolver(6, 16));
                 }
                 return youthDay;
             }
         }
 
         //9 August - National Woman's Day
-        private static Holiday nationalWomansDay;
+        private static NamedDay nationalWomansDay;
 
-        public static Holiday NationalWomansDay
+        public static NamedDay NationalWomansDay
         {
             get
             {
                 if (nationalWomansDay == null)
                 {
-                    nationalWomansDay = new FixedHoliday("National Woman's Day", 8, 9);
+                    nationalWomansDay = new NamedDay("National Woman's Day", new FixedDayResolver(8, 9));
                 }
                 return nationalWomansDay;
             }
         }
 
         //24 September - Heritage Day
-        private static Holiday heritageDay;
+        private static NamedDay heritageDay;
 
-        public static Holiday HeritageDay
+        public static NamedDay HeritageDay
         {
             get
             {
                 if (heritageDay == null)
                 {
-                    heritageDay = new FixedHoliday("Heritage Day", 9, 24);
+                    heritageDay = new NamedDay("Heritage Day", new FixedDayResolver(9, 24));
                 }
                 return heritageDay;
             }
         }
 
         //16 December - Day of Reconciliation
-        private static Holiday dayOfReconciliation;
+        private static NamedDay dayOfReconciliation;
 
-        public static Holiday DayOfReconciliation
+        public static NamedDay DayOfReconciliation
         {
             get
             {
                 if (dayOfReconciliation == null)
                 {
-                    dayOfReconciliation = new FixedHoliday("Day of Reconciliation", 12, 16);
+                    dayOfReconciliation = new NamedDay("Day of Reconciliation", new FixedDayResolver(12, 16));
                 }
                 return dayOfReconciliation;
             }
         }
 
         //26 December - Day of Goodwill
-        private static Holiday dayOfGoodwill;
+        private static NamedDay dayOfGoodwill;
 
-        public static Holiday DayOfGoodwill
+        public static NamedDay DayOfGoodwill
         {
             get
             {
                 if (dayOfGoodwill == null)
                 {
-                    dayOfGoodwill = new FixedHoliday("Day of Goodwill", 12, 26);
+                    dayOfGoodwill = new NamedDay("Day of Goodwill", new FixedDayResolver(12, 26));
                 }
                 return dayOfGoodwill;
             }

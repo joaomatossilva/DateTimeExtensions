@@ -1,48 +1,49 @@
-﻿using System;
+using System;
+using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public class ChristianOrthodoxHolidays
     {
 
-        private static Holiday goodFriday;
+        private static NamedDay goodFriday;
 
-        public static Holiday GoodFriday
+        public static NamedDay GoodFriday
         {
             get
             {
                 if (goodFriday == null)
                 {
-                    goodFriday = new NthDayOfWeekAfterDayHoliday("GoodFriday", -1, DayOfWeek.Friday, Easter);
+                    goodFriday = new NamedDay("GoodFriday", new NthDayOfWeekAfterDayResolver(-1, DayOfWeek.Friday, Easter.Resolver));
                 }
                 return goodFriday;
             }
         }
 
-        private static Holiday easter;
+        private static NamedDay easter;
 
-        public static Holiday Easter
+        public static NamedDay Easter
         {
             get
             {
                 if (easter == null)
                 {
-                    easter = new EasterOrthodoxBasedHoliday("Easter", 0);
+                    easter = new NamedDay("Easter", new OrthodoxEasterBasedDayResolver(0));
                 }
                 return easter;
             }
         }
 
 
-        private static Holiday easterMonday;
+        private static NamedDay easterMonday;
 
-        public static Holiday EasterMonday
+        public static NamedDay EasterMonday
         {
             get
             {
                 if (easterMonday == null)
                 {
-                    easterMonday = new EasterOrthodoxBasedHoliday("EasterMonday", 1);
+                    easterMonday = new NamedDay("EasterMonday", new OrthodoxEasterBasedDayResolver(1));
                 }
                 return easterMonday;
             }
@@ -52,30 +53,30 @@ namespace DateTimeExtensions.WorkingDays
         //source: http://en.wikipedia.org/wiki/Pentecost
         //50 days after Easter (inclusive of Easter Day). In other words, it falls on the eighth Sunday, counting Easter Day 
         //Also know as Whit Sunday, Whitsun, Whit
-        private static Holiday pentecost;
+        private static NamedDay pentecost;
 
-        public static Holiday Pentecost
+        public static NamedDay Pentecost
         {
             get
             {
                 if (pentecost == null)
                 {
                     //count offset is 7 because we aren't counting with the easter day inclusive
-                    pentecost = new NthDayOfWeekAfterDayHoliday("Pentecost", 7, DayOfWeek.Sunday, Easter);
+                    pentecost = new NamedDay("Pentecost", new NthDayOfWeekAfterDayResolver(7, DayOfWeek.Sunday, Easter.Resolver));
                 }
                 return pentecost;
             }
         }
 
-        private static Holiday pentecostMonday;
+        private static NamedDay pentecostMonday;
 
-        public static Holiday PentecostMonday
+        public static NamedDay PentecostMonday
         {
             get
             {
                 if (pentecostMonday == null)
                 {
-                    pentecostMonday = new NthDayOfWeekAfterDayHoliday("PentecostMonday", 8, DayOfWeek.Monday, Easter);
+                    pentecostMonday = new NamedDay("PentecostMonday", new NthDayOfWeekAfterDayResolver(8, DayOfWeek.Monday, Easter.Resolver));
                 }
                 return pentecostMonday;
             }

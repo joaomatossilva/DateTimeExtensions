@@ -25,9 +25,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(IndependenceAndUnityDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -38,7 +38,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     //May Day occours both in 1st May and 2nd May
                     if (innerHoliday.Equals(GlobalHolidays.MayDay))
                     {
-                        var secondMayDay = new FixedHoliday(innerHoliday.Name + " 2nd Day", 5, 2);
+                        var secondMayDay = new NamedDay(innerHoliday.Name + " 2nd Day", new FixedDayResolver(5, 2));
                         var secondMayDayIntance = secondMayDay.GetInstance(year);
                         if (secondMayDayIntance != null)
                         {
@@ -50,46 +50,46 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private static Holiday preserenDay;
+        private static NamedDay preserenDay;
 
-        public static Holiday PreserenDay
+        public static NamedDay PreserenDay
         {
-            get { return preserenDay ?? (preserenDay = new FixedHoliday("Prešeren Day", 2, 8)); }
+            get { return preserenDay ?? (preserenDay = new NamedDay("Prešeren Day", new FixedDayResolver(2, 8))); }
         }
 
-        private static Holiday dayOfUprisingAgainstOccupation;
+        private static NamedDay dayOfUprisingAgainstOccupation;
 
-        public static Holiday DayOfUprisingAgainstOccupation
+        public static NamedDay DayOfUprisingAgainstOccupation
         {
             get
             {
                 return dayOfUprisingAgainstOccupation ??
-                       (dayOfUprisingAgainstOccupation = new FixedHoliday("Day of Uprising Against Occupation", 4, 27));
+                       (dayOfUprisingAgainstOccupation = new NamedDay("Day of Uprising Against Occupation", new FixedDayResolver(4, 27)));
             }
         }
 
-        private static Holiday statehoodDay;
+        private static NamedDay statehoodDay;
 
-        public static Holiday StatehoodDay
+        public static NamedDay StatehoodDay
         {
-            get { return statehoodDay ?? (statehoodDay = new FixedHoliday("Statehood Day", 6, 25)); }
+            get { return statehoodDay ?? (statehoodDay = new NamedDay("Statehood Day", new FixedDayResolver(6, 25))); }
         }
 
-        private static Holiday reformationDay;
+        private static NamedDay reformationDay;
 
-        public static Holiday ReformationDay
+        public static NamedDay ReformationDay
         {
-            get { return reformationDay ?? (reformationDay = new FixedHoliday("Reformation Day", 10, 31)); }
+            get { return reformationDay ?? (reformationDay = new NamedDay("Reformation Day", new FixedDayResolver(10, 31))); }
         }
 
-        private static Holiday independenceAndUnityDay;
+        private static NamedDay independenceAndUnityDay;
 
-        public static Holiday IndependenceAndUnityDay
+        public static NamedDay IndependenceAndUnityDay
         {
             get
             {
                 return independenceAndUnityDay ??
-                       (independenceAndUnityDay = new FixedHoliday("Independence and Unity Day", 12, 26));
+                       (independenceAndUnityDay = new NamedDay("Independence and Unity Day", new FixedDayResolver(12, 26)));
             }
         }
     }

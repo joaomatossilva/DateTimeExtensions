@@ -35,15 +35,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(BattleOfTheBoyneDay);
         }
 
-        private static Holiday battleOfTheBoyneDay;
+        private static NamedDay battleOfTheBoyneDay;
 
-        public static Holiday BattleOfTheBoyneDay
+        public static NamedDay BattleOfTheBoyneDay
         {
             get
             {
                 if (battleOfTheBoyneDay == null)
                 {
-                    battleOfTheBoyneDay = new FixedHoliday("Battle of the Boyne", 7, 12);
+                    battleOfTheBoyneDay = new NamedDay("Battle of the Boyne", new FixedDayResolver(7, 12));
                 }
                 return battleOfTheBoyneDay;
             }

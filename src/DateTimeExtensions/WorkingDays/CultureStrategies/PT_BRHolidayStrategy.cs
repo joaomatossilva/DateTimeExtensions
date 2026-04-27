@@ -45,57 +45,57 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(RepublicDay);
         }
 
-        private static Holiday tiradentesDay;
+        private static NamedDay tiradentesDay;
 
-        public static Holiday TiradentesDay
+        public static NamedDay TiradentesDay
         {
             get
             {
                 if (tiradentesDay == null)
                 {
-                    tiradentesDay = new FixedHoliday("TiradentesDay", 4, 21);
+                    tiradentesDay = new NamedDay("TiradentesDay", new FixedDayResolver(4, 21));
                 }
                 return tiradentesDay;
             }
         }
 
-        private static Holiday independanceDay;
+        private static NamedDay independanceDay;
 
-        public static Holiday IndependanceDay
+        public static NamedDay IndependanceDay
         {
             get
             {
                 if (independanceDay == null)
                 {
-                    independanceDay = new FixedHoliday("IndependanceDay", 9, 7);
+                    independanceDay = new NamedDay("IndependanceDay", new FixedDayResolver(9, 7));
                 }
                 return independanceDay;
             }
         }
 
-        private static Holiday ourLadyOfAparecida;
+        private static NamedDay ourLadyOfAparecida;
 
-        public static Holiday OurLadyOfAparecida
+        public static NamedDay OurLadyOfAparecida
         {
             get
             {
                 if (ourLadyOfAparecida == null)
                 {
-                    ourLadyOfAparecida = new FixedHoliday("OurLadyOfAparecida", 10, 12);
+                    ourLadyOfAparecida = new NamedDay("OurLadyOfAparecida", new FixedDayResolver(10, 12));
                 }
                 return ourLadyOfAparecida;
             }
         }
 
-        private static Holiday republicDay;
+        private static NamedDay republicDay;
 
-        public static Holiday RepublicDay
+        public static NamedDay RepublicDay
         {
             get
             {
                 if (republicDay == null)
                 {
-                    republicDay = new FixedHoliday("RepublicDay", 11, 15);
+                    republicDay = new NamedDay("RepublicDay", new FixedDayResolver(11, 15));
                 }
                 return republicDay;
             }

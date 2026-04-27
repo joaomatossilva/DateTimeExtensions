@@ -21,39 +21,41 @@
 using System;
 using System.Globalization;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
 {
-    public class FixedHoliday : Holiday
+    /// <summary>
+    /// Representation of a calendar day that occurs on the same date every year.
+    /// </summary>
+    public class FixedDayResolver : IDayResolver
     {
         private readonly Func<int, DateTime?> holidayResolver;
 
-        public FixedHoliday(string name, Func<int, DateTime?> holidayResolver)
-            : base(name)
+        public FixedDayResolver(Func<int, DateTime?> holidayResolver)
         {
             this.holidayResolver = holidayResolver;
         }
 
-        public FixedHoliday(string name, DayInYear day)
-            : this(name, year => day.GetDayOnYear(year))
+        public FixedDayResolver(DayInYear day)
+            : this(year => day.GetDayOnYear(year))
         {
         }
 
-        public FixedHoliday(string name, int month, int day, Calendar calendar)
-            : this(name, year => new DayInYear(month, day, calendar).GetDayOnYear(year))
+        public FixedDayResolver(int month, int day, Calendar calendar)
+            : this(year => new DayInYear(month, day, calendar).GetDayOnYear(year))
         {
         }
 
-        public FixedHoliday(string name, int month, int day)
-            : this(name, month, day, new GregorianCalendar())
+        public FixedDayResolver(int month, int day)
+            : this(month, day, new GregorianCalendar())
         {
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return holidayResolver(year);
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var holidayDate = this.holidayResolver(date.Year);
             return holidayDate != null && holidayDate.Value.Date == date.Date;

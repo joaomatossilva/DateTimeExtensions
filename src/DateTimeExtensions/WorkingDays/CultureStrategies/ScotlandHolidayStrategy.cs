@@ -19,20 +19,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(EN_GBHolidayStrategy.BoxingDay);
         }
 
-        // 2nd January - New Year Holiday
-        private static Holiday newYearHoliday;
+        // 2nd January - New Year NamedDay
+        private static NamedDay newYearHoliday;
 
-        public static Holiday NewYearHoliday
+        public static NamedDay NewYearHoliday
         {
-            get { return newYearHoliday ?? (newYearHoliday = new FixedHoliday("New Year Holiday", 1, 2)); }
+            get { return newYearHoliday ?? (newYearHoliday = new NamedDay("New Year NamedDay", new FixedDayResolver(1, 2))); }
         }
 
         // 30 November - St. Andrew's Day
-        private static Holiday stAndrewsDay;
+        private static NamedDay stAndrewsDay;
 
-        public static Holiday StAndrewsDay
+        public static NamedDay StAndrewsDay
         {
-            get { return stAndrewsDay ?? (stAndrewsDay = new FixedHoliday("St. Andrew's Day", 11, 30)); }
+            get { return stAndrewsDay ?? (stAndrewsDay = new NamedDay("St. Andrew's Day", new FixedDayResolver(11, 30))); }
         }
     }
 }

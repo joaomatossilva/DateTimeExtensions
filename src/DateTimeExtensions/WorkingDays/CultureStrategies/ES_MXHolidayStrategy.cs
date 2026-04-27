@@ -41,9 +41,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -66,80 +66,80 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         //First Monday of February - Constitution Day
-        private static Holiday constitutionDay;
+        private static NamedDay constitutionDay;
 
-        public static Holiday ConstitutionDay
+        public static NamedDay ConstitutionDay
         {
             get
             {
                 if (constitutionDay == null)
                 {
-                    constitutionDay = new NthDayOfWeekInMonthHoliday("Constitution Day", 1, DayOfWeek.Monday, 2,
-                        CountDirection.FromFirst);
+                    constitutionDay = new NamedDay("Constitution Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 2, CountDirection.FromFirst));
                 }
                 return constitutionDay;
             }
         }
 
         //Third Monday of March - Benito Juarez Birthday
-        private static Holiday benitoJuarezBirthDay;
+        private static NamedDay benitoJuarezBirthDay;
 
-        public static Holiday BenitoJuarezBirthDay
+        public static NamedDay BenitoJuarezBirthDay
         {
             get
             {
                 if (benitoJuarezBirthDay == null)
                 {
-                    benitoJuarezBirthDay = new NthDayOfWeekInMonthHoliday("Benito Juarez Birthday", 3, DayOfWeek.Monday,
-                        3, CountDirection.FromFirst);
+                    benitoJuarezBirthDay = new NamedDay("Benito Juarez Birthday", new NthDayOfWeekInMonthDayResolver(3, DayOfWeek.Monday, 3, CountDirection.FromFirst));
                 }
                 return benitoJuarezBirthDay;
             }
         }
 
         //16 September - Independence Day
-        private static Holiday independenceDay;
+        private static NamedDay independenceDay;
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("Independence Day", 9, 16);
+                    independenceDay = new NamedDay("Independence Day", new FixedDayResolver(9, 16));
                 }
                 return independenceDay;
             }
         }
 
         //Third Monday of November - Revolution Day
-        private static Holiday revolutionDay;
+        private static NamedDay revolutionDay;
 
-        public static Holiday RevolutionDay
+        public static NamedDay RevolutionDay
         {
             get
             {
                 if (revolutionDay == null)
                 {
-                    revolutionDay = new NthDayOfWeekInMonthHoliday("Revolution Day", 3, DayOfWeek.Monday, 11,
-                        CountDirection.FromFirst);
+                    revolutionDay = new NamedDay("Revolution Day", new NthDayOfWeekInMonthDayResolver(3, DayOfWeek.Monday, 11, CountDirection.FromFirst));
                 }
                 return revolutionDay;
             }
         }
 
         //1 December (Every 6 years from year 2000 and on)- Change of Federal Government
-        private static Holiday changeOfFederalGovernment;
+        private static NamedDay changeOfFederalGovernment;
 
-        public static Holiday ChangeOfFederalGovernment
+        public static NamedDay ChangeOfFederalGovernment
         {
             get
             {
                 if (changeOfFederalGovernment == null)
                 {
                     changeOfFederalGovernment =
-                        new YearDependantHoliday(year => year >= 2000 && Math.Abs(year - 2000)%6 == 0,
-                            new FixedHoliday("National Day", 12, 1));
+                        new NamedDay(
+                            "National Day",
+                            new YearDependantDayResolver(
+                                year => year >= 2000 && Math.Abs(year - 2000)%6 == 0,
+                                new FixedDayResolver(12, 1)));
                 }
                 return changeOfFederalGovernment;
             }

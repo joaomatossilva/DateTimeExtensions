@@ -50,9 +50,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(Eorininal);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             foreach (var innerHoliday in InnerHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
@@ -75,7 +75,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                         // Special substitute holiday rule for Eorininal(May 5, children's day)
                         // effective since Oct. 29, 2013.
                         DateTime childrensDay = date.Value;
-                        Holiday overlappedHoliday = null;
+                        NamedDay overlappedHoliday = null;
                         while (childrensDay.DayOfWeek == DayOfWeek.Saturday ||
                                 childrensDay.DayOfWeek == DayOfWeek.Sunday ||
                                 holidayMap.TryGetValue(childrensDay, out overlappedHoliday))
@@ -95,11 +95,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         // Special substitute holiday rule for Seol(lunisolar new year) and Chuseok(15th of 8th lunisolar month)
         // effective since Oct. 29, 2013.
-        private void AddSubstituteHoliday(IDictionary<DateTime, Holiday> holidayMap, DateTime[] dates, Holiday holiday)
+        private void AddSubstituteHoliday(IDictionary<DateTime, NamedDay> holidayMap, DateTime[] dates, NamedDay holiday)
         {
             foreach (DateTime date in dates)
             {
-                Holiday overlappedHoliday = null;
+                NamedDay overlappedHoliday = null;
                 if (date.DayOfWeek == DayOfWeek.Sunday || 
                     holidayMap.TryGetValue(date, out overlappedHoliday) && overlappedHoliday != holiday)
                 {
@@ -114,127 +114,127 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             }
         }
 
-        private static Holiday seolnal;
+        private static NamedDay seolnal;
 
-        public static Holiday Seolnal
+        public static NamedDay Seolnal
         {
             get
             {
                 if (seolnal == null)
                 {
-                    seolnal = new FixedHoliday("Seolnal", 1, 1, KoreanLunisolarCalendar);
+                    seolnal = new NamedDay("Seolnal", new FixedDayResolver(1, 1, KoreanLunisolarCalendar));
                 }
                 return seolnal;
             }
         }
 
-        private static Holiday samiljeol;
+        private static NamedDay samiljeol;
 
-        public static Holiday Samiljeol
+        public static NamedDay Samiljeol
         {
             get
             {
                 if (samiljeol == null)
                 {
-                    samiljeol = new FixedHoliday("Samiljeol", 3, 1);
+                    samiljeol = new NamedDay("Samiljeol", new FixedDayResolver(3, 1));
                 }
                 return samiljeol;
             }
         }
 
-        private static Holiday eorininal;
+        private static NamedDay eorininal;
 
-        public static Holiday Eorininal
+        public static NamedDay Eorininal
         {
             get
             {
                 if (eorininal == null)
                 {
-                    eorininal = new FixedHoliday("Eorininal", 5, 5);
+                    eorininal = new NamedDay("Eorininal", new FixedDayResolver(5, 5));
                 }
                 return eorininal;
             }
         }
 
-        private static Holiday seokgatansinil;
+        private static NamedDay seokgatansinil;
 
-        public static Holiday SeokgaTansinil
+        public static NamedDay SeokgaTansinil
         {
             get
             {
                 if (seokgatansinil == null)
                 {
-                    seokgatansinil = new FixedHoliday("SeokgaTansinil", 4, 8, KoreanLunisolarCalendar);
+                    seokgatansinil = new NamedDay("SeokgaTansinil", new FixedDayResolver(4, 8, KoreanLunisolarCalendar));
                 }
                 return seokgatansinil;
             }
         }
 
-        private static Holiday hyeonchungil;
+        private static NamedDay hyeonchungil;
 
-        public static Holiday Hyeonchungil
+        public static NamedDay Hyeonchungil
         {
             get
             {
                 if (hyeonchungil == null)
                 {
-                    hyeonchungil = new FixedHoliday("Hyeonchungil", 6, 6);
+                    hyeonchungil = new NamedDay("Hyeonchungil", new FixedDayResolver(6, 6));
                 }
                 return hyeonchungil;
             }
         }
 
-        private static Holiday gwangbokjeol;
+        private static NamedDay gwangbokjeol;
 
-        public static Holiday Gwangbokjeol
+        public static NamedDay Gwangbokjeol
         {
             get
             {
                 if (gwangbokjeol == null)
                 {
-                    gwangbokjeol = new FixedHoliday("Gwangbokjeol", 8, 15);
+                    gwangbokjeol = new NamedDay("Gwangbokjeol", new FixedDayResolver(8, 15));
                 }
                 return gwangbokjeol;
             }
         }
 
-        private static Holiday chuseok;
+        private static NamedDay chuseok;
 
-        public static Holiday Chuseok
+        public static NamedDay Chuseok
         {
             get
             {
                 if (chuseok == null)
                 {
-                    chuseok = new FixedHoliday("Chuseok", 8, 15, KoreanLunisolarCalendar);
+                    chuseok = new NamedDay("Chuseok", new FixedDayResolver(8, 15, KoreanLunisolarCalendar));
                 }
                 return chuseok;
             }
         }
 
-        private static Holiday gaecheonjeol;
+        private static NamedDay gaecheonjeol;
 
-        public static Holiday Gaecheonjeol
+        public static NamedDay Gaecheonjeol
         {
             get
             {
                 if (gaecheonjeol == null)
                 {
-                    gaecheonjeol = new FixedHoliday("Gaecheonjeol", 10, 3);
+                    gaecheonjeol = new NamedDay("Gaecheonjeol", new FixedDayResolver(10, 3));
                 }
                 return gaecheonjeol;
             }
         }
 
-        private static Holiday hangulnal;
+        private static NamedDay hangulnal;
 
-        public static Holiday Hangulnal
+        public static NamedDay Hangulnal
         {
             get
             {
                 if (hangulnal == null)
                 {
-                    hangulnal = new FixedHoliday("Hangulnal", 10, 9);
+                    hangulnal = new NamedDay("Hangulnal", new FixedDayResolver(10, 9));
                 }
                 return hangulnal;
             }

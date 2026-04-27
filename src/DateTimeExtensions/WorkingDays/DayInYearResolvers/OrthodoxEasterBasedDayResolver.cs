@@ -1,26 +1,29 @@
 ﻿using DateTimeExtensions.Common;
 using System;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
 {
-    public class EasterOrthodoxBasedHoliday : Holiday
+    /// <summary>
+    /// Representation of a calendar day that is based on the date of Orthodox Easter, with a fixed offset in days.
+    /// A 0 offset represents Orthodox Easter.
+    /// </summary>
+    public class OrthodoxEasterBasedDayResolver : IDayResolver
     {
-        private int daysOffset;
+        private readonly int daysOffset;
         private readonly ConcurrentLazyDictionary<int, DateTime> dayCache;
 
-        public EasterOrthodoxBasedHoliday(string name, int daysOffset)
-            : base(name)
+        public OrthodoxEasterBasedDayResolver(int daysOffset)
         {
             this.daysOffset = daysOffset;
             dayCache = new ConcurrentLazyDictionary<int, DateTime>();
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return dayCache.GetOrAdd(year, () => EasterCalculator.CalculateEasterDate(year).AddDays(daysOffset));
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var day = GetInstance(date.Year);
             return day.HasValue && date.Month == day.Value.Month && date.Day == day.Value.Day;

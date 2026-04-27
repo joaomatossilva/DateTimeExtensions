@@ -34,9 +34,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(DefenderOfTheFatherland);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
             // New year -> 1/1 until 6/1
             holidayMap.Add(GlobalHolidays.NewYear.GetInstance(year).Value, GlobalHolidays.NewYear);
             for (int day = 2; day <= 6; day++)
@@ -54,29 +54,29 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private Holiday ortodoxChristmas;
+        private NamedDay ortodoxChristmas;
 
-        public Holiday OrtodoxChristmas
+        public NamedDay OrtodoxChristmas
         {
             get
             {
                 if (ortodoxChristmas != null)
                 {
-                    ortodoxChristmas = new FixedHoliday("Ortodox Christmas", 1, 7);
+                    ortodoxChristmas = new NamedDay("Ortodox Christmas", new FixedDayResolver(1, 7));
                 }
                 return ortodoxChristmas;
             }
         }
 
-        private Holiday defenderOfTheFatherland;
+        private NamedDay defenderOfTheFatherland;
 
-        public Holiday DefenderOfTheFatherland
+        public NamedDay DefenderOfTheFatherland
         {
             get
             {
                 if (defenderOfTheFatherland != null)
                 {
-                    defenderOfTheFatherland = new FixedHoliday("Defender Of The Fatherland", 2, 23);
+                    defenderOfTheFatherland = new NamedDay("Defender Of The Fatherland", new FixedDayResolver(2, 23));
                 }
                 return defenderOfTheFatherland;
             }

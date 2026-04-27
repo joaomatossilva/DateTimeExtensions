@@ -44,13 +44,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             this.InnerHolidays.Add(ChristianHolidays.Christmas);
             this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
         }
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap =
-            this.InnerHolidays.Select(h => new { Date = h.GetInstance(year), Holiday = h })
+            IDictionary<DateTime, NamedDay> holidayMap =
+            this.InnerHolidays.Select(h => new { Date = h.GetInstance(year), NamedDay = h })
                 .Where(h => h.Date.HasValue)
-                .GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().Holiday })
-                .ToDictionary(k => k.Date.Value, v => v.Holiday);
+                .GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().NamedDay })
+                .ToDictionary(k => k.Date.Value, v => v.NamedDay);
 
 
             if (holidayMap.Any(h => h.Key.DayOfWeek == DayOfWeek.Sunday))
@@ -60,12 +60,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 {
                     var sundayHoliday = h;
 
-                    var observation = new NthDayOfWeekAfterDayHoliday(sundayHoliday.Value.Name + " Observed", 1, DayOfWeek.Monday, sundayHoliday.Value);
+                    var observation = new NamedDay(
+                        sundayHoliday.Value.Name + " Observed",
+                        new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, sundayHoliday.Value.Resolver));
                     var dateObserved = observation.GetInstance(year);
 
                     if (holidayMap.ContainsKey(dateObserved.Value))
                     {//if a holiday is already observed on the new date, remove from map and find new date of observance
-                        var existingMondayHoliday = holidayMap.First(m => m.Key == dateObserved);
+                        var existingMondayHoliday = holidayMap.First(m => m.Key == dateObserved.Value);
                         holidayMap.Remove(dateObserved.Value);
 
                         var observedOn = dateObserved.Value.AddDays(1);//New Date for removed holiday
@@ -73,7 +75,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                             observedOn.AddDays(1);//check for all existing holidays to find free date
 
                         var daysAfter = existingMondayHoliday.Key.GetDiff(observedOn).Days;
-                        var holidayMoved = new NthDayOfWeekAfterDayHoliday(existingMondayHoliday.Value.Name + " Observed", daysAfter, observedOn.DayOfWeek, existingMondayHoliday.Value);
+                        var holidayMoved = new NamedDay(
+                            existingMondayHoliday.Value.Name + " Observed",
+                            new NthDayOfWeekAfterDayResolver(daysAfter, observedOn.DayOfWeek, existingMondayHoliday.Value.Resolver));
 
                         var newObservedDate = holidayMoved.GetInstance(year);
 
@@ -88,43 +92,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private Holiday laborDay;
-        public Holiday LaborDay
+        private NamedDay laborDay;
+        public NamedDay LaborDay
         {
             get
             {
                 if (laborDay == null)
-                    laborDay = new FixedHoliday("Labor Day", 5, 23);
+                    laborDay = new NamedDay("Labor Day", new FixedDayResolver(5, 23));
                 return laborDay;
             }
         }
-        private Holiday emancipationDay;
-        public Holiday EmancipationDay
+        private NamedDay emancipationDay;
+        public NamedDay EmancipationDay
         {
             get
             {
                 if (emancipationDay == null)
-                    emancipationDay = new FixedHoliday("Emancipation Day", 8, 1);
+                    emancipationDay = new NamedDay("Emancipation Day", new FixedDayResolver(8, 1));
                 return emancipationDay;
             }
         }
-        private Holiday independenceDay;
-        public Holiday IndependenceDay
+        private NamedDay independenceDay;
+        public NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
-                    independenceDay = new FixedHoliday("Independence Day", 8, 6);
+                    independenceDay = new NamedDay("Independence Day", new FixedDayResolver(8, 6));
                 return independenceDay;
             }
         }
-        private Holiday nationalHeroesDay;
-        public Holiday NationalHeroesDay
+        private NamedDay nationalHeroesDay;
+        public NamedDay NationalHeroesDay
         {
             get
             {
                 if (nationalHeroesDay == null)
-                    nationalHeroesDay = new NthDayOfWeekInMonthHoliday("National Heroes Day", 3, DayOfWeek.Monday, 10, CountDirection.FromFirst);
+                    nationalHeroesDay = new NamedDay("National Heroes Day", new NthDayOfWeekInMonthDayResolver(3, DayOfWeek.Monday, 10, CountDirection.FromFirst));
                 return nationalHeroesDay;
             }
         }

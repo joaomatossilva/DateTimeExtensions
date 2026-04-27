@@ -27,8 +27,8 @@ namespace DateTimeExtensions.WorkingDays
 {
     public interface IHolidayStrategy
     {
-        IEnumerable<Holiday> Holidays { get; }
-        IEnumerable<Holiday> GetHolidaysOfYear(int year);
+        IEnumerable<NamedDay> Holidays { get; }
+        IEnumerable<NamedDay> GetHolidaysOfYear(int year);
         bool IsHoliDay(DateTime day);
     }
 }
