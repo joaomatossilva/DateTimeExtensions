@@ -189,4 +189,10 @@
   <data name="TiradentesDay" xml:space="preserve">
     <value>Dia do Tiradentes</value>
   </data>
+  <data name="FathersDay" xml:space="preserve">
+    <value>Dia do Pai</value>
+  </data>
+  <data name="MothersDay" xml:space="preserve">
+    <value>Dia da Mãe</value>
+  </data>
 </root>

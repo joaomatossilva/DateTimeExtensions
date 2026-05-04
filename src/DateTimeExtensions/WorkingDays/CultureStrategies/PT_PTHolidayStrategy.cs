@@ -55,6 +55,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 RestorationOfIndependance.Name,
                 new YearDependantDayResolver(year => year < 2013 || year >= 2016, RestorationOfIndependance.Resolver)));
 
+            this.InnerObservances.AddObservance(MothersDay);
+            this.InnerObservances.AddObservance(FathersDay);
+            
             if (string.IsNullOrEmpty(region))
             {
                 return;
@@ -138,5 +141,11 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         private static readonly Lazy<NamedDay> SraMerculesInstance = new Lazy<NamedDay>(() => new NamedDay("Portugal_SraMercules", new EasterBasedDayResolver(9)));
         public static NamedDay SraMercules => SraMerculesInstance.Value;
+
+        private static readonly Lazy<NamedDay> MothersDayInstance = new(() => new NamedDay("MothersDay", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Sunday, 5, CountDirection.FromFirst)));
+        public static NamedDay MothersDay => MothersDayInstance.Value;
+        
+        private static readonly Lazy<NamedDay> FathersDayInstance = new(() => new NamedDay("FathersDay", new FixedDayResolver(3, 19)));
+        public static NamedDay FathersDay => FathersDayInstance.Value;
     }
 }

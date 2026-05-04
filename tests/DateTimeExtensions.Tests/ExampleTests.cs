@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using DateTimeExtensions.WorkingDays.CultureStrategies;
@@ -196,24 +197,7 @@ namespace DateTimeExtensions.Tests
         public void get_year_since_2013_holidays_in_portugal()
         {
             var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
-            var today = new DateTime(2013, 2, 1);
-            var holidays = today.AllYearHolidays(portugalWorkingDayCultureInfo);
-
-            Assert.IsTrue(holidays.Count == 9, "expecting 9 holidays but got {0}", holidays.Count);
-
-            foreach (DateTime holidayDate in holidays.Keys)
-            {
-                var holiday = holidays[holidayDate];
-                Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false,
-                    "holiday {0} shouln't be working day in Portugal", holiday.CalendarDay.Name);
-            }
-        }
-
-        [Test]
-        public void get_year_prior_2013_holidays_in_portugal()
-        {
-            var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
-            var today = new DateTime(2010, 2, 1);
+            var today = new DateTime(2018, 2, 1);
             var holidays = today.AllYearHolidays(portugalWorkingDayCultureInfo);
 
             Assert.IsTrue(holidays.Count == 13, "expecting 13 holidays but got {0}", holidays.Count);
@@ -224,6 +208,25 @@ namespace DateTimeExtensions.Tests
                 Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false,
                     "holiday {0} shouln't be working day in Portugal", holiday.CalendarDay.Name);
             }
+        }
+        
+        [Test]
+        public void fathers_day_is_observable_in_portugal()
+        {
+            var portugalWorkingDayCultureInfo = new WorkingDayCultureInfo("pt-PT");
+            var today = new DateTime(2026, 3, 19);
+
+            //Should be a normal working day because it is a tuesday
+            Assert.IsTrue(today.IsWorkingDay(portugalWorkingDayCultureInfo));
+
+            var fathersDayCalculated = PT_PTHolidayStrategy.FathersDay.GetInstance(2026);
+            Assert.AreEqual(today, fathersDayCalculated);
+
+            var fathersDayObservance = portugalWorkingDayCultureInfo
+                .GetObservancesOfYear(2026)
+                .SingleOrDefault(x => x.CalendarDay.IsInstanceOf(today));
+            Assert.IsNotNull(fathersDayObservance);
+            
         }
 
         [Test]

@@ -150,7 +150,7 @@
   <data name="Espanha_NationalDay" xml:space="preserve">
     <value>Fiesta Nacional de España</value>
   </data>
-  <data name="Father's Day" xml:space="preserve">
+  <data name="FathersDay" xml:space="preserve">
     <value>Día del padre</value>
   </data>
   <data name="GoodFriday" xml:space="preserve">
@@ -168,7 +168,7 @@
   <data name="MaundyThursday" xml:space="preserve">
     <value>Jueves Santo</value>
   </data>
-  <data name="Mother's Day" xml:space="preserve">
+  <data name="MothersDay" xml:space="preserve">
     <value>Día de la madre</value>
   </data>
   <data name="NewYear" xml:space="preserve">

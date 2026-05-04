@@ -34,7 +34,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public bool IsHoliDay(DateTime day)
         {
             var map = observancesCache.GetOrAdd(day.Year, () => BuildObservancesMap(day.Year));
-            return map.Any(m => m.Key.Date == day.Date);
+            return map.Any(m => m.Key.Date == day.Date && m.Value.IsHoliday);
         }
 
         protected virtual IDictionary<DateTime, Observance> BuildObservancesMap(int year)

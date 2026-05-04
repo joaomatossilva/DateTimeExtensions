@@ -48,6 +48,8 @@ namespace DateTimeExtensions.Tests
             Assert.AreEqual(ChristianHolidays.ChristmasEve.Name, "Vespera de Natal");
             Assert.AreEqual(GlobalHolidays.InternationalWorkersDay.Name, "Dia do Trabalhador");
             Assert.AreEqual(PT_PTHolidayStrategy.RestorationOfIndependance.Name, "Restauração da Independência");
+            Assert.AreEqual(PT_PTHolidayStrategy.FathersDay.Name, "Dia do Pai");
+            Assert.AreEqual(PT_PTHolidayStrategy.MothersDay.Name, "Dia da Mãe");
         }
 
         [Test]
