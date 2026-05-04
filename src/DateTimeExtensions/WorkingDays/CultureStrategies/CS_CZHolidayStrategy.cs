@@ -3,7 +3,7 @@
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("cs-CZ")]
-    public class CS_CZHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class CS_CZHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public CS_CZHolidayStrategy()
         {

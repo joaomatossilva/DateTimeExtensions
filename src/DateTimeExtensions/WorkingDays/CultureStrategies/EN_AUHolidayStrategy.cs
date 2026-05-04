@@ -26,7 +26,7 @@ using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("en-AU")]
-    public class EN_AUHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class EN_AUHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public EN_AUHolidayStrategy()
         {

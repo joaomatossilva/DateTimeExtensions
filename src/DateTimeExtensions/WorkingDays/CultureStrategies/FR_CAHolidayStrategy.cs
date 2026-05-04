@@ -26,7 +26,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("fr-CA")]
     [Locale("en-CA")]
-    public class FR_CAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class FR_CAHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public FR_CAHolidayStrategy()
         {

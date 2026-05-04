@@ -25,7 +25,7 @@ using System.Text;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
-    public class DefaultHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class DefaultHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
     }
 }

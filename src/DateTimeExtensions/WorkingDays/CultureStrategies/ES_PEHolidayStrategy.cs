@@ -24,7 +24,7 @@ using System.Collections.Generic;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-PE")]
-    public class ES_PEHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_PEHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         private readonly static IEnumerable<NamedDay> fixedHolidays = new NamedDay[]
         {

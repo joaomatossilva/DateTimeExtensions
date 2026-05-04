@@ -28,7 +28,7 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("ar-SA")]
-    public class AR_SAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class AR_SAHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         private static readonly Calendar HirijiCalendar = new HijriCalendar();
 

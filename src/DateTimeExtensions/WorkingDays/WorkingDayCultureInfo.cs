@@ -33,7 +33,7 @@ namespace DateTimeExtensions.WorkingDays
         private readonly string name;
         private readonly string region;
         private IWorkingDayOfWeekStrategy workingDayOfWeekStrategy;
-        private IHolidayStrategy holidayStrategy;
+        private IObservancesStrategy holidayStrategy;
 
         public WorkingDayCultureInfo() : this(CultureInfo.CurrentCulture.Name, null)
         {
@@ -100,9 +100,9 @@ namespace DateTimeExtensions.WorkingDays
             }
         }
 
-        private Func<string, string, IHolidayStrategy> locateHolidayWeekStrategy;
+        private Func<string, string, IObservancesStrategy> locateHolidayWeekStrategy;
 
-        public Func<string, string, IHolidayStrategy> LocateHolidayStrategy
+        public Func<string, string, IObservancesStrategy> LocateHolidayStrategy
         {
             get { return locateHolidayWeekStrategy; }
             set
@@ -119,9 +119,9 @@ namespace DateTimeExtensions.WorkingDays
             }
         }
 
-        public static readonly Func<string, string, IHolidayStrategy> DefaultLocateHolidayStrategy =
+        public static readonly Func<string, string, IObservancesStrategy> DefaultLocateHolidayStrategy =
             (name, region) =>
-                LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name, region) ?? new DefaultHolidayStrategy();
+                LocaleImplementationLocator.FindImplementationOf<IObservancesStrategy>(name, region) ?? new DefaultHolidayStrategy();
 
         public static readonly Func<string, string, IWorkingDayOfWeekStrategy> DefaultLocateWorkingDayOfWeekStrategy =
             (name, region) =>

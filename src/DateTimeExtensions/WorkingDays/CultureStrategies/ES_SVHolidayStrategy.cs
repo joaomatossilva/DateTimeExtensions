@@ -3,7 +3,7 @@
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-SV")]
-    public class ES_SVHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_SVHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public ES_SVHolidayStrategy()
         {

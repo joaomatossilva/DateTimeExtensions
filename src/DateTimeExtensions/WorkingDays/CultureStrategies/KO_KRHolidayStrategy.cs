@@ -28,7 +28,7 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("ko-KR")]
-    public class KO_KRHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class KO_KRHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         private static readonly Calendar KoreanLunisolarCalendar = new KoreanLunisolarCalendar();
 

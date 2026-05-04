@@ -24,7 +24,7 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("nl-NL")]
-    public class NL_NLHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class NL_NLHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public NL_NLHolidayStrategy()
         {

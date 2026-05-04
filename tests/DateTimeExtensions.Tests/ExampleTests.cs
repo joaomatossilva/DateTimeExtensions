@@ -89,7 +89,7 @@ namespace DateTimeExtensions.Tests
         /* Extensibility */
 
         [Locale("CustomTest")]
-        public class CustomHolidayStrategy : IHolidayStrategy
+        public class CustomHolidayStrategy : IObservancesStrategy
         {
             public bool IsHoliDay(DateTime day)
             {
@@ -127,7 +127,7 @@ namespace DateTimeExtensions.Tests
             var customWorkingDayCultureInfo = new WorkingDayCultureInfo("CustomTest")
             {
                 LocateHolidayStrategy = (name, region) =>
-                    LocaleImplementationLocator.FindImplementationOf<IHolidayStrategy>(name, region, thisAssembly) ??
+                    LocaleImplementationLocator.FindImplementationOf<IObservancesStrategy>(name, region, thisAssembly) ??
                     new DefaultHolidayStrategy(),
                 LocateWorkingDayOfWeekStrategy = (name, region) =>
                     LocaleImplementationLocator.FindImplementationOf<IWorkingDayOfWeekStrategy>(name, region, thisAssembly) ??

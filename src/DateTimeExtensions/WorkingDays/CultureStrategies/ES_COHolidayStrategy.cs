@@ -26,7 +26,7 @@ using System.Linq;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-CO")]
-    public class ES_COHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_COHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         private static NamedDay[] fixedDayHolidays =
             new NamedDay[]

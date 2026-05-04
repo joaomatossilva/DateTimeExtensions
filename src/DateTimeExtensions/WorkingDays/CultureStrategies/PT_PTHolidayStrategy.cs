@@ -28,7 +28,7 @@ using DateTimeExtensions.WorkingDays.RegionIdentifiers;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("pt-PT")]
-    public class PT_PTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class PT_PTHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public PT_PTHolidayStrategy(string region)
         {

@@ -27,7 +27,7 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-AR")]
-    public class ES_ARHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_ARHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         private static readonly IEnumerable<NamedDay> TuristicHolidays =
             new NamedDay[]

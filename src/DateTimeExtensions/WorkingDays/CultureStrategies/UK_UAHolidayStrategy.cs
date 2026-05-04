@@ -3,7 +3,7 @@
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("uk-UA")]
-    public class UK_UAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class UK_UAHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public UK_UAHolidayStrategy()
         {

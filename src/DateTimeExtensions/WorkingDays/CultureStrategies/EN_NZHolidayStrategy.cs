@@ -7,7 +7,7 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("en-NZ")]
-    public class EN_NZHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class EN_NZHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         // Rules / Dates sourced from
         //		https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates/

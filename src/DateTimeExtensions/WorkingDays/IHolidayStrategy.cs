@@ -25,7 +25,7 @@ using System.Text;
 
 namespace DateTimeExtensions.WorkingDays
 {
-    public interface IHolidayStrategy
+    public interface IObservancesStrategy
     {
         IEnumerable<Observance> Observances { get; }
         IEnumerable<Observance> GetObservancesOfYear(int year);

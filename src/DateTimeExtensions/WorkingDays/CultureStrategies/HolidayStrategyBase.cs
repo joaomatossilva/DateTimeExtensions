@@ -25,7 +25,7 @@ using System.Linq;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
-    public abstract class HolidayStrategyBase : IHolidayStrategy
+    public abstract class HolidayStrategyBase : IObservancesStrategy
     {
         protected IList<Observance> InnerObservances { get; } = new List<Observance>();
 

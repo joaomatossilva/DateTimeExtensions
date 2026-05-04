@@ -7,7 +7,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("sq-AL")]
 
-    public class SQ_ALHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class SQ_ALHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public SQ_ALHolidayStrategy()
         {

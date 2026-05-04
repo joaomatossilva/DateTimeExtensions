@@ -27,7 +27,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_provide_custom_locator_holiday_dayOfWeek_strategy()
         {
-            var mockHolidayStrategy = new Mock<IHolidayStrategy>();
+            var mockHolidayStrategy = new Mock<IObservancesStrategy>();
             mockHolidayStrategy.Setup(x => x.IsHoliDay(It.IsAny<DateTime>())).Returns(true);
 
             var mockDayOfWeekStartegy = new Mock<IWorkingDayOfWeekStrategy>();
