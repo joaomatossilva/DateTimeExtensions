@@ -13,7 +13,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void Czechia_Has_13_HolidayDays()
         {
-            Assert.That(dateTimeCulture.Holidays.Count(), Is.EqualTo(13));
+            Assert.That(dateTimeCulture.Observances.Count(), Is.EqualTo(13));
         }
 
         [Test]

@@ -21,7 +21,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void Holidays_Collection_Count_Is_8()
         {
-            var holidays = workingDayCultureInfo.Holidays;
+            var holidays = workingDayCultureInfo.Observances;
             Assert.That(holidays.Count(), Is.EqualTo(8));
         }
 

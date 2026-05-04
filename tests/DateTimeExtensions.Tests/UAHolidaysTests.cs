@@ -20,7 +20,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void UA_has_11_main_holidays()
         {
-            Assert.AreEqual(11, dateTimeCulture.Holidays.Count());
+            Assert.AreEqual(11, dateTimeCulture.Observances.Count());
         }
 
         [Test]

@@ -34,7 +34,7 @@ namespace DateTimeExtensions.Export
 
         public void Export(WorkingDayCultureInfo dateTimeCultureInfo, int year, TextWriter writer)
         {
-            var holidays = dateTimeCultureInfo.GetHolidaysOfYear(year);
+            var holidays = dateTimeCultureInfo.GetObservancesOfYear(year);
             writer.WriteLine(HeaderLineFomat, dateTimeCultureInfo.Name, holidays.Count());
             foreach (var holiday in holidays)
             {

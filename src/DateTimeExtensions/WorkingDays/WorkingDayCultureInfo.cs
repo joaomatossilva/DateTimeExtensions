@@ -66,12 +66,12 @@ namespace DateTimeExtensions.WorkingDays
             return this.workingDayOfWeekStrategy.IsWorkingDay(dayOfWeek);
         }
 
-        public IEnumerable<Observance> Holidays
+        public IEnumerable<Observance> Observances
         {
             get { return this.holidayStrategy.Observances; }
         }
 
-        public IEnumerable<Observance> GetHolidaysOfYear(int year)
+        public IEnumerable<Observance> GetObservancesOfYear(int year)
         {
             return this.holidayStrategy.GetObservancesOfYear(year);
         }

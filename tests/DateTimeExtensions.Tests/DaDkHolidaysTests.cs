@@ -22,7 +22,7 @@ namespace DateTimeExtensions.Tests
         public void Assert_holidays_count()
         {
             var dateTimeCulture = new WorkingDayCultureInfo("da-DK");
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.Observances;
             Assert.AreEqual(11, holidays.Count());
         }
 

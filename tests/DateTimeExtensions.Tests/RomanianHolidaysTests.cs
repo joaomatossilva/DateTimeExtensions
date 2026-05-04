@@ -19,7 +19,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void Romanian_has_12_main_holidays()
         {
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.Observances;
             Assert.AreEqual(16, holidays.Count());
         }
 

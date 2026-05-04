@@ -164,12 +164,12 @@ namespace DateTimeExtensions.Tests
                 }
             }
 
-            public IEnumerable<Observance> Holidays
+            public IEnumerable<Observance> Observances
             {
                 get { return null; }
             }
 
-            public IEnumerable<Observance> GetHolidaysOfYear(int year)
+            public IEnumerable<Observance> GetObservancesOfYear(int year)
             {
                 return null;
             }
