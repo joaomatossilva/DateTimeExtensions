@@ -21,7 +21,6 @@
 using System;
 using System.Reflection;
 using System.Resources;
-using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays
 {
@@ -45,15 +44,9 @@ namespace DateTimeExtensions.WorkingDays
 
         private readonly IDayResolver resolver;
 
-        public string Name
-        {
-            get { return ResourceManager.GetString(name) ?? name; }
-        }
+        public string Name => ResourceManager.GetString(name) ?? name;
 
-        public IDayResolver Resolver
-        {
-            get { return resolver; }
-        }
+        public IDayResolver Resolver => resolver;
 
         public DateTime? GetInstance(int year) => resolver.GetInstance(year);
 
@@ -61,15 +54,12 @@ namespace DateTimeExtensions.WorkingDays
 
 
         private static ResourceManager resourceManager =
-            new ResourceManager("DateTimeExtensions.WorkingDays.HolidayNames", typeof (NamedDay).GetTypeInfo().Assembly);
+            new("DateTimeExtensions.WorkingDays.HolidayNames", typeof (NamedDay).GetTypeInfo().Assembly);
 
         public static ResourceManager ResourceManager
         {
-            get { return resourceManager; }
-            set
-            {
-                resourceManager = value ?? throw new ArgumentNullException("value");
-            }
+            get => resourceManager;
+            set => resourceManager = value ?? throw new ArgumentNullException("value");
         }
     }
 }
