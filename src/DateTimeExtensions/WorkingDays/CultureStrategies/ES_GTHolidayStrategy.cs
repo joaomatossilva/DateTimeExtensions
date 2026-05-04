@@ -1,98 +1,98 @@
-using DateTimeExtensions.Common;
+﻿using DateTimeExtensions.Common;
 
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-GT")]
-    public class ES_GTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_GTHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public ES_GTHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday); // Jueves Santo
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday); // Viernes Santo
-            this.InnerHolidays.Add(ChristianHolidays.EasterSaturday); // Sábado de Gloria
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay); // Día del Trabajo
-            this.InnerHolidays.Add(MothersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption); // Feriado Ciudad Capital Guatemala
-            this.InnerHolidays.Add(ChristianHolidays.DayOfTheDead);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
-            this.InnerHolidays.Add(IndependenceDay); // Día de la Independencia
-            this.InnerHolidays.Add(RevolutionDay); // Día de la Revolución
-            this.InnerHolidays.Add(ArmyDay); // Día del Ejército
-            this.InnerHolidays.Add(AllSaintsDay); // Día de Todos los Santos
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.MaundyThursday); // Jueves Santo
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday); // Viernes Santo
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterSaturday); // Sábado de Gloria
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay); // Día del Trabajo
+            this.InnerObservances.AddHoliday(MothersDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption); // Feriado Ciudad Capital Guatemala
+            this.InnerObservances.AddHoliday(ChristianHolidays.DayOfTheDead);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ChristmasEve);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.AddHoliday(IndependenceDay); // Día de la Independencia
+            this.InnerObservances.AddHoliday(RevolutionDay); // Día de la Revolución
+            this.InnerObservances.AddHoliday(ArmyDay); // Día del Ejército
+            this.InnerObservances.AddHoliday(AllSaintsDay); // Día de Todos los Santos
         }
 
-        private static Holiday _mothersDay;
+        private static NamedDay _mothersDay;
 
-        private static Holiday _independenceDay;
+        private static NamedDay _independenceDay;
 
-        private static Holiday _revolutionDay;
+        private static NamedDay _revolutionDay;
 
-        private static Holiday _armyDay;
+        private static NamedDay _armyDay;
 
-        private static Holiday _allSaintsDay;
+        private static NamedDay _allSaintsDay;
 
-        public static Holiday MothersDay
+        public static NamedDay MothersDay
         {
             get
             {
                 if (_mothersDay == null)
                 {
-                    _mothersDay = new FixedHoliday("Día de la Madre", 5, 10);
+                    _mothersDay = new NamedDay("Día de la Madre", new FixedDayResolver(5, 10));
                 }
 
                 return _mothersDay;
             }
         }
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (_independenceDay == null)
                 {
-                    _independenceDay = new FixedHoliday("Día de la Independencia", 9, 15);
+                    _independenceDay = new NamedDay("Día de la Independencia", new FixedDayResolver(9, 15));
                 }
 
                 return _independenceDay;
             }
         }
 
-        public static Holiday RevolutionDay
+        public static NamedDay RevolutionDay
         {
             get
             {
                 if (_revolutionDay == null)
                 {
-                    _revolutionDay = new FixedHoliday("Día de la Revolución", 10, 20);
+                    _revolutionDay = new NamedDay("Día de la Revolución", new FixedDayResolver(10, 20));
                 }
 
                 return _revolutionDay;
             }
         }
 
-        public static Holiday ArmyDay
+        public static NamedDay ArmyDay
         {
             get
             {
                 if (_armyDay == null)
                 {
-                    _armyDay = new FixedHoliday("Día del Ejercito", 6, 30);
+                    _armyDay = new NamedDay("Día del Ejercito", new FixedDayResolver(6, 30));
                 }
 
                 return _armyDay;
             }
         }
 
-        public static Holiday AllSaintsDay
+        public static NamedDay AllSaintsDay
         {
             get
             {
                 if (_allSaintsDay == null)
                 {
-                    _allSaintsDay = new FixedHoliday("Día de Todos los Santos", 11, 1);
+                    _allSaintsDay = new NamedDay("Día de Todos los Santos", new FixedDayResolver(11, 1));
                 }
 
                 return _allSaintsDay;

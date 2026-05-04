@@ -30,190 +30,190 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public TurkishHolidayStrategy()
         {
-            this.InnerHolidays.Add(YeniYil);
-            this.InnerHolidays.Add(CocukBayrami);
-            this.InnerHolidays.Add(IsciBayrami);
-            this.InnerHolidays.Add(GenclikVeSporBayrami);
-            this.InnerHolidays.Add(DemokrasiBayrami);
-            this.InnerHolidays.Add(ZaferBayrami);
+            this.InnerObservances.AddHoliday(YeniYil);
+            this.InnerObservances.AddHoliday(CocukBayrami);
+            this.InnerObservances.AddHoliday(IsciBayrami);
+            this.InnerObservances.AddHoliday(GenclikVeSporBayrami);
+            this.InnerObservances.AddHoliday(DemokrasiBayrami);
+            this.InnerObservances.AddHoliday(ZaferBayrami);
 
-            this.InnerHolidays.Add(RamazanBayrami1);
-            this.InnerHolidays.Add(RamazanBayrami2);
-            this.InnerHolidays.Add(RamazanBayrami3);
+            this.InnerObservances.AddHoliday(RamazanBayrami1);
+            this.InnerObservances.AddHoliday(RamazanBayrami2);
+            this.InnerObservances.AddHoliday(RamazanBayrami3);
 
-            this.InnerHolidays.Add(KurbanBayrami1);
-            this.InnerHolidays.Add(KurbanBayrami2);
-            this.InnerHolidays.Add(KurbanBayrami3);
-            this.InnerHolidays.Add(KurbanBayrami4);
+            this.InnerObservances.AddHoliday(KurbanBayrami1);
+            this.InnerObservances.AddHoliday(KurbanBayrami2);
+            this.InnerObservances.AddHoliday(KurbanBayrami3);
+            this.InnerObservances.AddHoliday(KurbanBayrami4);
         }
 
-        private static Holiday yeniYil;
-        public static Holiday YeniYil
+        private static NamedDay yeniYil;
+        public static NamedDay YeniYil
         {
             get
             {
                 if (yeniYil == null)
                 {
-                    yeniYil = new FixedHoliday("Yeni Yıl", 1, 1);
+                    yeniYil = new NamedDay("Yeni Yıl", new FixedDayResolver(1, 1));
                 }
                 return yeniYil;
             }
         }
 
-        private static Holiday cocukBayrami;
-        public static Holiday CocukBayrami
+        private static NamedDay cocukBayrami;
+        public static NamedDay CocukBayrami
         {
             get
             {
                 if (cocukBayrami == null)
                 {
-                    cocukBayrami = new FixedHoliday("23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", 4, 23);
+                    cocukBayrami = new NamedDay("23 Nisan Ulusal Egemenlik ve Çocuk Bayramı", new FixedDayResolver(4, 23));
                 }
                 return cocukBayrami;
             }
         }
 
-        private static Holiday isciBayrami;
-        public static Holiday IsciBayrami
+        private static NamedDay isciBayrami;
+        public static NamedDay IsciBayrami
         {
             get
             {
                 if (isciBayrami == null)
                 {
-                    isciBayrami = new FixedHoliday("1 Mayıs Emek ve Dayanışma Günü", 5, 1);
+                    isciBayrami = new NamedDay("1 Mayıs Emek ve Dayanışma Günü", new FixedDayResolver(5, 1));
                 }
                 return isciBayrami;
             }
         }
 
 
-        private static Holiday genclikVeSporBayrami;
-        public static Holiday GenclikVeSporBayrami
+        private static NamedDay genclikVeSporBayrami;
+        public static NamedDay GenclikVeSporBayrami
         {
             get
             {
                 if (genclikVeSporBayrami == null)
                 {
-                    genclikVeSporBayrami = new FixedHoliday("19 Mayıs Atatürk'ü Anma Gençlik ve Spor Bayramı", 5, 19);
+                    genclikVeSporBayrami = new NamedDay("19 Mayıs Atatürk'ü Anma Gençlik ve Spor Bayramı", new FixedDayResolver(5, 19));
                 }
                 return genclikVeSporBayrami;
             }
         }
 
-        private static Holiday demokrasiBayrami;
-        public static Holiday DemokrasiBayrami
+        private static NamedDay demokrasiBayrami;
+        public static NamedDay DemokrasiBayrami
         {
             get
             {
                 if (demokrasiBayrami == null)
                 {
-                    demokrasiBayrami = new FixedHoliday("15 Temmuz Demokrasi ve Özgürlükler Günü", 7, 15);
+                    demokrasiBayrami = new NamedDay("15 Temmuz Demokrasi ve Özgürlükler Günü", new FixedDayResolver(7, 15));
                 }
                 return demokrasiBayrami;
             }
         }
 
 
-        private static Holiday zaferBayrami;
-        public static Holiday ZaferBayrami
+        private static NamedDay zaferBayrami;
+        public static NamedDay ZaferBayrami
         {
             get
             {
                 if (zaferBayrami == null)
                 {
-                    zaferBayrami = new FixedHoliday("30 Ağustos Zafer Bayramı", 8, 30);
+                    zaferBayrami = new NamedDay("30 Ağustos Zafer Bayramı", new FixedDayResolver(8, 30));
                 }
                 return zaferBayrami;
             }
         }
 
 
-        private static Holiday ramazanbayrami1;
-        public static Holiday RamazanBayrami1
+        private static NamedDay ramazanbayrami1;
+        public static NamedDay RamazanBayrami1
         {
             get
             {
                 if (ramazanbayrami1 == null)
                 {
-                    ramazanbayrami1 = new FixedHoliday("Ramazan Bayramı 1. Günü", 10, 1, new UmAlQuraCalendar());
+                    ramazanbayrami1 = new NamedDay("Ramazan Bayramı 1. Günü", new FixedDayResolver(10, 1, new UmAlQuraCalendar()));
                 }
                 return ramazanbayrami1;
             }
         }
 
-        private static Holiday ramazanbayrami2;
-        public static Holiday RamazanBayrami2
+        private static NamedDay ramazanbayrami2;
+        public static NamedDay RamazanBayrami2
         {
             get
             {
                 if (ramazanbayrami2 == null)
                 {
-                    ramazanbayrami2 = new FixedHoliday("Ramazan Bayramı 2. Günü", 10, 2, new UmAlQuraCalendar());
+                    ramazanbayrami2 = new NamedDay("Ramazan Bayramı 2. Günü", new FixedDayResolver(10, 2, new UmAlQuraCalendar()));
                 }
                 return ramazanbayrami2;
             }
         }
 
-        private static Holiday ramazanbayrami3;
-        public static Holiday RamazanBayrami3
+        private static NamedDay ramazanbayrami3;
+        public static NamedDay RamazanBayrami3
         {
             get
             {
                 if (ramazanbayrami3 == null)
                 {
-                    ramazanbayrami3 = new FixedHoliday("Ramazan Bayramı 3. Günü", 10, 3, new UmAlQuraCalendar());
+                    ramazanbayrami3 = new NamedDay("Ramazan Bayramı 3. Günü", new FixedDayResolver(10, 3, new UmAlQuraCalendar()));
                 }
                 return ramazanbayrami3;
             }
         }
 
-        private static Holiday kurbanbayrami1;
-        public static Holiday KurbanBayrami1
+        private static NamedDay kurbanbayrami1;
+        public static NamedDay KurbanBayrami1
         {
             get
             {
                 if (kurbanbayrami1 == null)
                 {
-                    kurbanbayrami1 = new FixedHoliday("Kurban Bayramı 1. Günü", 12, 10, new UmAlQuraCalendar());
+                    kurbanbayrami1 = new NamedDay("Kurban Bayramı 1. Günü", new FixedDayResolver(12, 10, new UmAlQuraCalendar()));
                 }
                 return kurbanbayrami1;
             }
         }
 
-        private static Holiday kurbanbayrami2;
-        public static Holiday KurbanBayrami2
+        private static NamedDay kurbanbayrami2;
+        public static NamedDay KurbanBayrami2
         {
             get
             {
                 if (kurbanbayrami2 == null)
                 {
-                    kurbanbayrami2 = new FixedHoliday("Kurban Bayramı 2. Günü", 12, 11, new UmAlQuraCalendar());
+                    kurbanbayrami2 = new NamedDay("Kurban Bayramı 2. Günü", new FixedDayResolver(12, 11, new UmAlQuraCalendar()));
                 }
                 return kurbanbayrami2;
             }
         }
 
-        private static Holiday kurbanbayrami3;
-        public static Holiday KurbanBayrami3
+        private static NamedDay kurbanbayrami3;
+        public static NamedDay KurbanBayrami3
         {
             get
             {
                 if (kurbanbayrami3 == null)
                 {
-                    kurbanbayrami3 = new FixedHoliday("Kurban Bayramı 3. Günü", 12, 12, new UmAlQuraCalendar());
+                    kurbanbayrami3 = new NamedDay("Kurban Bayramı 3. Günü", new FixedDayResolver(12, 12, new UmAlQuraCalendar()));
                 }
                 return kurbanbayrami3;
             }
         }
 
-        private static Holiday kurbanbayrami4;
-        public static Holiday KurbanBayrami4
+        private static NamedDay kurbanbayrami4;
+        public static NamedDay KurbanBayrami4
         {
             get
             {
                 if (kurbanbayrami4 == null)
                 {
-                    kurbanbayrami4 = new FixedHoliday("Kurban Bayramı 4. Günü", 12, 13, new UmAlQuraCalendar());
+                    kurbanbayrami4 = new NamedDay("Kurban Bayramı 4. Günü", new FixedDayResolver(12, 13, new UmAlQuraCalendar()));
                 }
                 return kurbanbayrami4;
             }

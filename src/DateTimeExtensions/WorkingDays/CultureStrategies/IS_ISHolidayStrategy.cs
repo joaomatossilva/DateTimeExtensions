@@ -27,103 +27,100 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("is-IS")]
-    public class IS_ISHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class IS_ISHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public IS_ISHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.PalmSunday);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(FirstDayOfSummer);
-            this.InnerHolidays.Add(GlobalHolidays.MayDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(SeamensDay);
-            this.InnerHolidays.Add(RepublicsDay);
-            this.InnerHolidays.Add(CommerceDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PalmSunday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(FirstDayOfSummer);
+            this.InnerObservances.AddHoliday(GlobalHolidays.MayDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(SeamensDay);
+            this.InnerObservances.AddHoliday(RepublicsDay);
+            this.InnerObservances.AddHoliday(CommerceDay);
             //Christmas Eve is usually half holiday observance
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(SecondDayOfChristmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(SecondDayOfChristmas);
             //New Year's Eve is usually half holiday observance
         }
 
-        private static Holiday republicsDay;
+        private static NamedDay republicsDay;
 
-        public static Holiday RepublicsDay
+        public static NamedDay RepublicsDay
         {
             get
             {
                 if (republicsDay == null)
                 {
-                    republicsDay = new FixedHoliday("Republic's Day", 6, 17);
+                    republicsDay = new NamedDay("Republic's Day", new FixedDayResolver(6, 17));
                 }
                 return republicsDay;
             }
         }
 
         //Commerce Day - First Monday of August
-        private static Holiday commerceDay;
+        private static NamedDay commerceDay;
 
-        public static Holiday CommerceDay
+        public static NamedDay CommerceDay
         {
             get
             {
                 if (commerceDay == null)
                 {
-                    commerceDay = new NthDayOfWeekInMonthHoliday("Commerce's Day", 1, DayOfWeek.Monday, 8,
-                        CountDirection.FromFirst);
+                    commerceDay = new NamedDay("Commerce's Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 8, CountDirection.FromFirst));
                 }
                 return commerceDay;
             }
         }
 
         //The Seamen's Day - First Sunday of June
-        private static Holiday seamensDay;
+        private static NamedDay seamensDay;
 
-        public static Holiday SeamensDay
+        public static NamedDay SeamensDay
         {
             get
             {
                 if (seamensDay == null)
                 {
-                    seamensDay = new NthDayOfWeekInMonthHoliday("The Seamen's Day", 1, DayOfWeek.Sunday, 6,
-                        CountDirection.FromFirst);
+                    seamensDay = new NamedDay("The Seamen's Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Sunday, 6, CountDirection.FromFirst));
                 }
                 return seamensDay;
             }
         }
 
         //First Day of Summer - First Thursday after 18 April
-        private static Holiday firstDayOfSummer;
+        private static NamedDay firstDayOfSummer;
 
-        public static Holiday FirstDayOfSummer
+        public static NamedDay FirstDayOfSummer
         {
             get
             {
                 if (firstDayOfSummer == null)
                 {
                     //could not find any strong reference of the designated day of 18 April is inclusive or not
-                    // if it is, then we should change it to 17 April, since NthDayOfWeekAfterDayHoliday don't count with the current day
-                    firstDayOfSummer = new NthDayOfWeekAfterDayHoliday("First Day of Summer", 1, DayOfWeek.Thursday, 4,
-                        18);
+                    // if it is, then we should change it to 17 April, since NthDayOfWeekAfterDayResolver does not count the current day
+                    firstDayOfSummer = new NamedDay("First Day of Summer", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Thursday, 4, 18));
                 }
                 return firstDayOfSummer;
             }
         }
 
-        private static Holiday secondDayOfChristmas;
+        private static NamedDay secondDayOfChristmas;
 
-        public static Holiday SecondDayOfChristmas
+        public static NamedDay SecondDayOfChristmas
         {
             get
             {
                 if (secondDayOfChristmas == null)
                 {
-                    secondDayOfChristmas = new FixedHoliday("Christmas (2nd Day)", 12, 26);
+                    secondDayOfChristmas = new NamedDay("Christmas (2nd Day)", new FixedDayResolver(12, 26));
                 }
                 return secondDayOfChristmas;
             }

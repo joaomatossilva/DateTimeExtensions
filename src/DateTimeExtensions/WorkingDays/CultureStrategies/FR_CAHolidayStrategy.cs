@@ -26,27 +26,27 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("fr-CA")]
     [Locale("en-CA")]
-    public class FR_CAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class FR_CAHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public FR_CAHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(CanadaDay);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(Thanksgiving);
-            this.InnerHolidays.Add(RemembranceDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(CanadaDay);
+            this.InnerObservances.AddHoliday(LabourDay);
+            this.InnerObservances.AddHoliday(Thanksgiving);
+            this.InnerObservances.AddHoliday(RemembranceDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
 
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
 
                 if (date.HasValue)
                 {
@@ -55,84 +55,88 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     if (date.Value.DayOfWeek == DayOfWeek.Saturday)
                     {
                         //if the holiday is a saturday, the holiday is observed on previous friday
-                        holidayMap.AddIfInexistent(date.Value.AddDays(-1), innerHoliday);
+                        var observedDate = date.Value.AddDays(-1);
+                        holidayMap.AddIfInexistent(
+                            observedDate,
+                            new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
                     }
 
                     if (date.Value.DayOfWeek == DayOfWeek.Sunday)
                     {
                         //if the holiday is a sunday, the holiday is observed on next monday
-                        holidayMap.AddIfInexistent(date.Value.AddDays(1), innerHoliday);
+                        var observedDate = date.Value.AddDays(1);
+                        holidayMap.AddIfInexistent(
+                            observedDate,
+                            new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
                     }
                 }
             }
             return holidayMap;
         }
 
-        private static Holiday canadaDay;
+        private static NamedDay canadaDay;
 
         /// <summary>
         /// July 1 - Canada Day
         /// </summary>
-        public static Holiday CanadaDay
+        public static NamedDay CanadaDay
         {
             get
             {
                 if (canadaDay == null)
                 {
-                    canadaDay = new FixedHoliday("Canada Day", 7, 1);
+                    canadaDay = new NamedDay("Canada Day", new FixedDayResolver(7, 1));
                 }
                 return canadaDay;
             }
         }
 
-        private static Holiday labourDay;
+        private static NamedDay labourDay;
 
         /// <summary>
         /// First Monday in September - Labour Day
         /// </summary>
-        public static Holiday LabourDay
+        public static NamedDay LabourDay
         {
             get
             {
                 if (labourDay == null)
                 {
-                    labourDay = new NthDayOfWeekInMonthHoliday("Labour Day", 1, DayOfWeek.Monday, 9,
-                        CountDirection.FromFirst);
+                    labourDay = new NamedDay("Labour Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 9, CountDirection.FromFirst));
                 }
                 return labourDay;
             }
         }
 
-        private static Holiday thanksgiving;
+        private static NamedDay thanksgiving;
 
         /// <summary>
         /// Second Monday in October - Thanksgiving
         /// </summary>
-        public static Holiday Thanksgiving
+        public static NamedDay Thanksgiving
         {
             get
             {
                 if (thanksgiving == null)
                 {
-                    thanksgiving = new NthDayOfWeekInMonthHoliday("Thanksgiving", 2, DayOfWeek.Monday, 10,
-                        CountDirection.FromFirst);
+                    thanksgiving = new NamedDay("Thanksgiving", new NthDayOfWeekInMonthDayResolver(2, DayOfWeek.Monday, 10, CountDirection.FromFirst));
                 }
                 return thanksgiving;
             }
         }
 
-        private static Holiday remembranceDay;
+        private static NamedDay remembranceDay;
 
         /// <summary>
         /// November 11 - Remembrance Day
         /// </summary>
-        public static Holiday RemembranceDay
+        public static NamedDay RemembranceDay
         {
             get
             {
                 if (remembranceDay == null)
                 {
-                    remembranceDay = new FixedHoliday("Remembrance Day", 11, 11);
+                    remembranceDay = new NamedDay("Remembrance Day", new FixedDayResolver(11, 11));
                 }
                 return remembranceDay;
             }

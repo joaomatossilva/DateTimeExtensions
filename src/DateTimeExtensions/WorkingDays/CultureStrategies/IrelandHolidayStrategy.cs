@@ -11,56 +11,53 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IrelandHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(new NthDayOfWeekAfterDayHoliday("May Day", 1, DayOfWeek.Monday, GlobalHolidays.MayDay));
-            this.InnerHolidays.Add(JuneHoliday);
-            this.InnerHolidays.Add(AugustHoliday);
-            this.InnerHolidays.Add(OctoberHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(GlobalHolidays.StPatricsDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(new NamedDay("May Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, GlobalHolidays.MayDay.Resolver)));
+            this.InnerObservances.AddHoliday(JuneHoliday);
+            this.InnerObservances.AddHoliday(AugustHoliday);
+            this.InnerObservances.AddHoliday(OctoberHoliday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
         }
 
-        // 1st Monday in June - June Holiday
-        private static Holiday juneHoliday;
+        // 1st Monday in June - June NamedDay
+        private static NamedDay juneHoliday;
 
-        public static Holiday JuneHoliday
+        public static NamedDay JuneHoliday
         {
             get
             {
                 return juneHoliday ??
-                       (juneHoliday =
-                           new NthDayOfWeekInMonthHoliday("June Holiday", 1, DayOfWeek.Monday, 6,
-                               CountDirection.FromFirst));
+                        (juneHoliday =
+                            new NamedDay("June NamedDay", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 6, CountDirection.FromFirst)));
             }
         }
 
-        // 1st Monday in August - August Holiday
-        private static Holiday augustHoliday;
+        // 1st Monday in August - August NamedDay
+        private static NamedDay augustHoliday;
 
-        public static Holiday AugustHoliday
+        public static NamedDay AugustHoliday
         {
             get
             {
                 return augustHoliday ??
                        (augustHoliday =
-                           new NthDayOfWeekInMonthHoliday("August Holiday", 1, DayOfWeek.Monday, 8,
-                               CountDirection.FromFirst));
+                           new NamedDay("August NamedDay", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 8, CountDirection.FromFirst)));
             }
         }
 
-        // lasy Monday in October - October Holiday
-        private static Holiday octoberHoliday;
+        // lasy Monday in October - October NamedDay
+        private static NamedDay octoberHoliday;
 
-        public static Holiday OctoberHoliday
+        public static NamedDay OctoberHoliday
         {
             get
             {
                 return octoberHoliday ??
                        (octoberHoliday =
-                           new NthDayOfWeekInMonthHoliday("October Holiday", 1, DayOfWeek.Monday, 10,
-                               CountDirection.FromLast));
+                           new NamedDay("October NamedDay", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 10, CountDirection.FromLast)));
             }
         }
     }

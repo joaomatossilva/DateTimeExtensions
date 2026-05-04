@@ -27,23 +27,23 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("en-IE")]
-    public class EN_IEHolidayStrategy : EN_GBHolidayStrategy, IHolidayStrategy
+    public class EN_IEHolidayStrategy : EN_GBHolidayStrategy, IObservancesStrategy
     {
         public EN_IEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(BattleOfTheBoyneDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(BattleOfTheBoyneDay);
         }
 
-        private static Holiday battleOfTheBoyneDay;
+        private static NamedDay battleOfTheBoyneDay;
 
-        public static Holiday BattleOfTheBoyneDay
+        public static NamedDay BattleOfTheBoyneDay
         {
             get
             {
                 if (battleOfTheBoyneDay == null)
                 {
-                    battleOfTheBoyneDay = new FixedHoliday("Battle of the Boyne", 7, 12);
+                    battleOfTheBoyneDay = new NamedDay("Battle of the Boyne", new FixedDayResolver(7, 12));
                 }
                 return battleOfTheBoyneDay;
             }

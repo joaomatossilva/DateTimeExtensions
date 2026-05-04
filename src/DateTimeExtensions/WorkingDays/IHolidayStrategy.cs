@@ -25,10 +25,10 @@ using System.Text;
 
 namespace DateTimeExtensions.WorkingDays
 {
-    public interface IHolidayStrategy
+    public interface IObservancesStrategy
     {
-        IEnumerable<Holiday> Holidays { get; }
-        IEnumerable<Holiday> GetHolidaysOfYear(int year);
+        IEnumerable<Observance> Observances { get; }
+        IEnumerable<Observance> GetObservancesOfYear(int year);
         bool IsHoliDay(DateTime day);
     }
 }

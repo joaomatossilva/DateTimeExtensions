@@ -27,78 +27,75 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("en-GB")]
-    public class EN_GBHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class EN_GBHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public EN_GBHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(MayDayBank);
-            this.InnerHolidays.Add(SpringBank);
-            this.InnerHolidays.Add(LateSummerBank);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(MayDayBank);
+            this.InnerObservances.AddHoliday(SpringBank);
+            this.InnerObservances.AddHoliday(LateSummerBank);
         }
 
-        private static Holiday boxingDay;
+        private static NamedDay boxingDay;
 
-        public static Holiday BoxingDay
+        public static NamedDay BoxingDay
         {
             get
             {
                 if (boxingDay == null)
                 {
-                    boxingDay = new FixedHoliday("Boxing Day", 12, 26);
+                    boxingDay = new NamedDay("Boxing Day", new FixedDayResolver(12, 26));
                 }
                 return boxingDay;
             }
         }
 
-        //1st Monday in May	- May Day Bank Holiday
-        private static Holiday mayDayBank;
+        //1st Monday in May	- May Day Bank NamedDay
+        private static NamedDay mayDayBank;
 
-        public static Holiday MayDayBank
+        public static NamedDay MayDayBank
         {
             get
             {
                 if (mayDayBank == null)
                 {
-                    mayDayBank = new NthDayOfWeekInMonthHoliday("May Day Bank", 1, DayOfWeek.Monday, 5,
-                        CountDirection.FromFirst);
+                    mayDayBank = new NamedDay("May Day Bank", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 5, CountDirection.FromFirst));
                 }
                 return mayDayBank;
             }
         }
 
-        //Last Monday in May - Spring Bank Holiday
-        private static Holiday springBank;
+        //Last Monday in May - Spring Bank NamedDay
+        private static NamedDay springBank;
 
-        public static Holiday SpringBank
+        public static NamedDay SpringBank
         {
             get
             {
                 if (springBank == null)
                 {
-                    springBank = new NthDayOfWeekInMonthHoliday("Spring Bank", 1, DayOfWeek.Monday, 5,
-                        CountDirection.FromLast);
+                    springBank = new NamedDay("Spring Bank", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 5, CountDirection.FromLast));
                 }
                 return springBank;
             }
         }
 
-        //Last Monday in August	- Late Summer Bank Holiday
-        private static Holiday lateSummerBank;
+        //Last Monday in August	- Late Summer Bank NamedDay
+        private static NamedDay lateSummerBank;
 
-        public static Holiday LateSummerBank
+        public static NamedDay LateSummerBank
         {
             get
             {
                 if (lateSummerBank == null)
                 {
-                    lateSummerBank = new NthDayOfWeekInMonthHoliday("Late Summer Bank", 1, DayOfWeek.Monday, 8,
-                        CountDirection.FromLast);
+                    lateSummerBank = new NamedDay("Late Summer Bank", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 8, CountDirection.FromLast));
                 }
                 return lateSummerBank;
             }

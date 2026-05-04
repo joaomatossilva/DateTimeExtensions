@@ -27,65 +27,68 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-ES")]
-    public class ES_ESHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_ESHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public ES_ESHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(NationalDay);
-            this.InnerHolidays.Add(ConstitutionDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(NationalDay);
+            this.InnerObservances.AddHoliday(ConstitutionDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
+            foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     holidayMap.Add(date.Value, innerHoliday);
                     //if the holiday is a sunday, the holiday is observed on next monday
                     if (date.Value.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                        var observedDate = date.Value.AddDays(1);
+                        holidayMap.Add(
+                            observedDate,
+                            new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
                     }
                 }
             }
             return holidayMap;
         }
 
-        private static Holiday nationalDay;
+        private static NamedDay nationalDay;
 
-        public static Holiday NationalDay
+        public static NamedDay NationalDay
         {
             get
             {
                 if (nationalDay == null)
                 {
-                    nationalDay = new FixedHoliday("Espanha_NationalDay", 10, 12);
+                    nationalDay = new NamedDay("Espanha_NationalDay", new FixedDayResolver(10, 12));
                 }
                 return nationalDay;
             }
         }
 
-        private static Holiday constitutionDay;
+        private static NamedDay constitutionDay;
 
-        public static Holiday ConstitutionDay
+        public static NamedDay ConstitutionDay
         {
             get
             {
                 if (constitutionDay == null)
                 {
-                    constitutionDay = new FixedHoliday("Espanha_ConstitutionDay", 12, 6);
+                    constitutionDay = new NamedDay("Espanha_ConstitutionDay", new FixedDayResolver(12, 6));
                 }
                 return constitutionDay;
             }

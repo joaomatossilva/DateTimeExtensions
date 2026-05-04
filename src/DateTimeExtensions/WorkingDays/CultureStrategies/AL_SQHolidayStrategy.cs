@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DateTimeExtensions.Common;
 
 // Albanian Holidays 
@@ -7,46 +7,46 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("sq-AL")]
 
-    public class SQ_ALHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class SQ_ALHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public SQ_ALHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(SummerDay); // Dita e Veres in Albanian
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.Easter);
-            this.InnerHolidays.Add(NewruzDay); // Dita e Nevruzit Shia Muslim
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(MotherTheresaDay); // St. Theresa Day
-            this.InnerHolidays.Add(AlphabetDay);
-            this.InnerHolidays.Add(IndependenceDay);
-            this.InnerHolidays.Add(LiberationDay);
-            this.InnerHolidays.Add(NationalYouthDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(NewYearHoliday2); // second day of new year is a holiday in Albanian
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(SummerDay); // Dita e Veres in Albanian
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.Easter);
+            this.InnerObservances.AddHoliday(NewruzDay); // Dita e Nevruzit Shia Muslim
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(MotherTheresaDay); // St. Theresa Day
+            this.InnerObservances.AddHoliday(AlphabetDay);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(LiberationDay);
+            this.InnerObservances.AddHoliday(NationalYouthDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(NewYearHoliday2); // second day of new year is a holiday in Albanian
 
         }
-        private static Holiday newYearHoliday2;
-        public static Holiday NewYearHoliday2
+        private static NamedDay newYearHoliday2;
+        public static NamedDay NewYearHoliday2
         {
             get
             {
                 if (newYearHoliday2 == null)
                 {
-                    newYearHoliday2 = new FixedHoliday("NewYearHoliday2", 1, 2);
+                    newYearHoliday2 = new NamedDay("NewYearHoliday2", new FixedDayResolver(1, 2));
                 }
                 return newYearHoliday2;
             }
         }
 
-        private static Holiday summerDay;
-        public static Holiday SummerDay
+        private static NamedDay summerDay;
+        public static NamedDay SummerDay
         {
             get
             {
                 if (summerDay == null)
                 {
-                    summerDay = new FixedHoliday("SummerDay", 3, 14);
+                    summerDay = new NamedDay("SummerDay", new FixedDayResolver(3, 14));
                 }
                 return summerDay;
             }
@@ -54,42 +54,42 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         }
 
-        // This is a Shia Muslim Holiday 
-        private static Holiday newruzDay;
-        public static Holiday NewruzDay
+        // This is a Shia Muslim NamedDay 
+        private static NamedDay newruzDay;
+        public static NamedDay NewruzDay
         {
             get
             {
                 if (newruzDay == null)
                 {
-                    newruzDay = new FixedHoliday("NevruzDay", 3, 22);
+                    newruzDay = new NamedDay("NevruzDay", new FixedDayResolver(3, 22));
                 }
                 return newruzDay;
             }
         }
 
         // Saint Theresa or known as Mother Theresa
-        private static Holiday motherTheresaDay;
-        public static Holiday MotherTheresaDay
+        private static NamedDay motherTheresaDay;
+        public static NamedDay MotherTheresaDay
         {
             get
             {
                 if (motherTheresaDay == null)
                 {
-                    motherTheresaDay = new FixedHoliday("MotherTheresaDay", 9, 5);
+                    motherTheresaDay = new NamedDay("MotherTheresaDay", new FixedDayResolver(9, 5));
                 }
                 return motherTheresaDay;
             }
         }
 
-        private static Holiday alphabetDay;
-        public static Holiday AlphabetDay
+        private static NamedDay alphabetDay;
+        public static NamedDay AlphabetDay
         {
             get
             {
                 if (alphabetDay == null)
                 {
-                    alphabetDay = new FixedHoliday("AlphabetDay", 11, 22);
+                    alphabetDay = new NamedDay("AlphabetDay", new FixedDayResolver(11, 22));
                 }
                 return alphabetDay;
             }
@@ -97,51 +97,51 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         }
 
-        private static Holiday independenceDay;
-        public static Holiday IndependenceDay
+        private static NamedDay independenceDay;
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("IndipedenceDay", 11, 28);
+                    independenceDay = new NamedDay("IndipedenceDay", new FixedDayResolver(11, 28));
 
                 }
                 return independenceDay;
             }
         }
 
-        private static Holiday liberationDay;
-        public static Holiday LiberationDay
+        private static NamedDay liberationDay;
+        public static NamedDay LiberationDay
         {
             get
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new FixedHoliday("LiberationDay", 11, 29);
+                    liberationDay = new NamedDay("LiberationDay", new FixedDayResolver(11, 29));
                 }
                 return liberationDay;
             }
         }
 
-        private static Holiday nationalYouthDay;
+        private static NamedDay nationalYouthDay;
 
-        public static Holiday NationalYouthDay
+        public static NamedDay NationalYouthDay
         {
             get
             {
                 if (nationalYouthDay == null)
                 {
-                    nationalYouthDay = new FixedHoliday("NationalYouthDay", 12, 8);
+                    nationalYouthDay = new NamedDay("NationalYouthDay", new FixedDayResolver(12, 8));
                 }
                 return nationalYouthDay;
             }
         }
 
 
-        public IEnumerable<Holiday> GetHolidays()
+        public IEnumerable<Observance> GetHolidays()
         {
-            return this.InnerHolidays;
+            return this.InnerObservances;
         }
     
     }

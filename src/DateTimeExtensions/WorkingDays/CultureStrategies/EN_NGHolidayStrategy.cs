@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
@@ -25,35 +25,35 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("en-NG")] 
-    public class EN_NGHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class EN_NGHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public EN_NGHolidayStrategy()
         {
-            InnerHolidays.Add(GlobalHolidays.NewYear);
+            InnerObservances.AddHoliday(GlobalHolidays.NewYear);
 
-            InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            InnerHolidays.Add(ChristianHolidays.Christmas);
+            InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
-            InnerHolidays.Add(IndependenceDay);
-            InnerHolidays.Add(DemocracyDay);
+            InnerObservances.AddHoliday(IndependenceDay);
+            InnerObservances.AddHoliday(DemocracyDay);
 
-            InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
+            foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     if (holidayMap.ContainsKey(date.Value))
                     {
                         // Check to see if holiday falling on the Sunday then moves to the monday, and there is another holiday scheduled for the monday
-                        // Update the Holiday Name of the Monday
+                        // Update the NamedDay Name of the Monday
                         holidayMap[date.Value] = innerHoliday;
                     }
 
@@ -65,7 +65,10 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     //if the holiday is a sunday, the holiday is observed on next monday
                     if (date.Value.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        holidayMap.AddIfInexistent(date.Value.AddDays(1), innerHoliday);
+                        var observedDate = date.Value.AddDays(1);
+                        holidayMap.AddIfInexistent(
+                            observedDate,
+                            new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
                     }
                 }
             }
@@ -73,28 +76,28 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         // 12 June - Democracy Day
-        private static Holiday democracyDay;
-        public static Holiday DemocracyDay
+        private static NamedDay democracyDay;
+        public static NamedDay DemocracyDay
         {
             get
             {
                 if (democracyDay == null)
                 {
-                    democracyDay = new FixedHoliday("Democracy Day", 6, 12);
+                    democracyDay = new NamedDay("Democracy Day", new FixedDayResolver(6, 12));
                 }
                 return democracyDay;
             }
         }
 
         // 1st October - Independence Day
-        private static Holiday independenceDay;
-        public static Holiday IndependenceDay
+        private static NamedDay independenceDay;
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("IndependenceDay Day", 10, 1);
+                    independenceDay = new NamedDay("IndependenceDay Day", new FixedDayResolver(10, 1));
                 }
                 return independenceDay;
             }

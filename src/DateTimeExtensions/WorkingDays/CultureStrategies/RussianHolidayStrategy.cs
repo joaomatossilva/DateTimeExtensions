@@ -29,54 +29,54 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public RussianHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(OrtodoxChristmas);
-            this.InnerHolidays.Add(DefenderOfTheFatherland);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(OrtodoxChristmas);
+            this.InnerObservances.AddHoliday(DefenderOfTheFatherland);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             // New year -> 1/1 until 6/1
-            holidayMap.Add(GlobalHolidays.NewYear.GetInstance(year).Value, GlobalHolidays.NewYear);
+            holidayMap.Add(GlobalHolidays.NewYear.GetInstance(year).Value, new Observance(GlobalHolidays.NewYear, true));
             for (int day = 2; day <= 6; day++)
             {
-                holidayMap.Add(new DateTime(year, 1, day), GlobalHolidays.NewYear);
+                holidayMap.Add(new DateTime(year, 1, day), new Observance(new NamedDay(GlobalHolidays.NewYear.Name, new FixedDayResolver(1, day)), true));
             }
             // Christmas 7/1 until 10/1
-            holidayMap.Add(OrtodoxChristmas.GetInstance(year).Value, OrtodoxChristmas);
+            holidayMap.Add(OrtodoxChristmas.GetInstance(year).Value, new Observance(OrtodoxChristmas, true));
             for (int day = 8; day <= 10; day++)
             {
-                holidayMap.Add(new DateTime(year, 1, day), OrtodoxChristmas);
+                holidayMap.Add(new DateTime(year, 1, day), new Observance(new NamedDay(OrtodoxChristmas.Name, new FixedDayResolver(1, day)), true));
             }
 
-            holidayMap.Add(DefenderOfTheFatherland.GetInstance(year).Value, DefenderOfTheFatherland);
+            holidayMap.Add(DefenderOfTheFatherland.GetInstance(year).Value, new Observance(DefenderOfTheFatherland, true));
             return holidayMap;
         }
 
-        private Holiday ortodoxChristmas;
+        private NamedDay ortodoxChristmas;
 
-        public Holiday OrtodoxChristmas
+        public NamedDay OrtodoxChristmas
         {
             get
             {
                 if (ortodoxChristmas != null)
                 {
-                    ortodoxChristmas = new FixedHoliday("Ortodox Christmas", 1, 7);
+                    ortodoxChristmas = new NamedDay("Ortodox Christmas", new FixedDayResolver(1, 7));
                 }
                 return ortodoxChristmas;
             }
         }
 
-        private Holiday defenderOfTheFatherland;
+        private NamedDay defenderOfTheFatherland;
 
-        public Holiday DefenderOfTheFatherland
+        public NamedDay DefenderOfTheFatherland
         {
             get
             {
                 if (defenderOfTheFatherland != null)
                 {
-                    defenderOfTheFatherland = new FixedHoliday("Defender Of The Fatherland", 2, 23);
+                    defenderOfTheFatherland = new NamedDay("Defender Of The Fatherland", new FixedDayResolver(2, 23));
                 }
                 return defenderOfTheFatherland;
             }

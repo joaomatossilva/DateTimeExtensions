@@ -26,10 +26,10 @@ using System.Linq;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-CO")]
-    public class ES_COHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_COHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
-        private static Holiday[] fixedDayHolidays =
-            new Holiday[]
+        private static NamedDay[] fixedDayHolidays =
+            new NamedDay[]
             {
                 GlobalHolidays.NewYear,
                 GlobalHolidays.InternationalWorkersDay,
@@ -47,16 +47,16 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                 SacredHeart,
             };
 
-        private static Holiday[] nextMondayHolidays =
-            new Holiday[]
+        private static NamedDay[] nextMondayHolidays =
+            new NamedDay[]
             {
-                new FixedHoliday("Epiphany", new DayInYear(1, 6)),
-                new FixedHoliday("Saint Joseph", new DayInYear(3, 19)),
-                new FixedHoliday("Saint Peter and saint Paul", new DayInYear(6, 29)),
-                new FixedHoliday("Virgin Assumption",          new DayInYear(8, 15)),
-                new FixedHoliday("Race day",        new DayInYear(10, 12)),
-                new FixedHoliday("All saints' day", new DayInYear(11, 1)),
-                new FixedHoliday("Independence of Cartagena", new DayInYear(11, 11))
+                new NamedDay("Epiphany", new FixedDayResolver(new DayInYear(1, 6))),
+                new NamedDay("Saint Joseph", new FixedDayResolver(new DayInYear(3, 19))),
+                new NamedDay("Saint Peter and saint Paul", new FixedDayResolver(new DayInYear(6, 29))),
+                new NamedDay("Virgin Assumption", new FixedDayResolver(new DayInYear(8, 15))),
+                new NamedDay("Race day", new FixedDayResolver(new DayInYear(10, 12))),
+                new NamedDay("All saints' day", new FixedDayResolver(new DayInYear(11, 1))),
+                new NamedDay("Independence of Cartagena", new FixedDayResolver(new DayInYear(11, 11)))
             };
 
         public ES_COHolidayStrategy()
@@ -64,19 +64,19 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             var all = fixedDayHolidays.Concat(nextMondayHolidays);
             foreach (var h in all)
             {
-                this.InnerHolidays.Add(h);
+                this.InnerObservances.AddHoliday(h);
             }
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in fixedDayHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
+                    holidayMap.Add(date.Value, new Observance(innerHoliday, true));
                 }
             }
 
@@ -89,78 +89,80 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                                 ? date.Value
                                 : date.Value.NextDayOfWeek(DayOfWeek.Monday);
 
-                    holidayMap[d] = h;
+                    holidayMap[d] = d == date.Value
+                        ? new Observance(h, true)
+                        : new Observance(new NamedDay(h.Name, new FixedDayResolver(d.Month, d.Day)), true);
                 }
             }
 
             return holidayMap;
         }
 
-        private static Holiday independenceDay;
+        private static NamedDay independenceDay;
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("Independence Day", 7, 20);
+                    independenceDay = new NamedDay("Independence Day", new FixedDayResolver(7, 20));
                 }
                 return independenceDay;
             }
         }
 
-        private static Holiday boyacaBattle;
+        private static NamedDay boyacaBattle;
 
-        public static Holiday BoyacaBattle
+        public static NamedDay BoyacaBattle
         {
             get
             {
                 if (boyacaBattle == null)
                 {
-                    boyacaBattle = new FixedHoliday("Boyaca battle", 8, 7);
+                    boyacaBattle = new NamedDay("Boyaca battle", new FixedDayResolver(8, 7));
                 }
                 return boyacaBattle;
             }
         }
 
-        private static Holiday ascension;
+        private static NamedDay ascension;
 
-        public static Holiday Ascension
+        public static NamedDay Ascension
         {
             get
             {
                 if (ascension == null)
                 {
-                    ascension = new EasterBasedHoliday("Ascension", 43);
+                    ascension = new NamedDay("Ascension", new EasterBasedDayResolver(43));
                 }
                 return ascension;
             }
         }
 
-        private static Holiday corpusChristi;
+        private static NamedDay corpusChristi;
 
-        public static Holiday CorpusChristi
+        public static NamedDay CorpusChristi
         {
             get
             {
                 if (corpusChristi == null)
                 {
-                    corpusChristi = new EasterBasedHoliday("CorpusChristi", 64);
+                    corpusChristi = new NamedDay("CorpusChristi", new EasterBasedDayResolver(64));
                 }
                 return corpusChristi;
             }
         }
 
-        private static Holiday sacredHeartDay;
+        private static NamedDay sacredHeartDay;
 
-        public static Holiday SacredHeart
+        public static NamedDay SacredHeart
         {
             get
             {
                 if (sacredHeartDay == null)
                 {
-                    sacredHeartDay = new EasterBasedHoliday("CorpusChristi", 71);
+                    sacredHeartDay = new NamedDay("CorpusChristi", new EasterBasedDayResolver(71));
                 }
                 return sacredHeartDay;
             }

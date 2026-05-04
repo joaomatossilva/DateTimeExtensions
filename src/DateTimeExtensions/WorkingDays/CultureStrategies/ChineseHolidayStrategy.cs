@@ -31,30 +31,30 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public ChineseHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(SpringFestival);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(DragonBoatFestival);
-            this.InnerHolidays.Add(MidAutumnFestival);
-            this.InnerHolidays.Add(NationalDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(SpringFestival);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(DragonBoatFestival);
+            this.InnerObservances.AddHoliday(MidAutumnFestival);
+            this.InnerObservances.AddHoliday(NationalDay);
         }
 
-        private static Holiday springFestival;
-        public static Holiday SpringFestival
+        private static NamedDay springFestival;
+        public static NamedDay SpringFestival
         {
             get
             {
                 if (springFestival == null)
                 {
-                    springFestival = new FixedHoliday("Spring Festival", 1, 1, ChineseCalendar);
+                    springFestival = new NamedDay("Spring Festival", new FixedDayResolver(1, 1, ChineseCalendar));
                 }
                 return springFestival;
             }
         }
 
-        private static Holiday tombSweepingDay;
+        private static NamedDay tombSweepingDay;
 
-        public static Holiday TombSweepingDay
+        public static NamedDay TombSweepingDay
         {
             get
             {
@@ -71,48 +71,48 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
                     };
 
-                    tombSweepingDay = new YearMapHoliday("Tomb-Sweeping Day", knownTombSweepingDayOccurences);
+                    tombSweepingDay = new YearMapNamedDay("Tomb-Sweeping Day", knownTombSweepingDayOccurences);
                 }
                 return tombSweepingDay;
             }
         }
 
-        private static Holiday dragonBoatFestival;
-        public static Holiday DragonBoatFestival
+        private static NamedDay dragonBoatFestival;
+        public static NamedDay DragonBoatFestival
         {
             get
             {
                 if (dragonBoatFestival == null)
                 {
-                    dragonBoatFestival = new FixedHoliday("Dragon Boat Festival", 5, 5, ChineseCalendar);
+                    dragonBoatFestival = new NamedDay("Dragon Boat Festival", new FixedDayResolver(5, 5, ChineseCalendar));
                 }
                 return dragonBoatFestival;
             }
         }
 
         //Mid-Autumn Festival
-        private static Holiday midAutumnFestival;
-        public static Holiday MidAutumnFestival
+        private static NamedDay midAutumnFestival;
+        public static NamedDay MidAutumnFestival
         {
             get
             {
                 if (midAutumnFestival == null)
                 {
-                    midAutumnFestival = new FixedHoliday("Mid-Autumn Festival", 8, 15, ChineseCalendar);
+                    midAutumnFestival = new NamedDay("Mid-Autumn Festival", new FixedDayResolver(8, 15, ChineseCalendar));
                 }
                 return midAutumnFestival;
             }
         }
 
         //National Day
-        private static Holiday nationalDay;
-        public static Holiday NationalDay
+        private static NamedDay nationalDay;
+        public static NamedDay NationalDay
         {
             get
             {
                 if (nationalDay == null)
                 {
-                    nationalDay = new FixedHoliday("National Day", 10, 1);
+                    nationalDay = new NamedDay("National Day", new FixedDayResolver(10, 1));
                 }
                 return nationalDay;
             }

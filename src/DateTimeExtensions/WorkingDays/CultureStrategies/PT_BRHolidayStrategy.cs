@@ -27,75 +27,75 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("pt-BR")]
-    public class PT_BRHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class PT_BRHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public PT_BRHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Carnival);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(ChristianHolidays.DayOfTheDead);
-            this.InnerHolidays.Add(TiradentesDay);
-            this.InnerHolidays.Add(IndependanceDay);
-            this.InnerHolidays.Add(OurLadyOfAparecida);
-            this.InnerHolidays.Add(RepublicDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Carnival);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.DayOfTheDead);
+            this.InnerObservances.AddHoliday(TiradentesDay);
+            this.InnerObservances.AddHoliday(IndependanceDay);
+            this.InnerObservances.AddHoliday(OurLadyOfAparecida);
+            this.InnerObservances.AddHoliday(RepublicDay);
         }
 
-        private static Holiday tiradentesDay;
+        private static NamedDay tiradentesDay;
 
-        public static Holiday TiradentesDay
+        public static NamedDay TiradentesDay
         {
             get
             {
                 if (tiradentesDay == null)
                 {
-                    tiradentesDay = new FixedHoliday("TiradentesDay", 4, 21);
+                    tiradentesDay = new NamedDay("TiradentesDay", new FixedDayResolver(4, 21));
                 }
                 return tiradentesDay;
             }
         }
 
-        private static Holiday independanceDay;
+        private static NamedDay independanceDay;
 
-        public static Holiday IndependanceDay
+        public static NamedDay IndependanceDay
         {
             get
             {
                 if (independanceDay == null)
                 {
-                    independanceDay = new FixedHoliday("IndependanceDay", 9, 7);
+                    independanceDay = new NamedDay("IndependanceDay", new FixedDayResolver(9, 7));
                 }
                 return independanceDay;
             }
         }
 
-        private static Holiday ourLadyOfAparecida;
+        private static NamedDay ourLadyOfAparecida;
 
-        public static Holiday OurLadyOfAparecida
+        public static NamedDay OurLadyOfAparecida
         {
             get
             {
                 if (ourLadyOfAparecida == null)
                 {
-                    ourLadyOfAparecida = new FixedHoliday("OurLadyOfAparecida", 10, 12);
+                    ourLadyOfAparecida = new NamedDay("OurLadyOfAparecida", new FixedDayResolver(10, 12));
                 }
                 return ourLadyOfAparecida;
             }
         }
 
-        private static Holiday republicDay;
+        private static NamedDay republicDay;
 
-        public static Holiday RepublicDay
+        public static NamedDay RepublicDay
         {
             get
             {
                 if (republicDay == null)
                 {
-                    republicDay = new FixedHoliday("RepublicDay", 11, 15);
+                    republicDay = new NamedDay("RepublicDay", new FixedDayResolver(11, 15));
                 }
                 return republicDay;
             }

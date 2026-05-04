@@ -24,61 +24,61 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("nl-BE")]
-    public class NL_BEHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class NL_BEHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public NL_BEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(NationalHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(Armistice);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(LabourDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(NationalHoliday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(Armistice);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
         }
 
-        private static Holiday labourDay;
+        private static NamedDay labourDay;
 
-        public static Holiday LabourDay
+        public static NamedDay LabourDay
         {
             get
             {
                 if (labourDay == null)
                 {
-                    labourDay = new FixedHoliday("LabourDay", 5,1);
+                    labourDay = new NamedDay("LabourDay", new FixedDayResolver(5, 1));
                 }
                 return labourDay;
             }
         }
 
-        private static Holiday nationalHoliday;
+        private static NamedDay nationalHoliday;
 
-        public static Holiday NationalHoliday
+        public static NamedDay NationalHoliday
         {
             get
             {
                 if (nationalHoliday == null)
                 {
-                    nationalHoliday = new FixedHoliday("Belgium_NationalHoliday", 7, 21);
+                    nationalHoliday = new NamedDay("Belgium_NationalHoliday", new FixedDayResolver(7, 21));
                 }
                 return nationalHoliday;
             }
         }
 
-        private static Holiday armistice;
+        private static NamedDay armistice;
 
-        public static Holiday Armistice
+        public static NamedDay Armistice
         {
             get
             {
                 if (armistice == null)
                 {
-                    armistice = new FixedHoliday("Armistice", 11, 11);
+                    armistice = new NamedDay("Armistice", new FixedDayResolver(11, 11));
                 }
                 return armistice;
             }

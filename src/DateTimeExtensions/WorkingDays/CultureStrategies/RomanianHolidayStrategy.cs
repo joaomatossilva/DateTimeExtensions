@@ -31,8 +31,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //1-2 January
             //Anul Nou
             //New Year's Day
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(NewYearSecondDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(NewYearSecondDay);
 
             //6 Boboteaza
             //7 Sf. Ioan Botezatorul
@@ -41,149 +41,159 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //Ziua Unirii Principatelor Române
             //Day of the Unification of the Romanian Principalities
             //It celebrates the unification of the Romanian Principalities of Moldavia and Wallachia in 1859 and the foundation of the Romanian modern state.[2] A non-working day since 2016. 
-            this.InnerHolidays.Add(DayOfTheUnification);
+            this.InnerObservances.AddHoliday(DayOfTheUnification);
 
             //Vinerea Mare
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.GoodFriday);
 
             //Paștele 	Easter, Easter Monday
             //The official holiday is the Orthodox Easter.
             //The holiday is three days long, Good Friday,[3] Easter Sunday and Monday are non-working, Tuesday is not a public holiday. 
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.Easter);
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.EasterMonday);
 
             //1 May
             //Ziua Muncii
             //Labour Day
             //International Labour Day 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
 
             //1 June
             //Ziua Copilului
             //Children's Day
             //Public holiday starting with 2017[4]
-            this.InnerHolidays.Add(ChildrensDay);
+            this.InnerObservances.AddHoliday(ChildrensDay);
 
             //Rusaliile
             //Pentecost, Whit Monday
             //The 50th and 51st day after the Orthodox Easter. 
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.PentecostMonday);
 
             //15 August
             //Adormirea Maicii Domnului/Sfânta Maria Mare
             //Dormition of the Mother of God
             //Also the Day of the Romanian Naval Forces since St. Mary is the patron saint of the Navy. 
-            this.InnerHolidays.Add(Assumption);
+            this.InnerObservances.AddHoliday(Assumption);
 
             //30 November
             //Sfântul Andrei
             //Saint Andrew's Day
             //Saint Andrew is the patron saint of Romania. 
-            this.InnerHolidays.Add(SaintAndrewDay);
+            this.InnerObservances.AddHoliday(SaintAndrewDay);
 
             //1 December
             //Ziua Națională a României
             //National Day of Romania
             //It celebrates the unification of Transylvania, Bessarabia and Bukovina with the Kingdom of Romania. 
-            this.InnerHolidays.Add(NationalDayOfRomania);
+            this.InnerObservances.AddHoliday(NationalDayOfRomania);
 
             //25-26 December
             //Crăciunul
             //Christmas Day
             //Both first and second Christmas Day are holidays. Third Christmas Day is not a public holiday. 
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristmasSecondDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristmasSecondDay);
             
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYearsEve);
         }
 
-        private static Holiday newYearSecondDay;
-        public static Holiday NewYearSecondDay
+        private static NamedDay newYearSecondDay;
+        public static NamedDay NewYearSecondDay
         {
             get
             {
                 if (newYearSecondDay == null)
                 {
-                    newYearSecondDay = new FixedHoliday("NewYearSecondDay", 1, 2);
+                    newYearSecondDay = new NamedDay("NewYearSecondDay", new FixedDayResolver(1, 2));
                 }
                 return newYearSecondDay;
             }
         }
 
-        private static Holiday dayOfTheUnification;
-        public static Holiday DayOfTheUnification
+        private static NamedDay dayOfTheUnification;
+        public static NamedDay DayOfTheUnification
         {
             get
             {
                 if (dayOfTheUnification == null)
                 {
-                    dayOfTheUnification = new YearDependantHoliday(year => year >= 2016, new FixedHoliday("DayOfTheUnification", 1, 24));
+                    dayOfTheUnification = new NamedDay(
+                        "DayOfTheUnification",
+                        new YearDependantDayResolver(year => year >= 2016, new FixedDayResolver(1, 24)));
                 }
                 return dayOfTheUnification;
             }
         }
 
-        private static Holiday childrensDay;
-        public static Holiday ChildrensDay
+        private static NamedDay childrensDay;
+        public static NamedDay ChildrensDay
         {
             get
             {
                 if (childrensDay == null)
                 {
-                    childrensDay = new YearDependantHoliday(year => year >= 2017, new FixedHoliday("ChildrensDay", 6, 1));
+                    childrensDay = new NamedDay(
+                        "ChildrensDay",
+                        new YearDependantDayResolver(year => year >= 2017, new FixedDayResolver(6, 1)));
                 }
                 return childrensDay;
             }
         }
         
-        private static Holiday assumption;
-        public static Holiday Assumption
+        private static NamedDay assumption;
+        public static NamedDay Assumption
         {
             get
             {
                 if (assumption == null)
                 {
-                    assumption = new YearDependantHoliday(year => year >= 2008, ChristianHolidays.Assumption);
+                    assumption = new NamedDay(
+                        ChristianHolidays.Assumption.Name,
+                        new YearDependantDayResolver(year => year >= 2008, ChristianHolidays.Assumption.Resolver));
                 }
                 return assumption;
             }
         }
 
-        private static Holiday saintAndrewDay;
-        public static Holiday SaintAndrewDay
+        private static NamedDay saintAndrewDay;
+        public static NamedDay SaintAndrewDay
         {
             get
             {
                 if (saintAndrewDay == null)
                 {
-                    saintAndrewDay = new YearDependantHoliday(year => year >= 2012, new FixedHoliday("SaintAndrewDay", 11, 30));
+                    saintAndrewDay = new NamedDay(
+                        "SaintAndrewDay",
+                        new YearDependantDayResolver(year => year >= 2012, new FixedDayResolver(11, 30)));
                 }
                 return saintAndrewDay;
             }
         }
 
-        private static Holiday nationalDayOfRomania;
-        public static Holiday NationalDayOfRomania
+        private static NamedDay nationalDayOfRomania;
+        public static NamedDay NationalDayOfRomania
         {
             get
             {
                 if (nationalDayOfRomania == null)
                 {
-                    nationalDayOfRomania = new YearDependantHoliday(year => year >= 1990, new FixedHoliday("NationalDayOfRomania", 12, 1));
+                    nationalDayOfRomania = new NamedDay(
+                        "NationalDayOfRomania",
+                        new YearDependantDayResolver(year => year >= 1990, new FixedDayResolver(12, 1)));
                 }
                 return nationalDayOfRomania;
             }
         }
 
-        private static Holiday christmasSecondDay;
-        public static Holiday ChristmasSecondDay
+        private static NamedDay christmasSecondDay;
+        public static NamedDay ChristmasSecondDay
         {
             get
             {
                 if (christmasSecondDay == null)
                 {
-                    christmasSecondDay = new FixedHoliday("ChristmasSecondDay", 12, 26);
+                    christmasSecondDay = new NamedDay("ChristmasSecondDay", new FixedDayResolver(12, 26));
                 }
                 return christmasSecondDay;
             }

@@ -159,7 +159,7 @@ namespace DateTimeExtensions
         /// </summary>
         /// <param name="day">The day used to gat the year from.</param>
         /// <returns>Returns a dictionary with the instance of the holiday observed on the year, and the holiday that gave it the observance.</returns>
-        public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day)
+        public static IDictionary<DateTime, Observance> AllYearHolidays(this DateTime day)
         {
             var workingDayCultureInfo = new WorkingDayCultureInfo();
             return AllYearHolidays(day, workingDayCultureInfo);
@@ -171,17 +171,22 @@ namespace DateTimeExtensions
         /// <param name="day">The day used to gat the year from.</param>
         /// <param name="workingDayCultureInfo">The <seealso cref="IWorkingDayCultureInfo"/> used the get the holidays.</param>
         /// <returns>Returns a dictionary with the instance of the holiday observed on the year, and the holiday that gave it the observance.</returns>
-        public static IDictionary<DateTime, Holiday> AllYearHolidays(this DateTime day,
+        public static IDictionary<DateTime, Observance> AllYearHolidays(this DateTime day,
             IWorkingDayCultureInfo workingDayCultureInfo)
         {
-            var holidays = new SortedDictionary<DateTime, Holiday>();
-            var holidaysOfTheYear = workingDayCultureInfo.GetHolidaysOfYear(day.Year).ToList();
-            foreach (Holiday holiday in holidaysOfTheYear)
+            var holidays = new SortedDictionary<DateTime, Observance>();
+            var observancesOfTheYear = workingDayCultureInfo.GetObservancesOfYear(day.Year).ToList();
+            foreach (var observance in observancesOfTheYear)
             {
-                var date = holiday.GetInstance(day.Year);
-                if (date.HasValue && !holidays.ContainsKey(date.Value))
+                if (!observance.IsHoliday)
                 {
-                    holidays.Add(date.Value, holiday);
+                    continue;
+                }
+                
+                var date = observance.CalendarDay.GetInstance(day.Year);
+                if (date.HasValue)
+                {
+                    holidays.TryAdd(date.Value, observance);
                 }
             }
             return holidays;

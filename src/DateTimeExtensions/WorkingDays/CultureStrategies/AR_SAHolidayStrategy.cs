@@ -28,77 +28,83 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("ar-SA")]
-    public class AR_SAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class AR_SAHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         private static readonly Calendar HirijiCalendar = new HijriCalendar();
 
         public AR_SAHolidayStrategy()
         {
-            this.InnerHolidays.Add(EndOfRamadan);
-            this.InnerHolidays.Add(EndOfHajj);
-            this.InnerHolidays.Add(SaudiNationalDay);
+            this.InnerObservances.AddHoliday(EndOfRamadan);
+            this.InnerObservances.AddHoliday(EndOfHajj);
+            this.InnerObservances.AddHoliday(SaudiNationalDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            var observancesMap = new Dictionary<DateTime, Holiday>();
-            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
+            var observancesMap = new Dictionary<DateTime, Observance>();
+            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, new Observance(SaudiNationalDay, true));
 
             var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
             for (int i = 0; i <= 7; i++)
             {
-                observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), EndOfRamadan);
+                var observedDate = endOfRamadanObservance.Value.AddDays(i);
+                observancesMap.AddIfInexistent(
+                    observedDate,
+                    new Observance(new NamedDay(EndOfRamadan.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
             }
 
             var endOfHajjObservance = EndOfHajj.GetInstance(year);
             for (int i = 0; i <= 6; i++)
             {
-                observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), EndOfHajj);
+                var observedDate = endOfHajjObservance.Value.AddDays(i);
+                observancesMap.AddIfInexistent(
+                    observedDate,
+                    new Observance(new NamedDay(EndOfHajj.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
             }
 
             return observancesMap;
         }
 
         //1 Shawwal
-        private static Holiday endOfRamadan;
+        private static NamedDay endOfRamadan;
 
-        public static Holiday EndOfRamadan
+        public static NamedDay EndOfRamadan
         {
             get
             {
                 if (endOfRamadan == null)
                 {
-                    endOfRamadan = new FixedHoliday("Eid ul-Fitr", 10, 1, HirijiCalendar);
+                    endOfRamadan = new NamedDay("Eid ul-Fitr", new FixedDayResolver(10, 1, HirijiCalendar));
                 }
                 return endOfRamadan;
             }
         }
 
         //10 Dhul-Hijjah
-        private static Holiday endOfHajj;
+        private static NamedDay endOfHajj;
 
-        public static Holiday EndOfHajj
+        public static NamedDay EndOfHajj
         {
             get
             {
                 if (endOfHajj == null)
                 {
-                    endOfHajj = new FixedHoliday("Eid ul-Adha", 12, 10, HirijiCalendar);
+                    endOfHajj = new NamedDay("Eid ul-Adha", new FixedDayResolver(12, 10, HirijiCalendar));
                 }
                 return endOfHajj;
             }
         }
 
         //23 September - Saudi National Day
-        private static Holiday saudiNationalDay;
+        private static NamedDay saudiNationalDay;
 
-        public static Holiday SaudiNationalDay
+        public static NamedDay SaudiNationalDay
         {
             get
             {
                 if (saudiNationalDay == null)
                 {
-                    saudiNationalDay = new FixedHoliday("Saudi National Day", 9, 23);
+                    saudiNationalDay = new NamedDay("Saudi National Day", new FixedDayResolver(9, 23));
                 }
                 return saudiNationalDay;
             }

@@ -154,7 +154,7 @@ namespace DateTimeExtensions.Tests
         public void can_use_reginal_holidays_CasteloBranco()
         {
             var cultureInfo = new WorkingDayCultureInfo("pt-PT", PortugalRegion.CasteloBranco);
-            // not using 2017 since it's 25th April, same day as another national Holiday
+            // not using 2017 since it's 25th April, same day as another national NamedDay
             var sraMerculesDay = new DateTime(2016, 4, 5);
 
             Assert.AreEqual(sraMerculesDay.DayOfWeek, DayOfWeek.Tuesday);
@@ -165,7 +165,7 @@ namespace DateTimeExtensions.Tests
         public void revert_to_national_holidays_on_unknown_region()
         {
             var cultureInfo = new WorkingDayCultureInfo("pt-PT", "non-existing-region");
-            // not using 2017 since it's 25th April, same day as another national Holiday
+            // not using 2017 since it's 25th April, same day as another national NamedDay
             var sraMerculesDay = new DateTime(2017, 4, 25);
 
             Assert.AreEqual(sraMerculesDay.DayOfWeek, DayOfWeek.Tuesday);

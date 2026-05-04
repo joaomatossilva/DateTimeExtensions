@@ -28,25 +28,36 @@ using DateTimeExtensions.WorkingDays.RegionIdentifiers;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("pt-PT")]
-    public class PT_PTHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class PT_PTHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public PT_PTHolidayStrategy(string region)
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, ChristianHolidays.CorpusChristi));
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, ChristianHolidays.AllSaints));
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(new NamedDay(
+                ChristianHolidays.CorpusChristi.Name,
+                new YearDependantDayResolver(year => year < 2013 || year >= 2016, ChristianHolidays.CorpusChristi.Resolver)));
+            this.InnerObservances.AddHoliday(new NamedDay(
+                ChristianHolidays.AllSaints.Name,
+                new YearDependantDayResolver(year => year < 2013 || year >= 2016, ChristianHolidays.AllSaints.Resolver)));
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
-            this.InnerHolidays.Add(FreedomDay);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(PortugalDay);
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RepublicDay));
-            this.InnerHolidays.Add(new YearDependantHoliday(year => year < 2013 || year >= 2016, RestorationOfIndependance));
+            this.InnerObservances.AddHoliday(FreedomDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(PortugalDay);
+            this.InnerObservances.AddHoliday(new NamedDay(
+                RepublicDay.Name,
+                new YearDependantDayResolver(year => year < 2013 || year >= 2016, RepublicDay.Resolver)));
+            this.InnerObservances.AddHoliday(new NamedDay(
+                RestorationOfIndependance.Name,
+                new YearDependantDayResolver(year => year < 2013 || year >= 2016, RestorationOfIndependance.Resolver)));
 
+            this.InnerObservances.AddObservance(MothersDay);
+            this.InnerObservances.AddObservance(FathersDay);
+            
             if (string.IsNullOrEmpty(region))
             {
                 return;
@@ -55,80 +66,86 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             switch (region)
             {
                 case PortugalRegion.Lisboa:
-                   this.InnerHolidays.Add(StAntonio);
+                   this.InnerObservances.AddHoliday(StAntonio);
                     break;
                 case PortugalRegion.Porto:
-                    this.InnerHolidays.Add(StJoao);
+                    this.InnerObservances.AddHoliday(StJoao);
                     break;
                 case PortugalRegion.CasteloBranco:
-                    this.InnerHolidays.Add(SraMercules);
+                    this.InnerObservances.AddHoliday(SraMercules);
                     break;
             }
         }
 
-        private static Holiday freedomDay;
+        private static NamedDay freedomDay;
 
-        public static Holiday FreedomDay
+        public static NamedDay FreedomDay
         {
             get
             {
                 if (freedomDay == null)
                 {
-                    freedomDay = new FixedHoliday("Portugal_FreedomDay", 4, 25);
+                    freedomDay = new NamedDay("Portugal_FreedomDay", new FixedDayResolver(4, 25));
                 }
                 return freedomDay;
             }
         }
 
-        private static Holiday portugalDay;
+        private static NamedDay portugalDay;
 
-        public static Holiday PortugalDay
+        public static NamedDay PortugalDay
         {
             get
             {
                 if (portugalDay == null)
                 {
-                    portugalDay = new FixedHoliday("Portugal_PortugalDay", 6, 10);
+                    portugalDay = new NamedDay("Portugal_PortugalDay", new FixedDayResolver(6, 10));
                 }
                 return portugalDay;
             }
         }
 
-        private static Holiday republicDay;
+        private static NamedDay republicDay;
 
-        public static Holiday RepublicDay
+        public static NamedDay RepublicDay
         {
             get
             {
                 if (republicDay == null)
                 {
-                    republicDay = new FixedHoliday("Portugal_RepublicDay", 10, 5);
+                    republicDay = new NamedDay("Portugal_RepublicDay", new FixedDayResolver(10, 5));
                 }
                 return republicDay;
             }
         }
 
-        private static Holiday restorationOfIndependance;
+        private static NamedDay restorationOfIndependance;
 
-        public static Holiday RestorationOfIndependance
+        public static NamedDay RestorationOfIndependance
         {
             get
             {
                 if (restorationOfIndependance == null)
                 {
-                    restorationOfIndependance = new FixedHoliday("Portugal_RestorationIndependance", 12, 1);
+                    restorationOfIndependance = new NamedDay("Portugal_RestorationIndependance", new FixedDayResolver(12, 1));
                 }
                 return restorationOfIndependance;
             }
         }
 
-        private static readonly Lazy<Holiday> StAntonioInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SantoAntonio", 6, 13));
-        public static Holiday StAntonio => StAntonioInstance.Value;
+        private static readonly Lazy<NamedDay> StAntonioInstance = new Lazy<NamedDay>(() => new NamedDay("Portugal_SantoAntonio", new FixedDayResolver(6, 13)));
+        public static NamedDay StAntonio => StAntonioInstance.Value;
 
-        private static readonly Lazy<Holiday> StJoaoInstance = new Lazy<Holiday>(() => new FixedHoliday("Portugal_SaoJoao", 6, 24));
-        public static Holiday StJoao => StJoaoInstance.Value;
+        private static readonly Lazy<NamedDay> StJoaoInstance = new Lazy<NamedDay>(() => new NamedDay("Portugal_SaoJoao", new FixedDayResolver(6, 24)));
+        public static NamedDay StJoao => StJoaoInstance.Value;
 
-        private static readonly Lazy<Holiday> SraMerculesInstance = new Lazy<Holiday>(() => new EasterBasedHoliday("Portugal_SraMercules", 9));
-        public static Holiday SraMercules => SraMerculesInstance.Value;
+        private static readonly Lazy<NamedDay> SraMerculesInstance = new Lazy<NamedDay>(() => new NamedDay("Portugal_SraMercules", new EasterBasedDayResolver(9)));
+        public static NamedDay SraMercules => SraMerculesInstance.Value;
+
+        private static readonly Lazy<NamedDay> MothersDayInstance = new(() => new NamedDay("MothersDay", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Sunday, 5, CountDirection.FromFirst)));
+        public static NamedDay MothersDay => MothersDayInstance.Value;
+        
+        private static readonly Lazy<NamedDay> FathersDayInstance = new(() => new NamedDay("FathersDay", new FixedDayResolver(3, 19)));
+        public static NamedDay FathersDay => FathersDayInstance.Value;
     }
 }

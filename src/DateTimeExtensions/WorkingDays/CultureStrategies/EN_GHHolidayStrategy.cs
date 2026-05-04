@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
@@ -25,38 +25,38 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("en-GH")]
-    public class EN_GHHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class EN_GHHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public EN_GHHolidayStrategy()
         {
-            InnerHolidays.Add(GlobalHolidays.NewYear);
+            InnerObservances.AddHoliday(GlobalHolidays.NewYear);
 
-            InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            InnerHolidays.Add(ChristianHolidays.Christmas);
+            InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
-            InnerHolidays.Add(IndependenceDay);
-            InnerHolidays.Add(LabourDay);
-            InnerHolidays.Add(RepublicDay);
-            InnerHolidays.Add(AfricaDay);
-            InnerHolidays.Add(KwameNkrumahMemorialDay);
+            InnerObservances.AddHoliday(IndependenceDay);
+            InnerObservances.AddHoliday(LabourDay);
+            InnerObservances.AddHoliday(RepublicDay);
+            InnerObservances.AddHoliday(AfricaDay);
+            InnerObservances.AddHoliday(KwameNkrumahMemorialDay);
 
-            InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, Holiday> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, Holiday> holidayMap = new Dictionary<DateTime, Holiday>();
-            foreach (var innerHoliday in InnerHolidays)
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
+            foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     if (holidayMap.ContainsKey(date.Value))
                     {
                         // Check to see if holiday falling on the Sunday then moves to the monday, and there is another holiday scheduled for the monday
-                        // Update the Holiday Name of the Monday
+                        // Update the NamedDay Name of the Monday
                         holidayMap[date.Value] = innerHoliday;
                     }
 
@@ -68,7 +68,10 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     //if the holiday is a sunday, the holiday is observed on next monday
                     if (date.Value.DayOfWeek == DayOfWeek.Sunday)
                     {
-                        holidayMap.AddIfInexistent(date.Value.AddDays(1), innerHoliday);
+                        var observedDate = date.Value.AddDays(1);
+                        holidayMap.AddIfInexistent(
+                            observedDate,
+                            new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
                     }
                 }
             }
@@ -76,70 +79,70 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
         // 6th March - Independence Day
-        private static Holiday independenceDay;
-        public static Holiday IndependenceDay
+        private static NamedDay independenceDay;
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("Independence Day", 3, 6);
+                    independenceDay = new NamedDay("Independence Day", new FixedDayResolver(3, 6));
                 }
                 return independenceDay;
             }
         }
 
         // 1 May - Labour Day
-        private static Holiday labourDay;
-        public static Holiday LabourDay
+        private static NamedDay labourDay;
+        public static NamedDay LabourDay
         {
             get
             {
                 if (labourDay == null)
                 {
-                    labourDay = new FixedHoliday("Labour Day", 5, 1);
+                    labourDay = new NamedDay("Labour Day", new FixedDayResolver(5, 1));
                 }
                 return labourDay;
             }
         }
 
         // 25 May - Africa Day
-        private static Holiday africaDay;
-        public static Holiday AfricaDay
+        private static NamedDay africaDay;
+        public static NamedDay AfricaDay
         {
             get
             {
                 if (africaDay == null)
                 {
-                    africaDay = new FixedHoliday("Africa Day", 5, 25);
+                    africaDay = new NamedDay("Africa Day", new FixedDayResolver(5, 25));
                 }
                 return africaDay;
             }
         }
 
         // 1 July - Republic Day
-        private static Holiday republicDay;
-        public static Holiday RepublicDay
+        private static NamedDay republicDay;
+        public static NamedDay RepublicDay
         {
             get
             {
                 if (republicDay == null)
                 {
-                    republicDay = new FixedHoliday("Republic Day", 7, 1);
+                    republicDay = new NamedDay("Republic Day", new FixedDayResolver(7, 1));
                 }
                 return republicDay;
             }
         }
 
         // 21 September - Kwame Nkrumah Memorial Day
-        private static Holiday kwameNkrumahMemorialDay;
-        public static Holiday KwameNkrumahMemorialDay
+        private static NamedDay kwameNkrumahMemorialDay;
+        public static NamedDay KwameNkrumahMemorialDay
         {
             get
             {
                 if (kwameNkrumahMemorialDay == null)
                 {
-                    kwameNkrumahMemorialDay = new FixedHoliday("Kwame Nkrumah Memorial Day", 9, 21);
+                    kwameNkrumahMemorialDay = new NamedDay("Kwame Nkrumah Memorial Day", new FixedDayResolver(9, 21));
                 }
                 return kwameNkrumahMemorialDay;
             }

@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 
 // 
 // Copyright (c) 2011-2012, João Matos Silva <kappy@acydburne.com.pt>
@@ -27,61 +27,60 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("es-VE")]
-    public class ES_VEHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class ES_VEHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public ES_VEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(KingsDay);
-            this.InnerHolidays.Add(ConstitutionDay);
-            this.InnerHolidays.Add(SimonBolivarBirthDay);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(IndependenceDay);
-            this.InnerHolidays.Add(JoseGregorioHernandezDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(KingsDay);
+            this.InnerObservances.AddHoliday(ConstitutionDay);
+            this.InnerObservances.AddHoliday(SimonBolivarBirthDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(JoseGregorioHernandezDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
         }
 
 
         // 6 January - Kings Day
-        private static Holiday kingsDay;
-        public static Holiday KingsDay
+        private static NamedDay kingsDay;
+        public static NamedDay KingsDay
         {
             get
             {
                 if (kingsDay == null)
                 {
-                    kingsDay = new FixedHoliday("Kings Day", 6, 1);
+                    kingsDay = new NamedDay("Kings Day", new FixedDayResolver(6, 1));
                 }
                 return kingsDay;
             }
         }
 
         //First Monday of February - Constitution Day
-        private static Holiday constitutionDay;
+        private static NamedDay constitutionDay;
 
-        public static Holiday ConstitutionDay
+        public static NamedDay ConstitutionDay
         {
             get
             {
                 if (constitutionDay == null)
                 {
-                    constitutionDay = new NthDayOfWeekInMonthHoliday("Constitution Day", 1, DayOfWeek.Monday, 2,
-                        CountDirection.FromFirst);
+                    constitutionDay = new NamedDay("Constitution Day", new NthDayOfWeekInMonthDayResolver(1, DayOfWeek.Monday, 2, CountDirection.FromFirst));
                 }
                 return constitutionDay;
             }
         }
 
         //24 July - Simon Bolívar Birthday
-        private static Holiday simonBolivarBithDay;
+        private static NamedDay simonBolivarBithDay;
 
-        public static Holiday SimonBolivarBirthDay
+        public static NamedDay SimonBolivarBirthDay
         {
             get
             {
                 if (simonBolivarBithDay == null)
                 {
-                    simonBolivarBithDay = new FixedHoliday("Simón Bolívar's Birthday", 7, 24);
+                    simonBolivarBithDay = new NamedDay("Simón Bolívar's Birthday", new FixedDayResolver(7, 24));
                 }
                 return simonBolivarBithDay;
             }
@@ -89,28 +88,28 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
 
         //5 July - Independence Day
-        private static Holiday independenceDay;
+        private static NamedDay independenceDay;
 
-        public static Holiday IndependenceDay
+        public static NamedDay IndependenceDay
         {
             get
             {
                 if (independenceDay == null)
                 {
-                    independenceDay = new FixedHoliday("Independence Day", 7, 5);
+                    independenceDay = new NamedDay("Independence Day", new FixedDayResolver(7, 5));
                 }
                 return independenceDay;
             }
         }
 
-        private static Holiday joseGregorioHernandezDay;
-        public static Holiday JoseGregorioHernandezDay
+        private static NamedDay joseGregorioHernandezDay;
+        public static NamedDay JoseGregorioHernandezDay
         {
             get
             {
                 if (joseGregorioHernandezDay == null)
                 {
-                    joseGregorioHernandezDay = new FixedHoliday("José Gregorio Hernández's  Day", 26, 10);
+                    joseGregorioHernandezDay = new NamedDay("José Gregorio Hernández's  Day", new FixedDayResolver(26, 10));
                 }
                 return joseGregorioHernandezDay;
             }

@@ -24,35 +24,35 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("nl-NL")]
-    public class NL_NLHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class NL_NLHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public NL_NLHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(Kingsday);
-            this.InnerHolidays.Add(LiberationDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(Kingsday);
+            this.InnerObservances.AddHoliday(LiberationDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
         }
 
         // 1885-1948: 31 August
         // 1949-2013: 30 April
         // 2014-    : 27 April
-        private static Holiday kingsday;
+        private static NamedDay kingsday;
 
-        public static Holiday Kingsday
+        public static NamedDay Kingsday
         {
             get
             {
                 if (kingsday == null)
                 {
-                    kingsday = new FixedHoliday("Kingsday", year =>
+                    kingsday = new NamedDay("Kingsday", new FixedDayResolver(year =>
                     {
                         if (year >= 2014)
                         {
@@ -70,22 +70,25 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                         }
 
                         return null;
-                    });
+                    }));
                 }
                 return kingsday;
             }
         }
 
-        private static Holiday liberationDay;
+        private static NamedDay liberationDay;
 
-        public static Holiday LiberationDay
+        public static NamedDay LiberationDay
         {
             get
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new YearDependantHoliday(year => (year >= 1990 || (year % 5 == 0 && year >= 1945)),
-                        new FixedHoliday("Liberation Day", 5, 5));
+                    liberationDay = new NamedDay(
+                        "Liberation Day",
+                        new YearDependantDayResolver(
+                            year => year >= 1990 || (year % 5 == 0 && year >= 1945),
+                            new FixedDayResolver(5, 5)));
                 }
                 return liberationDay;
             }

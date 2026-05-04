@@ -1,0 +1,2 @@
+global using DateTimeExtensions.WorkingDays.DayInYearResolvers;
+global using DateTimeExtensions.WorkingDays;

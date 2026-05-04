@@ -112,81 +112,72 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AllSaints" xml:space="preserve">
-    <value>Todos os Santos</value>
+    <value>Todos los Santos</value>
   </data>
   <data name="Assumption" xml:space="preserve">
-    <value>Nossa Srª Assunção</value>
+    <value>Asunción de la Virgen</value>
   </data>
   <data name="Carnival" xml:space="preserve">
     <value>Carnaval</value>
   </data>
   <data name="Christmas" xml:space="preserve">
-    <value>Natal</value>
-  </data>
-  <data name="ChristmasEve" xml:space="preserve">
-    <value>Vespera de Natal</value>
+    <value>Navidad</value>
   </data>
   <data name="CorpusChristi" xml:space="preserve">
-    <value>Corpo de Cristo</value>
+    <value>Corpus Cristi</value>
   </data>
-  <data name="DayOfTheDead" xml:space="preserve">
-    <value>Dia de Finados</value>
+  <data name="Divine Saviour of the World" xml:space="preserve">
+    <value>Divino Salvador del Mundo</value>
   </data>
   <data name="Easter" xml:space="preserve">
-    <value>Pascoa</value>
+    <value>Pascua</value>
+  </data>
+  <data name="EasterMonday" xml:space="preserve">
+    <value>Lunes de Pascua</value>
+  </data>
+  <data name="Epiphany" xml:space="preserve">
+    <value>Epifanía del Señor</value>
   </data>
   <data name="Espanha_ConstitutionDay" xml:space="preserve">
-    <value>Dia da Constituição</value>
+    <value>Día de la Constitución</value>
   </data>
   <data name="Espanha_NationalDay" xml:space="preserve">
-    <value>Dia da Hispanidade</value>
+    <value>Fiesta Nacional de España</value>
+  </data>
+  <data name="FathersDay" xml:space="preserve">
+    <value>Día del padre</value>
   </data>
   <data name="GoodFriday" xml:space="preserve">
-    <value>Sexta-feira Santa</value>
+    <value>Viernes Santo</value>
   </data>
   <data name="ImaculateConception" xml:space="preserve">
-    <value>Imaculada Conceição</value>
+    <value>La Inmaculada Concepción</value>
   </data>
-  <data name="IndependanceDay" xml:space="preserve">
-    <value>Dia da Independência</value>
+  <data name="Independence Day" xml:space="preserve">
+    <value>Día de la Independencia</value>
   </data>
   <data name="InternationalWorkerDay" xml:space="preserve">
-    <value>Dia do Trabalhador</value>
+    <value>Fiesta del Trabajo</value>
   </data>
   <data name="MaundyThursday" xml:space="preserve">
-    <value>Quinta-feira de Cinzas</value>
+    <value>Jueves Santo</value>
   </data>
-  <data name="MayDay" xml:space="preserve">
-    <value>Primeiro de Maio</value>
+  <data name="MothersDay" xml:space="preserve">
+    <value>Día de la madre</value>
   </data>
   <data name="NewYear" xml:space="preserve">
-    <value>Ano Novo</value>
+    <value>Año Nuevo</value>
   </data>
-  <data name="OurLadyOfAparecida" xml:space="preserve">
-    <value>Nossa Srª da Aparecida</value>
+  <data name="Pentecost" xml:space="preserve">
+    <value>Pentecostés</value>
   </data>
-  <data name="Portugal_FreedomDay" xml:space="preserve">
-    <value>Dia da Liberdade</value>
-  </data>
-  <data name="Portugal_PortugalDay" xml:space="preserve">
-    <value>Dia de Portugal</value>
-  </data>
-  <data name="Portugal_RepublicDay" xml:space="preserve">
-    <value>Dia da Republica</value>
-  </data>
-  <data name="Portugal_RestorationIndependance" xml:space="preserve">
-    <value>Restauração da Independência</value>
-  </data>
-  <data name="RepublicDay" xml:space="preserve">
-    <value>Dia da Republica</value>
-  </data>
-  <data name="TiradentesDay" xml:space="preserve">
-    <value>Dia do Tiradentes</value>
+  <data name="PentecostMonday" xml:space="preserve">
+    <value>Lunes de Pentecostés</value>
   </data>
 </root>

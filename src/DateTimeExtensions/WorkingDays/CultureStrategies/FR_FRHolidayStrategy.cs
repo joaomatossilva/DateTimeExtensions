@@ -27,22 +27,22 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("fr-FR")]
-    public class FR_FRHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class FR_FRHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public FR_FRHolidayStrategy(string region)
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
-            this.InnerHolidays.Add(VictoryInEuropeDay);
-            this.InnerHolidays.Add(BastilleDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.VeteransDay);
+            this.InnerObservances.AddHoliday(VictoryInEuropeDay);
+            this.InnerObservances.AddHoliday(BastilleDay);
 
             if (string.IsNullOrEmpty(region))
             {
@@ -51,48 +51,48 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
             if (region == "Alsace" || region == "Lorraine")
             {
-                this.InnerHolidays.Add(StStephensDay);
-                this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+                this.InnerObservances.AddHoliday(StStephensDay);
+                this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
             }
         }
 
-        private static Holiday victoryInEuropeDay;
+        private static NamedDay victoryInEuropeDay;
 
-        public static Holiday VictoryInEuropeDay
+        public static NamedDay VictoryInEuropeDay
         {
             get
             {
                 if (victoryInEuropeDay == null)
                 {
-                    victoryInEuropeDay = new FixedHoliday("Victory in Europe Day", 5, 8);
+                    victoryInEuropeDay = new NamedDay("Victory in Europe Day", new FixedDayResolver(5, 8));
                 }
                 return victoryInEuropeDay;
             }
         }
 
-        private static Holiday bastilleDay;
+        private static NamedDay bastilleDay;
 
-        public static Holiday BastilleDay
+        public static NamedDay BastilleDay
         {
             get
             {
                 if (bastilleDay == null)
                 {
-                    bastilleDay = new FixedHoliday("Bastille Day", 7, 14);
+                    bastilleDay = new NamedDay("Bastille Day", new FixedDayResolver(7, 14));
                 }
                 return bastilleDay;
             }
         }
 
-        private static Holiday stStephensDay;
+        private static NamedDay stStephensDay;
 
-        public static Holiday StStephensDay
+        public static NamedDay StStephensDay
         {
             get
             {
                 if (stStephensDay == null)
                 {
-                    stStephensDay = new FixedHoliday("St Stephen's Day", 12, 26);
+                    stStephensDay = new NamedDay("St Stephen's Day", new FixedDayResolver(12, 26));
                 }
                 return stStephensDay;
             }

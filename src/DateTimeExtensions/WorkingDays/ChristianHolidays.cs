@@ -19,108 +19,105 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+using DateTimeExtensions.WorkingDays.DayInYearResolvers;
 
 namespace DateTimeExtensions.WorkingDays
 {
     public static class ChristianHolidays
     {
-        private static Holiday christmas;
+        private static NamedDay christmas;
 
-        public static Holiday Christmas
+        public static NamedDay Christmas
         {
             get
             {
                 if (christmas == null)
                 {
-                    christmas = new FixedHoliday("Christmas", 12, 25);
+                    christmas = new NamedDay("Christmas", new FixedDayResolver(12, 25));
                 }
                 return christmas;
             }
         }
 
-        private static Holiday epiphany;
+        private static NamedDay epiphany;
 
-        public static Holiday Epiphany
+        public static NamedDay Epiphany
         {
             get
             {
                 if (epiphany == null)
                 {
-                    epiphany = new FixedHoliday("Epiphany", 1, 6);
+                    epiphany = new NamedDay("Epiphany", new FixedDayResolver(1, 6));
                 }
                 return epiphany;
             }
         }
 
-        private static Holiday assumption;
+        private static NamedDay assumption;
 
-        public static Holiday Assumption
+        public static NamedDay Assumption
         {
             get
             {
                 if (assumption == null)
                 {
-                    assumption = new FixedHoliday("Assumption", 8, 15);
+                    assumption = new NamedDay("Assumption", new FixedDayResolver(8, 15));
                 }
                 return assumption;
             }
         }
 
-        private static Holiday allSaints;
+        private static NamedDay allSaints;
 
-        public static Holiday AllSaints
+        public static NamedDay AllSaints
         {
             get
             {
                 if (allSaints == null)
                 {
-                    allSaints = new FixedHoliday("AllSaints", 11, 1);
+                    allSaints = new NamedDay("AllSaints", new FixedDayResolver(11, 1));
                 }
                 return allSaints;
             }
         }
 
-        private static Holiday dayOfTheDead;
+        private static NamedDay dayOfTheDead;
 
-        public static Holiday DayOfTheDead
+        public static NamedDay DayOfTheDead
         {
             get
             {
                 if (dayOfTheDead == null)
                 {
-                    dayOfTheDead = new FixedHoliday("DayOfTheDead", 11, 2);
+                    dayOfTheDead = new NamedDay("DayOfTheDead", new FixedDayResolver(11, 2));
                 }
                 return dayOfTheDead;
             }
         }
 
-        private static Holiday imaculateConception;
+        private static NamedDay imaculateConception;
 
-        public static Holiday ImaculateConception
+        public static NamedDay ImaculateConception
         {
             get
             {
                 if (imaculateConception == null)
                 {
-                    imaculateConception = new FixedHoliday("ImaculateConception", 12, 8);
+                    imaculateConception = new NamedDay("ImaculateConception", new FixedDayResolver(12, 8));
                 }
                 return imaculateConception;
             }
         }
 
-        private static Holiday easter;
+        private static NamedDay easter;
 
-        public static Holiday Easter
+        public static NamedDay Easter
         {
             get
             {
                 if (easter == null)
                 {
-                    easter = new EasterBasedHoliday("Easter", 0);
+                    easter = new NamedDay("Easter", new EasterBasedDayResolver(0));
                 }
                 return easter;
             }
@@ -128,29 +125,29 @@ namespace DateTimeExtensions.WorkingDays
 
         //source: https://en.wikipedia.org/wiki/Ash_Wednesday
         //
-        private static Holiday ashWednesday;
-        public static Holiday AshWednesday
+        private static NamedDay ashWednesday;
+        public static NamedDay AshWednesday
         {
             get
             {
                 if (ashWednesday == null)
                 {
-                    ashWednesday = new EasterBasedHoliday("AshWednesday", -46);
+                    ashWednesday = new NamedDay("AshWednesday", new EasterBasedDayResolver(-46));
                 }
                 return ashWednesday;
             }
         }
 
 
-        private static Holiday carnival;
+        private static NamedDay carnival;
 
-        public static Holiday Carnival
+        public static NamedDay Carnival
         {
             get
             {
                 if (carnival == null)
                 {
-                    carnival = new EasterBasedHoliday("Carnival", -47);
+                    carnival = new NamedDay("Carnival", new EasterBasedDayResolver(-47));
                 }
                 return carnival;
             }
@@ -158,85 +155,85 @@ namespace DateTimeExtensions.WorkingDays
 
         //source: http://en.wikipedia.org/wiki/Palm_Sunday
         //Palm Sunday is a Christian moveable feast that falls on the Sunday before Easter
-        private static Holiday palmSunday;
+        private static NamedDay palmSunday;
 
-        public static Holiday PalmSunday
+        public static NamedDay PalmSunday
         {
             get
             {
                 if (palmSunday == null)
                 {
-                    palmSunday = new NthDayOfWeekAfterDayHoliday("PalmSunday", -1, DayOfWeek.Sunday, Easter);
+                    palmSunday = new NamedDay("PalmSunday", new NthDayOfWeekAfterDayResolver(-1, DayOfWeek.Sunday, Easter.Resolver));
                 }
                 return palmSunday;
             }
         }
 
-        private static Holiday maundyThursday;
+        private static NamedDay maundyThursday;
 
-        public static Holiday MaundyThursday
+        public static NamedDay MaundyThursday
         {
             get
             {
                 if (maundyThursday == null)
                 {
-                    maundyThursday = new EasterBasedHoliday("MaundyThursday", -3);
+                    maundyThursday = new NamedDay("MaundyThursday", new EasterBasedDayResolver(-3));
                 }
                 return maundyThursday;
             }
         }
 
-        private static Holiday goodFriday;
+        private static NamedDay goodFriday;
 
-        public static Holiday GoodFriday
+        public static NamedDay GoodFriday
         {
             get
             {
                 if (goodFriday == null)
                 {
-                    goodFriday = new EasterBasedHoliday("GoodFriday", -2);
+                    goodFriday = new NamedDay("GoodFriday", new EasterBasedDayResolver(-2));
                 }
                 return goodFriday;
             }
         }
 
-        private static Holiday easterMonday;
+        private static NamedDay easterMonday;
 
-        public static Holiday EasterMonday
+        public static NamedDay EasterMonday
         {
             get
             {
                 if (easterMonday == null)
                 {
-                    easterMonday = new EasterBasedHoliday("EasterMonday", 1);
+                    easterMonday = new NamedDay("EasterMonday", new EasterBasedDayResolver(1));
                 }
                 return easterMonday;
             }
         }
 
-        private static Holiday easterSaturday;
+        private static NamedDay easterSaturday;
 
-        public static Holiday EasterSaturday
+        public static NamedDay EasterSaturday
         {
             get
             {
                 if (easterSaturday == null)
                 {
-                    easterSaturday = new EasterBasedHoliday("EasterSaturday", -1);
+                    easterSaturday = new NamedDay("EasterSaturday", new EasterBasedDayResolver(-1));
                 }
                 return easterSaturday;
             }
         }
 
-        private static Holiday corpusChristi;
+        private static NamedDay corpusChristi;
 
-        public static Holiday CorpusChristi
+        public static NamedDay CorpusChristi
         {
             get
             {
                 if (corpusChristi == null)
                 {
-                    corpusChristi = new EasterBasedHoliday("CorpusChristi", 60);
+                    corpusChristi = new NamedDay("CorpusChristi", new EasterBasedDayResolver(60));
                 }
                 return corpusChristi;
             }
@@ -245,31 +242,31 @@ namespace DateTimeExtensions.WorkingDays
         //source: http://en.wikipedia.org/wiki/Pentecost
         //50 days after Easter (inclusive of Easter Day). In other words, it falls on the eighth Sunday, counting Easter Day 
         //Also know as Whit Sunday, Whitsun, Whit
-        private static Holiday pentecost;
+        private static NamedDay pentecost;
 
-        public static Holiday Pentecost
+        public static NamedDay Pentecost
         {
             get
             {
                 if (pentecost == null)
                 {
                     //count offset is 7 because we aren't counting with the easter day inclusive
-                    pentecost = new NthDayOfWeekAfterDayHoliday("Pentecost", 7, DayOfWeek.Sunday, Easter);
+                    pentecost = new NamedDay("Pentecost", new NthDayOfWeekAfterDayResolver(7, DayOfWeek.Sunday, Easter.Resolver));
                 }
                 return pentecost;
             }
         }
 
         //Also known as Whit monday
-        private static Holiday pentecostMonday;
+        private static NamedDay pentecostMonday;
 
-        public static Holiday PentecostMonday
+        public static NamedDay PentecostMonday
         {
             get
             {
                 if (pentecostMonday == null)
                 {
-                    pentecostMonday = new EasterBasedHoliday("PentecostMonday", 50);
+                    pentecostMonday = new NamedDay("PentecostMonday", new EasterBasedDayResolver(50));
                 }
                 return pentecostMonday;
             }
@@ -278,71 +275,71 @@ namespace DateTimeExtensions.WorkingDays
         //source: http://en.wikipedia.org/wiki/Ascension_Day
         // Ascension Day is traditionally celebrated on a Thursday, the fortieth day of Easter
         // again, easter day is included
-        private static Holiday ascension;
+        private static NamedDay ascension;
 
-        public static Holiday Ascension
+        public static NamedDay Ascension
         {
             get
             {
                 if (ascension == null)
                 {
-                    ascension = new EasterBasedHoliday("Ascension", 39);
+                    ascension = new NamedDay("Ascension", new EasterBasedDayResolver(39));
                 }
                 return ascension;
             }
         }
 
-        private static Holiday christmasEve;
+        private static NamedDay christmasEve;
 
-        public static Holiday ChristmasEve
+        public static NamedDay ChristmasEve
         {
             get
             {
                 if (christmasEve == null)
                 {
-                    christmasEve = new FixedHoliday("ChristmasEve", 12, 24);
+                    christmasEve = new NamedDay("ChristmasEve", new FixedDayResolver(12, 24));
                 }
                 return christmasEve;
             }
         }
 
-        private static Holiday stStephensDay;
+        private static NamedDay stStephensDay;
 
-        public static Holiday StStephansDay
+        public static NamedDay StStephansDay
         {
             get
             {
                 if (stStephensDay == null)
                 {
-                    stStephensDay = new FixedHoliday("StStephenDay", 12, 26);
+                    stStephensDay = new NamedDay("StStephenDay", new FixedDayResolver(12, 26));
                 }
                 return stStephensDay;
             }
         }
 
-        private static Holiday stsPeterAndPaul;
+        private static NamedDay stsPeterAndPaul;
 
-        public static Holiday StsPeterAndPaul
+        public static NamedDay StsPeterAndPaul
         {
             get
             {
                 if(stsPeterAndPaul == null)
                 {
-                    stsPeterAndPaul = new FixedHoliday("StsPeterAndPaul", 6, 29);
+                    stsPeterAndPaul = new NamedDay("StsPeterAndPaul", new FixedDayResolver(6, 29));
                 }
                 return stsPeterAndPaul;
             }
         }
 
-        private static Holiday stRoseofLima;
+        private static NamedDay stRoseofLima;
 
-        public static Holiday StRoseOfLima
+        public static NamedDay StRoseOfLima
         {
             get
             {
                 if(stRoseofLima == null)
                 {
-                    stRoseofLima = new FixedHoliday("St. Rose of Lima", 8, 23);
+                    stRoseofLima = new NamedDay("St. Rose of Lima", new FixedDayResolver(8, 23));
                 }
                 return stRoseofLima;
             }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +19,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void Romanian_has_12_main_holidays()
         {
-            var holidays = dateTimeCulture.Holidays;
+            var holidays = dateTimeCulture.Observances;
             Assert.AreEqual(16, holidays.Count());
         }
 
@@ -98,7 +98,7 @@ namespace DateTimeExtensions.Tests
             }
         }
 
-        private void TestHoliday(Holiday holiday, DateTime dateOnGregorian)
+        private void TestHoliday(NamedDay holiday, DateTime dateOnGregorian)
         {
             var holidayInstance = holiday.GetInstance(dateOnGregorian.Year);
             Assert.True(holidayInstance.HasValue);

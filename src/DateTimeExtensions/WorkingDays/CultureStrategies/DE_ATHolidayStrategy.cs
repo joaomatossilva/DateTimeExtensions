@@ -3,35 +3,35 @@
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("de-AT")]
-    public class DE_ATHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class DE_ATHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public DE_ATHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(AustrianNationalHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(AustrianNationalHoliday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYearsEve);
         }
 
-        private static Holiday austrianNationalHoliday;
+        private static NamedDay austrianNationalHoliday;
 
-        public static Holiday AustrianNationalHoliday
+        public static NamedDay AustrianNationalHoliday
         {
             get
             {
                 if (austrianNationalHoliday == null)
                 {
-                    austrianNationalHoliday = new FixedHoliday("Austrian National Holiday", 10, 26);
+                    austrianNationalHoliday = new NamedDay("Austrian National NamedDay", new FixedDayResolver(10, 26));
                 }
                 return austrianNationalHoliday;
             }

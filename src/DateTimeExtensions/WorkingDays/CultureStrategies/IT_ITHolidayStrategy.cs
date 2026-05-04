@@ -27,48 +27,48 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("it-IT")]
-    public class IT_ITHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class IT_ITHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public IT_ITHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(LiberationDay);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(RepublicDay);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(LiberationDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(RepublicDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
         }
 
         //2 June - Republic Day
-        private static Holiday republicDay;
+        private static NamedDay republicDay;
 
-        public static Holiday RepublicDay
+        public static NamedDay RepublicDay
         {
             get
             {
                 if (republicDay == null)
                 {
-                    republicDay = new FixedHoliday("Republic Day", 6, 2);
+                    republicDay = new NamedDay("Republic Day", new FixedDayResolver(6, 2));
                 }
                 return republicDay;
             }
         }
         
         //25 April - Liberation Day
-        private static Holiday liberationDay;
+        private static NamedDay liberationDay;
 
-        public static Holiday LiberationDay
+        public static NamedDay LiberationDay
         {
             get
             {
                 if (liberationDay == null)
                 {
-                    liberationDay = new FixedHoliday("Liberation Day", 4, 25);
+                    liberationDay = new NamedDay("Liberation Day", new FixedDayResolver(4, 25));
                 }
                 return liberationDay;
             }

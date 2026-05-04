@@ -21,48 +21,53 @@
 using DateTimeExtensions.Common;
 using System;
 
-namespace DateTimeExtensions.WorkingDays
+namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
 {
-    public class NthDayOfWeekAfterDayHoliday : Holiday
+    /// <summary>
+    /// Representation of a calendar day that is the nth occurrence of a given day of week after another calendar day.
+    /// </summary>
+    public class NthDayOfWeekAfterDayResolver : IDayResolver
     {
         private readonly DayOfWeek dayOfWeek;
+
         private readonly int count;
-        private readonly Holiday baseHoliday;
+
+        private readonly IDayResolver innerDayResolver;
+
         private readonly ConcurrentLazyDictionary<int, DateTime?> dayCache;
 
-        public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, int month, int day)
-            : this(name, count, dayOfWeek, new FixedHoliday(name, month, day))
+        public NthDayOfWeekAfterDayResolver(int count, DayOfWeek dayOfWeek, int month, int day)
+            : this(count, dayOfWeek, new FixedDayResolver(month, day))
         {
         }
 
-        public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, DayInYear dayInYear)
-            : this(name, count, dayOfWeek, new FixedHoliday(name, dayInYear))
+        public NthDayOfWeekAfterDayResolver(int count, DayOfWeek dayOfWeek, DayInYear dayInYear)
+            : this(count, dayOfWeek, new FixedDayResolver(dayInYear))
         {
         }
 
-        public NthDayOfWeekAfterDayHoliday(string name, int count, DayOfWeek dayOfWeek, Holiday baseHoliday)
-            : base(name)
+        public NthDayOfWeekAfterDayResolver(int count, DayOfWeek dayOfWeek, IDayResolver innerDayResolver)
         {
             if (count == 0)
             {
                 throw new ArgumentException("count must not be 0", "count");
             }
-            if (baseHoliday == null)
+            if (innerDayResolver == null)
             {
-                throw new ArgumentException("baseHoliday cannot be null", "baseHoliday");
+                throw new ArgumentException("innerDayResolver cannot be null", "innerDayResolver");
             }
             this.count = count;
             this.dayOfWeek = dayOfWeek;
-            this.baseHoliday = baseHoliday;
+            this.innerDayResolver = innerDayResolver;
             dayCache = new ConcurrentLazyDictionary<int, DateTime?>();
         }
 
-        public override DateTime? GetInstance(int year)
+        public DateTime? GetInstance(int year)
         {
             return dayCache.GetOrAdd(year, () => CalculateDayInYear(year));
         }
 
-        public override bool IsInstanceOf(DateTime date)
+        public bool IsInstanceOf(DateTime date)
         {
             var day = GetInstance(date.Year);
             return day.HasValue && date.Month == day.Value.Month && date.Day == day.Value.Day;
@@ -70,18 +75,12 @@ namespace DateTimeExtensions.WorkingDays
 
         private DateTime? CalculateDayInYear(int year)
         {
-            var startDate = baseHoliday.GetInstance(year);
+            var startDate = innerDayResolver.GetInstance(year);
             if (!startDate.HasValue)
             {
                 return null;
             }
-            /* this block should be uncomment if we should count the start day inclusive
-             * example: 1st Sunday after easter. should count the next sunday, or the easter sunday? for now it makes more sence the next sunday
-            if(startDate.Value.DayOfWeek == dayOfWeek && (count == -1 || count == 1))
-            {
-                return startDate;
-            }
-             */
+
             if (count > 0)
             {
                 startDate = startDate.Value.NextDayOfWeek(dayOfWeek);
@@ -90,7 +89,8 @@ namespace DateTimeExtensions.WorkingDays
             {
                 startDate = startDate.Value.LastDayOfWeek(dayOfWeek);
             }
-            return startDate.Value.AddDays((count > 0 ? count - 1 : count + 1)*7);
+
+            return startDate.Value.AddDays((count > 0 ? count - 1 : count + 1) * 7);
         }
     }
 }

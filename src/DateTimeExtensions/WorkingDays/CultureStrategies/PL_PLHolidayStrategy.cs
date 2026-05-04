@@ -3,68 +3,70 @@
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("pl-PL")]
-    public class PL_PLHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class PL_PLHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public PL_PLHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
 
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
 
-            this.InnerHolidays.Add(May3rdConstitutionDay);
+            this.InnerObservances.AddHoliday(May3rdConstitutionDay);
 
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
 
-            this.InnerHolidays.Add(NationalIndependenceDay);
+            this.InnerObservances.AddHoliday(NationalIndependenceDay);
 
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
-            this.InnerHolidays.Add(ChristmasEveFrom2025);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(ChristmasEveFrom2025);
         }
 
-        private static Holiday may3rdConstitutionDay;
+        private static NamedDay may3rdConstitutionDay;
 
-        public static Holiday May3rdConstitutionDay
+        public static NamedDay May3rdConstitutionDay
         {
             get
             {
                 if (may3rdConstitutionDay == null)
                 {
-                    may3rdConstitutionDay = new FixedHoliday("May 3rd Constitution Day", 5, 3);
+                    may3rdConstitutionDay = new NamedDay("May 3rd Constitution Day", new FixedDayResolver(5, 3));
                 }
                 return may3rdConstitutionDay;
             }
         }
 
-        private static Holiday nationalIndependenceDay;
+        private static NamedDay nationalIndependenceDay;
 
-        public static Holiday NationalIndependenceDay
+        public static NamedDay NationalIndependenceDay
         {
             get
             {
                 if (nationalIndependenceDay == null)
                 {
-                    nationalIndependenceDay = new FixedHoliday("National Independence Day", 11, 11);
+                    nationalIndependenceDay = new NamedDay("National Independence Day", new FixedDayResolver(11, 11));
                 }
                 return nationalIndependenceDay;
             }
         }
 
-        private static Holiday christmasEveFrom2025;
-        public static Holiday ChristmasEveFrom2025
+        private static NamedDay christmasEveFrom2025;
+        public static NamedDay ChristmasEveFrom2025
         {
             get
             {
                 if (christmasEveFrom2025 == null)
                 {
-                    christmasEveFrom2025 = new YearDependantHoliday(year => year >= 2025, new FixedHoliday("Christmas Eve", 12, 24));
+                    christmasEveFrom2025 = new NamedDay(
+                        "Christmas Eve",
+                        new YearDependantDayResolver(year => year >= 2025, new FixedDayResolver(12, 24)));
                 }
                 return christmasEveFrom2025;
             }

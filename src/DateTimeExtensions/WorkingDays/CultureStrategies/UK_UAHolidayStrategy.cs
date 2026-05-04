@@ -3,116 +3,116 @@
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("uk-UA")]
-    public class UK_UAHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class UK_UAHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public UK_UAHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(WomensDay);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(WorkersDay);
-            this.InnerHolidays.Add(VictoryInEuropeDay);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ConstitutionDay);
-            this.InnerHolidays.Add(StatehoodDay);
-            this.InnerHolidays.Add(IndependenceDayOfUkraine);
-            this.InnerHolidays.Add(DefendersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(WomensDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(WorkersDay);
+            this.InnerObservances.AddHoliday(VictoryInEuropeDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ConstitutionDay);
+            this.InnerObservances.AddHoliday(StatehoodDay);
+            this.InnerObservances.AddHoliday(IndependenceDayOfUkraine);
+            this.InnerObservances.AddHoliday(DefendersDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
         }
 
-        private static Holiday womensDay;
+        private static NamedDay womensDay;
 
-        public static Holiday WomensDay
+        public static NamedDay WomensDay
         {
             get
             {
                 if (womensDay == null)
                 {
-                    womensDay = new FixedHoliday("International Women's Day", 3, 8);
+                    womensDay = new NamedDay("International Women's Day", new FixedDayResolver(3, 8));
                 }
                 return womensDay;
             }
         }
 
-        private static Holiday workersDay;
+        private static NamedDay workersDay;
 
-        public static Holiday WorkersDay
+        public static NamedDay WorkersDay
         {
             get
             {
                 if (workersDay == null)
                 {
-                    workersDay = new FixedHoliday("International Workers' Day", 5, 1);
+                    workersDay = new NamedDay("International Workers' Day", new FixedDayResolver(5, 1));
                 }
                 return workersDay;
             }
         }
 
-        private static Holiday victoryInEuropeDay;
+        private static NamedDay victoryInEuropeDay;
 
-        public static Holiday VictoryInEuropeDay
+        public static NamedDay VictoryInEuropeDay
         {
             get
             {
                 if (victoryInEuropeDay == null)
                 {
-                    victoryInEuropeDay = new FixedHoliday("Victory in Europe Day", 5, 8);
+                    victoryInEuropeDay = new NamedDay("Victory in Europe Day", new FixedDayResolver(5, 8));
                 }
                 return victoryInEuropeDay;
             }
         }
 
-        private static Holiday constitutionDay;
+        private static NamedDay constitutionDay;
 
-        public static Holiday ConstitutionDay
+        public static NamedDay ConstitutionDay
         {
             get
             {
                 if (constitutionDay == null)
                 {
-                    constitutionDay = new FixedHoliday("Constitution Day", 6, 28);
+                    constitutionDay = new NamedDay("Constitution Day", new FixedDayResolver(6, 28));
                 }
                 return constitutionDay;
             }
         }
 
-        private static Holiday statehoodDay;
+        private static NamedDay statehoodDay;
 
-        public static Holiday StatehoodDay
+        public static NamedDay StatehoodDay
         {
             get
             {
                 if (statehoodDay == null)
                 {
-                    statehoodDay = new FixedHoliday("Statehood Day", 7, 15);
+                    statehoodDay = new NamedDay("Statehood Day", new FixedDayResolver(7, 15));
                 }
                 return statehoodDay;
             }
         }
 
-        private static Holiday independenceDayOfUkraine;
+        private static NamedDay independenceDayOfUkraine;
 
-        public static Holiday IndependenceDayOfUkraine
+        public static NamedDay IndependenceDayOfUkraine
         {
             get
             {
                 if (independenceDayOfUkraine == null)
                 {
-                    independenceDayOfUkraine = new FixedHoliday("Independence Day of Ukraine", 8, 24);
+                    independenceDayOfUkraine = new NamedDay("Independence Day of Ukraine", new FixedDayResolver(8, 24));
                 }
                 return independenceDayOfUkraine;
             }
         }
 
-        private static Holiday defendersDay;
+        private static NamedDay defendersDay;
 
-        public static Holiday DefendersDay
+        public static NamedDay DefendersDay
         {
             get
             {
                 if (defendersDay == null)
                 {
-                    defendersDay = new FixedHoliday("Defenders Day", 10, 1);
+                    defendersDay = new NamedDay("Defenders Day", new FixedDayResolver(10, 1));
                 }
                 return defendersDay;
             }

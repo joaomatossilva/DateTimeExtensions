@@ -40,7 +40,7 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void HolidayCount_2025_IsCorrect()
         {
-            var holidays2025 = albanianCulture.GetHolidaysOfYear(2025).ToList();
+            var holidays2025 = albanianCulture.GetObservancesOfYear(2025).ToList();
             Assert.AreEqual(12, holidays2025.Count); // easters were both on the same day in 2025 resulting in 12 unique holidays
         }
 

@@ -2,12 +2,13 @@
   <PropertyGroup>
 	<ImplicitUsings>disable</ImplicitUsings>
 	<Nullable>disable</Nullable>
+    <LangVersion>10.0</LangVersion>
     <AssemblyName>DateTimeExtensions.Tests</AssemblyName>
     <PackageId>DateTimeExtensions.Tests</PackageId>
 
 	<IsPackable>false</IsPackable>
 	<IsTestProject>true</IsTestProject>
-	<TargetFramework>net8.0</TargetFramework>
+	<TargetFramework>net10.0</TargetFramework>
     
   </PropertyGroup>
   <ItemGroup>

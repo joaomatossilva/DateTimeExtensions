@@ -27,36 +27,36 @@ using DateTimeExtensions.Common;
 namespace DateTimeExtensions.WorkingDays.CultureStrategies
 {
     [Locale("fi-FI")]
-    public class FI_FIHolidayStrategy : HolidayStrategyBase, IHolidayStrategy
+    public class FI_FIHolidayStrategy : HolidayStrategyBase, IObservancesStrategy
     {
         public FI_FIHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GlobalHolidays.MayDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(GlobalHolidays.MidsummerEve);
-            this.InnerHolidays.Add(GlobalHolidays.MidsummerDay);
-            this.InnerHolidays.Add(AllSaintsDay);
-            this.InnerHolidays.Add(IndependanceDay);
-            this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.MayDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(GlobalHolidays.MidsummerEve);
+            this.InnerObservances.AddHoliday(GlobalHolidays.MidsummerDay);
+            this.InnerObservances.AddHoliday(AllSaintsDay);
+            this.InnerObservances.AddHoliday(IndependanceDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ChristmasEve);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
         }
 
-        private static Holiday independanceDay;
+        private static NamedDay independanceDay;
 
-        public static Holiday IndependanceDay
+        public static NamedDay IndependanceDay
         {
             get
             {
                 if (independanceDay == null)
                 {
-                    independanceDay = new FixedHoliday("Independance Day", 12, 6);
+                    independanceDay = new NamedDay("Independance Day", new FixedDayResolver(12, 6));
                 }
                 return independanceDay;
             }
@@ -64,15 +64,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         //All Saints' Day - Saturday between 31 October and 6 November
         // - Same as ChristianHolidays.AllSaints but has diferent ocurrence
-        private static Holiday allSaintsDay;
+        private static NamedDay allSaintsDay;
 
-        public static Holiday AllSaintsDay
+        public static NamedDay AllSaintsDay
         {
             get
             {
                 if (allSaintsDay == null)
                 {
-                    allSaintsDay = new NthDayOfWeekAfterDayHoliday("All Saint's Day", 1, DayOfWeek.Saturday, 10, 31);
+                    allSaintsDay = new NamedDay("All Saint's Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Saturday, 10, 31));
                 }
                 return allSaintsDay;
             }
