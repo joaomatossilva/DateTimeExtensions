@@ -21,14 +21,14 @@
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="WorkingDays\HolidayNames.Designer.cs">
+    <Compile Update="WorkingDays\DayNames.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>HolidayNames.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="WorkingDays\HolidayNames.resx">
+    <EmbeddedResource Update="WorkingDays\DayNames.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HolidayNames.Designer.cs</LastGenOutput>
     </EmbeddedResource>

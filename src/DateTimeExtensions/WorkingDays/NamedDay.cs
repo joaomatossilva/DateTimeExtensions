@@ -54,7 +54,7 @@ namespace DateTimeExtensions.WorkingDays
 
 
         private static ResourceManager resourceManager =
-            new("DateTimeExtensions.WorkingDays.HolidayNames", typeof (NamedDay).GetTypeInfo().Assembly);
+            new("DateTimeExtensions.WorkingDays.DayNames", typeof (NamedDay).GetTypeInfo().Assembly);
 
         public static ResourceManager ResourceManager
         {
