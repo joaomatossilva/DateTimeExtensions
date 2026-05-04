@@ -31,21 +31,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FI_FIHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GlobalHolidays.MayDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(GlobalHolidays.MidsummerEve);
-            this.InnerHolidays.Add(GlobalHolidays.MidsummerDay);
-            this.InnerHolidays.Add(AllSaintsDay);
-            this.InnerHolidays.Add(IndependanceDay);
-            this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.Epiphany);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(GlobalHolidays.MayDay);
+            this.InnerObservances.Add(ChristianHolidays.Ascension);
+            this.InnerObservances.Add(ChristianHolidays.Pentecost);
+            this.InnerObservances.Add(GlobalHolidays.MidsummerEve);
+            this.InnerObservances.Add(GlobalHolidays.MidsummerDay);
+            this.InnerObservances.Add(AllSaintsDay);
+            this.InnerObservances.Add(IndependanceDay);
+            this.InnerObservances.Add(ChristianHolidays.ChristmasEve);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
         }
 
         private static NamedDay independanceDay;

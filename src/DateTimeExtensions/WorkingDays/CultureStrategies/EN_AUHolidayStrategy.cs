@@ -34,23 +34,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             // holidays that are observed in at least half of Australian states and territories
             // according to https://en.wikipedia.org/wiki/Public_holidays_in_Australia
 
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(AustraliaDay);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterSaturday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(AnzacDay);
-            this.InnerHolidays.Add(QueensBirthday);
-            this.InnerHolidays.Add(KingsBirthday);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(AustraliaDay);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.EasterSaturday);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(AnzacDay);
+            this.InnerObservances.Add(QueensBirthday);
+            this.InnerObservances.Add(KingsBirthday);
+            this.InnerObservances.Add(LabourDay);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerObservances)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

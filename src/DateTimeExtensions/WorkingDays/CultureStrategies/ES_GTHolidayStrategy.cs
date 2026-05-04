@@ -7,21 +7,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ES_GTHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday); // Jueves Santo
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday); // Viernes Santo
-            this.InnerHolidays.Add(ChristianHolidays.EasterSaturday); // Sábado de Gloria
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay); // Día del Trabajo
-            this.InnerHolidays.Add(MothersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption); // Feriado Ciudad Capital Guatemala
-            this.InnerHolidays.Add(ChristianHolidays.DayOfTheDead);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
-            this.InnerHolidays.Add(IndependenceDay); // Día de la Independencia
-            this.InnerHolidays.Add(RevolutionDay); // Día de la Revolución
-            this.InnerHolidays.Add(ArmyDay); // Día del Ejército
-            this.InnerHolidays.Add(AllSaintsDay); // Día de Todos los Santos
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.MaundyThursday); // Jueves Santo
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday); // Viernes Santo
+            this.InnerObservances.Add(ChristianHolidays.EasterSaturday); // Sábado de Gloria
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay); // Día del Trabajo
+            this.InnerObservances.Add(MothersDay);
+            this.InnerObservances.Add(ChristianHolidays.Assumption); // Feriado Ciudad Capital Guatemala
+            this.InnerObservances.Add(ChristianHolidays.DayOfTheDead);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.ChristmasEve);
+            this.InnerObservances.Add(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.Add(IndependenceDay); // Día de la Independencia
+            this.InnerObservances.Add(RevolutionDay); // Día de la Revolución
+            this.InnerObservances.Add(ArmyDay); // Día del Ejército
+            this.InnerObservances.Add(AllSaintsDay); // Día de Todos los Santos
         }
 
         private static NamedDay _mothersDay;

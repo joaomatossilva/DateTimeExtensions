@@ -31,18 +31,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FR_FRHolidayStrategy(string region)
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(ChristianHolidays.Ascension);
+            this.InnerObservances.Add(ChristianHolidays.AllSaints);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.Assumption);
+            this.InnerObservances.Add(ChristianHolidays.PentecostMonday);
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(GlobalHolidays.VeteransDay);
-            this.InnerHolidays.Add(VictoryInEuropeDay);
-            this.InnerHolidays.Add(BastilleDay);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(GlobalHolidays.VeteransDay);
+            this.InnerObservances.Add(VictoryInEuropeDay);
+            this.InnerObservances.Add(BastilleDay);
 
             if (string.IsNullOrEmpty(region))
             {
@@ -51,8 +51,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
             if (region == "Alsace" || region == "Lorraine")
             {
-                this.InnerHolidays.Add(StStephensDay);
-                this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
+                this.InnerObservances.Add(StStephensDay);
+                this.InnerObservances.Add(ChristianHolidays.GoodFriday);
             }
         }
 

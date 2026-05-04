@@ -31,17 +31,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IT_ITHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(LiberationDay);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(RepublicDay);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.Epiphany);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(LiberationDay);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(RepublicDay);
+            this.InnerObservances.Add(ChristianHolidays.Assumption);
+            this.InnerObservances.Add(ChristianHolidays.AllSaints);
+            this.InnerObservances.Add(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
         }
 
         //2 June - Republic Day

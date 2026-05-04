@@ -32,26 +32,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public PT_PTHolidayStrategy(string region)
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(new NamedDay(
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.Add(ChristianHolidays.Assumption);
+            this.InnerObservances.Add(new NamedDay(
                 ChristianHolidays.CorpusChristi.Name,
                 new YearDependantDayResolver(year => year < 2013 || year >= 2016, ChristianHolidays.CorpusChristi.Resolver)));
-            this.InnerHolidays.Add(new NamedDay(
+            this.InnerObservances.Add(new NamedDay(
                 ChristianHolidays.AllSaints.Name,
                 new YearDependantDayResolver(year => year < 2013 || year >= 2016, ChristianHolidays.AllSaints.Resolver)));
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
 
-            this.InnerHolidays.Add(FreedomDay);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(PortugalDay);
-            this.InnerHolidays.Add(new NamedDay(
+            this.InnerObservances.Add(FreedomDay);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(PortugalDay);
+            this.InnerObservances.Add(new NamedDay(
                 RepublicDay.Name,
                 new YearDependantDayResolver(year => year < 2013 || year >= 2016, RepublicDay.Resolver)));
-            this.InnerHolidays.Add(new NamedDay(
+            this.InnerObservances.Add(new NamedDay(
                 RestorationOfIndependance.Name,
                 new YearDependantDayResolver(year => year < 2013 || year >= 2016, RestorationOfIndependance.Resolver)));
 
@@ -63,13 +63,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             switch (region)
             {
                 case PortugalRegion.Lisboa:
-                   this.InnerHolidays.Add(StAntonio);
+                   this.InnerObservances.Add(StAntonio);
                     break;
                 case PortugalRegion.Porto:
-                    this.InnerHolidays.Add(StJoao);
+                    this.InnerObservances.Add(StJoao);
                     break;
                 case PortugalRegion.CasteloBranco:
-                    this.InnerHolidays.Add(SraMercules);
+                    this.InnerObservances.Add(SraMercules);
                     break;
             }
         }

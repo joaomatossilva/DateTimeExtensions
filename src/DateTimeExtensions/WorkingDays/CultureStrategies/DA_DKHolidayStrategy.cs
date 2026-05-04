@@ -31,17 +31,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public DA_DKHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GeneralPrayerDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(SecondDayOfChristmas);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(GeneralPrayerDay);
+            this.InnerObservances.Add(ChristianHolidays.Ascension);
+            this.InnerObservances.Add(ChristianHolidays.Pentecost);
+            this.InnerObservances.Add(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(SecondDayOfChristmas);
         }
 
         private static NamedDay secondDayOfChristmas;

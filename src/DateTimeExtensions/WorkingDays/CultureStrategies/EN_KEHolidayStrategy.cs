@@ -31,14 +31,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_KEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(MadarakaDay);
-            this.InnerHolidays.Add(MashujaaDay);
-            this.InnerHolidays.Add(JamhuriDay);
-            this.InnerHolidays.Add(MoiDay);
-            this.InnerHolidays.Add(HudumaDay);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(MadarakaDay);
+            this.InnerObservances.Add(MashujaaDay);
+            this.InnerObservances.Add(JamhuriDay);
+            this.InnerObservances.Add(MoiDay);
+            this.InnerObservances.Add(HudumaDay);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
         }
 
         // 1 June - Madaraka Day

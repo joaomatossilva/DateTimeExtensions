@@ -8,21 +8,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public CS_CZHolidayStrategy()
         {
             // January 1 has two holidays
-            this.InnerHolidays.Add(NewYearAndRestorationOfIndependence);
+            this.InnerObservances.Add(NewYearAndRestorationOfIndependence);
             // Good Friday has been a holiday since 2016.
-            this.InnerHolidays.Add(GoodFridayCzechia);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(VictoryDay);
-            this.InnerHolidays.Add(CyrilAndMethodiusDay);
-            this.InnerHolidays.Add(JanHusDay);
-            this.InnerHolidays.Add(StatehoodDay);
-            this.InnerHolidays.Add(CzechoslovakIndependenceDay);
-            this.InnerHolidays.Add(FreedomAndDemocracyAndStudentsDay);
+            this.InnerObservances.Add(GoodFridayCzechia);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(LabourDay);
+            this.InnerObservances.Add(VictoryDay);
+            this.InnerObservances.Add(CyrilAndMethodiusDay);
+            this.InnerObservances.Add(JanHusDay);
+            this.InnerObservances.Add(StatehoodDay);
+            this.InnerObservances.Add(CzechoslovakIndependenceDay);
+            this.InnerObservances.Add(FreedomAndDemocracyAndStudentsDay);
             // The main Christmas holiday is on December 24 while the 25 and 26 are also bank holidays.
-            this.InnerHolidays.Add(ChristmasEve);
-            this.InnerHolidays.Add(FirstChristmasDay);
-            this.InnerHolidays.Add(SecondChristmasDay);
+            this.InnerObservances.Add(ChristmasEve);
+            this.InnerObservances.Add(FirstChristmasDay);
+            this.InnerObservances.Add(SecondChristmasDay);
         }
 
         private static NamedDay restorationOfIndependenceDay;

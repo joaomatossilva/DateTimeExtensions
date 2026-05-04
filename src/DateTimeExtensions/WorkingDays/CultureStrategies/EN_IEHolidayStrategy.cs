@@ -31,8 +31,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_IEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(BattleOfTheBoyneDay);
+            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.Add(BattleOfTheBoyneDay);
         }
 
         private static NamedDay battleOfTheBoyneDay;

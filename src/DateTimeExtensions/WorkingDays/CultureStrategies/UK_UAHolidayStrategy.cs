@@ -7,17 +7,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public UK_UAHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(WomensDay);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(WorkersDay);
-            this.InnerHolidays.Add(VictoryInEuropeDay);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ConstitutionDay);
-            this.InnerHolidays.Add(StatehoodDay);
-            this.InnerHolidays.Add(IndependenceDayOfUkraine);
-            this.InnerHolidays.Add(DefendersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(WomensDay);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(WorkersDay);
+            this.InnerObservances.Add(VictoryInEuropeDay);
+            this.InnerObservances.Add(ChristianHolidays.Pentecost);
+            this.InnerObservances.Add(ConstitutionDay);
+            this.InnerObservances.Add(StatehoodDay);
+            this.InnerObservances.Add(IndependenceDayOfUkraine);
+            this.InnerObservances.Add(DefendersDay);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
         }
 
         private static NamedDay womensDay;

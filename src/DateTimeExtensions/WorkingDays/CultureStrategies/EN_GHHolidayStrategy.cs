@@ -29,26 +29,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_GHHolidayStrategy()
         {
-            InnerHolidays.Add(GlobalHolidays.NewYear);
+            InnerObservances.Add(GlobalHolidays.NewYear);
 
-            InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            InnerHolidays.Add(ChristianHolidays.Christmas);
+            InnerObservances.Add(ChristianHolidays.GoodFriday);
+            InnerObservances.Add(ChristianHolidays.EasterMonday);
+            InnerObservances.Add(ChristianHolidays.Christmas);
 
-            InnerHolidays.Add(IndependenceDay);
-            InnerHolidays.Add(LabourDay);
-            InnerHolidays.Add(RepublicDay);
-            InnerHolidays.Add(AfricaDay);
-            InnerHolidays.Add(KwameNkrumahMemorialDay);
+            InnerObservances.Add(IndependenceDay);
+            InnerObservances.Add(LabourDay);
+            InnerObservances.Add(RepublicDay);
+            InnerObservances.Add(AfricaDay);
+            InnerObservances.Add(KwameNkrumahMemorialDay);
 
-            InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            InnerObservances.Add(GlobalHolidays.BoxingDay);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerObservances)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

@@ -28,22 +28,22 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public SV_SEHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(NationalDay);
-            this.InnerHolidays.Add(GlobalHolidays.MidsummerEve);
-            this.InnerHolidays.Add(GlobalHolidays.MidsummerDay);
-            this.InnerHolidays.Add(AllSaintsDay);
-            this.InnerHolidays.Add(ChristianHolidays.ChristmasEve);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.Epiphany);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(ChristianHolidays.Ascension);
+            this.InnerObservances.Add(ChristianHolidays.Pentecost);
+            this.InnerObservances.Add(NationalDay);
+            this.InnerObservances.Add(GlobalHolidays.MidsummerEve);
+            this.InnerObservances.Add(GlobalHolidays.MidsummerDay);
+            this.InnerObservances.Add(AllSaintsDay);
+            this.InnerObservances.Add(ChristianHolidays.ChristmasEve);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYearsEve);
         }
 
         private static NamedDay nationalDay;

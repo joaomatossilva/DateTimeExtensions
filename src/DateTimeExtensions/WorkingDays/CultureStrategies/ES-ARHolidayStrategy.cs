@@ -54,13 +54,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             foreach (var turisticHoliday in TuristicHolidays)
             {
-                this.InnerHolidays.Add(turisticHoliday);
+                this.InnerObservances.Add(turisticHoliday);
             }
-            this.InnerHolidays.Add(ChristianHolidays.MaundyThursday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(AnniversaryOfDeathGeneralJoseSanMartin);
-            this.InnerHolidays.Add(DayOfRespectForCulturalDiversity);
-            this.InnerHolidays.Add(DayOfNationalSovereignity);
+            this.InnerObservances.Add(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(AnniversaryOfDeathGeneralJoseSanMartin);
+            this.InnerObservances.Add(DayOfRespectForCulturalDiversity);
+            this.InnerObservances.Add(DayOfNationalSovereignity);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)

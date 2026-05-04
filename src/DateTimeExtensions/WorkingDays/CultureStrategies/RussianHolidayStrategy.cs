@@ -29,9 +29,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public RussianHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(OrtodoxChristmas);
-            this.InnerHolidays.Add(DefenderOfTheFatherland);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(OrtodoxChristmas);
+            this.InnerObservances.Add(DefenderOfTheFatherland);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)

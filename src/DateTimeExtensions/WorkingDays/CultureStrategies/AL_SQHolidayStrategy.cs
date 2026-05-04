@@ -11,19 +11,19 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public SQ_ALHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(SummerDay); // Dita e Veres in Albanian
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianOrthodoxHolidays.Easter);
-            this.InnerHolidays.Add(NewruzDay); // Dita e Nevruzit Shia Muslim
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(MotherTheresaDay); // St. Theresa Day
-            this.InnerHolidays.Add(AlphabetDay);
-            this.InnerHolidays.Add(IndependenceDay);
-            this.InnerHolidays.Add(LiberationDay);
-            this.InnerHolidays.Add(NationalYouthDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(NewYearHoliday2); // second day of new year is a holiday in Albanian
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(SummerDay); // Dita e Veres in Albanian
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianOrthodoxHolidays.Easter);
+            this.InnerObservances.Add(NewruzDay); // Dita e Nevruzit Shia Muslim
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(MotherTheresaDay); // St. Theresa Day
+            this.InnerObservances.Add(AlphabetDay);
+            this.InnerObservances.Add(IndependenceDay);
+            this.InnerObservances.Add(LiberationDay);
+            this.InnerObservances.Add(NationalYouthDay);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(NewYearHoliday2); // second day of new year is a holiday in Albanian
 
         }
         private static NamedDay newYearHoliday2;
@@ -141,7 +141,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public IEnumerable<NamedDay> GetHolidays()
         {
-            return this.InnerHolidays;
+            return this.InnerObservances;
         }
     
     }

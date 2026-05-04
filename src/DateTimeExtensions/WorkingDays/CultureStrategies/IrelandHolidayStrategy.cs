@@ -11,15 +11,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IrelandHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(GlobalHolidays.StPatricsDay);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(new NamedDay("May Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, GlobalHolidays.MayDay.Resolver)));
-            this.InnerHolidays.Add(JuneHoliday);
-            this.InnerHolidays.Add(AugustHoliday);
-            this.InnerHolidays.Add(OctoberHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(GlobalHolidays.StPatricsDay);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(new NamedDay("May Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, GlobalHolidays.MayDay.Resolver)));
+            this.InnerObservances.Add(JuneHoliday);
+            this.InnerObservances.Add(AugustHoliday);
+            this.InnerObservances.Add(OctoberHoliday);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
         }
 
         // 1st Monday in June - June NamedDay

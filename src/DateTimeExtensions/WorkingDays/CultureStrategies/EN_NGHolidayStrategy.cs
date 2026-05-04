@@ -29,23 +29,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_NGHolidayStrategy()
         {
-            InnerHolidays.Add(GlobalHolidays.NewYear);
+            InnerObservances.Add(GlobalHolidays.NewYear);
 
-            InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            InnerHolidays.Add(ChristianHolidays.Christmas);
+            InnerObservances.Add(ChristianHolidays.GoodFriday);
+            InnerObservances.Add(ChristianHolidays.EasterMonday);
+            InnerObservances.Add(ChristianHolidays.Christmas);
 
-            InnerHolidays.Add(IndependenceDay);
-            InnerHolidays.Add(DemocracyDay);
+            InnerObservances.Add(IndependenceDay);
+            InnerObservances.Add(DemocracyDay);
 
-            InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            InnerObservances.Add(GlobalHolidays.BoxingDay);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerObservances)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)

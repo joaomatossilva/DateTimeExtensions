@@ -68,12 +68,12 @@ namespace DateTimeExtensions.WorkingDays
 
         public IEnumerable<NamedDay> Holidays
         {
-            get { return this.holidayStrategy.Holidays; }
+            get { return this.holidayStrategy.Observances; }
         }
 
         public IEnumerable<NamedDay> GetHolidaysOfYear(int year)
         {
-            return this.holidayStrategy.GetHolidaysOfYear(year);
+            return this.holidayStrategy.GetObservancesOfYear(year);
         }
 
         public string Name

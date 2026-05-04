@@ -24,7 +24,7 @@
         {
             public MyCustomWorkingDayStrategy()
             {
-                this.InnerHolidays.Remove(ColumbusDay);
+                this.InnerObservances.Remove(ColumbusDay);
             }
         }
 

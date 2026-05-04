@@ -30,21 +30,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FR_CAHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(CanadaDay);
-            this.InnerHolidays.Add(LabourDay);
-            this.InnerHolidays.Add(Thanksgiving);
-            this.InnerHolidays.Add(RemembranceDay);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(CanadaDay);
+            this.InnerObservances.Add(LabourDay);
+            this.InnerObservances.Add(Thanksgiving);
+            this.InnerObservances.Add(RemembranceDay);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
 
-            foreach (var innerHoliday in InnerHolidays)
+            foreach (var innerHoliday in InnerObservances)
             {
                 var date = innerHoliday.GetInstance(year);
 

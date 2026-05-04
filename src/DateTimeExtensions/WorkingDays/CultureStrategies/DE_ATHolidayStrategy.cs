@@ -7,20 +7,20 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public DE_ATHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(ChristianHolidays.Ascension);
-            this.InnerHolidays.Add(ChristianHolidays.PentecostMonday);
-            this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(AustrianNationalHoliday);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
-            this.InnerHolidays.Add(ChristianHolidays.ImaculateConception);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
-            this.InnerHolidays.Add(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.Epiphany);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(ChristianHolidays.Ascension);
+            this.InnerObservances.Add(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.Add(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.Add(ChristianHolidays.Assumption);
+            this.InnerObservances.Add(AustrianNationalHoliday);
+            this.InnerObservances.Add(ChristianHolidays.AllSaints);
+            this.InnerObservances.Add(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYearsEve);
         }
 
         private static NamedDay austrianNationalHoliday;

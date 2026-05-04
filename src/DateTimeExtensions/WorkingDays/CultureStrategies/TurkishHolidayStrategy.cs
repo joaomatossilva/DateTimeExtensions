@@ -30,21 +30,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public TurkishHolidayStrategy()
         {
-            this.InnerHolidays.Add(YeniYil);
-            this.InnerHolidays.Add(CocukBayrami);
-            this.InnerHolidays.Add(IsciBayrami);
-            this.InnerHolidays.Add(GenclikVeSporBayrami);
-            this.InnerHolidays.Add(DemokrasiBayrami);
-            this.InnerHolidays.Add(ZaferBayrami);
+            this.InnerObservances.Add(YeniYil);
+            this.InnerObservances.Add(CocukBayrami);
+            this.InnerObservances.Add(IsciBayrami);
+            this.InnerObservances.Add(GenclikVeSporBayrami);
+            this.InnerObservances.Add(DemokrasiBayrami);
+            this.InnerObservances.Add(ZaferBayrami);
 
-            this.InnerHolidays.Add(RamazanBayrami1);
-            this.InnerHolidays.Add(RamazanBayrami2);
-            this.InnerHolidays.Add(RamazanBayrami3);
+            this.InnerObservances.Add(RamazanBayrami1);
+            this.InnerObservances.Add(RamazanBayrami2);
+            this.InnerObservances.Add(RamazanBayrami3);
 
-            this.InnerHolidays.Add(KurbanBayrami1);
-            this.InnerHolidays.Add(KurbanBayrami2);
-            this.InnerHolidays.Add(KurbanBayrami3);
-            this.InnerHolidays.Add(KurbanBayrami4);
+            this.InnerObservances.Add(KurbanBayrami1);
+            this.InnerObservances.Add(KurbanBayrami2);
+            this.InnerObservances.Add(KurbanBayrami3);
+            this.InnerObservances.Add(KurbanBayrami4);
         }
 
         private static NamedDay yeniYil;

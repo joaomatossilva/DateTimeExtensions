@@ -34,9 +34,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public AR_SAHolidayStrategy()
         {
-            this.InnerHolidays.Add(EndOfRamadan);
-            this.InnerHolidays.Add(EndOfHajj);
-            this.InnerHolidays.Add(SaudiNationalDay);
+            this.InnerObservances.Add(EndOfRamadan);
+            this.InnerObservances.Add(EndOfHajj);
+            this.InnerObservances.Add(SaudiNationalDay);
         }
 
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)

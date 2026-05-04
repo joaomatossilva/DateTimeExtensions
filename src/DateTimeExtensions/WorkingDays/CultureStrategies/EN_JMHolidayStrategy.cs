@@ -31,23 +31,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_JMHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.AshWednesday);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.AshWednesday);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
 
-            this.InnerHolidays.Add(LaborDay);
-            this.InnerHolidays.Add(EmancipationDay);
-            this.InnerHolidays.Add(IndependenceDay);
-            this.InnerHolidays.Add(NationalHeroesDay);
+            this.InnerObservances.Add(LaborDay);
+            this.InnerObservances.Add(EmancipationDay);
+            this.InnerObservances.Add(IndependenceDay);
+            this.InnerObservances.Add(NationalHeroesDay);
 
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
         }
         protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
         {
             IDictionary<DateTime, NamedDay> holidayMap =
-            this.InnerHolidays.Select(h => new { Date = h.GetInstance(year), NamedDay = h })
+            this.InnerObservances.Select(h => new { Date = h.GetInstance(year), NamedDay = h })
                 .Where(h => h.Date.HasValue)
                 .GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().NamedDay })
                 .ToDictionary(k => k.Date.Value, v => v.NamedDay);

@@ -31,18 +31,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public PT_BRHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
-            this.InnerHolidays.Add(ChristianHolidays.Carnival);
-            this.InnerHolidays.Add(ChristianHolidays.GoodFriday);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerHolidays.Add(ChristianHolidays.DayOfTheDead);
-            this.InnerHolidays.Add(TiradentesDay);
-            this.InnerHolidays.Add(IndependanceDay);
-            this.InnerHolidays.Add(OurLadyOfAparecida);
-            this.InnerHolidays.Add(RepublicDay);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(ChristianHolidays.Carnival);
+            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(ChristianHolidays.DayOfTheDead);
+            this.InnerObservances.Add(TiradentesDay);
+            this.InnerObservances.Add(IndependanceDay);
+            this.InnerObservances.Add(OurLadyOfAparecida);
+            this.InnerObservances.Add(RepublicDay);
         }
 
         private static NamedDay tiradentesDay;

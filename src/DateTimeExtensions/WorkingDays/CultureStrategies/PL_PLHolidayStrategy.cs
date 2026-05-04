@@ -7,26 +7,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public PL_PLHolidayStrategy()
         {
-            this.InnerHolidays.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.Add(GlobalHolidays.NewYear);
 
-            this.InnerHolidays.Add(ChristianHolidays.Epiphany);
-            this.InnerHolidays.Add(ChristianHolidays.Easter);
-            this.InnerHolidays.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.Add(ChristianHolidays.Epiphany);
+            this.InnerObservances.Add(ChristianHolidays.Easter);
+            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
 
-            this.InnerHolidays.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
 
-            this.InnerHolidays.Add(May3rdConstitutionDay);
+            this.InnerObservances.Add(May3rdConstitutionDay);
 
-            this.InnerHolidays.Add(ChristianHolidays.Pentecost);
-            this.InnerHolidays.Add(ChristianHolidays.CorpusChristi);
-            this.InnerHolidays.Add(ChristianHolidays.Assumption);
-            this.InnerHolidays.Add(ChristianHolidays.AllSaints);
+            this.InnerObservances.Add(ChristianHolidays.Pentecost);
+            this.InnerObservances.Add(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.Add(ChristianHolidays.Assumption);
+            this.InnerObservances.Add(ChristianHolidays.AllSaints);
 
-            this.InnerHolidays.Add(NationalIndependenceDay);
+            this.InnerObservances.Add(NationalIndependenceDay);
 
-            this.InnerHolidays.Add(ChristianHolidays.Christmas);
-            this.InnerHolidays.Add(ChristianHolidays.StStephansDay);
-            this.InnerHolidays.Add(ChristmasEveFrom2025);
+            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.Add(ChristmasEveFrom2025);
         }
 
         private static NamedDay may3rdConstitutionDay;
