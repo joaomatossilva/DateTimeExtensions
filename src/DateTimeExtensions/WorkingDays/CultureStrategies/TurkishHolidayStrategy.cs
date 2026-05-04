@@ -30,21 +30,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public TurkishHolidayStrategy()
         {
-            this.InnerObservances.Add(YeniYil);
-            this.InnerObservances.Add(CocukBayrami);
-            this.InnerObservances.Add(IsciBayrami);
-            this.InnerObservances.Add(GenclikVeSporBayrami);
-            this.InnerObservances.Add(DemokrasiBayrami);
-            this.InnerObservances.Add(ZaferBayrami);
+            this.InnerObservances.AddHoliday(YeniYil);
+            this.InnerObservances.AddHoliday(CocukBayrami);
+            this.InnerObservances.AddHoliday(IsciBayrami);
+            this.InnerObservances.AddHoliday(GenclikVeSporBayrami);
+            this.InnerObservances.AddHoliday(DemokrasiBayrami);
+            this.InnerObservances.AddHoliday(ZaferBayrami);
 
-            this.InnerObservances.Add(RamazanBayrami1);
-            this.InnerObservances.Add(RamazanBayrami2);
-            this.InnerObservances.Add(RamazanBayrami3);
+            this.InnerObservances.AddHoliday(RamazanBayrami1);
+            this.InnerObservances.AddHoliday(RamazanBayrami2);
+            this.InnerObservances.AddHoliday(RamazanBayrami3);
 
-            this.InnerObservances.Add(KurbanBayrami1);
-            this.InnerObservances.Add(KurbanBayrami2);
-            this.InnerObservances.Add(KurbanBayrami3);
-            this.InnerObservances.Add(KurbanBayrami4);
+            this.InnerObservances.AddHoliday(KurbanBayrami1);
+            this.InnerObservances.AddHoliday(KurbanBayrami2);
+            this.InnerObservances.AddHoliday(KurbanBayrami3);
+            this.InnerObservances.AddHoliday(KurbanBayrami4);
         }
 
         private static NamedDay yeniYil;

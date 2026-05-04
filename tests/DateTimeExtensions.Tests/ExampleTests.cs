@@ -100,12 +100,12 @@ namespace DateTimeExtensions.Tests
                 return false;
             }
 
-            public IEnumerable<NamedDay> Observances
+            public IEnumerable<Observance> Observances
             {
                 get { return null; }
             }
 
-            public IEnumerable<NamedDay> GetObservancesOfYear(int year)
+            public IEnumerable<Observance> GetObservancesOfYear(int year)
             {
                 return null;
             }
@@ -164,12 +164,12 @@ namespace DateTimeExtensions.Tests
                 }
             }
 
-            public IEnumerable<NamedDay> Holidays
+            public IEnumerable<Observance> Holidays
             {
                 get { return null; }
             }
 
-            public IEnumerable<NamedDay> GetHolidaysOfYear(int year)
+            public IEnumerable<Observance> GetHolidaysOfYear(int year)
             {
                 return null;
             }
@@ -205,7 +205,7 @@ namespace DateTimeExtensions.Tests
             {
                 var holiday = holidays[holidayDate];
                 Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false,
-                    "holiday {0} shouln't be working day in Portugal", holiday.Name);
+                    "holiday {0} shouln't be working day in Portugal", holiday.CalendarDay.Name);
             }
         }
 
@@ -222,7 +222,7 @@ namespace DateTimeExtensions.Tests
             {
                 var holiday = holidays[holidayDate];
                 Assert.IsTrue(holidayDate.IsWorkingDay(portugalWorkingDayCultureInfo) == false,
-                    "holiday {0} shouln't be working day in Portugal", holiday.Name);
+                    "holiday {0} shouln't be working day in Portugal", holiday.CalendarDay.Name);
             }
         }
 
@@ -239,7 +239,7 @@ namespace DateTimeExtensions.Tests
             {
                 var holiday = holidays[holidayDate];
                 Assert.IsTrue(holidayDate.IsWorkingDay(usWorkingDayCultureInfo) == false,
-                    "holiday {0} shouln't be working day in US", holiday.Name);
+                    "holiday {0} shouln't be working day in US", holiday.CalendarDay.Name);
             }
 
         }

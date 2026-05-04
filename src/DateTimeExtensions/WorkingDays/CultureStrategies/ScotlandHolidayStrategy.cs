@@ -8,15 +8,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ScotlandHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(NewYearHoliday);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(EN_GBHolidayStrategy.MayDayBank);
-            this.InnerObservances.Add(EN_GBHolidayStrategy.SpringBank);
-            this.InnerObservances.Add(EN_GBHolidayStrategy.LateSummerBank);
-            this.InnerObservances.Add(StAndrewsDay);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(EN_GBHolidayStrategy.BoxingDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(NewYearHoliday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(EN_GBHolidayStrategy.MayDayBank);
+            this.InnerObservances.AddHoliday(EN_GBHolidayStrategy.SpringBank);
+            this.InnerObservances.AddHoliday(EN_GBHolidayStrategy.LateSummerBank);
+            this.InnerObservances.AddHoliday(StAndrewsDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(EN_GBHolidayStrategy.BoxingDay);
         }
 
         // 2nd January - New Year NamedDay

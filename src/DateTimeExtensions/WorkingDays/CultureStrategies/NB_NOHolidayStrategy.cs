@@ -31,18 +31,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public NB_NOHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.MaundyThursday);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.Easter);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(ConstitutionDay);
-            this.InnerObservances.Add(ChristianHolidays.Ascension);
-            this.InnerObservances.Add(ChristianHolidays.Pentecost);
-            this.InnerObservances.Add(ChristianHolidays.PentecostMonday);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(ConstitutionDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
         }
 
         private static NamedDay constituionDay;

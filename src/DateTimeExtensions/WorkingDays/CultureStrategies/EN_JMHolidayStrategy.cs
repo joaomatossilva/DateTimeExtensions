@@ -31,26 +31,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_JMHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.AshWednesday);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AshWednesday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
 
-            this.InnerObservances.Add(LaborDay);
-            this.InnerObservances.Add(EmancipationDay);
-            this.InnerObservances.Add(IndependenceDay);
-            this.InnerObservances.Add(NationalHeroesDay);
+            this.InnerObservances.AddHoliday(LaborDay);
+            this.InnerObservances.AddHoliday(EmancipationDay);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(NationalHeroesDay);
 
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
         }
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap =
-            this.InnerObservances.Select(h => new { Date = h.GetInstance(year), NamedDay = h })
+            IDictionary<DateTime, Observance> holidayMap =
+            this.InnerObservances.Select(h => new { Date = h.CalendarDay.GetInstance(year), Observance = h })
                 .Where(h => h.Date.HasValue)
-                .GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().NamedDay })
-                .ToDictionary(k => k.Date.Value, v => v.NamedDay);
+                .GroupBy(h => h.Date).Select(g => new { Date = g.Key, g.First().Observance })
+                .ToDictionary(k => k.Date.Value, v => v.Observance);
 
 
             if (holidayMap.Any(h => h.Key.DayOfWeek == DayOfWeek.Sunday))
@@ -61,8 +61,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     var sundayHoliday = h;
 
                     var observation = new NamedDay(
-                        sundayHoliday.Value.Name + " Observed",
-                        new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, sundayHoliday.Value.Resolver));
+                        sundayHoliday.Value.CalendarDay.Name + " Observed",
+                        new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, sundayHoliday.Value.CalendarDay.Resolver));
                     var dateObserved = observation.GetInstance(year);
 
                     if (holidayMap.ContainsKey(dateObserved.Value))
@@ -76,15 +76,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
                         var daysAfter = existingMondayHoliday.Key.GetDiff(observedOn).Days;
                         var holidayMoved = new NamedDay(
-                            existingMondayHoliday.Value.Name + " Observed",
-                            new NthDayOfWeekAfterDayResolver(daysAfter, observedOn.DayOfWeek, existingMondayHoliday.Value.Resolver));
+                            existingMondayHoliday.Value.CalendarDay.Name + " Observed",
+                            new NthDayOfWeekAfterDayResolver(daysAfter, observedOn.DayOfWeek, existingMondayHoliday.Value.CalendarDay.Resolver));
 
                         var newObservedDate = holidayMoved.GetInstance(year);
 
-                        holidayMap.Add(newObservedDate.Value, holidayMoved);
+                        holidayMap.Add(newObservedDate.Value, new Observance(holidayMoved, true));
                     }
                     holidayMap.Remove(sundayHoliday.Key);
-                    holidayMap.Add(dateObserved.Value, observation);
+                    holidayMap.Add(dateObserved.Value, new Observance(observation, true));
                 }
 
 

@@ -15,35 +15,35 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public EN_NZHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(DayAfterNewYear);
-            this.InnerObservances.Add(WaitangiDay);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.Easter);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(AnzacDay);
-            this.InnerObservances.Add(QueensBirthday);
-            this.InnerObservances.Add(KingsBirthday);
-            this.InnerObservances.Add(Matariki);
-            this.InnerObservances.Add(LabourDay);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(DayAfterNewYear);
+            this.InnerObservances.AddHoliday(WaitangiDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(AnzacDay);
+            this.InnerObservances.AddHoliday(QueensBirthday);
+            this.InnerObservances.AddHoliday(KingsBirthday);
+            this.InnerObservances.AddHoliday(Matariki);
+            this.InnerObservances.AddHoliday(LabourDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     // If the holiday already exists in the map, combine the two holidays.
                     // This is apparent for Easter Monday/Anzac Day on 25 April 2011.
                     if (holidayMap.TryGetValue(date.Value, out var existingHoliday))
                     {
-                        var combinedHoliday = new NamedDay($"{existingHoliday.Name}/{innerHoliday.Name}", new FixedDayResolver(date.Value.Month, date.Value.Day));
-                        holidayMap[date.Value] = combinedHoliday;
+                        var combinedHoliday = new NamedDay($"{existingHoliday.CalendarDay.Name}/{innerHoliday.CalendarDay.Name}", new FixedDayResolver(date.Value.Month, date.Value.Day));
+                        holidayMap[date.Value] = new Observance(combinedHoliday, true);
                     }
                     else
                     {
@@ -54,26 +54,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                     // ie if these dates fall on a weekday then they are observed on the actual day.
                     // If they fall on a weekend then they are observed on the following Monday/Tuesday
 
-                    if (IsMondayised(innerHoliday, date.Value.DayOfWeek))
+                    if (IsMondayised(innerHoliday.CalendarDay, date.Value.DayOfWeek))
                     {
                         var observation = new NamedDay(
-                            innerHoliday.Name + " Observed",
-                            new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, innerHoliday.Resolver));
+                            innerHoliday.CalendarDay.Name + " Observed",
+                            new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Monday, innerHoliday.CalendarDay.Resolver));
                         var observedIntance = observation.GetInstance(year);
                         if (observedIntance != null)
                         {
-                            holidayMap.Add(observedIntance.Value, observation);
+                            holidayMap.Add(observedIntance.Value, new Observance(observation, true));
                         }
                     }
-                    if (IsTuesdayised(innerHoliday, date.Value.DayOfWeek))
+                    if (IsTuesdayised(innerHoliday.CalendarDay, date.Value.DayOfWeek))
                     {
                         var observation = new NamedDay(
-                            innerHoliday.Name + " Observed",
-                            new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Tuesday, innerHoliday.Resolver));
+                            innerHoliday.CalendarDay.Name + " Observed",
+                            new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Tuesday, innerHoliday.CalendarDay.Resolver));
                         var observedIntance = observation.GetInstance(year);
                         if (observedIntance != null)
                         {
-                            holidayMap.Add(observedIntance.Value, observation);
+                            holidayMap.Add(observedIntance.Value, new Observance(observation, true));
                         }
                     }
                 }

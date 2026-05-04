@@ -8,21 +8,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public CS_CZHolidayStrategy()
         {
             // January 1 has two holidays
-            this.InnerObservances.Add(NewYearAndRestorationOfIndependence);
+            this.InnerObservances.AddHoliday(NewYearAndRestorationOfIndependence);
             // Good Friday has been a holiday since 2016.
-            this.InnerObservances.Add(GoodFridayCzechia);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(LabourDay);
-            this.InnerObservances.Add(VictoryDay);
-            this.InnerObservances.Add(CyrilAndMethodiusDay);
-            this.InnerObservances.Add(JanHusDay);
-            this.InnerObservances.Add(StatehoodDay);
-            this.InnerObservances.Add(CzechoslovakIndependenceDay);
-            this.InnerObservances.Add(FreedomAndDemocracyAndStudentsDay);
+            this.InnerObservances.AddHoliday(GoodFridayCzechia);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(LabourDay);
+            this.InnerObservances.AddHoliday(VictoryDay);
+            this.InnerObservances.AddHoliday(CyrilAndMethodiusDay);
+            this.InnerObservances.AddHoliday(JanHusDay);
+            this.InnerObservances.AddHoliday(StatehoodDay);
+            this.InnerObservances.AddHoliday(CzechoslovakIndependenceDay);
+            this.InnerObservances.AddHoliday(FreedomAndDemocracyAndStudentsDay);
             // The main Christmas holiday is on December 24 while the 25 and 26 are also bank holidays.
-            this.InnerObservances.Add(ChristmasEve);
-            this.InnerObservances.Add(FirstChristmasDay);
-            this.InnerObservances.Add(SecondChristmasDay);
+            this.InnerObservances.AddHoliday(ChristmasEve);
+            this.InnerObservances.AddHoliday(FirstChristmasDay);
+            this.InnerObservances.AddHoliday(SecondChristmasDay);
         }
 
         private static NamedDay restorationOfIndependenceDay;

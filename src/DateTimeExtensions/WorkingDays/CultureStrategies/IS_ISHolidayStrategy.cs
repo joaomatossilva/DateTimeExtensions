@@ -31,23 +31,23 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IS_ISHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.PalmSunday);
-            this.InnerObservances.Add(ChristianHolidays.MaundyThursday);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.Easter);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(FirstDayOfSummer);
-            this.InnerObservances.Add(GlobalHolidays.MayDay);
-            this.InnerObservances.Add(ChristianHolidays.Ascension);
-            this.InnerObservances.Add(ChristianHolidays.Pentecost);
-            this.InnerObservances.Add(ChristianHolidays.PentecostMonday);
-            this.InnerObservances.Add(SeamensDay);
-            this.InnerObservances.Add(RepublicsDay);
-            this.InnerObservances.Add(CommerceDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PalmSunday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(FirstDayOfSummer);
+            this.InnerObservances.AddHoliday(GlobalHolidays.MayDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(SeamensDay);
+            this.InnerObservances.AddHoliday(RepublicsDay);
+            this.InnerObservances.AddHoliday(CommerceDay);
             //Christmas Eve is usually half holiday observance
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(SecondDayOfChristmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(SecondDayOfChristmas);
             //New Year's Eve is usually half holiday observance
         }
 

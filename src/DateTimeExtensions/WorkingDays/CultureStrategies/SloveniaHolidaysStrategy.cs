@@ -9,40 +9,40 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public SloveniaHolidaysStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(PreserenDay);
-            this.InnerObservances.Add(ChristianHolidays.Easter);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(DayOfUprisingAgainstOccupation);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(PreserenDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(DayOfUprisingAgainstOccupation);
             //May Day occours both in 1st May and 2nd May
-            this.InnerObservances.Add(GlobalHolidays.MayDay);
-            this.InnerObservances.Add(ChristianHolidays.Pentecost);
-            this.InnerObservances.Add(StatehoodDay);
-            this.InnerObservances.Add(ChristianHolidays.Assumption);
-            this.InnerObservances.Add(ReformationDay);
-            this.InnerObservances.Add(ChristianHolidays.AllSaints);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(IndependenceAndUnityDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.MayDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(StatehoodDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ReformationDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(IndependenceAndUnityDay);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     holidayMap.Add(date.Value, innerHoliday);
 
                     //May Day occours both in 1st May and 2nd May
-                    if (innerHoliday.Equals(GlobalHolidays.MayDay))
+                    if (innerHoliday.CalendarDay.Equals(GlobalHolidays.MayDay))
                     {
-                        var secondMayDay = new NamedDay(innerHoliday.Name + " 2nd Day", new FixedDayResolver(5, 2));
+                        var secondMayDay = new NamedDay(innerHoliday.CalendarDay.Name + " 2nd Day", new FixedDayResolver(5, 2));
                         var secondMayDayIntance = secondMayDay.GetInstance(year);
                         if (secondMayDayIntance != null)
                         {
-                            holidayMap.Add(secondMayDayIntance.Value, secondMayDay);
+                            holidayMap.Add(secondMayDayIntance.Value, new Observance(secondMayDay, true));
                         }
                     }
                 }

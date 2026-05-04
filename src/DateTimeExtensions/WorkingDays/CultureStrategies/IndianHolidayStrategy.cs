@@ -11,41 +11,41 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         public IndianHolidayStrategy()
         {
             // --- Global Holidays ---
-            this.InnerObservances.Add(NewYear);
-            this.InnerObservances.Add(MayDay);
-            this.InnerObservances.Add(Christmas);
+            this.InnerObservances.AddHoliday(NewYear);
+            this.InnerObservances.AddHoliday(MayDay);
+            this.InnerObservances.AddHoliday(Christmas);
 
             // --- National Days ---
-            this.InnerObservances.Add(RepublicDay);
-            this.InnerObservances.Add(IndependenceDay);
-            this.InnerObservances.Add(GandhiJayanti);
+            this.InnerObservances.AddHoliday(RepublicDay);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(GandhiJayanti);
 
             // --- Major Religious and Regional Festivals ---
-            this.InnerObservances.Add(MakarSankranti);
-            this.InnerObservances.Add(Pongal);
-            this.InnerObservances.Add(MahaShivaratri);
-            this.InnerObservances.Add(Holi);
-            this.InnerObservances.Add(GoodFriday);
-            this.InnerObservances.Add(MahavirJayanti);
-            this.InnerObservances.Add(EidUlFitr);
-            this.InnerObservances.Add(EidUlAdha);
-            this.InnerObservances.Add(RakshaBandhan);
-            this.InnerObservances.Add(Janmashtami);
-            this.InnerObservances.Add(GaneshChaturthi);
-            this.InnerObservances.Add(Onam);
-            this.InnerObservances.Add(Vishu);
-            this.InnerObservances.Add(Baisakhi);
-            this.InnerObservances.Add(Ugadi);
-            this.InnerObservances.Add(EidMiladUnNabi);
-            this.InnerObservances.Add(NavratriStart);
-            this.InnerObservances.Add(Dussehra);
-            this.InnerObservances.Add(KarwaChauth);
-            this.InnerObservances.Add(Diwali);
-            this.InnerObservances.Add(GovardhanPuja);
-            this.InnerObservances.Add(BhaiDooj);
-            this.InnerObservances.Add(ChhathPuja);
-            this.InnerObservances.Add(GuruNanakJayanti);
-            this.InnerObservances.Add(Lohri);
+            this.InnerObservances.AddHoliday(MakarSankranti);
+            this.InnerObservances.AddHoliday(Pongal);
+            this.InnerObservances.AddHoliday(MahaShivaratri);
+            this.InnerObservances.AddHoliday(Holi);
+            this.InnerObservances.AddHoliday(GoodFriday);
+            this.InnerObservances.AddHoliday(MahavirJayanti);
+            this.InnerObservances.AddHoliday(EidUlFitr);
+            this.InnerObservances.AddHoliday(EidUlAdha);
+            this.InnerObservances.AddHoliday(RakshaBandhan);
+            this.InnerObservances.AddHoliday(Janmashtami);
+            this.InnerObservances.AddHoliday(GaneshChaturthi);
+            this.InnerObservances.AddHoliday(Onam);
+            this.InnerObservances.AddHoliday(Vishu);
+            this.InnerObservances.AddHoliday(Baisakhi);
+            this.InnerObservances.AddHoliday(Ugadi);
+            this.InnerObservances.AddHoliday(EidMiladUnNabi);
+            this.InnerObservances.AddHoliday(NavratriStart);
+            this.InnerObservances.AddHoliday(Dussehra);
+            this.InnerObservances.AddHoliday(KarwaChauth);
+            this.InnerObservances.AddHoliday(Diwali);
+            this.InnerObservances.AddHoliday(GovardhanPuja);
+            this.InnerObservances.AddHoliday(BhaiDooj);
+            this.InnerObservances.AddHoliday(ChhathPuja);
+            this.InnerObservances.AddHoliday(GuruNanakJayanti);
+            this.InnerObservances.AddHoliday(Lohri);
         }
 
         // --- Global Holidays ---        

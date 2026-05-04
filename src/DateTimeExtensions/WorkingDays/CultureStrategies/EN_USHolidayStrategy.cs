@@ -31,36 +31,42 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_USHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(NewYearsEve);
-            this.InnerObservances.Add(IndependenceDay);
-            this.InnerObservances.Add(GlobalHolidays.VeteransDay);
-            this.InnerObservances.Add(MartinLutherKing);
-            this.InnerObservances.Add(WashingtonsBirthday);
-            this.InnerObservances.Add(MemorialDay);
-            this.InnerObservances.Add(LaborDay);
-            this.InnerObservances.Add(ColumbusDay);
-            this.InnerObservances.Add(ThanksgivingDay);
-            this.InnerObservances.Add(Juneteenth);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(NewYearsEve);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.VeteransDay);
+            this.InnerObservances.AddHoliday(MartinLutherKing);
+            this.InnerObservances.AddHoliday(WashingtonsBirthday);
+            this.InnerObservances.AddHoliday(MemorialDay);
+            this.InnerObservances.AddHoliday(LaborDay);
+            this.InnerObservances.AddHoliday(ColumbusDay);
+            this.InnerObservances.AddHoliday(ThanksgivingDay);
+            this.InnerObservances.AddHoliday(Juneteenth);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     //if the holiday is a saturday, the holiday is observed on previous friday
                     switch (date.Value.DayOfWeek)
                     {
                         case DayOfWeek.Saturday:
-                            holidayMap.Add(date.Value.AddDays(-1), innerHoliday);
+                            var fridayObservedDate = date.Value.AddDays(-1);
+                            holidayMap.Add(
+                                fridayObservedDate,
+                                new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(fridayObservedDate.Month, fridayObservedDate.Day)), true));
                             break;
                         case DayOfWeek.Sunday:
-                            holidayMap.Add(date.Value.AddDays(1), innerHoliday);
+                            var mondayObservedDate = date.Value.AddDays(1);
+                            holidayMap.Add(
+                                mondayObservedDate,
+                                new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(mondayObservedDate.Month, mondayObservedDate.Day)), true));
                             break;
                         default:
                             holidayMap.Add(date.Value, innerHoliday);

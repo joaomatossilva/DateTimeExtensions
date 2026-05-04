@@ -7,26 +7,26 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public PL_PLHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
 
-            this.InnerObservances.Add(ChristianHolidays.Epiphany);
-            this.InnerObservances.Add(ChristianHolidays.Easter);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
 
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
 
-            this.InnerObservances.Add(May3rdConstitutionDay);
+            this.InnerObservances.AddHoliday(May3rdConstitutionDay);
 
-            this.InnerObservances.Add(ChristianHolidays.Pentecost);
-            this.InnerObservances.Add(ChristianHolidays.CorpusChristi);
-            this.InnerObservances.Add(ChristianHolidays.Assumption);
-            this.InnerObservances.Add(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianHolidays.CorpusChristi);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
 
-            this.InnerObservances.Add(NationalIndependenceDay);
+            this.InnerObservances.AddHoliday(NationalIndependenceDay);
 
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
-            this.InnerObservances.Add(ChristmasEveFrom2025);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(ChristmasEveFrom2025);
         }
 
         private static NamedDay may3rdConstitutionDay;

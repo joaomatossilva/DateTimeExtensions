@@ -31,18 +31,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public FR_FRHolidayStrategy(string region)
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(ChristianHolidays.Ascension);
-            this.InnerObservances.Add(ChristianHolidays.AllSaints);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(ChristianHolidays.Assumption);
-            this.InnerObservances.Add(ChristianHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Ascension);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.PentecostMonday);
 
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(GlobalHolidays.VeteransDay);
-            this.InnerObservances.Add(VictoryInEuropeDay);
-            this.InnerObservances.Add(BastilleDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.VeteransDay);
+            this.InnerObservances.AddHoliday(VictoryInEuropeDay);
+            this.InnerObservances.AddHoliday(BastilleDay);
 
             if (string.IsNullOrEmpty(region))
             {
@@ -51,8 +51,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
             if (region == "Alsace" || region == "Lorraine")
             {
-                this.InnerObservances.Add(StStephensDay);
-                this.InnerObservances.Add(ChristianHolidays.GoodFriday);
+                this.InnerObservances.AddHoliday(StStephensDay);
+                this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
             }
         }
 

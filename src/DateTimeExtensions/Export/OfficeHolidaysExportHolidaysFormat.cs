@@ -38,10 +38,10 @@ namespace DateTimeExtensions.Export
             writer.WriteLine(HeaderLineFomat, dateTimeCultureInfo.Name, holidays.Count());
             foreach (var holiday in holidays)
             {
-                var instance = holiday.GetInstance(year);
+                var instance = holiday.CalendarDay.GetInstance(year);
                 if (instance.HasValue)
                 {
-                    writer.WriteLine(HolidayLineFormat, holiday.Name, instance);
+                    writer.WriteLine(HolidayLineFormat, holiday.CalendarDay.Name, instance);
                 }
             }
         }

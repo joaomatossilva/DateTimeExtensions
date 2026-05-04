@@ -34,55 +34,55 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public KO_KRHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(Samiljeol);
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(SeokgaTansinil);
-            this.InnerObservances.Add(Hyeonchungil);
-            this.InnerObservances.Add(Gwangbokjeol);
-            this.InnerObservances.Add(Gaecheonjeol);
-            this.InnerObservances.Add(Hangulnal);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(Samiljeol);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(SeokgaTansinil);
+            this.InnerObservances.AddHoliday(Hyeonchungil);
+            this.InnerObservances.AddHoliday(Gwangbokjeol);
+            this.InnerObservances.AddHoliday(Gaecheonjeol);
+            this.InnerObservances.AddHoliday(Hangulnal);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
             // Add these later for substitute holiday rule application when overlapped with other holidays.
-            this.InnerObservances.Add(Seolnal);
-            this.InnerObservances.Add(Chuseok);
-            this.InnerObservances.Add(Eorininal);
+            this.InnerObservances.AddHoliday(Seolnal);
+            this.InnerObservances.AddHoliday(Chuseok);
+            this.InnerObservances.AddHoliday(Eorininal);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
-                    if (innerHoliday == Seolnal || innerHoliday == Chuseok) {
+                    if (innerHoliday.CalendarDay == Seolnal || innerHoliday.CalendarDay == Chuseok) {
                         DateTime[] holidays = new DateTime[] { 
                             date.Value.AddDays(-1),
                             date.Value, 
                             date.Value.AddDays(1)
                         };
-                        AddSubstituteHoliday(holidayMap, holidays, innerHoliday);
+                        AddSubstituteHoliday(holidayMap, holidays, innerHoliday.CalendarDay);
                         foreach (DateTime holiday in holidays)
                         {
-                            holidayMap.Add(holiday, innerHoliday);
+                            holidayMap.Add(holiday, new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(holiday.Month, holiday.Day)), true));
                         }
                     }
-                    else if (innerHoliday == Eorininal)
+                    else if (innerHoliday.CalendarDay == Eorininal)
                     {
                         // Special substitute holiday rule for Eorininal(May 5, children's day)
                         // effective since Oct. 29, 2013.
                         DateTime childrensDay = date.Value;
-                        NamedDay overlappedHoliday = null;
+                        Observance overlappedHoliday = null;
                         while (childrensDay.DayOfWeek == DayOfWeek.Saturday ||
                                 childrensDay.DayOfWeek == DayOfWeek.Sunday ||
                                 holidayMap.TryGetValue(childrensDay, out overlappedHoliday))
                         {
                             childrensDay = childrensDay.AddDays(1);
                         }
-                        holidayMap.Add(childrensDay, innerHoliday);
+                        holidayMap.Add(childrensDay, new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(childrensDay.Month, childrensDay.Day)), true));
                     }
                     else
                     {
@@ -95,21 +95,21 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         // Special substitute holiday rule for Seol(lunisolar new year) and Chuseok(15th of 8th lunisolar month)
         // effective since Oct. 29, 2013.
-        private void AddSubstituteHoliday(IDictionary<DateTime, NamedDay> holidayMap, DateTime[] dates, NamedDay holiday)
+        private void AddSubstituteHoliday(IDictionary<DateTime, Observance> holidayMap, DateTime[] dates, NamedDay holiday)
         {
             foreach (DateTime date in dates)
             {
-                NamedDay overlappedHoliday = null;
+                Observance overlappedHoliday = null;
                 if (date.DayOfWeek == DayOfWeek.Sunday || 
-                    holidayMap.TryGetValue(date, out overlappedHoliday) && overlappedHoliday != holiday)
+                    holidayMap.TryGetValue(date, out overlappedHoliday) && overlappedHoliday.CalendarDay != holiday)
                 {
                     DateTime substituteDay = dates.Last().AddDays(1);
                     while (substituteDay.DayOfWeek == DayOfWeek.Sunday ||
-                            holidayMap.TryGetValue(date, out overlappedHoliday) && overlappedHoliday != holiday)
+                            holidayMap.TryGetValue(date, out overlappedHoliday) && overlappedHoliday.CalendarDay != holiday)
                     {
                         substituteDay = substituteDay.AddDays(1);
                     }
-                    holidayMap.Add(substituteDay, holiday);
+                    holidayMap.Add(substituteDay, new Observance(new NamedDay(holiday.Name, new FixedDayResolver(substituteDay.Month, substituteDay.Day)), true));
                 }
             }
         }

@@ -68,24 +68,24 @@ namespace DateTimeExtensions.Tests
             var workingDayCultureInfo = new WorkingDayCultureInfo("en-NZ");
 
             var holidays = workingDayCultureInfo.GetHolidaysOfYear(2010);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Easter Monday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Anzac Day"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Easter Monday/Anzac Day"));
 
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2011);
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Easter Monday"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Anzac Day"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Easter Monday/Anzac Day"));
 
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2012);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Easter Monday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Anzac Day"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Easter Monday/Anzac Day"));
 
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2095);
-            Assert.IsFalse(holidays.Any(h => h.Name == "Easter Monday"));
-            Assert.IsFalse(holidays.Any(h => h.Name == "Anzac Day"));
-            Assert.IsTrue(holidays.Any(h => h.Name == "Easter Monday/Anzac Day"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Easter Monday"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Anzac Day"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Easter Monday/Anzac Day"));
         }
 
         [Test]
@@ -115,17 +115,17 @@ namespace DateTimeExtensions.Tests
             TestHoliday(workingDayCultureInfo, dateOnGregorian);
 
             var holidays = workingDayCultureInfo.GetHolidaysOfYear(2021);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Queen's Birthday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Queen's Birthday"));
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2022);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Queen's Birthday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Queen's Birthday"));
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2023);
-            Assert.IsTrue(holidays.Any(h => h.Name == "King's Birthday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "King's Birthday"));
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2024);
-            Assert.IsTrue(holidays.Any(h => h.Name == "King's Birthday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "King's Birthday"));
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2025);
-            Assert.IsTrue(holidays.Any(h => h.Name == "King's Birthday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "King's Birthday"));
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2026);
-            Assert.IsTrue(holidays.Any(h => h.Name == "King's Birthday"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "King's Birthday"));
 
         }
 
@@ -146,9 +146,9 @@ namespace DateTimeExtensions.Tests
 
 
             var holidays = workingDayCultureInfo.GetHolidaysOfYear(2021);
-            Assert.IsFalse(holidays.Any(h => h.Name == "Matariki"));
+            Assert.IsFalse(holidays.Any(h => h.CalendarDay.Name == "Matariki"));
             holidays = workingDayCultureInfo.GetHolidaysOfYear(2022);
-            Assert.IsTrue(holidays.Any(h => h.Name == "Matariki"));
+            Assert.IsTrue(holidays.Any(h => h.CalendarDay.Name == "Matariki"));
         }
 
 

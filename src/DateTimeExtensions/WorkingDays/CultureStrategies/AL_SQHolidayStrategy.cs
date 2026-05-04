@@ -11,19 +11,19 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public SQ_ALHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(SummerDay); // Dita e Veres in Albanian
-            this.InnerObservances.Add(ChristianHolidays.Easter);
-            this.InnerObservances.Add(ChristianOrthodoxHolidays.Easter);
-            this.InnerObservances.Add(NewruzDay); // Dita e Nevruzit Shia Muslim
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(MotherTheresaDay); // St. Theresa Day
-            this.InnerObservances.Add(AlphabetDay);
-            this.InnerObservances.Add(IndependenceDay);
-            this.InnerObservances.Add(LiberationDay);
-            this.InnerObservances.Add(NationalYouthDay);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(NewYearHoliday2); // second day of new year is a holiday in Albanian
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(SummerDay); // Dita e Veres in Albanian
+            this.InnerObservances.AddHoliday(ChristianHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.Easter);
+            this.InnerObservances.AddHoliday(NewruzDay); // Dita e Nevruzit Shia Muslim
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(MotherTheresaDay); // St. Theresa Day
+            this.InnerObservances.AddHoliday(AlphabetDay);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(LiberationDay);
+            this.InnerObservances.AddHoliday(NationalYouthDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(NewYearHoliday2); // second day of new year is a holiday in Albanian
 
         }
         private static NamedDay newYearHoliday2;
@@ -139,7 +139,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         }
 
 
-        public IEnumerable<NamedDay> GetHolidays()
+        public IEnumerable<Observance> GetHolidays()
         {
             return this.InnerObservances;
         }

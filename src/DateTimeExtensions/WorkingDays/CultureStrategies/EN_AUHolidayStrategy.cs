@@ -34,39 +34,39 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             // holidays that are observed in at least half of Australian states and territories
             // according to https://en.wikipedia.org/wiki/Public_holidays_in_Australia
 
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(AustraliaDay);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.EasterSaturday);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(AnzacDay);
-            this.InnerObservances.Add(QueensBirthday);
-            this.InnerObservances.Add(KingsBirthday);
-            this.InnerObservances.Add(LabourDay);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(AustraliaDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterSaturday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(AnzacDay);
+            this.InnerObservances.AddHoliday(QueensBirthday);
+            this.InnerObservances.AddHoliday(KingsBirthday);
+            this.InnerObservances.AddHoliday(LabourDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in InnerObservances)
             {
-                var date = innerHoliday.GetInstance(year);
+                var date = innerHoliday.CalendarDay.GetInstance(year);
                 if (date.HasValue)
                 {
                     holidayMap[date.Value] = innerHoliday;
                 }
             }
 
-            var existingHolidayMap = new Dictionary<DateTime, NamedDay>(holidayMap);
+            var existingHolidayMap = new Dictionary<DateTime, Observance>(holidayMap);
             foreach (var existingHoliday in existingHolidayMap)
             {
                 var date = existingHoliday.Key;
                 var innerHoliday = existingHoliday.Value;
 
                 // don't move the holiday if it is easter based since it's already observated
-                if (!(innerHoliday.Resolver is EasterBasedDayResolver) && innerHoliday != AnzacDay)
+                if (!(innerHoliday.CalendarDay.Resolver is EasterBasedDayResolver) && innerHoliday.CalendarDay != AnzacDay)
                 {
                     if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
                     {
@@ -78,11 +78,13 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return holidayMap;
         }
 
-        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, NamedDay> holidayMap, DateTime date, NamedDay holiday)
+        private void AddHolidayOnNextAvailableDay(IDictionary<DateTime, Observance> holidayMap, DateTime date, Observance holiday)
         {
             if (!holidayMap.ContainsKey(date) && date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday)
             {
-                holidayMap.Add(date, holiday);
+                holidayMap.Add(
+                    date,
+                    new Observance(new NamedDay(holiday.CalendarDay.Name, new FixedDayResolver(date.Month, date.Day)), true));
             }
             else
             {

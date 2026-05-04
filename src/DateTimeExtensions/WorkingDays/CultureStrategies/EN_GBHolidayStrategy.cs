@@ -31,15 +31,15 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_GBHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
 
-            this.InnerObservances.Add(GlobalHolidays.BoxingDay);
-            this.InnerObservances.Add(MayDayBank);
-            this.InnerObservances.Add(SpringBank);
-            this.InnerObservances.Add(LateSummerBank);
+            this.InnerObservances.AddHoliday(GlobalHolidays.BoxingDay);
+            this.InnerObservances.AddHoliday(MayDayBank);
+            this.InnerObservances.AddHoliday(SpringBank);
+            this.InnerObservances.AddHoliday(LateSummerBank);
         }
 
         private static NamedDay boxingDay;

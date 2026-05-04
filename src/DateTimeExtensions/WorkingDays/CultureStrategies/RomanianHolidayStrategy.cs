@@ -31,8 +31,8 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //1-2 January
             //Anul Nou
             //New Year's Day
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(NewYearSecondDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(NewYearSecondDay);
 
             //6 Boboteaza
             //7 Sf. Ioan Botezatorul
@@ -41,61 +41,61 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             //Ziua Unirii Principatelor Române
             //Day of the Unification of the Romanian Principalities
             //It celebrates the unification of the Romanian Principalities of Moldavia and Wallachia in 1859 and the foundation of the Romanian modern state.[2] A non-working day since 2016. 
-            this.InnerObservances.Add(DayOfTheUnification);
+            this.InnerObservances.AddHoliday(DayOfTheUnification);
 
             //Vinerea Mare
-            this.InnerObservances.Add(ChristianOrthodoxHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.GoodFriday);
 
             //Paștele 	Easter, Easter Monday
             //The official holiday is the Orthodox Easter.
             //The holiday is three days long, Good Friday,[3] Easter Sunday and Monday are non-working, Tuesday is not a public holiday. 
-            this.InnerObservances.Add(ChristianOrthodoxHolidays.Easter);
-            this.InnerObservances.Add(ChristianOrthodoxHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.Easter);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.EasterMonday);
 
             //1 May
             //Ziua Muncii
             //Labour Day
             //International Labour Day 
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
 
             //1 June
             //Ziua Copilului
             //Children's Day
             //Public holiday starting with 2017[4]
-            this.InnerObservances.Add(ChildrensDay);
+            this.InnerObservances.AddHoliday(ChildrensDay);
 
             //Rusaliile
             //Pentecost, Whit Monday
             //The 50th and 51st day after the Orthodox Easter. 
-            this.InnerObservances.Add(ChristianOrthodoxHolidays.Pentecost);
-            this.InnerObservances.Add(ChristianOrthodoxHolidays.PentecostMonday);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.Pentecost);
+            this.InnerObservances.AddHoliday(ChristianOrthodoxHolidays.PentecostMonday);
 
             //15 August
             //Adormirea Maicii Domnului/Sfânta Maria Mare
             //Dormition of the Mother of God
             //Also the Day of the Romanian Naval Forces since St. Mary is the patron saint of the Navy. 
-            this.InnerObservances.Add(Assumption);
+            this.InnerObservances.AddHoliday(Assumption);
 
             //30 November
             //Sfântul Andrei
             //Saint Andrew's Day
             //Saint Andrew is the patron saint of Romania. 
-            this.InnerObservances.Add(SaintAndrewDay);
+            this.InnerObservances.AddHoliday(SaintAndrewDay);
 
             //1 December
             //Ziua Națională a României
             //National Day of Romania
             //It celebrates the unification of Transylvania, Bessarabia and Bukovina with the Kingdom of Romania. 
-            this.InnerObservances.Add(NationalDayOfRomania);
+            this.InnerObservances.AddHoliday(NationalDayOfRomania);
 
             //25-26 December
             //Crăciunul
             //Christmas Day
             //Both first and second Christmas Day are holidays. Third Christmas Day is not a public holiday. 
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(ChristmasSecondDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristmasSecondDay);
             
-            this.InnerObservances.Add(GlobalHolidays.NewYearsEve);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYearsEve);
         }
 
         private static NamedDay newYearSecondDay;

@@ -1,6 +1,7 @@
 ﻿namespace DateTimeExtensions.Tests.Extensibility
 {
     using System;
+    using System.Linq;
     using Common;
     using NUnit.Framework;
     using WorkingDays;
@@ -24,7 +25,7 @@
         {
             public MyCustomWorkingDayStrategy()
             {
-                this.InnerObservances.Remove(ColumbusDay);
+                this.InnerObservances.Remove(this.InnerObservances.Single(observance => observance.CalendarDay == ColumbusDay));
             }
         }
 

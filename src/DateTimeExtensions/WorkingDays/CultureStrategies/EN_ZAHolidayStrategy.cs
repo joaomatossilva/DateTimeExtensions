@@ -31,40 +31,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public EN_ZAHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(HumanRightsDay);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(FamilyDay);
-            this.InnerObservances.Add(FreedomDay);
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(YouthDay);
-            this.InnerObservances.Add(NationalWomansDay);
-            this.InnerObservances.Add(HeritageDay);
-            this.InnerObservances.Add(DayOfReconciliation);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(DayOfGoodwill);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(HumanRightsDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(FamilyDay);
+            this.InnerObservances.AddHoliday(FreedomDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(YouthDay);
+            this.InnerObservances.AddHoliday(NationalWomansDay);
+            this.InnerObservances.AddHoliday(HeritageDay);
+            this.InnerObservances.AddHoliday(DayOfReconciliation);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(DayOfGoodwill);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in InnerObservances)
             {
-                 var date = innerHoliday.GetInstance(year);
-                    if (date.HasValue)
-                    {
+                 var date = innerHoliday.CalendarDay.GetInstance(year);
+                     if (date.HasValue)
+                     {
                         if (holidayMap.ContainsKey(date.Value))
                             // Check to see if holiday falling on the Sunday then moves to the monday, and there is another holiday scheduled for the monday
                             // Update the NamedDay Name of the Monday
                             holidayMap[date.Value] = innerHoliday;
                         else
                             holidayMap.Add(date.Value, innerHoliday);
-                            //if the holiday is a sunday, the holiday is observed on next monday
-                            if (date.Value.DayOfWeek == DayOfWeek.Sunday)
-                            {
-                                holidayMap.AddIfInexistent(date.Value.AddDays(1), innerHoliday);
-                            }
-                    }
+                             //if the holiday is a sunday, the holiday is observed on next monday
+                             if (date.Value.DayOfWeek == DayOfWeek.Sunday)
+                             {
+                                 var observedDate = date.Value.AddDays(1);
+                                 holidayMap.AddIfInexistent(
+                                     observedDate,
+                                     new Observance(new NamedDay(innerHoliday.CalendarDay.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
+                             }
+                     }
             }
             return holidayMap;
         }

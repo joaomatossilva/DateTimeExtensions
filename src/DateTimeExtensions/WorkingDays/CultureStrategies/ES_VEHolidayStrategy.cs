@@ -31,14 +31,14 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ES_VEHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(KingsDay);
-            this.InnerObservances.Add(ConstitutionDay);
-            this.InnerObservances.Add(SimonBolivarBirthDay);
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(IndependenceDay);
-            this.InnerObservances.Add(JoseGregorioHernandezDay);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(KingsDay);
+            this.InnerObservances.AddHoliday(ConstitutionDay);
+            this.InnerObservances.AddHoliday(SimonBolivarBirthDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(IndependenceDay);
+            this.InnerObservances.AddHoliday(JoseGregorioHernandezDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
         }
 
 

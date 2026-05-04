@@ -34,26 +34,32 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
 
         public AR_SAHolidayStrategy()
         {
-            this.InnerObservances.Add(EndOfRamadan);
-            this.InnerObservances.Add(EndOfHajj);
-            this.InnerObservances.Add(SaudiNationalDay);
+            this.InnerObservances.AddHoliday(EndOfRamadan);
+            this.InnerObservances.AddHoliday(EndOfHajj);
+            this.InnerObservances.AddHoliday(SaudiNationalDay);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            var observancesMap = new Dictionary<DateTime, NamedDay>();
-            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, SaudiNationalDay);
+            var observancesMap = new Dictionary<DateTime, Observance>();
+            observancesMap.AddIfInexistent(SaudiNationalDay.GetInstance(year).Value, new Observance(SaudiNationalDay, true));
 
             var endOfRamadanObservance = EndOfRamadan.GetInstance(year);
             for (int i = 0; i <= 7; i++)
             {
-                observancesMap.AddIfInexistent(endOfRamadanObservance.Value.AddDays(i), EndOfRamadan);
+                var observedDate = endOfRamadanObservance.Value.AddDays(i);
+                observancesMap.AddIfInexistent(
+                    observedDate,
+                    new Observance(new NamedDay(EndOfRamadan.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
             }
 
             var endOfHajjObservance = EndOfHajj.GetInstance(year);
             for (int i = 0; i <= 6; i++)
             {
-                observancesMap.AddIfInexistent(endOfHajjObservance.Value.AddDays(i), EndOfHajj);
+                var observedDate = endOfHajjObservance.Value.AddDays(i);
+                observancesMap.AddIfInexistent(
+                    observedDate,
+                    new Observance(new NamedDay(EndOfHajj.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
             }
 
             return observancesMap;

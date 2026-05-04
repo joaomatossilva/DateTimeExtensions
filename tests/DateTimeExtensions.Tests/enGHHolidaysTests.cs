@@ -39,8 +39,8 @@ namespace DateTimeExtensions.Tests
                 Assert.That(christmas.DayOfWeek, Is.EqualTo(DayOfWeek.Sunday));
                 Assert.That(holidaysMap.ContainsKey(christmas), Is.True, "Christmas (original date) should be present.");
                 Assert.That(holidaysMap.ContainsKey(boxingDay), Is.True, "Boxing Day / observed slot should be present.");
-                Assert.That(holidaysMap[christmas].Name, Is.EqualTo("Christmas"));
-                Assert.That(holidaysMap[boxingDay].Name, Is.EqualTo("Boxing Day"));
+                Assert.That(holidaysMap[christmas].CalendarDay.Name, Is.EqualTo("Christmas"));
+                Assert.That(holidaysMap[boxingDay].CalendarDay.Name, Is.EqualTo("Boxing Day"));
                 Assert.That(christmas.IsWorkingDay(_culture), Is.False);
                 Assert.That(boxingDay.IsWorkingDay(_culture), Is.False);
             });

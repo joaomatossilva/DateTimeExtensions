@@ -50,7 +50,7 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             foreach(var i in fixedHolidays)
             {
-                this.InnerObservances.Add(i);
+                this.InnerObservances.AddHoliday(i);
             }
         }
 

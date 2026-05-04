@@ -31,17 +31,17 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public IT_ITHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.Epiphany);
-            this.InnerObservances.Add(ChristianHolidays.EasterMonday);
-            this.InnerObservances.Add(LiberationDay);
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(RepublicDay);
-            this.InnerObservances.Add(ChristianHolidays.Assumption);
-            this.InnerObservances.Add(ChristianHolidays.AllSaints);
-            this.InnerObservances.Add(ChristianHolidays.ImaculateConception);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
-            this.InnerObservances.Add(ChristianHolidays.StStephansDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Epiphany);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterMonday);
+            this.InnerObservances.AddHoliday(LiberationDay);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(RepublicDay);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Assumption);
+            this.InnerObservances.AddHoliday(ChristianHolidays.AllSaints);
+            this.InnerObservances.AddHoliday(ChristianHolidays.ImaculateConception);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(ChristianHolidays.StStephansDay);
         }
 
         //2 June - Republic Day

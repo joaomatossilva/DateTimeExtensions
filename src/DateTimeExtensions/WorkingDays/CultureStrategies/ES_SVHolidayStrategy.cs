@@ -7,16 +7,16 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
     {
         public ES_SVHolidayStrategy()
         {
-            this.InnerObservances.Add(GlobalHolidays.NewYear);
-            this.InnerObservances.Add(ChristianHolidays.MaundyThursday);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(ChristianHolidays.EasterSaturday);
-            this.InnerObservances.Add(GlobalHolidays.InternationalWorkersDay);
-            this.InnerObservances.Add(MothersDay);
-            this.InnerObservances.Add(FathersDay);
-            this.InnerObservances.Add(DivineSaviourOfTheWorld);
-            this.InnerObservances.Add(ChristianHolidays.DayOfTheDead);
-            this.InnerObservances.Add(ChristianHolidays.Christmas);
+            this.InnerObservances.AddHoliday(GlobalHolidays.NewYear);
+            this.InnerObservances.AddHoliday(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.EasterSaturday);
+            this.InnerObservances.AddHoliday(GlobalHolidays.InternationalWorkersDay);
+            this.InnerObservances.AddHoliday(MothersDay);
+            this.InnerObservances.AddHoliday(FathersDay);
+            this.InnerObservances.AddHoliday(DivineSaviourOfTheWorld);
+            this.InnerObservances.AddHoliday(ChristianHolidays.DayOfTheDead);
+            this.InnerObservances.AddHoliday(ChristianHolidays.Christmas);
         }
 
         private static NamedDay _mothersDay;

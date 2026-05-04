@@ -54,18 +54,18 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
         {
             foreach (var turisticHoliday in TuristicHolidays)
             {
-                this.InnerObservances.Add(turisticHoliday);
+                this.InnerObservances.AddHoliday(turisticHoliday);
             }
-            this.InnerObservances.Add(ChristianHolidays.MaundyThursday);
-            this.InnerObservances.Add(ChristianHolidays.GoodFriday);
-            this.InnerObservances.Add(AnniversaryOfDeathGeneralJoseSanMartin);
-            this.InnerObservances.Add(DayOfRespectForCulturalDiversity);
-            this.InnerObservances.Add(DayOfNationalSovereignity);
+            this.InnerObservances.AddHoliday(ChristianHolidays.MaundyThursday);
+            this.InnerObservances.AddHoliday(ChristianHolidays.GoodFriday);
+            this.InnerObservances.AddHoliday(AnniversaryOfDeathGeneralJoseSanMartin);
+            this.InnerObservances.AddHoliday(DayOfRespectForCulturalDiversity);
+            this.InnerObservances.AddHoliday(DayOfNationalSovereignity);
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            var observancesMap = new Dictionary<DateTime, NamedDay>();
+            var observancesMap = new Dictionary<DateTime, Observance>();
             this.BuildMoveableObservanceMap(year, DayOfRespectForCulturalDiversity, observancesMap);
             this.BuildMoveableObservanceMap(year, DayOfNationalSovereignity, observancesMap);
             foreach (var turisticHoliday in TuristicHolidays)
@@ -78,37 +78,43 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             return observancesMap;
         }
 
-        private void BuildNormalObservanceMap(int year, NamedDay holiday, Dictionary<DateTime, NamedDay> map)
+        private void BuildNormalObservanceMap(int year, NamedDay holiday, Dictionary<DateTime, Observance> map)
         {
             var holidayInstance = holiday.GetInstance(year);
             if (!holidayInstance.HasValue)
             {
                 return;
             }
-            map.AddIfInexistent(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+            map.AddIfInexistent(holidayInstance.Value, new Observance(DayOfRespectForCulturalDiversity, true));
         }
 
-        private void BuildTuristicObservanceMap(int year, NamedDay holiday, Dictionary<DateTime, NamedDay> map)
+        private void BuildTuristicObservanceMap(int year, NamedDay holiday, Dictionary<DateTime, Observance> map)
         {
             var holidayInstance = holiday.GetInstance(year);
             if (!holidayInstance.HasValue)
             {
                 return;
             }
-            map.AddIfInexistent(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+            map.AddIfInexistent(holidayInstance.Value, new Observance(DayOfRespectForCulturalDiversity, true));
             //if holiday falls on tuesday, the holiday is also observed on the last monday
             if (holidayInstance.Value.DayOfWeek == DayOfWeek.Tuesday)
             {
-                map.AddIfInexistent(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
+                var observedDate = holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday);
+                map.AddIfInexistent(
+                    observedDate,
+                    new Observance(new NamedDay(holiday.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
             }
             //if holiday falls on thursday, the holiday is also observed on the next friday
             if (holidayInstance.Value.DayOfWeek == DayOfWeek.Thursday)
             {
-                map.AddIfInexistent(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Friday), holiday);
+                var observedDate = holidayInstance.Value.NextDayOfWeek(DayOfWeek.Friday);
+                map.AddIfInexistent(
+                    observedDate,
+                    new Observance(new NamedDay(holiday.Name, new FixedDayResolver(observedDate.Month, observedDate.Day)), true));
             }
         }
 
-        private void BuildMoveableObservanceMap(int year, NamedDay holiday, Dictionary<DateTime, NamedDay> map)
+        private void BuildMoveableObservanceMap(int year, NamedDay holiday, Dictionary<DateTime, Observance> map)
         {
             var holidayInstance = holiday.GetInstance(year);
             if (!holidayInstance.HasValue)
@@ -118,16 +124,22 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             switch (holidayInstance.Value.DayOfWeek)
             {
                 case DayOfWeek.Monday:
-                    map.AddIfInexistent(holidayInstance.Value, DayOfRespectForCulturalDiversity);
+                    map.AddIfInexistent(holidayInstance.Value, new Observance(DayOfRespectForCulturalDiversity, true));
                     break;
                     //if holiday falls on tuesday or wednesday, the holiday is observed on the last monday
                 case DayOfWeek.Tuesday:
                 case DayOfWeek.Wednesday:
-                    map.AddIfInexistent(holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday), holiday);
+                    var lastMonday = holidayInstance.Value.LastDayOfWeek(DayOfWeek.Monday);
+                    map.AddIfInexistent(
+                        lastMonday,
+                        new Observance(new NamedDay(holiday.Name, new FixedDayResolver(lastMonday.Month, lastMonday.Day)), true));
                     break;
                     //if holiday falls on thu, fri, sat, sun, the holiday is observed on the next monday
                 default:
-                    map.AddIfInexistent(holidayInstance.Value.NextDayOfWeek(DayOfWeek.Monday), holiday);
+                    var nextMonday = holidayInstance.Value.NextDayOfWeek(DayOfWeek.Monday);
+                    map.AddIfInexistent(
+                        nextMonday,
+                        new Observance(new NamedDay(holiday.Name, new FixedDayResolver(nextMonday.Month, nextMonday.Day)), true));
                     break;
             }
         }

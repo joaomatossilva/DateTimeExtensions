@@ -64,19 +64,19 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
             var all = fixedDayHolidays.Concat(nextMondayHolidays);
             foreach (var h in all)
             {
-                this.InnerObservances.Add(h);
+                this.InnerObservances.AddHoliday(h);
             }
         }
 
-        protected override IDictionary<DateTime, NamedDay> BuildObservancesMap(int year)
+        protected override IDictionary<DateTime, Observance> BuildObservancesMap(int year)
         {
-            IDictionary<DateTime, NamedDay> holidayMap = new Dictionary<DateTime, NamedDay>();
+            IDictionary<DateTime, Observance> holidayMap = new Dictionary<DateTime, Observance>();
             foreach (var innerHoliday in fixedDayHolidays)
             {
                 var date = innerHoliday.GetInstance(year);
                 if (date.HasValue)
                 {
-                    holidayMap.Add(date.Value, innerHoliday);
+                    holidayMap.Add(date.Value, new Observance(innerHoliday, true));
                 }
             }
 
@@ -89,7 +89,9 @@ namespace DateTimeExtensions.WorkingDays.CultureStrategies
                                 ? date.Value
                                 : date.Value.NextDayOfWeek(DayOfWeek.Monday);
 
-                    holidayMap[d] = h;
+                    holidayMap[d] = d == date.Value
+                        ? new Observance(h, true)
+                        : new Observance(new NamedDay(h.Name, new FixedDayResolver(d.Month, d.Day)), true);
                 }
             }
 
