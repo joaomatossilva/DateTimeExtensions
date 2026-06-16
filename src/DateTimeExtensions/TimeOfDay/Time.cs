@@ -21,111 +21,92 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Threading;
 
 namespace DateTimeExtensions.TimeOfDay
 {
-    public struct Time : IComparable<Time>
+    public readonly struct Time : IComparable<Time>
     {
         //TODO: netstandart 1.1 don't support RegexOptions.Compiled, but a compiler directive for futher versions might enable this
         //private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$", RegexOptions.Compiled);
-        private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$");
+        private readonly static Regex ParseRegex = new(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$");
 
-        private string formatString;
+        private readonly string _formatString;
+        public string FormatString => _formatString ?? string.Empty;
+        /* Without the null forgiving operator or the backing field, 'default' would
+            produce an instance with a null '_formatString', creating problems for ToString().
+            TODO: Would be best to remove both the backing field and it's property, passing
+            the argument directly to ToString (modifies the public API) */
 
-        public string FormatString
-        {
-            get { return this.formatString; }
-        }
+        public int Hour { get; }
 
-        private int hour;
+        public int Minute { get; }
 
-        public int Hour
-        {
-            get { return this.hour; }
-        }
-
-        private int minute;
-
-        public int Minute
-        {
-            get { return this.minute; }
-        }
-
-        private int second;
-
-        public int Second
-        {
-            get { return this.second; }
-        }
+        public int Second { get; }
 
         public Time(int hour = 0, int minute = 0, int second = 0, string formatString = "")
         {
-            if (formatString == string.Empty)
-                this.formatString = CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern;
-            else
-                this.formatString = formatString;
+            _formatString = formatString == string.Empty
+                ? CultureInfo.CurrentCulture.DateTimeFormat.LongTimePattern
+                : formatString;
 
-            this.hour = hour;
-            this.minute = minute;
-            this.second = second;
             EnsureHour(hour);
             EnsureMinute(minute);
             EnsureSecond(second);
+
+            Hour = hour;
+            Minute = minute;
+            Second = second;
         }
 
-        private void EnsureHour(int value)
+        private static void EnsureHour(int value)
         {
             if (value < 0 || value > 23)
             {
-                throw new ArgumentException("Valid hours must be between 0 and 23", "value");
+                throw new ArgumentException("Valid hours must be between 0 and 23", nameof(value));
             }
         }
 
-        private void EnsureMinute(int value)
+        private static void EnsureMinute(int value)
         {
             if (value < 0 || value > 59)
             {
-                throw new ArgumentException("Valid minutes must be between 0 and 59", "value");
+                throw new ArgumentException("Valid minutes must be between 0 and 59", nameof(value));
             }
         }
 
-        private void EnsureSecond(int value)
+        private static void EnsureSecond(int value)
         {
             if (value < 0 || value > 59)
             {
-                throw new ArgumentException("Valid seconds must be between 0 and 59", "value");
+                throw new ArgumentException("Valid seconds must be between 0 and 59", nameof(value));
             }
         }
 
         public override string ToString()
         {
             var today = DateTime.Today;
-            var dateTime = new DateTime(today.Year, today.Month, today.Day, hour, minute, second);
+            var dateTime = new DateTime(today.Year, today.Month, today.Day, Hour, Minute, Second);
             return dateTime.ToString(FormatString);
         }
 
         public int CompareTo(Time other)
         {
-            //Compare Hours
-            var hoursDiff = this.Hour.CompareTo(other.Hour);
-            if (hoursDiff != 0)
+            // Compare Hours
+            if (Hour != other.Hour)
             {
-                return hoursDiff;
+                return Hour - other.Hour;
             }
 
-            //Hours are the same, so compare minutes
-            var minutesDiff = this.Minute.CompareTo(other.Minute);
-            if (minutesDiff != 0)
+            // Hours are the same, so compare minutes
+            if (Minute != other.Minute)
             {
-                return minutesDiff;
+                return Minute - other.Minute;
             }
 
-            //minutes are the same so compare seconds
-            var secondsDiff = this.Second.CompareTo(other.Second);
-            if (secondsDiff != 0)
+            // Minutes are the same so compare seconds
+            if (Second != other.Second)
             {
-                return secondsDiff;
+                return Second - other.Second;
             }
 
             //seconds are the same. Other is equal.
@@ -137,7 +118,7 @@ namespace DateTimeExtensions.TimeOfDay
             var match = ParseRegex.Match(valueString);
             if (!match.Success || match.Groups.Count != 4)
             {
-                throw new ArgumentException("Value string was not a correct time format", "valueString");
+                throw new ArgumentException("Value string was not a correct time format", nameof(valueString));
             }
             return new Time(
                 int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
