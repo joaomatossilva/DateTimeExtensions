@@ -19,66 +19,78 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using DateTimeExtensions.TimeOfDay;
 
 namespace DateTimeExtensions
 {
     public static class TimeExtensions
     {
+        /// <summary>
+        /// Returns a new DateTime instance with the added Time
+        /// </summary>
         public static DateTime AddTime(this DateTime dateTime, Time timeToAdd)
         {
-            return dateTime.AddSeconds(timeToAdd.Second).AddMinutes(timeToAdd.Minute).AddHours(timeToAdd.Hour);
+            TimeSpan timeSpan = new(timeToAdd.Hour, timeToAdd.Minute, timeToAdd.Second);
+            return dateTime.Add(timeSpan);
         }
 
+        /// <summary>
+        /// Returns a new DateTime instance with the given Time
+        /// </summary>
         public static DateTime SetTime(this DateTime dateTime, Time timeToAdd)
         {
-            return AddTime(dateTime.Date, timeToAdd);
+            return new DateTime(
+                year: dateTime.Year,
+                month: dateTime.Month,
+                day: dateTime.Day,
+                hour: timeToAdd.Hour,
+                minute: timeToAdd.Minute,
+                second: timeToAdd.Second);
         }
 
+        /// <summary>
+        /// Converts the DateTime into a Time instance
+        /// </summary>
         public static Time TimeOfTheDay(this DateTime dateTime)
         {
             return new Time(dateTime.Hour, dateTime.Minute, dateTime.Second);
         }
 
+        /// <summary>
+        /// Checks if the DateTime is between the starting Time and the ending Time. 
+        /// The result is inverted if startTime comes after endTime.
+        /// </summary>
         public static bool IsBetween(this DateTime dateTime, Time startTime, Time endTime)
         {
             var currentTime = dateTime.TimeOfTheDay();
-            //start time is lesser or equal than end time
-            if (startTime.CompareTo(endTime) <= 0)
+
+            // start time is lesser or equal than end time
+            if (startTime <= endTime)
             {
-                //currentTime should be between start time and end time
-                if (currentTime.CompareTo(startTime) >= 0 && currentTime.CompareTo(endTime) <= 0)
-                {
-                    return true;
-                }
-                return false;
+                // currentTime should be between start time and end time
+                return startTime <= currentTime && currentTime <= endTime;
             }
             else
             {
-                //currentTime should be between end time time and start time
-                if (currentTime.CompareTo(startTime) >= 0 || currentTime.CompareTo(endTime) <= 0)
-                {
-                    return true;
-                }
-                return false;
+                // currentTime should not be between start time and end time
+                return currentTime <= endTime || startTime <= currentTime;
             }
         }
 
+        /// <summary>
+        /// Checks if DateTime comes before the given Time
+        /// </summary>
         public static bool IsBefore(this DateTime dateTime, Time time)
         {
-            var currentTime = dateTime.TimeOfTheDay();
-            //currentTime should be lesser than time
-            return currentTime.CompareTo(time) < 0;
+            return dateTime.TimeOfTheDay() < time;
         }
 
+        /// <summary>
+        /// Checks if DateTime comes after the given Time
+        /// </summary>
         public static bool IsAfter(this DateTime dateTime, Time time)
         {
-            var currentTime = dateTime.TimeOfTheDay();
-            //currentTime should be greater than time
-            return currentTime.CompareTo(time) > 0;
+            return dateTime.TimeOfTheDay() > time;
         }
 
         public static Time ToTimeOfDay(this string timeValueString)
