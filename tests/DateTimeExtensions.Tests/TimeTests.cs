@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using DateTimeExtensions;
-using DateTimeExtensions.TimeOfDay;
 using NUnit.Framework;
+using System.Globalization;
+using DateTimeExtensions.TimeOfDay;
 
 namespace DateTimeExtensions.Tests
 {
@@ -121,6 +116,105 @@ namespace DateTimeExtensions.Tests
             Assert.IsTrue(middleDate.IsBetween(endTime, startTime));
             Assert.IsTrue(beforeDate.IsBetween(startTime, endTime));
             Assert.IsTrue(aftereDate.IsBetween(startTime, endTime));
+        }
+
+        [Test]
+        public void can_compare_greater_operator()
+        {
+            Time t1 = new(14, 25);
+            Time t2 = Time.Noon;
+
+            bool t1IsGreater = t1 > t2;
+
+            Assert.That(t1IsGreater, Is.True);
+        }
+
+        [TestCase(12, 0, 10, 33)]
+        [TestCase(13, 37, 13, 37)]
+        public void can_compare_greater_or_equal_operator(int h1, int m1, int h2, int m2)
+        {
+            Time t1 = new(h1, m1);
+            Time t2 = new(h2, m2);
+
+            bool t1IsGreaterOrEqual = t1 >= t2;
+
+            Assert.That(t1IsGreaterOrEqual, Is.True);
+        }
+
+        [Test]
+        public void can_compare_lower_operator()
+        {
+            Time t1 = Time.Midnight;
+            Time t2 = new(17, 25, 33);
+
+            bool t1IsLower = t1 < t2;
+
+            Assert.That(t1IsLower, Is.True);
+        }
+
+        [TestCase(4, 0, 17, 21)]
+        [TestCase(0, 0, 0, 0)]
+        public void can_compare_lower_or_equal_operator(int h1, int m1, int h2, int m2)
+        {
+            Time t1 = new(h1, m1);
+            Time t2 = new(h2, m2);
+
+            bool t1IsLowerOrEqual = t1 <= t2;
+
+            Assert.That(t1IsLowerOrEqual, Is.True);
+        }
+
+        [Test]
+        public void can_compare_equal_operator()
+        {
+            Time t1 = Time.Noon;
+            Time t2 = new(12, 0);
+
+            bool t1IsEqualTot2 = t1 == t2;
+
+            Assert.That(t1IsEqualTot2, Is.True);
+        }
+
+        [Test]
+        public void can_compare_not_equal_operator()
+        {
+            Time t1 = new(12, 13, 14);
+            Time t2 = new(23, 59, 59);
+
+            bool t1IsNotEqualTot2 = t1 != t2;
+
+            Assert.That(t1IsNotEqualTot2, Is.True);
+        }
+
+        [Test]
+        public void can_try_parse()
+        {
+            string timeString = "12:27:55";
+
+            bool successfulParse = Time.TryParse(timeString, out Time notDefaultTime);
+
+            bool resultingTimeIsNotDefault = notDefaultTime != default;
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(successfulParse, Is.True);
+                Assert.That(resultingTimeIsNotDefault, Is.True);
+            });
+        }
+
+        [TestCase("61:32:cherry")]
+        [TestCase(null)]
+        public void cant_try_parse(string s)
+        {
+            bool failedParse = Time.TryParse(s, out Time defaultTime) == false;
+
+            bool resultTimeIsDefault = defaultTime == default;
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(failedParse, Is.True);
+                Assert.That(resultTimeIsDefault, Is.True);
+            });
         }
     }
 }

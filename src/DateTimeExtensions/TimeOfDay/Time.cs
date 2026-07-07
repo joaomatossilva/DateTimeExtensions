@@ -21,10 +21,11 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DateTimeExtensions.TimeOfDay
 {
-    public readonly struct Time : IComparable<Time>
+    public readonly struct Time : IComparable<Time>, IEquatable<Time>
     {
         //TODO: netstandart 1.1 don't support RegexOptions.Compiled, but a compiler directive for futher versions might enable this
         //private readonly static Regex ParseRegex = new Regex(@"^(0*[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])$", RegexOptions.Compiled);
@@ -32,7 +33,7 @@ namespace DateTimeExtensions.TimeOfDay
 
         private readonly string _formatString;
         public string FormatString => _formatString ?? string.Empty;
-        /* Without the null forgiving operator or the backing field, 'default' would
+        /* Without the null forgiving operator or the backing field, 'default' will
             produce an instance with a null '_formatString', creating problems for ToString().
             TODO: Would be best to remove both the backing field and it's property, passing
             the argument directly to ToString (modifies the public API) */
@@ -42,6 +43,14 @@ namespace DateTimeExtensions.TimeOfDay
         public int Minute { get; }
 
         public int Second { get; }
+
+        public static Time Midnight { get; } = default; // 00:00:00
+
+        public static Time MinValue { get; } = default; // 00:00:00
+
+        public static Time Noon { get; } = new(12, 0, 0);
+
+        public static Time MaxValue { get; } = new(23, 59, 59);
 
         public Time(int hour = 0, int minute = 0, int second = 0, string formatString = "")
         {
@@ -84,9 +93,19 @@ namespace DateTimeExtensions.TimeOfDay
 
         public override string ToString()
         {
+            return ToString(FormatString);
+        }
+
+        public string ToString(string formatString)
+        {
+            if (formatString is null)
+            {
+                throw new ArgumentNullException(nameof(formatString));
+            }
+
             var today = DateTime.Today;
             var dateTime = new DateTime(today.Year, today.Month, today.Day, Hour, Minute, Second);
-            return dateTime.ToString(FormatString);
+            return dateTime.ToString(formatString);
         }
 
         public int CompareTo(Time other)
@@ -113,15 +132,72 @@ namespace DateTimeExtensions.TimeOfDay
             return 0;
         }
 
+        /// <summary>
+        /// Converts the string representation of the time of the day into a Time type.
+        /// The return will indicate success or failure
+        /// </summary>
+        /// <returns>true if the conversion was successful, false otherwise</returns>
+        public static bool TryParse(string valueString, out Time time)
+        {
+            time = default;
+
+            if (valueString is null)
+            {
+                return false;
+            }
+
+            var match = ParseRegex.Match(valueString);
+
+            if (!match.Success || match.Groups.Count != 4
+                || !int.TryParse(match.Groups[1].Value, out int hour)
+                || !int.TryParse(match.Groups[2].Value, out int minute)
+                || !int.TryParse(match.Groups[3].Value, out int second))
+            {
+                return false;
+            }
+
+            time = new(hour, minute, second);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Converts the string representation of the time of the day into a Time type.
+        /// </summary>
+        /// <returns>The Time type representing the given string</returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public static Time Parse(string valueString)
         {
-            var match = ParseRegex.Match(valueString);
-            if (!match.Success || match.Groups.Count != 4)
+            if (valueString is null)
+            {
+                throw new ArgumentNullException(nameof(valueString));
+            }
+
+            if (!TryParse(valueString, out Time time))
             {
                 throw new ArgumentException("Value string was not a correct time format", nameof(valueString));
             }
-            return new Time(
-                int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value));
+
+            return time;
         }
+
+        public bool Equals(Time other) => CompareTo(other) == 0;
+
+        public override bool Equals([NotNullWhen(true)] object obj) => obj is Time other && Equals(other);
+
+        public override int GetHashCode() => HashCode.Combine(Hour, Minute, Second);
+
+        public static bool operator ==(Time left, Time right) => left.Equals(right);
+
+        public static bool operator !=(Time left, Time right) => !left.Equals(right);
+
+        public static bool operator >(Time left, Time right) => left.CompareTo(right) > 0;
+
+        public static bool operator <(Time left, Time right) => left.CompareTo(right) < 0;
+
+        public static bool operator >=(Time left, Time right) => left.CompareTo(right) >= 0;
+
+        public static bool operator <=(Time left, Time right) => left.CompareTo(right) <= 0;
     }
 }
