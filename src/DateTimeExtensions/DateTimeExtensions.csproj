@@ -8,6 +8,7 @@
     <PackageId>DateTimeExtensions</PackageId>
     <PackageTags>Natural;Date;Time;Relative;Calendar;Holiday;Workingday;DateTime</PackageTags>
     <PackageProjectUrl>https://github.com/joaomatossilva/DateTimeExtensions/wiki</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/joaomatossilva/DateTimeExtensions/blob/master/CHANGELOG.md</PackageReleaseNotes>
     <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>git://github.com/joaomatossilva/datetimeextensions</RepositoryUrl>

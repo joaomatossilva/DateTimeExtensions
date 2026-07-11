@@ -31,6 +31,10 @@ Install DateTimeExtensions via [NuGet](https://learn.microsoft.com/en-us/nuget/r
 Install-Package DateTimeExtensions
 ```
 
+## 📝 Release Notes
+
+See the [changelog](CHANGELOG.md) for release information.
+
 ## 🚀 Quick Start
 
 Here are some examples of what you can do with DateTimeExtensions:
