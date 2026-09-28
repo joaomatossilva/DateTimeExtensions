@@ -104,7 +104,7 @@ namespace DateTimeExtensions.WorkingDays
             {
                 if (midsummerEve == null)
                 {
-                    midsummerEve = new NamedDay("Midsummer Eve", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Friday, 6, 19));
+                    midsummerEve = new NamedDay("Midsummer Eve", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Friday, 6, 18));
                 }
                 return midsummerEve;
             }
@@ -119,7 +119,7 @@ namespace DateTimeExtensions.WorkingDays
             {
                 if (midsummerDay == null)
                 {
-                    midsummerDay = new NamedDay("Midsummer Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Saturday, 6, 20));
+                    midsummerDay = new NamedDay("Midsummer Day", new NthDayOfWeekAfterDayResolver(1, DayOfWeek.Saturday, 6, 19));
                 }
                 return midsummerDay;
             }
