@@ -1,5 +1,25 @@
-Changelog
-===================
+# Changelog
+
+## Unreleased
+
+- No changes documented yet.
+
+## [v6.0.3](https://github.com/joaomatossilva/DateTimeExtensions/releases/tag/v6.0.3)
+
+- Optimized and refactored the time extension methods ([#285](https://github.com/joaomatossilva/DateTimeExtensions/pull/285)).
+
+## [v6.0.2](https://github.com/joaomatossilva/DateTimeExtensions/releases/tag/v6.0.2)
+
+- Optimized the `Time` type and added methods with tests ([#284](https://github.com/joaomatossilva/DateTimeExtensions/pull/284)).
+
+## [v6.0.1](https://github.com/joaomatossilva/DateTimeExtensions/releases/tag/v6.0.1)
+
+- Optimized and refactored the `Time` type ([#283](https://github.com/joaomatossilva/DateTimeExtensions/pull/283)).
+
+## [v6.0.0](https://github.com/joaomatossilva/DateTimeExtensions/releases/tag/v6.0.0)
+
+- Introduced the v6 breaking changes documented in [v6.md](v6.md), including the move from holiday-based types to observances and composed day resolvers ([#281](https://github.com/joaomatossilva/DateTimeExtensions/pull/281)).
+
 v5.5.7
 - Fixed de-AT with GoodFriday not being an holiday, thanks @cknabb Fixes #119
 
