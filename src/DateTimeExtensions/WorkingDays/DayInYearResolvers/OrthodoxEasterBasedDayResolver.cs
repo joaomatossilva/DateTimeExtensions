@@ -43,22 +43,22 @@ namespace DateTimeExtensions.WorkingDays.DayInYearResolvers
                 return easterPerYear.GetOrAdd(year, () => GetOrthodoxEaster(year));
             }
 
-            //https://blog.georgekosmidis.net/c-calculating-orthodox-and-catholic-easter.html
             public static DateTime GetOrthodoxEaster(int year)
             {
-                var a = year % 19;
+                //Meeus' Julian algorithm gives Easter as a date in the Julian calendar
+                var a = year % 4;
                 var b = year % 7;
-                var c = year % 4;
+                var c = year % 19;
+                var d = (19 * c + 15) % 30;
+                var e = (2 * a + 4 * b - d + 34) % 7;
+                var month = (d + e + 114) / 31;
+                var day = (d + e + 114) % 31 + 1;
 
-                var d = (19 * a + 16) % 30;
-                var e = (2 * c + 4 * b + 6 * d) % 7;
-                var f = (19 * a + 16) % 30;
+                //Julian to Gregorian: the gap is 13 days only in 1900-2099
+                //(12 days in 1800-1899, 14 days in 2100-2199, ...)
+                var julianToGregorianDays = year / 100 - year / 400 - 2;
 
-                var key = f + e + 3;
-                var month = (key > 30) ? 5 : 4;
-                var day = (key > 30) ? key - 30 : key;
-
-                return new DateTime(year, month, day);
+                return new DateTime(year, month, day).AddDays(julianToGregorianDays);
             }
         }
     }
