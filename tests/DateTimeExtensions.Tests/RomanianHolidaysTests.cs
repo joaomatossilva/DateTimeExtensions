@@ -75,18 +75,21 @@ namespace DateTimeExtensions.Tests
         [Test]
         public void can_calculate_orthodox_easter()
         {
-            var years = new int[] { 1800, 1899, 1900, 1999, 2000, 2025, 2035, 2067, 2099 };
+            var years = new int[] { 1800, 1899, 1900, 1999, 2000, 2025, 2035, 2067, 2099, 2100, 2101, 2200 };
             var easterDates = new Dictionary<int, DateTime>
             {
-                {1800, new DateTime(1800, 4, 21)},
-                {1899, new DateTime(1899, 5, 1)},
+                {1800, new DateTime(1800, 4, 20)},
+                {1899, new DateTime(1899, 4, 30)},
                 {1900, new DateTime(1900, 4, 22)},
                 {1999, new DateTime(1999, 4, 11)},
                 {2000, new DateTime(2000, 4, 30)},
                 {2025, new DateTime(2025, 4, 20)},
                 {2035, new DateTime(2035, 4, 29)},
                 {2067, new DateTime(2067, 4, 10)},
-                {2099, new DateTime(2099, 4, 12)}
+                {2099, new DateTime(2099, 4, 12)},
+                {2100, new DateTime(2100, 5, 2)},
+                {2101, new DateTime(2101, 4, 24)},
+                {2200, new DateTime(2200, 4, 6)}
             };
 
             foreach (int year in years)
@@ -94,6 +97,7 @@ namespace DateTimeExtensions.Tests
                 var easterHoliday = ChristianOrthodoxHolidays.Easter;
                 var easter = easterHoliday.GetInstance(year);
                 Assert.IsTrue(easter.HasValue);
+                Assert.AreEqual(DayOfWeek.Sunday, easter.Value.DayOfWeek);
                 Assert.AreEqual(easterDates[year], easter.Value);
             }
         }
